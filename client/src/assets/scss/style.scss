@@ -1,15 +1,10 @@
 @charset "UTF-8";
-
-// setting
 @import "setting/common.scss";
 // @import "setting/fonts.scss";
 @import "setting/reset.scss";
 @import "setting/vars.scss";
 @import "setting/marginpadding.scss";
-@import "setting/quill.snow.scss";
 
-
-// section
 @import "section/header.scss";
 // @import "section/intro.scss";
 @import "section/write.scss";
