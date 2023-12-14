@@ -3,7 +3,7 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    border: 20px solid var(--bg-pink);
+    overflow: hidden;
     .write__wrap {
         width: 100%;
         display: flex;
@@ -123,6 +123,8 @@
                 }
                 .result {
                     margin-bottom: 18px;
+                    overflow-y: auto; /* 스크롤이 수직으로 발생하도록 설정 */
+                    position: relative;
                     h2 {
                         display: flex;
                         align-items: center;
@@ -134,7 +136,7 @@
                         height: 45px;
                         border-radius: 30px 30px 0 0;
                     }
-                    div {
+                    > div {
                         width: 530px;
                         height: 185px;
 
@@ -146,6 +148,16 @@
                         border-radius: 0 0 30px 30px;
                         font-family: var(--marc);
                         font-size: 18px;
+
+                        &::-webkit-scrollbar {
+                            width: 6px; /* 스크롤바의 너비 설정 */
+                        }
+
+                        /* 스크롤바의 스타일 설정 */
+                        &::-webkit-scrollbar-thumb {
+                            background-color: var(--black200);
+                            border-radius: 10px;
+                        }
                         span {
                         }
                     }
@@ -163,15 +175,72 @@
                         height: 45px;
                         border-radius: 30px 30px 0 0;
                     }
-                    div {
+                    > div {
+                        padding-bottom: 20px;
                         width: 530px;
                         height: 323px;
-                        padding: 25px;
-                        display: flex;
-                        flex-direction: column;
                         border: solid var(--font-pink1);
                         border-width: 0px 6px 6px 2px;
                         border-radius: 0 0 30px 30px;
+                        overflow: hidden;
+                        .correction_wrap {
+                            padding: 20px;
+                            width: 520px;
+                            height: 309px;
+                            overflow-y: auto; /* 스크롤이 수직으로 발생하도록 설정 */
+                            position: relative;
+                            &::-webkit-scrollbar {
+                                width: 6px; /* 스크롤바의 너비 설정 */
+                            }
+
+                            /* 스크롤바의 스타일 설정 */
+                            &::-webkit-scrollbar-thumb {
+                                background-color: var(--black200);
+                                border-radius: 10px;
+                            }
+                            li {
+                                display: flex;
+                                justify-content: space-around;
+                                align-items: center;
+                                font-family: var(--marc);
+                                padding-bottom: 5px;
+                                .wrong {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+
+                                    .wrong__word {
+                                        a {
+                                            display: inline-block;
+                                            color: var(--font-red);
+                                            font-size: 20px;
+                                        }
+                                    }
+                                    .wrong__reason {
+                                        display: inline-block;
+                                        font-family: var(--pre);
+                                        font-size: 14px;
+                                    }
+                                }
+                                .arrow {
+                                    width: 65px;
+                                    height: 23px;
+                                    background-image: url(../../img/arrow.png);
+                                    background-position: center center;
+                                    background-repeat: no-repeat;
+                                    display: inline-block;
+                                }
+                                .correct {
+                                    .correct__word {
+                                        a {
+                                            display: inline-block;
+                                            color: var(--font-blue);
+                                            font-size: 20px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import Header from '../layout/Header'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import { Link } from 'react-router-dom'
 
 const Write = () => {
     const [value, setValue] = useState('')
@@ -24,7 +25,7 @@ const Write = () => {
     return (
         <div id="wrap">
             <Header />
-            <div id="write">
+            <div id="write" className="section__border">
                 <div className="write__wrap">
                     <div className="today__date">
                         <p className="box">December, 18</p>
@@ -45,7 +46,11 @@ const Write = () => {
                                     rows="25"
                                 ></textarea> */}
                                 <ReactQuill
-                                    style={{ height: '530px', marginRight: '4px', marginLeft: '4px' }}
+                                    style={{
+                                        height: '530px',
+                                        marginRight: '4px',
+                                        marginLeft: '4px',
+                                    }}
                                     ref={quillRef}
                                     theme="snow"
                                     value={value}
@@ -57,10 +62,21 @@ const Write = () => {
                         </section>
                         <section className="right ml_30">
                             <h2 className="blind">서치, 오류 결과 섹션</h2>
-                            <div className='search__wrap'><span></span><input type="text" className="word__search" /></div>
+                            <div className="search__wrap">
+                                <span></span>
+                                <input type="text" className="word__search" />
+                            </div>
                             <div className="result">
                                 <h2>Result</h2>
                                 <div>
+                                    <span>splendid</span>
+                                    <span>madgnificant</span>
+                                    <span>elegant</span>
+                                    <span>grand</span>
+                                    <span>splendid</span>
+                                    <span>madgnificant</span>
+                                    <span>elegant</span>
+                                    <span>grand</span>
                                     <span>splendid</span>
                                     <span>madgnificant</span>
                                     <span>elegant</span>
@@ -69,7 +85,170 @@ const Write = () => {
                             </div>
                             <div className="correction">
                                 <h2>Correction</h2>
-                                <div></div>
+                                <div>
+                                    <ul className="correction_wrap">
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </section>
                     </div>

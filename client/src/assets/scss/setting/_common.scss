@@ -51,3 +51,8 @@
 input:focus {
     outline: none;
 }
+
+.section__border {
+    border: 20px solid var(--bg-pink);
+    z-index: 1;
+}
