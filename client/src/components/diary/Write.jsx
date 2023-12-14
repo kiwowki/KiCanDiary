@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import Header from '../layout/Header'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 
 const Write = () => {
+    const [value, setValue] = useState('')
+    const quillRef = useRef(null)
+
+    const modules = {
+        toolbar: [
+            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            ['link', 'image'],
+            ['clean'],
+        ],
+    }
+
+    const handleSave = () => {
+        const content = quillRef.current?.getEditor().getContents()
+        console.log('Content to be saved:', content)
+    }
     return (
         <div id="wrap">
             <Header />
@@ -10,7 +29,7 @@ const Write = () => {
                     <div className="today__date">
                         <p className="box">December, 18</p>
                     </div>
-                    <div className="write_main">
+                    <div className="write__main">
                         <section className="write">
                             <h3 className="blind">글쓰기</h3>
                             <article className="title">
@@ -19,20 +38,34 @@ const Write = () => {
                             </article>
                             <article className="content">
                                 <h2>Story</h2>
-                                <textarea
+                                {/* <textarea
                                     name="content"
                                     id="content"
                                     cols="100"
                                     rows="25"
-                                ></textarea>
+                                ></textarea> */}
+                                <ReactQuill
+                                    style={{ height: '530px', marginRight: '4px', marginLeft: '4px' }}
+                                    ref={quillRef}
+                                    theme="snow"
+                                    value={value}
+                                    onChange={setValue}
+                                    modules={modules}
+                                    placeholder="What's your story for today?"
+                                />
                             </article>
                         </section>
-                        <section className="right">
+                        <section className="right ml_30">
                             <h2 className="blind">서치, 오류 결과 섹션</h2>
-                            <input type="text" className="word__search" />
+                            <div className='search__wrap'><span></span><input type="text" className="word__search" /></div>
                             <div className="result">
                                 <h2>Result</h2>
-                                <div></div>
+                                <div>
+                                    <span>splendid</span>
+                                    <span>madgnificant</span>
+                                    <span>elegant</span>
+                                    <span>grand</span>
+                                </div>
                             </div>
                             <div className="correction">
                                 <h2>Correction</h2>
@@ -40,8 +73,11 @@ const Write = () => {
                             </div>
                         </section>
                     </div>
+                    {/* <button onClick={onClickSave}>저장</button> */}
                     <div className="button">
-                        <button className='box'>Upload</button>
+                        <button className="box" onClick={handleSave}>
+                            Upload
+                        </button>
                     </div>
                 </div>
             </div>

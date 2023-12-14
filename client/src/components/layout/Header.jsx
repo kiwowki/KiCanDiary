@@ -34,7 +34,7 @@ const Header = () => {
                             </Link>
                             's DIARY
                             <Link to={'/mypage'}>
-                                <img src={user} />
+                                <img src={user} alt='마이페이지 이미지' />
                             </Link>
                         </div>
                     </div>
