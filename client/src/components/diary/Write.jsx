@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import Header from '../layout/Header'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 
 const Write = () => {
+    const [value, setValue] = useState('')
+    const quillRef = useRef(null)
+
+    const modules = {
+        toolbar: [
+            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            ['link', 'image'],
+            ['clean'],
+        ],
+    }
+
+    const handleSave = () => {
+        const content = quillRef.current?.getEditor().getContents()
+        console.log('Content to be saved:', content)
+    }
     return (
         <div id="wrap">
             <Header />
@@ -19,12 +38,21 @@ const Write = () => {
                             </article>
                             <article className="content">
                                 <h2>Story</h2>
-                                <textarea
+                                {/* <textarea
                                     name="content"
                                     id="content"
                                     cols="100"
                                     rows="25"
-                                ></textarea>
+                                ></textarea> */}
+                                <ReactQuill
+                                    style={{ height: '530px', marginRight: '4px', marginLeft: '4px' }}
+                                    ref={quillRef}
+                                    theme="snow"
+                                    value={value}
+                                    onChange={setValue}
+                                    modules={modules}
+                                    placeholder="내용을 입력하세요."
+                                />
                             </article>
                         </section>
                         <section className="right">
@@ -40,8 +68,11 @@ const Write = () => {
                             </div>
                         </section>
                     </div>
+                    {/* <button onClick={onClickSave}>저장</button> */}
                     <div className="button">
-                        <button className='box'>Upload</button>
+                        <button className="box" onClick={handleSave}>
+                            Upload
+                        </button>
                     </div>
                 </div>
             </div>
