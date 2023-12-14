@@ -390,8 +390,9 @@
   .ql-editor .ql-align-right {
     text-align: right;
   }
+  // 플레이스홀더
   .ql-editor.ql-blank::before {
-    color: rgba(0,0,0,0.6);
+    color: rgba(0,0,0,0.65) !important;
     content: attr(data-placeholder);
     font-style: italic;
     left: 15px;
@@ -957,5 +958,7 @@
   .ql-container.ql-snow {
     border: 1px solid var(--box-pink2) !important;
     background-color: #fff;
+    background-image: url(../../img/write_bgi.png);
+    border-radius: 0;
   }
   

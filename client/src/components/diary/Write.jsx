@@ -29,7 +29,7 @@ const Write = () => {
                     <div className="today__date">
                         <p className="box">December, 18</p>
                     </div>
-                    <div className="write_main">
+                    <div className="write__main">
                         <section className="write">
                             <h3 className="blind">글쓰기</h3>
                             <article className="title">
@@ -51,16 +51,21 @@ const Write = () => {
                                     value={value}
                                     onChange={setValue}
                                     modules={modules}
-                                    placeholder="내용을 입력하세요."
+                                    placeholder="What's your story for today?"
                                 />
                             </article>
                         </section>
-                        <section className="right">
+                        <section className="right ml_30">
                             <h2 className="blind">서치, 오류 결과 섹션</h2>
-                            <input type="text" className="word__search" />
+                            <div className='search__wrap'><span></span><input type="text" className="word__search" /></div>
                             <div className="result">
                                 <h2>Result</h2>
-                                <div></div>
+                                <div>
+                                    <span>splendid</span>
+                                    <span>madgnificant</span>
+                                    <span>elegant</span>
+                                    <span>grand</span>
+                                </div>
                             </div>
                             <div className="correction">
                                 <h2>Correction</h2>
