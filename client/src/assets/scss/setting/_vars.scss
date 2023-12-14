@@ -3,7 +3,7 @@
     --marc: "Marcellus";
     --shrik: "Shrikhand";
     --pre: "Pretendard-Regular";
-    
+
     --mainfont-Shrikhand: "Shrikhand";
     font-family: "Shrikhand", serif;
     font-size: 16px;
@@ -25,8 +25,8 @@
     // font color
     --font-pink1: #ffc0d9;
     --font-pink2: #FF8CC5;
-    --font-puple1: #A295DA;
-    --font-puple2: #8477C9;
+    --font-purple1: #A295DA;
+    --font-purple2: #8477C9;
 
     // bg color
     --bg-pink: #fdf0f0;
@@ -34,8 +34,8 @@
     // box color
     --box-pink1: #ffc0d9;
     --box-pink2: #FFC5C5;
-    --box-puple1: #A295DA;
-    --box-puple2: #8477C9;
+    --box-purple1: #A295DA;
+    --box-purple2: #8477C9;
 
     // border
     --border-pink: #FE8C8C;
@@ -46,16 +46,19 @@
         font-size: 14px;
     }
 }
+
 @media (max-width: 1400px) {
     :root* {
         font-size: 12px;
     }
 }
+
 @media (max-width: 1250px) {
     :root* {
         font-size: 11px;
     }
 }
+
 @media (max-width: 1000px) {
     :root* {
         font-size: 10px;

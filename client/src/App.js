@@ -4,7 +4,7 @@ import "./assets/scss/style.scss";
 import Home from "./pages/Home";
 import Write from "./components/diary/Write";
 import Join from "./components/user/Join";
-
+import Login from "./components/user/Login";
 const App = () => {
     return (
         <BrowserRouter>
@@ -12,6 +12,7 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/write" element={<Write />} />
                 <Route path="/join" element={<Join />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
         </BrowserRouter>
     );
