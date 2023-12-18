@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Write from "./components/diary/Write";
 import Join from "./components/user/Join";
 import Login from "./components/user/Login";
+import Mypage from "./components/user/Mypage";
 const App = () => {
     return (
         <BrowserRouter>
@@ -13,6 +14,7 @@ const App = () => {
                 <Route path="/write" element={<Write />} />
                 <Route path="/join" element={<Join />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/mypage" element={<Mypage />} />
             </Routes>
         </BrowserRouter>
     );
