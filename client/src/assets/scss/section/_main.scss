@@ -32,6 +32,34 @@
         .right {
             width: 50%;
             border-left: 10px solid var(--bg-pink);
+
+            .main__diary {
+                padding: 0 30px;
+                margin: 0 auto;
+                .diary__list {
+                    .list__title {
+                        p {
+                            width: 20%;
+                            height: 52px;
+                            background-color: var(--box-purple1);
+                            color: var(--font-white);
+                        }
+                    }
+                }
+
+                .diary__tab {
+                    width: 100%;
+                    .tab__box {
+                        width: 100%;
+                        height: 250px;
+                        padding: 20px;
+                        h4 {
+                        }
+                        p {
+                        }
+                    }
+                }
+            }
         }
     }
 }

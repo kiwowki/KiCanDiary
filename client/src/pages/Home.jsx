@@ -21,7 +21,7 @@ const Home = () => {
                         </div>
                     </div>
                     <nav className="nav">
-                        <ul className="box">
+                        <ul className="box1">
                             <li className="pt10">
                                 <Link to={'/'}>Diary</Link>
                                 <ul className="aside__diary">
@@ -75,7 +75,32 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="right section__border"></div>
+                    <div className="right section__border pt50">
+                        <div className="main__diary">
+                            <div className="diary__list">
+                                <div className="list__title">
+                                    <p className="">Recent Diary</p>
+                                </div>
+                                <div className="diary__tab">
+                                    <div className="tab__box box2">
+                                        <h4 className="mb20">
+                                            December 04, 2023
+                                        </h4>
+                                        <p>
+                                            Welcome to this site. It’s Diary
+                                            with English for you and we. Our
+                                            team consists of 3 people who are
+                                            serious about diary writing. If
+                                            you're rooting for us, please use it
+                                            a lot. Thanks you.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="voca__list"></div>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
