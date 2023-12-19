@@ -50,3 +50,9 @@ input:focus {
     border: 20px solid var(--bg-pink);
     z-index: 1;
 }
+
+@media (max-width: 480px) {
+    .section__border {
+        border: none;
+    }
+}

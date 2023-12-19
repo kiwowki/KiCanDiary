@@ -1,43 +1,38 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import user from '../../assets/img/user_img.png'
 
 const Header_m = () => {
     return (
-        <header id="header">
+        <header id="header_m">
             <div className="header__wrap">
+                <div className="logo">
+                    <Link to={'/'}>
+                        <p>Kitch</p>
+                        <p>Candy</p>
+                        <em>Diary</em>
+                    </Link>
+                </div>
                 <nav className="nav">
                     <ul className="nav__list">
                         <li>
-                            <Link to={'/'}>모바일모드</Link>
+                            <Link to={'/list'}>Diary</Link>
                         </li>
                         <li>
-                            <Link to={'/diary'} className="active">
-                                Diary
+                            <Link to={'/write'} className="active">
+                                Today
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/voca'}>VOCA list</Link>
+                            <Link to={'/voca'}>VOCA</Link>
                         </li>
                         <li>
-                            <Link to={'/mypage'}>My page</Link>
+                            <Link to={'/mypage'}>My</Link>
+                        </li>
+                        <li>
+                            <Link to={'/logout'}>Logout</Link>
                         </li>
                     </ul>
-                    <div className="nav__session">
-                        <div className="right">
-                            <Link to={'/logout'}>Logout</Link>
-                        </div>
-                        <div className="user__info box1">
-                            <Link to={'/mypage'}>
-                                <em className="line1">UserName UserName</em>
-                            </Link>
-                            's DIARY
-                            <Link to={'/mypage'}>
-                                <img src={user} alt="마이페이지 이미지" />
-                            </Link>
-                        </div>
-                    </div>
                 </nav>
             </div>
         </header>
