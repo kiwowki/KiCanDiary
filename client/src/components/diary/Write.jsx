@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react'
-import Header from '../layout/Header'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { Link } from 'react-router-dom'
+import Header from '../layout/Header'
+import Header_m from '../layout/Header_m'
 
-const Write = () => {
+const Write = ({ isMobile }) => {
     const [value, setValue] = useState('')
     const quillRef = useRef(null)
 
@@ -24,11 +25,11 @@ const Write = () => {
     }
     return (
         <div id="wrap">
-            <Header />
+            {isMobile ? <Header_m /> : <Header />}
             <div id="write" className="section__border">
                 <div className="write__wrap">
                     <div className="today__date">
-                        <p className="box">December, 18</p>
+                        <p className="box1">December, 18</p>
                     </div>
                     <div className="write__main">
                         <section className="write">
@@ -69,18 +70,20 @@ const Write = () => {
                             <div className="result">
                                 <h2>Result</h2>
                                 <div>
-                                    <span>splendid</span>
-                                    <span>madgnificant</span>
-                                    <span>elegant</span>
-                                    <span>grand</span>
-                                    <span>splendid</span>
-                                    <span>madgnificant</span>
-                                    <span>elegant</span>
-                                    <span>grand</span>
-                                    <span>splendid</span>
-                                    <span>madgnificant</span>
-                                    <span>elegant</span>
-                                    <span>grand</span>
+                                    <div className="result_wrap">
+                                        <span>splendid</span>
+                                        <span>madgnificant</span>
+                                        <span>elegant</span>
+                                        <span>grand</span>
+                                        <span>splendid</span>
+                                        <span>madgnificant</span>
+                                        <span>elegant</span>
+                                        <span>grand</span>
+                                        <span>splendid</span>
+                                        <span>madgnificant</span>
+                                        <span>elegant</span>
+                                        <span>grand</span>
+                                    </div>
                                 </div>
                             </div>
                             <div className="correction">
@@ -94,9 +97,9 @@ const Write = () => {
                                                         tast
                                                     </Link>
                                                 </p>
-                                                <p className="wrong__reason">
+                                                {/* <p className="wrong__reason">
                                                     철자 오류
-                                                </p>
+                                                </p> */}
                                             </div>
                                             <span className="arrow"></span>
                                             <div className="correct">
@@ -114,9 +117,9 @@ const Write = () => {
                                                         tast
                                                     </Link>
                                                 </p>
-                                                <p className="wrong__reason">
+                                                {/* <p className="wrong__reason">
                                                     철자 오류
-                                                </p>
+                                                </p> */}
                                             </div>
                                             <span className="arrow"></span>
                                             <div className="correct">
@@ -134,9 +137,9 @@ const Write = () => {
                                                         tast
                                                     </Link>
                                                 </p>
-                                                <p className="wrong__reason">
+                                                {/* <p className="wrong__reason">
                                                     철자 오류
-                                                </p>
+                                                </p> */}
                                             </div>
                                             <span className="arrow"></span>
                                             <div className="correct">
@@ -154,9 +157,9 @@ const Write = () => {
                                                         tast
                                                     </Link>
                                                 </p>
-                                                <p className="wrong__reason">
+                                                {/* <p className="wrong__reason">
                                                     철자 오류
-                                                </p>
+                                                </p> */}
                                             </div>
                                             <span className="arrow"></span>
                                             <div className="correct">
@@ -174,9 +177,9 @@ const Write = () => {
                                                         tast
                                                     </Link>
                                                 </p>
-                                                <p className="wrong__reason">
+                                                {/* <p className="wrong__reason">
                                                     철자 오류
-                                                </p>
+                                                </p> */}
                                             </div>
                                             <span className="arrow"></span>
                                             <div className="correct">
@@ -194,9 +197,9 @@ const Write = () => {
                                                         tast
                                                     </Link>
                                                 </p>
-                                                <p className="wrong__reason">
+                                                {/* <p className="wrong__reason">
                                                     철자 오류
-                                                </p>
+                                                </p> */}
                                             </div>
                                             <span className="arrow"></span>
                                             <div className="correct">
@@ -214,9 +217,9 @@ const Write = () => {
                                                         tast
                                                     </Link>
                                                 </p>
-                                                <p className="wrong__reason">
+                                                {/* <p className="wrong__reason">
                                                     철자 오류
-                                                </p>
+                                                </p> */}
                                             </div>
                                             <span className="arrow"></span>
                                             <div className="correct">
@@ -234,9 +237,9 @@ const Write = () => {
                                                         tast
                                                     </Link>
                                                 </p>
-                                                <p className="wrong__reason">
+                                                {/* <p className="wrong__reason">
                                                     철자 오류
-                                                </p>
+                                                </p> */}
                                             </div>
                                             <span className="arrow"></span>
                                             <div className="correct">
@@ -254,7 +257,7 @@ const Write = () => {
                     </div>
                     {/* <button onClick={onClickSave}>저장</button> */}
                     <div className="button">
-                        <button className="box" onClick={handleSave}>
+                        <button className="box1" onClick={handleSave}>
                             Upload
                         </button>
                     </div>

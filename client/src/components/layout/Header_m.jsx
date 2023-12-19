@@ -3,14 +3,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import user from '../../assets/img/user_img.png'
 
-const Header = () => {
+const Header_m = () => {
     return (
         <header id="header">
             <div className="header__wrap">
                 <nav className="nav">
                     <ul className="nav__list">
                         <li>
-                            <Link to={'/'}>Home</Link>
+                            <Link to={'/'}>모바일모드</Link>
                         </li>
                         <li>
                             <Link to={'/diary'} className="active">
@@ -34,7 +34,7 @@ const Header = () => {
                             </Link>
                             's DIARY
                             <Link to={'/mypage'}>
-                                <img src={user} alt='마이페이지 이미지' />
+                                <img src={user} alt="마이페이지 이미지" />
                             </Link>
                         </div>
                     </div>
@@ -44,4 +44,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Header_m
