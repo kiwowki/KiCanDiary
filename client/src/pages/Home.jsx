@@ -1,16 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../assets/img/logo.png'
 import user from '../assets/img/user.png'
 import { Calendar } from 'react-calendar'
+import tabData from '../Data/tabData/tabData.js';
+import vocaData from '../Data/tabData/vocaData.js'
 const Home = () => {
     const [value, onChange] = useState(new Date())
+    const [ myList, setMyList ] = useState([]);
+    useEffect(() => {
+        setMyList(vocaData);
+      }, []);
 
+
+
+
+    const [activeTab, setActiveTab] = useState('tab1')
+    const TabContent = ({ title, content }) => (
+        <div className="diary__tab">
+        <Link to={"#"}> 
+        
+            <div className="tab__box box2">
+                <h4 className="mb20">{title}</h4>
+                <p className=''>{content}</p>
+            </div>
+        </Link>
+        </div>
+      )
     return (
         <div id="wrap">
             <aside id="aside">
                 <div className="aside__wrap">
-                    <div className="logo mb40rem">
+                    <div className="logo mb30rem">
                         <div className="logo__text mb10">
                             <em>kitch</em> candy
                         </div>
@@ -28,7 +49,7 @@ const Home = () => {
                                     <li>
                                         <Link to={'#'}>list</Link>
                                     </li>
-                                    <li className="">
+                                    <li className="mb10">
                                         <Link to={'#'}>today</Link>
                                     </li>
                                 </ul>
@@ -39,12 +60,12 @@ const Home = () => {
                             <li>
                                 <Link to={'/'}>My page</Link>
                             </li>
-                            <li className="pb10">
+                            <li className="">
                                 <Link to={'/'}>Logout</Link>
                             </li>
                         </ul>
                     </nav>
-                    <div className="user mt100">
+                    <div className="user">
                         <div className="user__profile mt60">
                             <img src={user} alt="" />
                         </div>
@@ -61,44 +82,53 @@ const Home = () => {
             </aside>
             <main id="main" role="main">
                 <div className="main__wrap">
-                    <div className="left section__border pt50">
+                    <div className="left section__border pt70">
                         <div className="date__info">
                             <div className="date__today ml_70 mb70">
                                 <span>December 07, 2023</span>
                             </div>
                             <div className="calendar">
-                                <Calendar
-                                    onChange={onChange}
-                                    value={value}
-                                    locale="en-US"
-                                />
+                                <Calendar onChange={onChange} value={value} locale="en-US" />
                             </div>
                         </div>
                     </div>
                     <div className="right section__border pt50">
                         <div className="main__diary">
                             <div className="diary__list">
-                                <div className="list__title">
-                                    <p className="">Recent Diary</p>
+                                <div className="list__title mb20">
+                                    <p className="whiteSpaceNo">Recent Diary</p>
                                 </div>
-                                <div className="diary__tab">
-                                    <div className="tab__box box2">
-                                        <h4 className="mb20">
-                                            December 04, 2023
-                                        </h4>
-                                        <p>
-                                            Welcome to this site. It’s Diary
-                                            with English for you and we. Our
-                                            team consists of 3 people who are
-                                            serious about diary writing. If
-                                            you're rooting for us, please use it
-                                            a lot. Thanks you.
-                                        </p>
+                              
+                                <div className='tabWrap'>
+                                    <div className='btnWrap pr20'>
+                                        {tabData.map((tab, index) => (
+                                            <button className={`tab__btn mr20 ${activeTab === tab.id ? 'active' : ''}`} key={tab.id} onClick={() => setActiveTab(tab.id)}>
+                                            {index + 1}
+                                            </button>
+                                        ))}
                                     </div>
+                                    {tabData
+                                        .filter(tab => tab.id === activeTab)
+                                        .map(tab => (
+                                            <TabContent key={tab.id} title={tab.title} content={tab.content} />
+                                        ))}
                                 </div>
+                                  
                             </div>
+                            
 
-                            <div className="voca__list"></div>
+                            <div className="voca__list pt100">
+                                <div className="list__title mb20">
+                                    <p className="whiteSpaceNo">vocabulary List</p>
+                                </div>
+
+                                { myList.map((list, key) => (
+                                         <p className='my__list' key={key}>
+                                            <span className='list__key pl50'>{list.key}</span>
+                                            <span className='list__value'>{list.value}</span>
+                                        </p>
+                                    ))}
+                            </div>
                         </div>
                     </div>
                 </div>
