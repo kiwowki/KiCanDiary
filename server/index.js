@@ -1,14 +1,30 @@
 const express = require('express');
 const path = require("path");
+// 데이터베이스
+const mongoose = require("mongoose");
+
 const app = express();
 const port = 5050;
+// DB, Firebase, navercloud key
+const config = require("./server/config/key.js");
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// router
+app.use("/api/user", require("./server/router/user.js"));
+
 app.listen(port, () => {
-    console.log("run -->" + port);
+    mongoose
+        .connect(config.mongoURI)
+        .then(() => {
+            console.log("listening  --> " + port);
+            console.log("mongoose --> connecting");
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 })
 
 app.get('/', (req, res) => {
