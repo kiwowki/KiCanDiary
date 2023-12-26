@@ -1,0 +1,37 @@
+#main {
+    width: calc(100% - 160px);
+    height: 100vh;
+
+    .main__wrap {
+        display: flex;
+        justify-content: space-between;
+        height: 100vh;
+        .left {
+            width: 50%;
+            border-right: 10px solid var(--bg-pink);
+
+            .date__info {
+                .date__today {
+                    width: 280px;
+                    height: 50px;
+                    line-height: 50px;
+                    background-color: var(--bg-pink);
+                    border-radius: 10px;
+                    text-align: center;
+
+                    span {
+                        font-family: var(--dela);
+                        font-size: 1.2rem;
+                    }
+                }
+
+                .calendar {
+                }
+            }
+        }
+        .right {
+            width: 50%;
+            border-left: 10px solid var(--bg-pink);
+        }
+    }
+}

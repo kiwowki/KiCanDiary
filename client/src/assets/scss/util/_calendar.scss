@@ -1,0 +1,164 @@
+.react-calendar {
+    width: 550px;
+    height: 550px;
+    max-width: 100%;
+    background: white;
+
+    outline: 2px solid var(--font-pink1);
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.125em;
+
+    &--doubleView {
+        width: 700px;
+
+        & .react-calendar__viewContainer {
+            display: flex;
+            margin: -0.5em;
+
+            & > * {
+                width: 50%;
+                margin: 0.5em;
+            }
+        }
+    }
+
+    *,
+    *:before,
+    *:after {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    button {
+        margin: 0;
+        outline: none;
+
+        &:enabled:hover {
+            cursor: pointer;
+        }
+
+        &:disabled {
+            background-color: #943a3a;
+        }
+
+        &:enabled:hover,
+        &:enabled:focus {
+            background-color: #943a3a;
+        }
+    }
+
+    &__navigation {
+        display: flex;
+        height: 44px;
+        margin-bottom: 1em;
+    }
+
+    &__month-view {
+        border-top: 1px solid var(--font-pink1);
+        border-bottom: 1px solid var(--font-pink1);
+
+        &__weekdays {
+            text-align: center;
+            text-transform: uppercase;
+            font: inherit;
+            font-size: 0.75em;
+            font-weight: bold;
+
+            &__weekday {
+                border: 1px solid var(--font-pink1);
+
+                padding: 0.5em;
+            }
+        }
+
+        &__weekNumbers .react-calendar__tile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font: inherit;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+
+        &__days {
+            &__day {
+                border: 1px solid var(--font-pink1);
+                &--weekend {
+                    color: #d10000; // 주말 글자
+                }
+
+                &--neighboringMonth {
+                    color: #757575; //평일
+                }
+            }
+        }
+    }
+
+    // 달력 미리보기
+    &__year-view .react-calendar__tile,
+    &__decade-view .react-calendar__tile,
+    &__century-view .react-calendar__tile {
+        padding: 2em 0.5em;
+    }
+
+    &__tile {
+        max-width: 100%;
+        padding: 10px 6.6667px;
+        background: none;
+        text-align: center;
+        line-height: 16px;
+        font: inherit;
+        font-size: 0.833em;
+
+        &:disabled {
+            background-color: #f0f0f0;
+        }
+
+        &:enabled {
+            &:hover,
+            &:focus {
+                background-color: #e6e6e6;
+            }
+        }
+
+        &--now {
+            background: #ffff76;
+
+            &:enabled {
+                &:hover,
+                &:focus {
+                    background: #ffffa9;
+                }
+            }
+        }
+
+        &--hasActive {
+            background: #76baff;
+
+            &:enabled {
+                &:hover,
+                &:focus {
+                    background: #a9d4ff;
+                }
+            }
+        }
+
+        &--active {
+            background: #006edc;
+            color: white;
+
+            &:enabled {
+                &:hover,
+                &:focus {
+                    background: #1087ff;
+                }
+            }
+        }
+    }
+
+    &--selectRange .react-calendar__tile--hover {
+        background-color: #e6e6e6;
+    }
+}
