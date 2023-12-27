@@ -1,6 +1,7 @@
 .relative {
     position: relative;
 }
+
 .absolute {
     position: absolute;
 }
@@ -18,20 +19,24 @@
     border-width: 2px 4px 4px 2px;
     border-radius: 15px;
 }
+
 .box2 {
     border: solid var(--box-purple2);
-    border-width: 3px 3px 12px 12px;
-    border-radius: 15px;
+    border-width: 2px 2px 6px 6px;
+    border-radius: 10px;
 }
+
 .box3 {
     border: solid var(--black);
     border-width: 2px 6px 6px 2px;
     border-radius: 30px;
 }
+
 .text {
     color: blue;
     -webkit-text-stroke: 1px var(--black);
 }
+
 .bold {
     font-weight: bold;
 }
@@ -48,11 +53,4 @@ input:focus {
 
 .section__border {
     border: 20px solid var(--bg-pink);
-    z-index: 1;
-}
-
-@media (max-width: 480px) {
-    .section__border {
-        border: none;
-    }
 }

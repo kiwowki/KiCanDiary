@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import user from '../../assets/img/user_img.png'
+import user from '../../assets/img/user.png'
 
 const Header = () => {
     return (
@@ -40,7 +40,7 @@ const Header = () => {
                             </Link>
                             's DIARY
                             <Link to={'/mypage'}>
-                                <img src={user} alt="마이페이지 이미지" />
+                                <img src={user} alt='마이페이지 이미지' />
                             </Link>
                         </div>
                     </div>

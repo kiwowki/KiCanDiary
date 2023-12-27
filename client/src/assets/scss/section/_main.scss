@@ -1,5 +1,5 @@
 #main {
-    width: calc(100% - 160px);
+    width: calc(100% - 200px);
     height: 100vh;
 
     .main__wrap {
@@ -9,10 +9,14 @@
         .left {
             width: 50%;
             border-right: 10px solid var(--bg-pink);
-
+            border-left: none;
+            padding: 3.5% 2% 0 2%;
             .date__info {
+                width: 100%;
+
                 .date__today {
                     width: 280px;
+                    width: 17.5rem;
                     height: 50px;
                     line-height: 50px;
                     background-color: var(--bg-pink);
@@ -24,38 +28,242 @@
                         font-size: 1.2rem;
                     }
                 }
+            }
+            .today {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                padding: 10% 2% 1% 1%;
 
-                .calendar {
+                p {
+                    background-color: var(--font-pink1);
+                    color: black;
+                    font-family: var(--mainfont-Shrikhand);
+                    border: solid var(--black);
+                    border-width: 1px 2px 2px 1px;
+                    border-radius: 5px;
+                    padding: 0.5% 1%;
+                    cursor: pointer;
+                    height: 35px;
+                    line-height: 30px;
+
+                    &:hover {
+                        scale: (0.95);
+                    }
+                    // margin-right: 15px;
+                    // width: 6vw !important;
+                    // max-width: 120px !important;
                 }
             }
         }
         .right {
             width: 50%;
             border-left: 10px solid var(--bg-pink);
-
+            padding: 3% 2% 0 2%;
             .main__diary {
-                padding: 0 30px;
+                // padding: 0 30px;
                 margin: 0 auto;
+
                 .diary__list {
+                    position: relative;
+                    &::before,
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        background-size: cover;
+                        background-position: center;
+                    }
+                    &::before {
+                        top: -3%;
+                        // left: 14vw;
+                        left: 15.1rem;
+                        width: 25px;
+                        height: 25px;
+                        background-image: url('../../img/pink-11.gif');
+                    }
+                    &::after {
+                        top: -0.5%;
+                        // left: 15.5vw;
+                        // left: 295px;
+                        left: 17.5rem;
+                        width: 20px;
+                        height: 20px;
+                        background-image: url('../../img/pink-11.gif');
+                    }
                     .list__title {
                         p {
-                            width: 20%;
                             height: 52px;
+                            width: 15rem;
+                            line-height: 52px;
+                            font-size: 1.6rem;
+                            letter-spacing: 1px;
                             background-color: var(--box-purple1);
                             color: var(--font-white);
+                            text-align: center;
+                        }
+                    }
+                    .tabWrap {
+                        margin-top: -45px;
+                        .btnWrap {
+                            display: flex;
+                            justify-content: flex-end;
+
+                            button {
+                                width: 11%;
+                                height: 50px;
+                                background-color: #fff;
+                                font-size: 1.5rem;
+                                font-weight: bold;
+                                color: var(--font-purple1);
+                                border: 2px solid var(--font-purple1);
+                                border-bottom: none;
+                                font-family: var(--dela);
+                                cursor: pointer;
+                                transition: all 0.1s;
+
+                                &:hover {
+                                    background-color: var(--font-purple1);
+                                    color: var(--font-white);
+                                }
+                            }
+                            .active {
+                                background-color: var(--font-purple1);
+                                color: var(--font-white);
+                            }
+                        }
+
+                        .diary__tab {
+                            width: 100%;
+                            .tab__box {
+                                a {
+                                    display: block;
+                                    background-color: #fff;
+                                }
+                                width: 100%;
+                                height: 250px;
+                                padding: 20px;
+                                position: relative;
+                                z-index: 5;
+                                background-color: #fff;
+                                overflow: hidden;
+                                h4 {
+                                    font-size: 1.4rem;
+                                }
+                                p {
+                                    font-size: 1.1rem;
+                                    font-family: 'Poppins';
+                                    font-weight: 400;
+                                    letter-spacing: -0.7px;
+                                    overflow-y: scroll;
+                                    height: 130px;
+                                }
+                                &::before,
+                                &::after {
+                                    content: '';
+                                    position: absolute;
+                                    width: 101.5%;
+                                    height: 101%;
+                                    border: solid var(--box-purple2);
+                                    border-width: 1px 1px 5px 5px;
+                                    border-radius: 7px;
+                                    z-index: -3;
+                                    margin: 0;
+                                    z-index: -1; /* 수정 */
+                                    box-sizing: border-box; /* 추가 */
+                                }
+                                &::before {
+                                    top: -2px;
+                                    left: -5px;
+                                    display: none;
+                                }
+
+                                &::after {
+                                    top: 0px;
+                                    left: -8.2px;
+                                }
+                            }
                         }
                     }
                 }
-
-                .diary__tab {
-                    width: 100%;
-                    .tab__box {
+                .voca__list {
+                    .list__title {
+                        position: relative;
+                        display: flex;
                         width: 100%;
-                        height: 250px;
-                        padding: 20px;
-                        h4 {
+                        &::before,
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            background-size: cover;
+                            background-position: center;
                         }
-                        p {
+                        &::before {
+                            top: -10%;
+                            // left: 13vw;
+                            left: 15.5rem;
+                            width: 35px;
+                            height: 35px;
+                            background-image: url('../../img/red-1.gif');
+                        }
+                        &::after {
+                            top: -2%;
+                            // left: 15vw;
+                            left: 18rem;
+                            width: 25px;
+                            height: 25px;
+                            background-image: url('../../img/red-1.gif');
+                        }
+                        .voca__img {
+                            width: 14%;
+                            text-align: right;
+                            margin-top: -30px;
+                            img {
+                                width: 200px;
+                                height: 200px;
+                            }
+                        }
+                        .tit {
+                            width: 86%;
+                            p {
+                                height: 52px;
+                                width: 15rem;
+                                line-height: 52px;
+                                font-size: 1.6rem;
+                                letter-spacing: 1.2px;
+                                background-color: var(--border-pink);
+                                text-align: center;
+                                font-family: var(--dela);
+                                font-weight: 900;
+                            }
+                        }
+                    }
+                    .all__list {
+                        margin-top: -98px;
+                        .my__list {
+                            width: 90%;
+                            margin: 0 auto 10px auto;
+                            font-family: var(--marc);
+                            font-weight: 400;
+                            position: relative;
+
+                            .list__key {
+                                display: inline-block;
+                                width: 50%;
+                            }
+                            .list__value {
+                                display: inline-block;
+                                width: 50%;
+                            }
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                bottom: -20%;
+                                left: 0;
+                                background-color: var(--border-pink);
+                                width: 100%;
+                                height: 2px;
+                            }
                         }
                     }
                 }
