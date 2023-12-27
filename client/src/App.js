@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import Write from "./components/diary/Write";
 import Header from "./components/layout/Header";
 import HeaderMobile from "./components/layout/Header_m";
-import Aside from "./components/layout/Aside";
 import VocaList from "./components/voca/VocaList";
 import Footer from "./components/layout/Footer";
 import Main from "./components/layout/Main";

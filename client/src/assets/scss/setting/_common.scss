@@ -20,8 +20,8 @@
 }
 .box2 {
     border: solid var(--box-purple2);
-    border-width: 3px 3px 12px 12px;
-    border-radius: 15px;
+    border-width: 2px 2px 6px 6px;
+    border-radius: 10px;
 }
 .box3 {
     border: solid var(--black);
@@ -48,11 +48,4 @@ input:focus {
 
 .section__border {
     border: 20px solid var(--bg-pink);
-    z-index: 1;
-}
-
-@media (max-width: 480px) {
-    .section__border {
-        border: none;
-    }
 }
