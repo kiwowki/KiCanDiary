@@ -33,13 +33,9 @@
                 .title {
                     display: flex;
                     text-align: center;
-<<<<<<< HEAD
                     width: 54.3vw;
                     height: 50px;
-=======
-                    width: 1040px;
-                    height: 60px;
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
+
                     background-color: var(--box-pink2);
                     border-radius: 30px;
 
@@ -66,11 +62,8 @@
                 }
                 .content {
                     text-align: center;
-<<<<<<< HEAD
                     width: 54.3vw;
-=======
-                    width: 1040px;
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
+
                     height: 616px;
                     background-color: var(--font-pink1);
                     border-radius: 30px;
@@ -86,23 +79,6 @@
                         height: 45px;
                         border-radius: 30px 30px 0 0;
                     }
-<<<<<<< HEAD
-                    // textarea {
-                    //     width: 1020px;
-                    //     height: 570px;
-                    //     border: 1px solid var(--font-pink1);
-                    //     font-family: var(--pre);
-                    //     padding: 50px 35px;
-                    // }
-=======
-                    textarea {
-                        width: 1020px;
-                        height: 570px;
-                        border: 1px solid var(--font-pink1);
-                        font-family: var(--pre);
-                        padding: 50px 35px;
-                    }
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
                     // /* Snow Theme */
                     // .app .ql-snow.ql-toolbar {
                     //     position: absolute;
@@ -116,22 +92,15 @@
             .right {
                 // margin-left: 30px;
                 .search__wrap {
-<<<<<<< HEAD
                     width: 27.75vw;
                     height: 50px;
-=======
-                    width: 530px;
-                    height: 60px;
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
+
                     margin-bottom: 18px;
                     position: relative;
                     span {
                         position: absolute;
-<<<<<<< HEAD
                         top: 5px;
-=======
-                        top: 10px;
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
+
                         left: 15px;
                         width: 40px;
                         height: 40px;
@@ -140,13 +109,9 @@
                         background-repeat: no-repeat;
                     }
                     input {
-<<<<<<< HEAD
                         width: 27.75vw;
                         height: 50px;
-=======
-                        width: 530px;
-                        height: 60px;
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
+
                         padding-left: 60px;
                         border: solid var(--font-pink1);
                         border-width: 2px 6px 6px 2px;
@@ -156,14 +121,9 @@
                 }
                 .result {
                     margin-bottom: 18px;
-<<<<<<< HEAD
-
                     position: relative;
 
-=======
-                    overflow-y: auto; /* 스크롤이 수직으로 발생하도록 설정 */
-                    position: relative;
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
+
                     h2 {
                         display: flex;
                         align-items: center;
@@ -176,24 +136,15 @@
                         border-radius: 30px 30px 0 0;
                     }
                     > div {
-<<<<<<< HEAD
                         width: 27.75vw;
                         height: 185px;
                         overflow: hidden;
-=======
-                        width: 530px;
-                        height: 185px;
 
-                        padding: 25px;
-                        display: flex;
-                        flex-direction: column;
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
                         border: solid var(--font-pink1);
                         border-width: 0px 6px 6px 2px;
                         border-radius: 0 0 30px 30px;
                         font-family: var(--marc);
                         font-size: 18px;
-<<<<<<< HEAD
                         /* 스크롤이 수직으로 발생하도록 설정 */
 
                         .result_wrap {
@@ -213,19 +164,7 @@
                                 background-color: var(--black200);
                                 border-radius: 10px;
                             }
-=======
 
-                        &::-webkit-scrollbar {
-                            width: 6px; /* 스크롤바의 너비 설정 */
-                        }
-
-                        /* 스크롤바의 스타일 설정 */
-                        &::-webkit-scrollbar-thumb {
-                            background-color: var(--black200);
-                            border-radius: 10px;
-                        }
-                        span {
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
                         }
                     }
                 }
@@ -244,11 +183,8 @@
                     }
                     > div {
                         padding-bottom: 20px;
-<<<<<<< HEAD
                         width: 27.75vw;
-=======
-                        width: 530px;
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
+
                         height: 323px;
                         border: solid var(--font-pink1);
                         border-width: 0px 6px 6px 2px;
@@ -256,11 +192,8 @@
                         overflow: hidden;
                         .correction_wrap {
                             padding: 20px;
-<<<<<<< HEAD
                             width: 27.2vw;
-=======
-                            width: 520px;
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
+
                             height: 309px;
                             overflow-y: auto; /* 스크롤이 수직으로 발생하도록 설정 */
                             position: relative;
@@ -278,11 +211,8 @@
                                 justify-content: space-around;
                                 align-items: center;
                                 font-family: var(--marc);
-<<<<<<< HEAD
                                 padding-bottom: 25px;
-=======
-                                padding-bottom: 5px;
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
+
                                 .wrong {
                                     display: flex;
                                     flex-direction: column;
@@ -339,7 +269,6 @@
                 border-radius: 30px;
                 color: var(--white);
                 font-family: var(--dela);
-<<<<<<< HEAD
                 margin-right: 7vw;
             }
         }
@@ -564,9 +493,6 @@
                     align-items: center;
                     justify-content: center;
                 }
-=======
-                margin-right: 2vw;
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
             }
         }
     }

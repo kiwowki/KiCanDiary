@@ -1,33 +1,23 @@
 @charset "UTF-8";
 
 // setting
-@import "setting/common.scss";
+@import 'setting/common.scss';
 // @import "setting/fonts.scss";
-@import "setting/reset.scss";
-@import "setting/vars.scss";
-@import "setting/marginpadding.scss";
-@import "setting/quill.snow.scss";
-
+@import 'setting/reset.scss';
+@import 'setting/vars.scss';
+@import 'setting/marginpadding.scss';
+@import 'setting/quill.snow.scss';
 
 // section
-@import "section/header.scss";
-<<<<<<< HEAD
-@import "section/footer.scss";
-@import "section/write.scss";
+@import 'section/header.scss';
+@import 'section/footer.scss';
+@import 'section/intro.scss';
+@import 'section/write.scss';
 @import 'section/main.scss';
+@import 'section/join.scss';
+@import 'section/login.scss';
+@import 'section/mypage.scss';
 @import 'section/vocalist.scss';
 
 // util
 @import 'util/calendar.scss';
-
-
-=======
-@import "section/intro.scss";
-@import "section/main.scss";
-@import "section/write.scss";
-@import "section/join.scss";
-@import "section/login.scss";
-@import "section/mypage.scss";
-
-@import "util/calendar.scss";
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
