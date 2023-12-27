@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import user from '../../assets/img/user_img.png'
+import user from '../../assets/img/user.png'
 
 const Header = () => {
     return (
