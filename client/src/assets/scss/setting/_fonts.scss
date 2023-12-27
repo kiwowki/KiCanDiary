@@ -1,5 +1,7 @@
 // Dela Gothic One, Marcellus, Shrikhand
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Marcellus&family=Shrikhand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+
 
 @font-face {
     font-family: 'Pretendard-Regular';
@@ -16,6 +18,7 @@
         url("../../fonts/nanumSquareNeo-Light.woff") format("woff");
     font-display: swap;
 }
+
 @font-face {
     font-family: "nanumSquareNeo";
     font-weight: 400;
@@ -24,6 +27,7 @@
         url("../../fonts/nanumSquareNeo-Regular.woff") format("woff");
     font-display: swap;
 }
+
 @font-face {
     font-family: "nanumSquareNeo";
     font-weight: 700;
@@ -32,6 +36,7 @@
         url("../../fonts/nanumSquareNeo-Bold.woff") format("woff");
     font-display: swap;
 }
+
 @font-face {
     font-family: "nanumSquareNeo";
     font-weight: 800;
@@ -40,6 +45,7 @@
         url("../../fonts/nanumSquareNeo-ExtraBold.woff") format("woff");
     font-display: swap;
 }
+
 @font-face {
     font-family: "nanumSquareNeo";
     font-weight: 900;
@@ -54,58 +60,45 @@
     font-weight: 300;
     font-style: normal;
     src: url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot");
-    src: url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot?#iefix")
-            format("embedded-opentype"),
-        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff2")
-            format("woff2"),
-        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff")
-            format("woff"),
-        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.ttf")
-            format("truetype");
+    src: url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot?#iefix") format("embedded-opentype"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff2") format("woff2"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff") format("woff"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.ttf") format("truetype");
     font-display: swap;
 }
+
 @font-face {
     font-family: "GmarketSans";
     font-weight: 500;
     font-style: normal;
     src: url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot");
-    src: url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot?#iefix")
-            format("embedded-opentype"),
-        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff2")
-            format("woff2"),
-        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff")
-            format("woff"),
-        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.ttf")
-            format("truetype");
+    src: url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot?#iefix") format("embedded-opentype"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff2") format("woff2"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff") format("woff"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.ttf") format("truetype");
     font-display: swap;
 }
+
 @font-face {
     font-family: "GmarketSans";
     font-weight: 700;
     font-style: normal;
     src: url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot");
-    src: url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot?#iefix")
-            format("embedded-opentype"),
-        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff2")
-            format("woff2"),
-        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff")
-            format("woff"),
-        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.ttf")
-            format("truetype");
+    src: url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot?#iefix") format("embedded-opentype"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff2") format("woff2"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff") format("woff"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.ttf") format("truetype");
     font-display: swap;
 }
+
 @font-face {
     font-family: "ChosunNm";
     font-weight: normal;
     font-style: normal;
     src: url("https://cdn.jsdelivr.net/gh/webfontworld/ChosunNm/ChosunNm.eot");
-    src: url("https://cdn.jsdelivr.net/gh/webfontworld/ChosunNm/ChosunNm.eot?#iefix")
-            format("embedded-opentype"),
-        url("https://cdn.jsdelivr.net/gh/webfontworld/ChosunNm/ChosunNm.woff2")
-            format("woff2"),
-        url("https://cdn.jsdelivr.net/gh/webfontworld/ChosunNm/ChosunNm.woff")
-            format("woff"),
-        url("https://cdn.jsdelivr.net/gh/webfontworld/ChosunNm/ChosunNm.ttf")
-            format("truetype");
+    src: url("https://cdn.jsdelivr.net/gh/webfontworld/ChosunNm/ChosunNm.eot?#iefix") format("embedded-opentype"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/ChosunNm/ChosunNm.woff2") format("woff2"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/ChosunNm/ChosunNm.woff") format("woff"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/ChosunNm/ChosunNm.ttf") format("truetype");
     font-display: swap;
 }

@@ -17,6 +17,11 @@ const Write = () => {
         ],
     }
 
+    const [word, setWord] = useState('')
+    const [translation, setTranslation] = useState('')
+    const handleChange = (event) => {
+        setWord(event.target.value)
+    }
     const handleSave = () => {
         const content = quillRef.current?.getEditor().getContents()
         console.log('Content to be saved:', content)
@@ -134,106 +139,7 @@ const Write = () => {
                                                         tast
                                                     </Link>
                                                 </p>
-                                                {/* <p className="wrong__reason">
-                                                    철자 오류
-                                                </p> */}
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                {/* <p className="wrong__reason">
-                                                    철자 오류
-                                                </p> */}
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                {/* <p className="wrong__reason">
-                                                    철자 오류
-                                                </p> */}
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                {/* <p className="wrong__reason">
-                                                    철자 오류
-                                                </p> */}
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                {/* <p className="wrong__reason">
-                                                    철자 오류
-                                                </p> */}
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
+
                                                 {/* <p className="wrong__reason">
                                                     철자 오류
                                                 </p> */}
