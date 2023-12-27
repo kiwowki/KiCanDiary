@@ -2,10 +2,8 @@ import React, { useRef, useState } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { Link } from 'react-router-dom'
-import Header from '../layout/Header'
-import Header_m from '../layout/Header_m'
 
-const Write = ({ isMobile }) => {
+const Write = () => {
     const [value, setValue] = useState('')
     const quillRef = useRef(null)
 
@@ -25,7 +23,6 @@ const Write = ({ isMobile }) => {
     }
     return (
         <div id="wrap">
-            {isMobile ? <Header_m /> : <Header />}
             <div id="write" className="section__border">
                 <div className="write__wrap">
                     <div className="today__date">

@@ -31,7 +31,7 @@ const Aside = () => {
                             </ul>
                         </li>
                         <li>
-                            <Link to={'/'}>Voca list</Link>
+                            <Link to={'/voca'}>Voca list</Link>
                         </li>
                         <li>
                             <Link to={'/'}>My page</Link>
