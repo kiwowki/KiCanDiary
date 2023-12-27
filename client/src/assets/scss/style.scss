@@ -11,5 +11,12 @@
 
 // section
 @import "section/header.scss";
-// @import "section/intro.scss";
+@import "section/footer.scss";
 @import "section/write.scss";
+@import 'section/main.scss';
+@import 'section/vocalist.scss';
+
+// util
+@import 'util/calendar.scss';
+
+
