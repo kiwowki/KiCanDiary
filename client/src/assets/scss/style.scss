@@ -9,7 +9,8 @@
 @import 'setting/quill.snow.scss';
 
 // section
-@import 'section/header.scss';
+@import 'section/layout/header';
+@import 'section/layout/footer';
 @import 'section/main.scss';
 @import 'section/write.scss';
 

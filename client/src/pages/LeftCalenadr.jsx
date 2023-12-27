@@ -41,11 +41,11 @@ const LeftCalenadr = () => {
         // 이전 버튼 기본 기능 변경
     }
     return (
-        <div className="left section__border">
+        <div className="left">
             <div className="date__info">
                 {/*<div className="date__today ">
                 <span>December 07, 2023</span>
-            </div>*/}
+                </div>*/}
 
                 <div className="calendar">
                     <Calendar

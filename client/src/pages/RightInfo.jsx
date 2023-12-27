@@ -23,7 +23,7 @@ const RightInfo = () => {
         </div>
       )
   return (
-    <div className="right section__border pt50">
+    <div className="right pt50">
                         <div className="main__diary">
                             <div className="diary__list">
                                 <div className="list__title mb30">
