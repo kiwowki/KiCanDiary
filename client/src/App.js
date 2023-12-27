@@ -37,7 +37,6 @@ const App = () => {
                         element={
                             <>
                                 <Home />
-                                <Aside />
                             </>
                         }
                     />
