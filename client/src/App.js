@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "./assets/scss/style.scss";
 import Header from "./components/layout/Header";
 import HeaderMobile from "./components/layout/Header_m";
+
 import Main from "./components/layout/Main.jsx";
 import Home from "./pages/Home";
 import Write from "./components/diary/Write";
