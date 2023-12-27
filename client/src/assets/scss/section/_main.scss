@@ -10,7 +10,7 @@
             width: 50%;
             border-right: 10px solid var(--bg-pink);
             border-left: none;
-            padding: 5% 2% 0 2%;
+            padding: 3.5% 2% 0 2%;
             .date__info {
                 width: 100%;
                 
@@ -28,9 +28,32 @@
                         font-size: 1.2rem;
                     }
                 }
+            }
 
-                .calendar {
-                    
+            .today {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                padding: 10% 2% 1% 1%;
+                
+                p {
+                    background-color: var(--font-pink1);
+                    color: black;
+                    font-family: var(--mainfont-Shrikhand);
+                    border: solid var(--black);
+                    border-width: 1px 2px 2px 1px;
+                    border-radius: 5px;
+                    padding: 0.5% 1%;
+                    cursor: pointer;
+                    height: 35px;
+                    line-height: 30px;
+
+                    &:hover {
+                        scale: (0.95);
+                    }
+                    // margin-right: 15px;
+                    // width: 6vw !important;
+                    // max-width: 120px !important;
                 }
             }
         }
