@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema(
     {
         userNum: Number,
-        Email: String,
-        Name: String,
+        email: String,
+        displayName: String,
+        uid: String,
     },
     { collection: "users" }
 );

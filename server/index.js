@@ -2,19 +2,15 @@ const express = require('express');
 const path = require("path");
 // 데이터베이스
 const mongoose = require("mongoose");
-
 const app = express();
 const port = 5050;
 // DB, Firebase, navercloud key
-const config = require("./server/config/key.js");
-
+const config = require("./config/key.js");
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 // router
-app.use("/api/user", require("./server/router/user.js"));
-
+app.use("/api/user", require("./router/user.js"));
 app.listen(port, () => {
     mongoose
         .connect(config.mongoURI)
@@ -26,18 +22,14 @@ app.listen(port, () => {
             console.log(err)
         })
 })
-
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
 })
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
 })
-
-
 let client_id = 'cME2G2vFlaLxdX1949Gv';
 let client_secret = 'qdavN_uTpS';
-
 app.post("/api/translate", (req, res) => {
     let searchword = req.body.search;
     console.log(searchword)
