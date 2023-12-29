@@ -84,8 +84,6 @@
             .right {
                 // margin-left: 30px;
                 .search__wrap {
-                    width: 27.75vw;
-                    height: 50px;
                     margin-bottom: 18px;
                     position: relative;
                     span {
@@ -99,9 +97,6 @@
                         background-repeat: no-repeat;
                     }
                     input {
-                        width: 27.75vw;
-                        height: 50px;
-
                         padding-left: 60px;
                         border: solid var(--font-pink1);
                         border-width: 2px 6px 6px 2px;
@@ -152,38 +147,7 @@
                                 background-color: var(--black200);
                                 border-radius: 10px;
                             }
-                        }
-                    }
-                }
-                .correction {
-                    margin-bottom: 18px;
-                    h2 {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 20px;
-                        font-family: var(--dela);
-                        color: var(--white);
-                        background-color: var(--box-pink2);
-                        height: 45px;
-                        border-radius: 30px 30px 0 0;
-                    }
-                    > div {
-                        padding-bottom: 20px;
-                        width: 27.75vw;
 
-                        height: 323px;
-                        border: solid var(--font-pink1);
-                        border-width: 0px 6px 6px 2px;
-                        border-radius: 0 0 30px 30px;
-                        overflow: hidden;
-                        .correction_wrap {
-                            padding: 20px;
-                            width: 27.2vw;
-
-                            height: 309px;
-                            overflow-y: auto; /* 스크롤이 수직으로 발생하도록 설정 */
-                            position: relative;
                             &::-webkit-scrollbar {
                                 width: 6px; /* 스크롤바의 너비 설정 */
                             }
@@ -193,176 +157,87 @@
                                 background-color: var(--black200);
                                 border-radius: 10px;
                             }
-                            li {
-                                display: flex;
-                                justify-content: space-around;
-                                align-items: center;
-                                font-family: var(--marc);
-                                padding-bottom: 25px;
-
-                                .wrong {
-                                    display: flex;
-                                    flex-direction: column;
-                                    align-items: center;
-
-                                    .wrong__word {
-                                        a {
-                                            display: inline-block;
-                                            color: var(--font-red);
-                                            font-size: 20px;
-                                        }
-                                    }
-                                    .wrong__reason {
-                                        display: inline-block;
-                                        font-family: var(--pre);
-                                        font-size: 14px;
-                                    }
-                                }
-                                .arrow {
-                                    width: 65px;
-                                    height: 23px;
-                                    background-image: url(../../img/arrow.png);
-                                    background-position: center center;
-                                    background-repeat: no-repeat;
-                                    display: inline-block;
-                                }
-                                .correct {
-                                    .correct__word {
-                                        a {
-                                            display: inline-block;
-                                            color: var(--font-blue);
-                                            font-size: 20px;
-                                        }
-                                    }
-                                }
+                            span {
                             }
                         }
                     }
-                }
-            }
-        }
-        .button {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            button {
-                padding: 10px 20px;
-                display: inline-block;
-                width: 180px;
-                height: 73px;
-                font-size: 25px;
-                background-color: var(--box-pink2);
-                border-color: var(--border-pink);
-                border-radius: 30px;
-                color: var(--white);
-                font-family: var(--dela);
-                margin-right: 7vw;
-            }
-        }
-    }
-}
-
-@media (max-width: 1280px) {
-    #write {
-        .write__wrap {
-            .today__date {
-                p {
-                    font-size: 1.5vw;
-                }
-            }
-            .write__main {
-                .write {
-                    .title {
-                        height: 45px;
-
-                        h2 {
-                            font-size: 1.4vw;
-                        }
-                    }
-                    .content {
-                        height: 616px;
-                        h2 {
-                            font-size: 1.4vw;
-                            height: 45px;
-                        }
-                        textarea {
-                            width: 1020px;
-                            height: 570px;
-                        }
-                    }
-                }
-                .right {
-                    // margin-left: 30px;
-                    .search__wrap {
-                        height: 45px;
+                    .correction {
                         margin-bottom: 18px;
-                        span {
-                            top: 3px;
-                            left: 10px;
-                            width: 30px;
-                        }
-                        input {
-                            height: 45px;
-                        }
-                    }
-                    .result {
-                        margin-bottom: 18px;
-
                         h2 {
-                            font-size: 1.4vw;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 20px;
+                            font-family: var(--dela);
+                            color: var(--white);
+                            background-color: var(--box-pink2);
                             height: 45px;
+                            border-radius: 30px 30px 0 0;
                         }
                         > div {
-                            height: 185px;
+                            padding-bottom: 20px;
+                            width: 27.75vw;
+
+                            height: 323px;
+                            border: solid var(--font-pink1);
                             border-width: 0px 6px 6px 2px;
                             border-radius: 0 0 30px 30px;
-                            font-size: 18px;
+                            overflow: hidden;
+                            .correction_wrap {
+                                padding: 20px;
+                                width: 27.2vw;
 
-                            .result_wrap {
-                                height: 170px;
-                                padding: 10px 25px;
+                                height: 309px;
+                                overflow-y: auto; /* 스크롤이 수직으로 발생하도록 설정 */
+                                position: relative;
                                 &::-webkit-scrollbar {
-                                    width: 8px; /* 스크롤바의 너비 설정 */
+                                    width: 6px; /* 스크롤바의 너비 설정 */
                                 }
 
                                 /* 스크롤바의 스타일 설정 */
                                 &::-webkit-scrollbar-thumb {
+                                    background-color: var(--black200);
                                     border-radius: 10px;
                                 }
-
-                                span {
-                                }
-                            }
-                        }
-                    }
-                    .correction {
-                        margin-bottom: 18px;
-                        h2 {
-                            font-size: 1.4vw;
-                            height: 45px;
-                        }
-                        > div {
-                            height: 323px;
-                            .correction_wrap {
                                 li {
-                                    padding-bottom: 12px;
+                                    display: flex;
+                                    justify-content: space-around;
+                                    align-items: center;
+                                    font-family: var(--marc);
+                                    padding-bottom: 25px;
+
                                     .wrong {
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+
                                         .wrong__word {
                                             a {
-                                                font-size: 18px;
+                                                display: inline-block;
+                                                color: var(--font-red);
+                                                font-size: 20px;
                                             }
                                         }
                                         .wrong__reason {
+                                            display: inline-block;
+                                            font-family: var(--pre);
                                             font-size: 14px;
                                         }
                                     }
                                     .arrow {
-                                        scale: 0.7;
+                                        width: 65px;
+                                        height: 23px;
+                                        background-image: url(../../img/arrow.png);
+                                        background-position: center center;
+                                        background-repeat: no-repeat;
+                                        display: inline-block;
                                     }
                                     .correct {
                                         .correct__word {
                                             a {
-                                                font-size: 18px;
+                                                display: inline-block;
+                                                color: var(--font-blue);
+                                                font-size: 20px;
                                             }
                                         }
                                     }
@@ -373,112 +248,244 @@
                 }
             }
             .button {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
                 button {
                     padding: 10px 20px;
-                    width: 15vw;
-                    height: 6vw;
-                    font-size: 1.5vw;
-                    margin-right: 6vw;
+                    display: inline-block;
+                    width: 180px;
+                    height: 73px;
+                    font-size: 25px;
+                    background-color: var(--box-pink2);
+                    border-color: var(--border-pink);
+                    border-radius: 30px;
+                    color: var(--white);
+                    font-family: var(--dela);
+                    margin-right: 7vw;
                 }
             }
         }
     }
-}
-@media (max-width: 768px) {
-}
-@media (max-width: 480px) {
-    #write {
-        height: auto;
-        .write__wrap {
-            .today__date {
-                margin-top: 70px;
-                margin-bottom: 30px;
-                width: 100%;
-                height: 40px;
-                p {
-                    font-size: 4.5vw;
-                    padding: 0 6vw;
-                }
-            }
-            .write__main {
-                flex-direction: column;
-                .write {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    .title {
-                        width: 80vw;
 
-                        h2 {
-                            font-size: 3.5vw;
-                            width: 16.5vw;
+    @media (max-width: 1280px) {
+        #write {
+            .write__wrap {
+                .today__date {
+                    p {
+                        font-size: 1.5vw;
+                    }
+                }
+                .write__main {
+                    .write {
+                        .title {
+                            height: 45px;
+
+                            h2 {
+                                font-size: 1.4vw;
+                            }
                         }
-                        input {
-                            width: 73vw;
+                        .content {
+                            height: 616px;
+                            h2 {
+                                font-size: 1.4vw;
+                                height: 45px;
+                            }
+                            textarea {
+                                width: 1020px;
+                                height: 570px;
+                            }
                         }
                     }
-                    .content {
-                        width: 80vw;
-                        height: 435px;
-                        h2 {
-                            font-size: 3.5vw;
+                    .right {
+                        // margin-left: 30px;
+                        .search__wrap {
                             height: 45px;
+                            margin-bottom: 18px;
+                            span {
+                                top: 3px;
+                                left: 10px;
+                                width: 30px;
+                            }
+                            input {
+                                height: 45px;
+                            }
+                        }
+                        .result {
+                            margin-bottom: 18px;
+
+                            h2 {
+                                font-size: 1.4vw;
+                                height: 45px;
+                            }
+                            > div {
+                                height: 185px;
+                                border-width: 0px 6px 6px 2px;
+                                border-radius: 0 0 30px 30px;
+                                font-size: 18px;
+
+                                .result_wrap {
+                                    height: 170px;
+                                    padding: 10px 25px;
+                                    &::-webkit-scrollbar {
+                                        width: 8px; /* 스크롤바의 너비 설정 */
+                                    }
+
+                                    /* 스크롤바의 스타일 설정 */
+                                    &::-webkit-scrollbar-thumb {
+                                        border-radius: 10px;
+                                    }
+
+                                    span {
+                                    }
+                                }
+                            }
+                        }
+                        .correction {
+                            margin-bottom: 18px;
+                            h2 {
+                                font-size: 1.4vw;
+                                height: 45px;
+                            }
+                            > div {
+                                height: 323px;
+                                .correction_wrap {
+                                    li {
+                                        padding-bottom: 12px;
+                                        .wrong {
+                                            .wrong__word {
+                                                a {
+                                                    font-size: 18px;
+                                                }
+                                            }
+                                            .wrong__reason {
+                                                font-size: 14px;
+                                            }
+                                        }
+                                        .arrow {
+                                            scale: 0.7;
+                                        }
+                                        .correct {
+                                            .correct__word {
+                                                a {
+                                                    font-size: 18px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-                .right {
-                    margin-left: 0;
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    .search__wrap {
-                        width: 80vw;
-                        margin: 50px 0 20px 0;
-                        input {
-                            width: 80vw;
-                        }
-                    }
-                    .result {
-                        margin-bottom: 50px;
-                        h2 {
-                            font-size: 3.5vw;
-                        }
-                        > div {
-                            width: 80vw;
-                            .result_wrap {
-                                width: 77vw;
-                            }
-                        }
-                    }
-                    .correction {
-                        margin-bottom: 18px;
-                        h2 {
-                            font-size: 3.5vw;
-                            height: 45px;
-                        }
-                        > div {
-                            width: 80vw;
-                            .correction_wrap {
-                                width: 77vw;
-                            }
-                        }
+                .button {
+                    button {
+                        padding: 10px 20px;
+                        width: 15vw;
+                        height: 6vw;
+                        font-size: 1.5vw;
+                        margin-right: 6vw;
                     }
                 }
             }
-            .button {
-                display: flex;
-                justify-content: center;
-                button {
-                    width: auto;
-                    height: auto;
-                    padding: 10px 35px;
-                    font-size: 4vw;
-                    margin: 0 0 70px 0;
+        }
+    }
+    @media (max-width: 768px) {
+    }
+    @media (max-width: 480px) {
+        #write {
+            height: auto;
+            .write__wrap {
+                .today__date {
+                    margin-top: 70px;
+                    margin-bottom: 30px;
+                    width: 100%;
+                    height: 40px;
+                    p {
+                        font-size: 4.5vw;
+                        padding: 0 6vw;
+                    }
+                }
+                .write__main {
+                    flex-direction: column;
+                    .write {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        .title {
+                            width: 80vw;
+
+                            h2 {
+                                font-size: 3.5vw;
+                                width: 16.5vw;
+                            }
+                            input {
+                                width: 73vw;
+                            }
+                        }
+                        .content {
+                            width: 80vw;
+                            height: 435px;
+                            h2 {
+                                font-size: 3.5vw;
+                                height: 45px;
+                            }
+                        }
+                    }
+                    .right {
+                        margin-left: 0;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        .search__wrap {
+                            width: 80vw;
+                            margin: 50px 0 20px 0;
+                            input {
+                                width: 80vw;
+                            }
+                        }
+                        .result {
+                            margin-bottom: 50px;
+                            h2 {
+                                font-size: 3.5vw;
+                            }
+                            > div {
+                                width: 80vw;
+                                .result_wrap {
+                                    width: 77vw;
+                                }
+                            }
+                        }
+                        .correction {
+                            margin-bottom: 18px;
+                            h2 {
+                                font-size: 3.5vw;
+                                height: 45px;
+                            }
+                            > div {
+                                width: 80vw;
+                                .correction_wrap {
+                                    width: 77vw;
+                                }
+                            }
+                        }
+                    }
+                }
+                .button {
                     display: flex;
-                    align-items: center;
                     justify-content: center;
+                    button {
+                        width: auto;
+                        height: auto;
+                        padding: 10px 35px;
+                        font-size: 4vw;
+                        margin: 0 0 70px 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
                 }
             }
         }

@@ -1,7 +1,9 @@
 import React, { useRef, useState } from 'react'
+import Header from '../layout/Header'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Write = () => {
     const [value, setValue] = useState('')
@@ -22,12 +24,34 @@ const Write = () => {
     const handleChange = (event) => {
         setWord(event.target.value)
     }
+
+    const handleKeyPress = async (event) => {
+        // `word` 상태 변수가 변경되었는지 확인합니다.
+        if (event.key === 'Enter' && word !== '') {
+            console.log(word)
+            try {
+                const response = await axios.post('/api/translate', {
+                    search: word,
+                })
+                if (response.data.success) {
+                    const jsonData = JSON.parse(response.data.translation)
+                    setTranslation(jsonData.message.result.translatedText)
+                } else {
+                    alert('번역 실패')
+                }
+            } catch (error) {
+                console.error('번역 요청 에러:', error)
+            }
+        }
+    }
+
     const handleSave = () => {
         const content = quillRef.current?.getEditor().getContents()
         console.log('Content to be saved:', content)
     }
     return (
         <div id="wrap">
+            <Header />
             <div id="write" className="section__border">
                 <div className="write__wrap">
                     <div className="today__date">
@@ -67,7 +91,12 @@ const Write = () => {
                             <h2 className="blind">서치, 오류 결과 섹션</h2>
                             <div className="search__wrap">
                                 <span></span>
-                                <input type="text" className="word__search" />
+                                <input
+                                    type="text"
+                                    className="word__search"
+                                    onKeyPress={handleKeyPress}
+                                    onChange={handleChange}
+                                />
                             </div>
                             <div className="result">
                                 <h2>Result</h2>
@@ -119,6 +148,7 @@ const Write = () => {
                                                         tast
                                                     </Link>
                                                 </p>
+
                                                 {/* <p className="wrong__reason">
                                                     철자 오류
                                                 </p> */}
@@ -139,10 +169,109 @@ const Write = () => {
                                                         tast
                                                     </Link>
                                                 </p>
-
-                                                {/* <p className="wrong__reason">
+                                                <p className="wrong__reason">
                                                     철자 오류
-                                                </p> */}
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
+                                            </div>
+                                            <span className="arrow"></span>
+                                            <div className="correct">
+                                                <p className="correct__word">
+                                                    <Link to="/write">
+                                                        test
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="wrong">
+                                                <p className="wrong__word">
+                                                    <Link to="/write">
+                                                        tast
+                                                    </Link>
+                                                </p>
+                                                <p className="wrong__reason">
+                                                    철자 오류
+                                                </p>
                                             </div>
                                             <span className="arrow"></span>
                                             <div className="correct">
@@ -160,7 +289,8 @@ const Write = () => {
                     </div>
                     {/* <button onClick={onClickSave}>저장</button> */}
                     <div className="button">
-                        <button className="box1" onClick={handleSave}>
+                        {/* <button className="box1" onClick={handleSave}> */}
+                        <button className="box" onClick={handleSave}>
                             Upload
                         </button>
                     </div>
