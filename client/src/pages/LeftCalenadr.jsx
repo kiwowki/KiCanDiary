@@ -1,4 +1,5 @@
-import React, { Component, useState } from 'react'
+// import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import Calendar from 'react-calendar'
 
 const LeftCalenadr = () => {
@@ -36,10 +37,10 @@ const LeftCalenadr = () => {
     )
     // 날짜 포매터
 
-    class MyCalendar extends Component {
-        onPrevClick = () => {}
-        // 이전 버튼 기본 기능 변경
-    }
+    // class MyCalendar extends Component {
+    //     onPrevClick = () => {}
+    //     // 이전 버튼 기본 기능 변경
+    // }
     return (
         <div className="left section__border">
             <div className="date__info">

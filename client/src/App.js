@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./assets/scss/style.scss";
 import Header from "./components/layout/Header";
 import HeaderMobile from "./components/layout/Header_m";
@@ -34,7 +34,7 @@ const App = () => {
     }, []);
 
     return (
-        <>
+        <BrowserRouter>
             <Main>
                 <Routes>
                     {/* Home 페이지 */}
@@ -92,7 +92,7 @@ const App = () => {
                 </Routes>
             </Main>
             <Footer />
-        </>
+        </BrowserRouter>
     );
 };
 
