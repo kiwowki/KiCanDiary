@@ -46,32 +46,44 @@ const Header = () => {
                             {user.accessToken === "" ? (
                                 <ul>
                                     <li>
-                                        <Link to="/login">로그인</Link>
+                                        <Link to="/login">login</Link>
                                     </li>
                                     <li>
-                                        <Link to="/Join">회원가입</Link>
+                                        <Link to="/Join">join</Link>
                                     </li>
                                 </ul>
                             ) : (
                                 <ul>
                                     <li>
-                                        <Link to="/mypage">{user.displayName}</Link>님 방가워요! 🥳
-                                    </li>
-                                    <li>
-                                        <Link onClick={(() => LogoutHandler())}>로그아웃</Link>
+                                        <Link onClick={(() => LogoutHandler())}>logout</Link>
                                     </li>
                                 </ul>
                             )}
 
                         </div>
                         <div className="user__info box1">
-                            <Link to={'/mypage'}>
-                                <em className="line1">UserName UserName</em>
-                            </Link>
-                            's DIARY
-                            <Link to={'/mypage'}>
-                                <img src={userImg} alt='마이페이지 이미지' />
-                            </Link>
+                            {user.accessToken === "" ? (
+                                <>
+                                    <Link to={'/mypage'}>
+                                        <em className="line1">UserName UserName</em>
+                                    </Link>
+                                    's DIARY
+                                    <Link to={'/mypage'}>
+                                        <img src={userImg} alt='마이페이지 이미지' />
+                                    </Link>
+                                </>
+                            ) : (
+                                <>
+                                    <Link to={'/mypage'}>
+                                        <em className="line1">{user.displayName}</em>
+                                    </Link>
+                                    's DIARY
+                                    <Link to={'/mypage'}>
+                                        <img src={userImg} alt='마이페이지 이미지' />
+                                    </Link>
+                                </>
+                            )}
+
                         </div>
                     </div>
                 </nav>
