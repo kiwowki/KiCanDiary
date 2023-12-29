@@ -40,11 +40,8 @@ const Header = () => {
                             </Link>
                             's DIARY
                             <Link to={'/mypage'}>
-<<<<<<< HEAD
                                 <img src={user} alt="마이페이지 이미지" />
-=======
-                                <img src={user} alt='마이페이지 이미지' />
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
+
                             </Link>
                         </div>
                     </div>

@@ -11,23 +11,19 @@
 
 // section
 @import "section/header.scss";
-<<<<<<< HEAD
-@import "section/footer.scss";
+@import "section/intro.scss";
+@import "section/main.scss";
 @import "section/write.scss";
-@import 'section/main.scss';
 @import 'section/vocalist.scss';
+@import "section/footer.scss";
+@import "section/join.scss";
+@import "section/login.scss";
+@import "section/mypage.scss";
 
 // util
 @import 'util/calendar.scss';
 
 
-=======
-@import "section/intro.scss";
-@import "section/main.scss";
-@import "section/write.scss";
-@import "section/join.scss";
-@import "section/login.scss";
-@import "section/mypage.scss";
 
-@import "util/calendar.scss";
->>>>>>> 95bcdf583fccaae0ce866789bd8d5e549b80203d
+
+
