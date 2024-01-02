@@ -1,7 +1,8 @@
 #aside {
+    position: absolute;
     height: 100vh;
     width: 160px;
-    border-right: 5px solid var(--font-pink2);
+    border-right: 5px solid var(--font-pink1);
     .aside__wrap {
         height: 100%;
         padding: 30px 15px 0 15px;

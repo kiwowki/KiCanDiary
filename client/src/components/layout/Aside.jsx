@@ -23,7 +23,7 @@ const Aside = () => {
                             <Link to={'/'}>Diary</Link>
                             <ul className="aside__diary">
                                 <li>
-                                    <Link to={'/'}>list</Link>
+                                    <Link to={'/diarylist'}>list</Link>
                                 </li>
                                 <li className="mb10">
                                     <Link to={'/write'}>today</Link>

@@ -22,7 +22,7 @@ const Header = () => {
                         </li>
                         <li>
                             <Link
-                                to={'/diary'}
+                                to={'/diarylist'}
                                 data-first-letter="D"
                                 className="active"
                             >
@@ -66,7 +66,7 @@ const Header = () => {
                                 <>
                                     <Link to={'/mypage'}>
                                         <em className="line1">
-                                            UserName UserName
+                                            {user.displayName}
                                         </em>
                                     </Link>
                                     's DIARY

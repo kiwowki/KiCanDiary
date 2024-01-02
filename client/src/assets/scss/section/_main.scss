@@ -1,6 +1,8 @@
 #main {
-    width: calc(100% - 200px);
+    width: 100%;
     height: 100vh;
+    margin-left: 155px;
+    overflow: hidden;
 
     .main__wrap {
         display: flex;
@@ -217,9 +219,11 @@
                             width: 14%;
                             text-align: right;
                             margin-top: -30px;
+                            z-index: -1;
                             img {
                                 width: 200px;
                                 height: 200px;
+                                
                             }
                         }
                         .tit {

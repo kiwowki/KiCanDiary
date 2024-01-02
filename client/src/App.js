@@ -12,6 +12,11 @@ import Join from "./components/user/Join";
 import Login from "./components/user/Login";
 import Mypage from "./components/user/Mypage";
 import Footer from "./components/layout/Footer";
+import DiaryList from "./components/diary/DiaryList.jsx";
+
+import { useDispatch } from 'react-redux'
+import { loginUser, clearUser } from './reducer/userSlice'
+import firebase from './firebase.js'
 
 
 
@@ -32,6 +37,19 @@ const App = () => {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged((userInfo) => {
+            console.log("userInfo : " + userInfo)
+            if (userInfo !== null) {
+                dispatch(loginUser(userInfo.multiFactor.user));
+            } else {
+                dispatch(clearUser())
+            }
+        })
+    }, [dispatch]);
 
     return (
         <BrowserRouter>
@@ -54,6 +72,16 @@ const App = () => {
                             <>
                                 <Header />
                                 <Write isMobile={isMobile} />
+                            </>
+                        }
+                    />
+
+                    <Route
+                        path="/diarylist"
+                        element={
+                            <>
+                                <Header />
+                                <DiaryList isMobile={isMobile} />
                             </>
                         }
                     />
