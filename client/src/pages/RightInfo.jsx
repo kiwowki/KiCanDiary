@@ -46,7 +46,7 @@ const RightInfo = () => {
                                 </div>
                             </div>
                             
-                            <div className="voca__list pt100">
+                            <div className="voca__list pt6rem">
                                 <div className="list__title mb20">
                                     <div className="tit">
                                         <p className="whiteSpaceNo">vocabulary List</p>

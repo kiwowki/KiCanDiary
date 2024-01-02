@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import Header from '../layout/Header'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import { useParams } from 'react-router-dom'
 
 const Write = () => {
     const [value, setValue] = useState('')
@@ -21,6 +22,12 @@ const Write = () => {
         const content = quillRef.current?.getEditor().getContents()
         console.log('Content to be saved:', content)
     }
+
+    const date = useParams()
+    console.log(date)
+
+    
+
     return (
         <div id="wrap">
             <Header />
