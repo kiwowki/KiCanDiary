@@ -4,6 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const app = express();
 const port = 5050;
+const axios = require('axios');
 // DB, Firebase, navercloud key
 const config = require("./config/key.js");
 app.use(express.static(path.join(__dirname, "../client/build")));
@@ -28,13 +29,13 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
 })
-
-app.post("/api/translate", (req, res) => {
+// 구글 api key
+// let google_api = 'AIzaSyBQ-dJ_j7165a85-epXXOgMrmFFYyh-YBw';
+app.post('/api/translate', async (req, res) => {
     const encodedParams = new URLSearchParams();
     encodedParams.set('from', 'auto');
     encodedParams.set('to', 'en');
-    encodedParams.set('text', req.);
-
+    encodedParams.set('text', req.body.search);
     const options = {
         method: 'POST',
         url: 'https://google-translate113.p.rapidapi.com/api/v1/translator/text',
@@ -45,11 +46,12 @@ app.post("/api/translate", (req, res) => {
         },
         data: encodedParams,
     };
-
     try {
         const response = await axios.request(options);
         console.log(response.data);
+        res.status(200).json({ success: true, data: response.data });
     } catch (error) {
         console.error(error);
+        res.status(400).json({ success: false });
     }
 })
