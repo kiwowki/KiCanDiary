@@ -16,7 +16,7 @@ const Header_m = () => {
                 <nav className="nav">
                     <ul className="nav__list">
                         <li>
-                            <Link to={'/list'}>Diary</Link>
+                            <Link to={'/diarylist'}>Diary</Link>
                         </li>
                         <li>
                             <Link to={'/write'}>

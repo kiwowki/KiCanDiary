@@ -15,7 +15,6 @@ const Write = () => {
         ],
     }
 
-
     // 구글 api부분
     const [word, setWord] = useState('')
     const [translation, setTranslation] = useState('')
@@ -39,10 +38,7 @@ const Write = () => {
                 if (response.data.success) {
                     if (response.data.data.trans) {
                         const translatedText = response.data.data.trans
-                        setTranslation((prevTranslation) => [
-                            translatedText,
-                            ...prevTranslation,
-                        ])
+                        setTranslation([translatedText]);
                     }
                     if (
                         response.data.data.dict &&

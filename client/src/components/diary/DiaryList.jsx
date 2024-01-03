@@ -109,18 +109,18 @@ const DiaryList = () => {
                 <div className="diarylist__wrap">
                     <div className="diarylist__top">
                         <div className="month">
-                            <span class="prev">
+                            <span className="prev">
                                 <Link to="/"></Link>
                             </span>
                             <h2>december</h2>
-                            <span class="next">
+                            <span className="next">
                                 <Link to="/"></Link>
                             </span>
                         </div>
                         <div className="title">Diary</div>
                         <div className="diary__list__pages">
                             <ul>
-                                <li class="active">
+                                <li className="active">
                                     <Link to="/">1</Link>
                                 </li>
                                 <li>
@@ -335,7 +335,7 @@ const DiaryList = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className="list">
+                            {/* <div className="list">
                                 <div className="weekday">
                                     <span className="date">test</span>
                                     <span className="sticker">
@@ -359,7 +359,7 @@ const DiaryList = () => {
                                         </Link>
                                     </p>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="voca__list">
                                 <h3 className="title">Voca List</h3>
                                 <ul>
@@ -400,8 +400,12 @@ const DiaryList = () => {
                         </div>
                         <div className="mobile__page">
                             <ul>
+                                <li className='active'><Link to="/">1</Link></li>
+                                <li><Link to="/">2</Link></li>
+                                <li><Link to="/">3</Link></li>
+                                <li><Link to="/">4</Link></li>
                                 {/* 페이지 번호 표시 부분은 생략하거나 원하면 추가 */}
-                                {nextPage()}
+                                {/* {nextPage()} */}
                             </ul>
                         </div>
                     </div>

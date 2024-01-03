@@ -187,6 +187,7 @@
                         background-image: url(../../img/diarylist_voca_title.png);
                         background-repeat: no-repeat;
                         background-position: center center;
+                        font-size: 18px;
                     }
                     ul {
                         padding: 40px 30px 30px 30px;
@@ -366,6 +367,26 @@
             height: 80vh;
             margin-top: 0;
             .diarylist__top {
+                height: 10vh;
+                .month {
+                    width: 100%;
+                    .prev {
+                        a {
+                            top: 2px;
+                            left: 0;
+                        }
+                    }
+                    h2 {
+                        font-size: 7vw;
+                        line-height: 0.9;
+                    }
+                    .next {
+                        a {
+                            top: 2px;
+                            right: 0;
+                        }
+                    }
+                }
                 .diary__list__pages {
                 }
                 .search__wrap {
@@ -374,46 +395,83 @@
             }
             .diarylist__bottom {
                 display: block;
-                height: calc(100% - 63px);
+                min-height: calc(100% - 10vh);
                 flex-direction: column;
+                display: flex;
+                justify-content: space-between;
 
                 .list__wrap {
-                    overflow-y: scroll;
-                    height: 90%;
                     align-content: flex-start;
 
-                    &::-webkit-scrollbar {
-                        width: 6px; /* 스크롤바의 너비 설정 */
-                    }
-
-                    /* 스크롤바의 스타일 설정 */
-                    &::-webkit-scrollbar-thumb {
-                        background-color: var(--black200);
-                        border-radius: 10px;
-                    }
-                    &::-webkit-scrollbar-track {
-                        background-color: var(--box-purple3);
-                    }
                     .list {
+                        height: 40px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: var(--white);
+                        border-radius: 15px;
+                        margin: 1.2vh;
                         &:first-child {
+                            margin-top: 5vh;
+                            margin-bottom: 1.2vh;
                         }
                         .weekday {
+                            height: 40px;
+                            width: 35%;
+                            justify-content: flex-start;
+                            align-items: center;
+                            .date {
+                                color: var(--font-purple1);
+                            }
+                            .sticker {
+                                height: 100%;
+                                padding: 0 0 0 10px;
+                                display: flex;
+                                align-content: center;
+                                flex-wrap: wrap;
+                                img {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
                         }
                         .day__diary {
+                            padding: 0;
+                            width: 65%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
                             .title {
+                                width: 90%;
+                                font-size: 2.2vh;
                             }
                             .content {
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                display: -webkit-box;
-                                -webkit-line-clamp: 7;
-                                -webkit-box-orient: vertical;
+                                display: none;
                             }
                         }
                     }
                 }
                 .mobile__page {
                     display: block;
+                    ul {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding-bottom: 5px;
+                        li {
+                            a {
+                                color: var(--white);
+                                font-family: var(--dela);
+                                font-size: 20px;
+                                padding: 5px;
+                            }
+                            &.active {
+                                a {
+                                    color: var(--font-purple1);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
