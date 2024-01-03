@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
 import { useSelector } from 'react-redux'
@@ -11,6 +11,33 @@ import screen from '../../assets/img/screen.png'
 import notification from '../../assets/img/notification.png'
 import notice from '../../assets/img/notice.png'
 import contact from '../../assets/img/contact.png'
+
+
+const PassModal = ({ onClose }) => {
+    return (
+        <div className='passmodal'>
+            <div className='passmodal__content'>
+                <h2>모달 제목</h2>
+                <p>모달 내용</p>
+                <button onClick={onClose}>닫기</button>
+            </div>
+        </div>
+    )
+}
+
+const ProfileModal = ({ onClose }) => {
+    return (
+        <div className='passmodal'>
+            <div className='passmodal__content'>
+                <h2>모달 제목</h2>
+                <p>모달 내용</p>
+                <button onClick={onClose}>닫기</button>
+            </div>
+        </div>
+    )
+}
+
+
 const Mypage = () => {
     const user = useSelector(state => state.user);
     const navigate = useNavigate();
@@ -23,6 +50,20 @@ const Mypage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+    const [isPassModalOpen, setIsPassModalOpen] = useState(false);
+
+    const newProfileModify = () => {
+        setIsProfileModalOpen(true)
+    }
+    const newPassModify = () => {
+        setIsPassModalOpen(true)
+    }
+
+    const closeModal = () => {
+        setIsProfileModalOpen(false)
+        setIsPassModalOpen(false);
+    };
 
     return (
         <div className="mypage__wrap">
@@ -30,7 +71,7 @@ const Mypage = () => {
                 <div className="left">
                     <div className="user">
                         <img src={userImage} alt="유저 이미지" />
-                        <div className="user__name">{user.displayName}(아이디)</div>
+                        <div className="user__name">{user.displayName}({user.email})</div>
                     </div>
 
                     <div className="mypage__menu">
@@ -47,12 +88,19 @@ const Mypage = () => {
                     <div className="click__menu">
                         <div>프로필 </div>
                         <div>닉네임 : {user.displayName} </div>
-                        <div>이메일 변경 </div>
-                        <div>비밀번호 변경 </div>
+                        <div>이메일 : {user.email} </div>
+                        <div
+                            onClick={newProfileModify}
+                        >프로필 변경</div>
+                        <div
+                            onClick={newPassModify}
+                        >비밀번호 변경 </div>
                         <div className='user__Delete'>계정 삭제하기 </div>
                     </div>
                 </div>
             </div>
+            {isProfileModalOpen && <ProfileModal onClose={closeModal} />}
+            {isPassModalOpen && <PassModal onClose={closeModal} />}
         </div>
     )
 }

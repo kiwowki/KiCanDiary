@@ -5,7 +5,7 @@ const postSchema = new mongoose.Schema(
         title: String,
         content: Schema.Types.Mixed,
         postNum: Number,
-        // image: String,
+        image: String,
         author: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
