@@ -1,14 +1,10 @@
-import React, { useRef, useState } from 'react'
-import Header from '../layout/Header'
+import React, { useEffect, useRef, useState } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-
 const Write = () => {
-    const [value, setValue] = useState('')
     const quillRef = useRef(null)
-
     const modules = {
         toolbar: [
             [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -19,14 +15,20 @@ const Write = () => {
         ],
     }
 
+    // 구글 api부분
     const [word, setWord] = useState('')
     const [translation, setTranslation] = useState('')
+    useEffect(() => {
+        console.log(translation)
+    }, [translation])
+    // 검색창 글씨가 바뀔때마다 word값이 바뀜
     const handleChange = (event) => {
         setWord(event.target.value)
+        console.log(event)
     }
-
+    // 엔터누르면 구글 api를 통해 결과값 제공
     const handleKeyPress = async (event) => {
-        // `word` 상태 변수가 변경되었는지 확인합니다.
+        // word 상태 변수가 변경되었는지 확인합니다.
         if (event.key === 'Enter' && word !== '') {
             console.log(word)
             try {
@@ -34,8 +36,32 @@ const Write = () => {
                     search: word,
                 })
                 if (response.data.success) {
-                    const jsonData = JSON.parse(response.data.translation)
-                    setTranslation(jsonData.message.result.translatedText)
+                    if (response.data.data.trans) {
+                        const translatedText = response.data.data.trans
+                        setTranslation((prevTranslation) => [
+                            translatedText,
+                            ...prevTranslation,
+                        ])
+                    }
+                    if (
+                        response.data.data.dict &&
+                        response.data.data.dict[0].entry
+                    ) {
+                        const translatedTextArray =
+                            response.data.data.dict[0].entry.map(
+                                (item) => item.word
+                            )
+                        setTranslation((prevTranslation) => [
+                            ...prevTranslation,
+                            ...translatedTextArray,
+                        ])
+                    }
+                    console.log(setTranslation)
+                    // console.log(response.data.data.trans)
+                    // const translatedText = response.data.data.trans;
+                    // const translatedTextArray = response.data.data.dict[0].entry.map(item => item.word);
+                    // setTranslation([translatedText, ...translatedTextArray]);
+                    // console.log(setTranslation);
                 } else {
                     alert('번역 실패')
                 }
@@ -45,13 +71,90 @@ const Write = () => {
         }
     }
 
+    // Ginger api 부분
+    const [value, setValue] = useState('')
+
+    const [correctionsData, setCorrectionsData] = useState([])
+
+    const mainhandleKeyPress = async (event) => {
+        try {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault()
+                const textValue = quillRef.current?.getEditor().getText()
+                console.log(textValue)
+                setValue(textValue)
+
+                const response = await axios.post('/api/ginger', {
+                    search: value,
+                })
+                if (response.data.success) {
+                    // console.log(response.data.data.GingerTheDocumentResult.Corrections);
+
+                    const newCorrectionsData =
+                        response.data.data.GingerTheDocumentResult.Corrections.map(
+                            (correction) => ({
+                                mistakeText: correction.MistakeText,
+                                suggestions: correction.Suggestions.map(
+                                    (suggestion) => ({
+                                        text: suggestion.Text,
+                                        confidence: suggestion.Confidence,
+                                        category:
+                                            suggestion.CategoryDescription,
+                                    })
+                                ),
+                            })
+                        )
+
+                    console.log(newCorrectionsData)
+                    setCorrectionsData(newCorrectionsData)
+                } else {
+                    alert('문법 요청 실패')
+                }
+            }
+        } catch (err) {
+            console.log('문법 요청 에러:', err)
+        }
+    }
+
+    // const [gingerMistakeTextArray, setGingerMistakeTextArray] = useState([]);
+    // const [gingerSuggestionsTextArray, setGingerSuggestionsTextArray] = useState([]);
+    // const mainhandleKeyPress = async (event) => {
+    //     try {
+    //         if (event.key === 'Enter' && !event.shiftKey) {
+    //             event.preventDefault();
+    //             const textValue = quillRef.current?.getEditor().getText();
+    //             console.log(textValue);
+    //             setValue(textValue);
+
+    //             const response = await axios.post("/api/ginger", { search: value });
+    //             if (response.data.success) {
+    //                 console.log(response.data.data.GingerTheDocumentResult.Corrections);
+
+    //                 const gingerMistakeTextArray = response.data.data.GingerTheDocumentResult.Corrections.map(correction => correction.MistakeText);
+    //                 const gingerSuggestionsTextArray = response.data.data.GingerTheDocumentResult.Corrections.flatMap(correction =>
+    //                     correction.Suggestions.map(suggestion => suggestion.Text)
+    //                 );
+
+    //                 console.log(gingerMistakeTextArray);
+    //                 setGingerMistakeTextArray(gingerMistakeTextArray);
+
+    //                 console.log(gingerSuggestionsTextArray);
+    //                 setGingerSuggestionsTextArray(gingerSuggestionsTextArray);
+    //             } else {
+    //                 alert("문법 요청 실패");
+    //             }
+    //         }
+    //     } catch (err) {
+    //         console.log("문법 요청 에러:", err);
+    //     }
+    // };
+
     const handleSave = () => {
         const content = quillRef.current?.getEditor().getContents()
         console.log('Content to be saved:', content)
     }
     return (
         <div id="wrap">
-            <Header />
             <div id="write" className="section__border">
                 <div className="write__wrap">
                     <div className="today__date">
@@ -80,7 +183,8 @@ const Write = () => {
                                     }}
                                     ref={quillRef}
                                     theme="snow"
-                                    value={value}
+                                    // value={value}
+                                    onKeyDown={mainhandleKeyPress}
                                     onChange={setValue}
                                     modules={modules}
                                     placeholder="What's your story for today?"
@@ -102,18 +206,15 @@ const Write = () => {
                                 <h2>Result</h2>
                                 <div>
                                     <div className="result_wrap">
-                                        <span>splendid</span>
-                                        <span>madgnificant</span>
-                                        <span>elegant</span>
-                                        <span>grand</span>
-                                        <span>splendid</span>
-                                        <span>madgnificant</span>
-                                        <span>elegant</span>
-                                        <span>grand</span>
-                                        <span>splendid</span>
-                                        <span>madgnificant</span>
-                                        <span>elegant</span>
-                                        <span>grand</span>
+                                        {Array.isArray(translation) &&
+                                            translation.map((result, index) => (
+                                                <div key={index}>
+                                                    {result}
+                                                    <div>
+                                                        {/* 추가로 표시할 내용이 있다면 여기에 작성 */}
+                                                    </div>
+                                                </div>
+                                            ))}
                                     </div>
                                 </div>
                             </div>
@@ -121,167 +222,54 @@ const Write = () => {
                                 <h2>Correction</h2>
                                 <div>
                                     <ul className="correction_wrap">
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                {/* <p className="wrong__reason">
-                                                    철자 오류
-                                                </p> */}
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-
-                                                {/* <p className="wrong__reason">
-                                                    철자 오류
-                                                </p> */}
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                <p className="wrong__reason">
-                                                    철자 오류
-                                                </p>
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                <p className="wrong__reason">
-                                                    철자 오류
-                                                </p>
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                <p className="wrong__reason">
-                                                    철자 오류
-                                                </p>
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                <p className="wrong__reason">
-                                                    철자 오류
-                                                </p>
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                <p className="wrong__reason">
-                                                    철자 오류
-                                                </p>
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                <p className="wrong__reason">
-                                                    철자 오류
-                                                </p>
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
+                                        {correctionsData.map(
+                                            (correction, index) => (
+                                                <li key={index}>
+                                                    <div className="wrong">
+                                                        <p className="wrong__word">
+                                                            <Link to="/write">
+                                                                {
+                                                                    correction.mistakeText
+                                                                }
+                                                            </Link>
+                                                        </p>
+                                                    </div>
+                                                    <span className="arrow"></span>
+                                                    <div className="correct">
+                                                        <p className="correct__word">
+                                                            {correction.suggestions.map(
+                                                                (
+                                                                    suggestion,
+                                                                    sIndex
+                                                                ) => (
+                                                                    <React.Fragment
+                                                                        key={
+                                                                            sIndex
+                                                                        }
+                                                                    >
+                                                                        <Link to="/write">
+                                                                            {
+                                                                                suggestion.text
+                                                                            }
+                                                                        </Link>
+                                                                        {sIndex !==
+                                                                            correction
+                                                                                .suggestions
+                                                                                .length -
+                                                                                1 && (
+                                                                            <span>
+                                                                                ,
+                                                                                &nbsp;{' '}
+                                                                            </span>
+                                                                        )}
+                                                                    </React.Fragment>
+                                                                )
+                                                            )}
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            )
+                                        )}
                                     </ul>
                                 </div>
                             </div>
@@ -289,8 +277,7 @@ const Write = () => {
                     </div>
                     {/* <button onClick={onClickSave}>저장</button> */}
                     <div className="button">
-                        {/* <button className="box1" onClick={handleSave}> */}
-                        <button className="box" onClick={handleSave}>
+                        <button className="box1" onClick={handleSave}>
                             Upload
                         </button>
                     </div>
@@ -299,5 +286,4 @@ const Write = () => {
         </div>
     )
 }
-
 export default Write

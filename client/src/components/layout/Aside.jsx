@@ -7,7 +7,7 @@ const Aside = () => {
     return (
         <aside id="aside">
             <div className="aside__wrap">
-                <div className="logo mb40rem">
+                <div className="logo mb30rem">
                     <div className="logo__text mb10">
                         <em>kitch</em> candy
                     </div>
@@ -23,9 +23,9 @@ const Aside = () => {
                             <Link to={'/'}>Diary</Link>
                             <ul className="aside__diary">
                                 <li>
-                                    <Link to={'/'}>list</Link>
+                                    <Link to={'/diarylist'}>list</Link>
                                 </li>
-                                <li className="">
+                                <li className="mb10">
                                     <Link to={'/write'}>today</Link>
                                 </li>
                             </ul>
@@ -34,14 +34,14 @@ const Aside = () => {
                             <Link to={'/voca'}>Voca list</Link>
                         </li>
                         <li>
-                            <Link to={'/'}>My page</Link>
+                            <Link to={'/mypage'}>My page</Link>
                         </li>
-                        <li className="pb10">
+                        <li className="">
                             <Link to={'/'}>Logout</Link>
                         </li>
                     </ul>
                 </nav>
-                <div className="user mt100">
+                <div className="user">
                     <div className="user__profile mt60">
                         <img src={user} alt="" />
                     </div>

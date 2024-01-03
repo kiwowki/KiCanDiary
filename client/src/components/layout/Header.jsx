@@ -1,18 +1,14 @@
 import React from 'react'
-
 import { Link, useNavigate } from 'react-router-dom'
 import userImg from '../../assets/img/user.png'
-
 import { useSelector } from 'react-redux'
 import firebase from '../../firebase.js'
-
 const Header = () => {
-    const user = useSelector(state => state.user);
-    const navigate = useNavigate();
-
+    const user = useSelector((state) => state.user)
+    const navigate = useNavigate()
     const LogoutHandler = () => {
-        firebase.auth().signOut();
-        navigate("/");
+        firebase.auth().signOut()
+        navigate('/')
     }
     return (
         <header id="header">
@@ -26,7 +22,7 @@ const Header = () => {
                         </li>
                         <li>
                             <Link
-                                to={'/diary'}
+                                to={'/diarylist'}
                                 data-first-letter="D"
                                 className="active"
                             >
@@ -34,16 +30,19 @@ const Header = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/voca'} data-first-letter="V">VOCA list</Link>
+                            <Link to={'/voca'} data-first-letter="V">
+                                VOCA list
+                            </Link>
                         </li>
                         <li>
-                            <Link to={'/mypage'} data-first-letter="M">My page</Link>
+                            <Link to={'/mypage'} data-first-letter="M">
+                                My page
+                            </Link>
                         </li>
                     </ul>
                     <div className="nav__session">
                         <div className="right">
-
-                            {user.accessToken === "" ? (
+                            {user.accessToken === '' ? (
                                 <ul>
                                     <li>
                                         <Link to="/login">login</Link>
@@ -55,31 +54,42 @@ const Header = () => {
                             ) : (
                                 <ul>
                                     <li>
-                                        <Link onClick={(() => LogoutHandler())}>logout</Link>
+                                        <Link onClick={() => LogoutHandler()}>
+                                            logout
+                                        </Link>
                                     </li>
                                 </ul>
                             )}
-
                         </div>
                         <div className="user__info box1">
-                            {user.accessToken === "" ? (
+                            {user.accessToken === '' ? (
                                 <>
                                     <Link to={'/mypage'}>
-                                        <em className="line1">UserName UserName</em>
+                                        <em className="line1">
+                                            {user.displayName}
+                                        </em>
                                     </Link>
                                     's DIARY
                                     <Link to={'/mypage'}>
-                                        <img src={userImg} alt='마이페이지 이미지' />
+                                        <img
+                                            src={userImg}
+                                            alt="마이페이지 이미지"
+                                        />
                                     </Link>
                                 </>
                             ) : (
                                 <>
                                     <Link to={'/mypage'}>
-                                        <em className="line1">{user.displayName}</em>
+                                        <em className="line1">
+                                            {user.displayName}
+                                        </em>
                                     </Link>
                                     's DIARY
                                     <Link to={'/mypage'}>
-                                        <img src={userImg} alt='마이페이지 이미지' />
+                                        <img
+                                            src={userImg}
+                                            alt="마이페이지 이미지"
+                                        />
                                     </Link>
                                 </>
                             )}
@@ -90,5 +100,4 @@ const Header = () => {
         </header>
     )
 }
-
 export default Header

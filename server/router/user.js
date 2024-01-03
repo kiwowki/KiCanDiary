@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 // 스키마
 const { User } = require("../model/User.js");
 const { Counter } = require("../model/Counter.js");
@@ -39,6 +38,5 @@ router.post('/emailcheck', (req, res) => {
             console.log(err);
             res.status(400).json({ success: false });
         })
-
 })
 module.exports = router;

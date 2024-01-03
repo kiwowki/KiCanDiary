@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { useDispatch } from 'react-redux'
 import { loginUser, clearUser } from './reducer/userSlice'
@@ -14,25 +14,13 @@ import Write from "./components/diary/Write";
 import HeaderMobile from "./components/layout/Header_m";
 import VocaList from "./components/voca/VocaList";
 import Footer from "./components/layout/Footer";
+import DiaryList from "./components/diary/DiaryList.jsx";
 
 import Join from "./components/user/Join";
 import Login from "./components/user/Login";
 import Mypage from "./components/user/Mypage";
 
 const App = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        firebase.auth().onAuthStateChanged((userInfo) => {
-            console.log("userInfo : " + userInfo)
-            if (userInfo !== null) {
-                dispatch(loginUser(userInfo.multiFactor.user));
-            } else {
-                dispatch(clearUser())
-            }
-        })
-    }, [dispatch]);
-
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -49,8 +37,21 @@ const App = () => {
         };
     }, []);
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged((userInfo) => {
+            console.log("userInfo : " + userInfo)
+            if (userInfo !== null) {
+                dispatch(loginUser(userInfo.multiFactor.user));
+            } else {
+                dispatch(clearUser())
+            }
+        })
+    }, [dispatch]);
+
     return (
-        <>
+        <BrowserRouter>
             <Main>
                 <Routes>
                     {/* Home 페이지 */}
@@ -67,9 +68,20 @@ const App = () => {
                     <Route
                         path="/write"
                         element={
+
                             <>
-                                <Header />
-                                <Write isMobile={isMobile} />
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <Write />
+                            </>
+                        }
+                    />
+
+                    <Route
+                        path="/diarylist"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <DiaryList />
                             </>
                         }
                     />
@@ -79,48 +91,36 @@ const App = () => {
                         path="/voca"
                         element={
                             <>
-                                <Header />
-                                <VocaList isMobile={isMobile} />
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <VocaList />
                             </>
                         }
                     />
-
-                    <Route
-                        path="/join"
-                        element={
-                            <>
-                                <Header />
-                                <Join isMobile={isMobile} />
-                            </>
-                        }
-                    />
-
-                    <Route
-                        path="/login"
-                        element={
-                            <>
-                                <Header />
-                                <Login isMobile={isMobile} />
-                            </>
-                        }
-                    />
-
-                    <Route
-                        path="/mypage"
-                        element={
-                            <>
-                                <Header />
-                                <Mypage isMobile={isMobile} />
-                            </>
-                        }
-                    />
+                    <Route path="/join" element={
+                        <>
+                            {isMobile ? <HeaderMobile /> : <Header />}
+                            <Join />
+                        </>
+                    } />
+                    <Route path="/login" element={
+                        <>
+                            {isMobile ? <HeaderMobile /> : <Header />}
+                            <Login />
+                        </>
+                    } />
+                    <Route path="/mypage" element={
+                        <>
+                            {isMobile ? <HeaderMobile /> : <Header />}
+                            <Mypage />
+                        </>
+                    } />
 
                     {/* 다른 페이지에는 Header가 나오도록 설정 */}
                     <Route path="/*" element={isMobile ? <HeaderMobile /> : <Header />} />
                 </Routes>
             </Main>
             <Footer />
-        </>
+        </BrowserRouter>
     );
 };
 
