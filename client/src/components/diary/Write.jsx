@@ -102,18 +102,6 @@ const Write = () => {
                                 <h2>Result</h2>
                                 <div>
                                     <span>{translation}</span>
-                                    {/* <span>splendid</span>
-                                    <span>madgnificant</span>
-                                    <span>elegant</span>
-                                    <span>grand</span>
-                                    <span>splendid</span>
-                                    <span>madgnificant</span>
-                                    <span>elegant</span>
-                                    <span>grand</span>
-                                    <span>splendid</span>
-                                    <span>madgnificant</span>
-                                    <span>elegant</span>
-                                    <span>grand</span> */}
                                 </div>
                             </div>
                             <div className="correction">
