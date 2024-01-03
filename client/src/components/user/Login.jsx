@@ -43,6 +43,7 @@ const Login = () => {
                                 Forgot ID?
                             </Link>
                         </p>
+
                         <input
                             type="text"
                             id="id"
@@ -61,6 +62,7 @@ const Login = () => {
                                 Forgot password?
                             </Link>
                         </p>
+
                         <input
                             type="password"
                             id="password"
