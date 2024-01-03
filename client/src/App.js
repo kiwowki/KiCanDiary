@@ -69,9 +69,10 @@ const App = () => {
                     <Route
                         path="/write"
                         element={
+
                             <>
-                                <Header />
-                                <Write isMobile={isMobile} />
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <Write />
                             </>
                         }
                     />
@@ -80,8 +81,8 @@ const App = () => {
                         path="/diarylist"
                         element={
                             <>
-                                <Header />
-                                <DiaryList isMobile={isMobile} />
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <DiaryList />
                             </>
                         }
                     />
@@ -91,27 +92,27 @@ const App = () => {
                         path="/voca"
                         element={
                             <>
-                                <Header />
-                                <VocaList isMobile={isMobile} />
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <VocaList />
                             </>
                         }
                     />
                     <Route path="/join" element={
                         <>
-                            <Header />
-                            <Join isMobile={isMobile} />
+                            {isMobile ? <HeaderMobile /> : <Header />}
+                            <Join />
                         </>
                     } />
                     <Route path="/login" element={
                         <>
-                            <Header />
-                            <Login isMobile={isMobile} />
+                            {isMobile ? <HeaderMobile /> : <Header />}
+                            <Login />
                         </>
                     } />
                     <Route path="/mypage" element={
                         <>
-                            <Header />
-                            <Mypage isMobile={isMobile} />
+                            {isMobile ? <HeaderMobile /> : <Header />}
+                            <Mypage />
                         </>
                     } />
 

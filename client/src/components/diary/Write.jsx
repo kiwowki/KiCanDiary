@@ -17,11 +17,6 @@ const Write = () => {
         ],
     }
 
-    // const [word, setWord] = useState('')
-    // const [translation, setTranslation] = useState('')
-    // const handleChange = (event) => {
-    //     setWord(event.target.value)
-    // }
     const handleSave = () => {
         const content = quillRef.current?.getEditor().getContents()
         console.log('Content to be saved:', content)

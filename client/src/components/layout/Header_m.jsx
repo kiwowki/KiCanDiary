@@ -19,7 +19,7 @@ const Header_m = () => {
                             <Link to={'/list'}>Diary</Link>
                         </li>
                         <li>
-                            <Link to={'/write'} className="active">
+                            <Link to={'/write'}>
                                 Today
                             </Link>
                         </li>
@@ -30,7 +30,7 @@ const Header_m = () => {
                             <Link to={'/mypage'}>My</Link>
                         </li>
                         <li>
-                            <Link to={'/logout'}>Logout</Link>
+                            <Link to={'/logout'} className="active">Logout</Link>
                         </li>
                     </ul>
                 </nav>

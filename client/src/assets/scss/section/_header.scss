@@ -269,14 +269,14 @@
 }
 
 #header_m {
-    display: none;
+    // display: none;
 
-    // position: fixed;
-    // top: 0;
-    // width: 100%;
-    // z-index: 1000;
-    // display: flex;
-    // justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
     .header__wrap {
         display: flex;
         justify-content: center;
@@ -348,16 +348,32 @@
                     text-align: center;
                     position: relative;
                     display: flex;
+                    z-index: 1;
 
                     a {
                         width: 100%;
                         font-size: 14px;
                         color: var(--white);
-                        display: none;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        opacity: 0;
+                        z-index: 1;
+                        transition: all 0.5s ease-in-out;
 
                         &.active {
                             height: 100%;
+                            z-index: 99;
+                            opacity: 1;
+                        }
+                    }
+                    &:hover {
+                        z-index: 100;
+
+                        a {
+                            height: 100%;
                             z-index: 100;
+                            opacity: 1;
                             display: flex;
                             justify-content: center;
                             align-items: center;
@@ -366,7 +382,7 @@
                 }
                 // 자식에 active가 붙었을 때 상위요소에 효과주기..
                 li:has(> a.active) {
-                    z-index: 100;
+                    z-index: 99;
                     display: block;
                 }
 
