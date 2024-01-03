@@ -4,7 +4,6 @@ import 'react-quill/dist/quill.snow.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 const Write = () => {
-    const [value, setValue] = useState('')
     const quillRef = useRef(null)
     const modules = {
         toolbar: [
@@ -15,6 +14,8 @@ const Write = () => {
             ['clean'],
         ],
     }
+
+    // 구글 api부분
     const [word, setWord] = useState('')
     const [translation, setTranslation] = useState('')
     useEffect(() => {
@@ -23,6 +24,7 @@ const Write = () => {
     // 검색창 글씨가 바뀔때마다 word값이 바뀜
     const handleChange = (event) => {
         setWord(event.target.value)
+        console.log(event)
     }
     // 엔터누르면 구글 api를 통해 결과값 제공
     const handleKeyPress = async (event) => {
@@ -54,6 +56,79 @@ const Write = () => {
             }
         }
     };
+
+    // Ginger api 부분
+    const [value, setValue] = useState('')
+
+    const [correctionsData, setCorrectionsData] = useState([]);
+
+    const mainhandleKeyPress = async (event) => {
+        try {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                const textValue = quillRef.current?.getEditor().getText();
+                console.log(textValue);
+                setValue(textValue);
+
+                const response = await axios.post("/api/ginger", { search: value });
+                if (response.data.success) {
+                    // console.log(response.data.data.GingerTheDocumentResult.Corrections);
+
+                    const newCorrectionsData = response.data.data.GingerTheDocumentResult.Corrections.map(correction => ({
+                        mistakeText: correction.MistakeText,
+                        suggestions: correction.Suggestions.map(suggestion => ({
+                            text: suggestion.Text,
+                            confidence: suggestion.Confidence,
+                            category: suggestion.CategoryDescription,
+                        })),
+                    }));
+
+                    console.log(newCorrectionsData);
+                    setCorrectionsData(newCorrectionsData);
+                } else {
+                    alert("문법 요청 실패");
+                }
+            }
+        } catch (err) {
+            console.log("문법 요청 에러:", err);
+        }
+    };
+
+
+    // const [gingerMistakeTextArray, setGingerMistakeTextArray] = useState([]);
+    // const [gingerSuggestionsTextArray, setGingerSuggestionsTextArray] = useState([]);
+    // const mainhandleKeyPress = async (event) => {
+    //     try {
+    //         if (event.key === 'Enter' && !event.shiftKey) {
+    //             event.preventDefault();
+    //             const textValue = quillRef.current?.getEditor().getText();
+    //             console.log(textValue);
+    //             setValue(textValue);
+
+    //             const response = await axios.post("/api/ginger", { search: value });
+    //             if (response.data.success) {
+    //                 console.log(response.data.data.GingerTheDocumentResult.Corrections);
+
+    //                 const gingerMistakeTextArray = response.data.data.GingerTheDocumentResult.Corrections.map(correction => correction.MistakeText);
+    //                 const gingerSuggestionsTextArray = response.data.data.GingerTheDocumentResult.Corrections.flatMap(correction =>
+    //                     correction.Suggestions.map(suggestion => suggestion.Text)
+    //                 );
+
+    //                 console.log(gingerMistakeTextArray);
+    //                 setGingerMistakeTextArray(gingerMistakeTextArray);
+
+    //                 console.log(gingerSuggestionsTextArray);
+    //                 setGingerSuggestionsTextArray(gingerSuggestionsTextArray);
+    //             } else {
+    //                 alert("문법 요청 실패");
+    //             }
+    //         }
+    //     } catch (err) {
+    //         console.log("문법 요청 에러:", err);
+    //     }
+    // };
+
+
     const handleSave = () => {
         const content = quillRef.current?.getEditor().getContents()
         console.log('Content to be saved:', content)
@@ -88,7 +163,8 @@ const Write = () => {
                                     }}
                                     ref={quillRef}
                                     theme="snow"
-                                    value={value}
+                                    // value={value}
+                                    onKeyDown={mainhandleKeyPress}
                                     onChange={setValue}
                                     modules={modules}
                                     placeholder="What's your story for today?"
@@ -122,66 +198,30 @@ const Write = () => {
                                 <h2>Correction</h2>
                                 <div>
                                     <ul className="correction_wrap">
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                {/* <p className="wrong__reason">
-                                                    철자 오류
-                                                </p> */}
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                {/* <p className="wrong__reason">
-                                                    철자 오류
-                                                </p> */}
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="wrong">
-                                                <p className="wrong__word">
-                                                    <Link to="/write">
-                                                        tast
-                                                    </Link>
-                                                </p>
-                                                {/* <p className="wrong__reason">
-                                                    철자 오류
-                                                </p> */}
-                                            </div>
-                                            <span className="arrow"></span>
-                                            <div className="correct">
-                                                <p className="correct__word">
-                                                    <Link to="/write">
-                                                        test
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </li>
+                                        {correctionsData.map((correction, index) => (
+                                            <li key={index}>
+                                                <div className="wrong">
+                                                    <p className="wrong__word">
+                                                        <Link to="/write">
+                                                            {correction.mistakeText}
+                                                        </Link>
+                                                    </p>
+                                                </div>
+                                                <span className="arrow"></span>
+                                                <div className="correct">
+                                                    <p className="correct__word">
+                                                        {correction.suggestions.map((suggestion, sIndex) => (
+                                                            <React.Fragment key={sIndex}>
+                                                                <Link to="/write">
+                                                                    {suggestion.text}
+                                                                </Link>
+                                                                {sIndex !== correction.suggestions.length - 1 && <span>, &nbsp; </span>}
+                                                            </React.Fragment>
+                                                        ))}
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
@@ -193,9 +233,9 @@ const Write = () => {
                             Upload
                         </button>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div >
+            </div >
+        </div >
     )
 }
 export default Write

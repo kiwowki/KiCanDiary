@@ -29,8 +29,8 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
 })
-// 구글 api key
-// let google_api = 'AIzaSyBQ-dJ_j7165a85-epXXOgMrmFFYyh-YBw';
+
+// 구글 api
 app.post('/api/translate', async (req, res) => {
     const encodedParams = new URLSearchParams();
     encodedParams.set('from', 'auto');
@@ -46,6 +46,36 @@ app.post('/api/translate', async (req, res) => {
         },
         data: encodedParams,
     };
+    try {
+        const response = await axios.request(options);
+        console.log(response.data);
+        res.status(200).json({ success: true, data: response.data });
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({ success: false });
+    }
+})
+
+// ginger api
+app.post('/api/ginger', async (req, res) => {
+    const options = {
+        method: 'POST',
+        url: 'https://ginger4.p.rapidapi.com/correction',
+        params: {
+            lang: 'US',
+            generateRecommendations: 'false',
+            flagInfomralLanguage: 'true'
+        },
+        headers: {
+            'content-type': 'text/plain',
+            'Content-Type': 'text/plain',
+            'Accept-Encoding': 'identity',
+            'X-RapidAPI-Key': 'a540682a8emshed4f5b41258ddc6p1937aejsn7dece9bebef5',
+            'X-RapidAPI-Host': 'ginger4.p.rapidapi.com'
+        },
+        data: req.body.search
+    };
+
     try {
         const response = await axios.request(options);
         console.log(response.data);
