@@ -34,12 +34,15 @@ const Join = () => {
         setFlag(true);
         e.preventDefault();
         if (!(Email && Name && Pass && PassC)) {
+            setFlag(false);
             return alert("모든 항목을 입력해주세요")
         }
         if (Pass !== PassC) {
+            setFlag(false);
             return alert("비밀번호가 일치하지 않습니다")
         }
         if (!mailCheck) {
+            setFlag(false);
             return alert("아이디 중복 검사를 해주세요")
         }
         let createdUser = await firebase.auth().createUserWithEmailAndPassword(Email, Pass);

@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import axios from 'axios'
 const Write = () => {
     const quillRef = useRef(null)
@@ -36,13 +38,15 @@ const Write = () => {
                 if (response.data.success) {
                     if (response.data.data.trans) {
                         const translatedText = response.data.data.trans;
-                        setTranslation(prevTranslation => [translatedText, ...prevTranslation]);
+                        setTranslation([translatedText]);
+                        // setTranslation(prevTranslation => [translatedText, ...prevTranslation]);
                     }
                     if (response.data.data.dict && response.data.data.dict[0].entry) {
                         const translatedTextArray = response.data.data.dict[0].entry.map(item => item.word);
                         setTranslation(prevTranslation => [...prevTranslation, ...translatedTextArray]);
                     }
                     console.log(setTranslation)
+
                     // console.log(response.data.data.trans)
                     // const translatedText = response.data.data.trans;
                     // const translatedTextArray = response.data.data.dict[0].entry.map(item => item.word);
@@ -94,44 +98,40 @@ const Write = () => {
         }
     };
 
+    const [title, setTitle] = useState('');
+    const content = quillRef.current?.getEditor().getContents()
+    const user = useSelector((state) => state.user);
+    useEffect(() => {
+        if (!user.accessToken) {
+            alert("로그인한 회원만 작성이 가능합니다.");
+            navigate("/login");
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    // const [gingerMistakeTextArray, setGingerMistakeTextArray] = useState([]);
-    // const [gingerSuggestionsTextArray, setGingerSuggestionsTextArray] = useState([]);
-    // const mainhandleKeyPress = async (event) => {
-    //     try {
-    //         if (event.key === 'Enter' && !event.shiftKey) {
-    //             event.preventDefault();
-    //             const textValue = quillRef.current?.getEditor().getText();
-    //             console.log(textValue);
-    //             setValue(textValue);
+    let navigate = useNavigate();
+    const handleSave = (e) => {
+        e.preventDefault();
 
-    //             const response = await axios.post("/api/ginger", { search: value });
-    //             if (response.data.success) {
-    //                 console.log(response.data.data.GingerTheDocumentResult.Corrections);
+        if (title === "" || content === "") {
+            return alert("내용을 채워주세요!");
+        }
+        let body = {
+            title: title,
+            content: content,
+            uid: user.uid
+        }
+        // console.log(body)
 
-    //                 const gingerMistakeTextArray = response.data.data.GingerTheDocumentResult.Corrections.map(correction => correction.MistakeText);
-    //                 const gingerSuggestionsTextArray = response.data.data.GingerTheDocumentResult.Corrections.flatMap(correction =>
-    //                     correction.Suggestions.map(suggestion => suggestion.Text)
-    //                 );
-
-    //                 console.log(gingerMistakeTextArray);
-    //                 setGingerMistakeTextArray(gingerMistakeTextArray);
-
-    //                 console.log(gingerSuggestionsTextArray);
-    //                 setGingerSuggestionsTextArray(gingerSuggestionsTextArray);
-    //             } else {
-    //                 alert("문법 요청 실패");
-    //             }
-    //         }
-    //     } catch (err) {
-    //         console.log("문법 요청 에러:", err);
-    //     }
-    // };
-
-
-    const handleSave = () => {
-        const content = quillRef.current?.getEditor().getContents()
-        console.log('Content to be saved:', content)
+        axios.post("/api/post/write", body)
+            .then((response) => {
+                if (response.data.success) {
+                    alert("글 작성 완료")
+                    navigate("/list");
+                } else {
+                    alert("글 작성 실패")
+                }
+            })
     }
     return (
         <div id="wrap">
@@ -145,7 +145,10 @@ const Write = () => {
                             <h3 className="blind">글쓰기</h3>
                             <article className="title">
                                 <h2>Title</h2>
-                                <input type="text" />
+                                <input type="text"
+                                    value={title}
+                                    onChange={(e) => setTitle(e.currentTarget.value)}
+                                />
                             </article>
                             <article className="content">
                                 <h2>Story</h2>
@@ -163,7 +166,7 @@ const Write = () => {
                                     }}
                                     ref={quillRef}
                                     theme="snow"
-                                    // value={value}
+                                    value={value}
                                     onKeyDown={mainhandleKeyPress}
                                     onChange={setValue}
                                     modules={modules}
