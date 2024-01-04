@@ -1,6 +1,7 @@
 // import React, { Component, useState } from 'react'
 import React, { useState } from 'react'
 import Calendar from 'react-calendar'
+import { Link } from 'react-router-dom'
 
 const LeftCalenadr = () => {
     const [value, onChange] = useState(new Date())
@@ -60,7 +61,7 @@ const LeftCalenadr = () => {
                 </div>
             </div>
             <div className="today">
-                <p> today </p>
+                <p><Link to="/write">today</Link></p>
             </div>
         </div>
     )

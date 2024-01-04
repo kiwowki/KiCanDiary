@@ -20,6 +20,7 @@ import Login from "./components/user/Login";
 import Mypage from "./components/user/Mypage";
 import Footer from "./components/layout/Footer";
 import DiaryList from "./components/diary/DiaryList.jsx";
+import DiaryView from "./components/diary/DiaryView.jsx";
 
 const App = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -87,7 +88,16 @@ const App = () => {
                         }
                     />
 
-                    {/* VocaList 페이지 */}
+                    <Route
+                        path="/diaryview"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <DiaryView />
+                            </>
+                        }
+                    />
+
                     <Route
                         path="/voca"
                         element={
