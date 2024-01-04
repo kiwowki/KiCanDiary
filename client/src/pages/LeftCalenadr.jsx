@@ -1,10 +1,31 @@
 // import React, { Component, useState } from 'react'
 import React, { useState } from 'react'
 import Calendar from 'react-calendar'
-import { Link } from 'react-router-dom'
+
+import { Link, useNavigate } from 'react-router-dom'
 
 const LeftCalenadr = () => {
-    const [value, onChange] = useState(new Date())
+    const [value, setValue] = useState(new Date()); // 달력 전체의 날짜 값 
+    const [today, setToday] = useState(() => {
+        const now = new Date();
+        now.setHours(0, 0, 0, 0);
+        return now
+    });     // 오늘 날짜값 상태관리 
+    
+    const params = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    
+    const navigate = useNavigate();
+
+    const onChange = date => {
+        if(date.getTime() === today.getTime()){
+            setValue(date);
+            navigate(`/write/${params}`)
+            
+        } else {
+            alert('오늘의 날짜를 선택하도록')
+        }
+    }
+
 
     const isSaturday = (date) => date.getDay() === 6
     const tileClass = ({ date, view }) =>
@@ -37,19 +58,12 @@ const LeftCalenadr = () => {
         </div>
     )
     // 날짜 포매터
-
-    // class MyCalendar extends Component {
-    //     onPrevClick = () => {}
-    //     // 이전 버튼 기본 기능 변경
-    // }
+    
+    
     return (
-        <div className="left section__border">
+        <div className="left">
             <div className="date__info">
-                {/*<div className="date__today ">
-                <span>December 07, 2023</span>
-            </div>*/}
-
-                <div className="calendar">
+                <div className="calendar relative">
                     <Calendar
                         onChange={onChange}
                         value={value}
@@ -58,11 +72,15 @@ const LeftCalenadr = () => {
                         navigationLabel={navigationLabel}
                         //  prev2ButtonOnClick={this.onPrevClick}
                     />
+                    <div className="today">
+                        <p><Link to={`/write/${params}`}> today </Link></p>
+                    </div>
                 </div>
             </div>
             <div className="today">
                 <p><Link to="/write">today</Link></p>
             </div>
+
         </div>
     )
 }

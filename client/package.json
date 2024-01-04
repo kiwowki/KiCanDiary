@@ -22,7 +22,7 @@
     "react-dom": "^18.2.0",
     "react-quill": "^2.0.0",
     "react-redux": "^9.0.4",
-    "react-router-dom": "^6.20.1",
+    "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",
     "sass": "^1.69.5",
     "swiper": "^11.0.5",
@@ -51,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }

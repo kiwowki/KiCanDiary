@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
+
 const Write = () => {
     const quillRef = useRef(null)
+
     const modules = {
         toolbar: [
             [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -18,10 +22,12 @@ const Write = () => {
     // 구글 api부분
     const [word, setWord] = useState('')
     const [translation, setTranslation] = useState('')
+
     useEffect(() => {
         console.log(translation)
     }, [translation])
     // 검색창 글씨가 바뀔때마다 word값이 바뀜
+
     const handleChange = (event) => {
         setWord(event.target.value)
         console.log(event)
@@ -38,7 +44,10 @@ const Write = () => {
                 if (response.data.success) {
                     if (response.data.data.trans) {
                         const translatedText = response.data.data.trans
-                        setTranslation([translatedText])
+                        setTranslation((prevTranslation) => [
+                            translatedText,
+                            ...prevTranslation,
+                        ])
                     }
                     if (
                         response.data.data.dict &&
@@ -108,32 +117,82 @@ const Write = () => {
         }
     }
 
-    const handleSave = () => {
-        const content = quillRef.current?.getEditor().getContents()
-        console.log('Content to be saved:', content)
+    const [title, setTitle] = useState()
+    const { date } = useParams()
+    const [dateObj, setDate] = useState({
+        year: '',
+        month: '',
+        day: '',
+    })
+    const user = useSelector((state) => state.user)
+    let navigate = useNavigate()
+    useEffect(() => {
+        if (!user.accessToken) {
+            alert('로그인한 회원만 작성이 가능합니다.')
+            navigate('/login')
+        }
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    const handleSave = async (e) => {
+        e.preventDefault()
+        if (title && value) {
+            const content = quillRef.current?.getEditor().getContents()
+
+            console.log('Content to be saved:', content.ops[0])
+            let body = {
+                title: title,
+                content: content.ops[0],
+            }
+
+            axios
+                .post('/api/post/write', body)
+                .then((res) => {
+                    if (res.status.success) {
+                        alert('작성 성공')
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                    alert('axios')
+                })
+        } else {
+            alert('실패')
+        }
     }
+
+    useEffect(() => {
+        if (date && typeof date === 'string') {
+            const [year, month, day] = date.split('-')
+            setDate({ year, month, day })
+        }
+    }, [date])
+
     return (
         <div id="wrap">
-            <div id="write" className="section__border">
+            {/*<Header /> */}
+            <div id="write">
                 <div className="write__wrap">
                     <div className="today__date">
-                        <p className="box1">December, 18</p>
+                        <p className="box">
+                            {dateObj.year}, {dateObj.month}{' '}
+                        </p>
                     </div>
                     <div className="write__main">
                         <section className="write">
                             <h3 className="blind">글쓰기</h3>
                             <article className="title">
                                 <h2>Title</h2>
-                                <input type="text" />
+                                <input
+                                    type="text"
+                                    onChange={(e) =>
+                                        setTitle(e.currentTarget.value)
+                                    }
+                                />
                             </article>
                             <article className="content">
                                 <h2>Story</h2>
-                                {/* <textarea
-                                    name="content"
-                                    id="content"
-                                    cols="100"
-                                    rows="25"
-                                ></textarea> */}
                                 <ReactQuill
                                     style={{
                                         height: '530px',
@@ -141,8 +200,8 @@ const Write = () => {
                                         marginLeft: '4px',
                                     }}
                                     ref={quillRef}
-                                    // value={value}
                                     theme="snow"
+                                    value={value}
                                     onKeyDown={mainhandleKeyPress}
                                     onChange={setValue}
                                     modules={modules}
@@ -236,7 +295,7 @@ const Write = () => {
                     </div>
                     {/* <button onClick={onClickSave}>저장</button> */}
                     <div className="button">
-                        <button className="box1" onClick={handleSave}>
+                        <button className="box" onClick={(e) => handleSave(e)}>
                             Upload
                         </button>
                     </div>
@@ -245,4 +304,5 @@ const Write = () => {
         </div>
     )
 }
+
 export default Write

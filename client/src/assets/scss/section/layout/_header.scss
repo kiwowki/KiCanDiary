@@ -1,11 +1,27 @@
 #aside {
-    position: absolute;
-    height: 100vh;
-    width: 160px;
-    border-right: 5px solid var(--font-pink1);
+    width: 200px;
+    height: 100vh !important;
+    border-right: 5px solid var(--font-pink2);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+        top: 1%;
+        left: 7%;
+        width: 25px;
+        height: 25px;
+        transform: rotate(3deg);
+        background-image: url('../../../img/pink-11.gif');
+    }
+
     .aside__wrap {
         height: 100%;
-        padding: 30px 15px 0 15px;
+        height: 100vh;
+        padding: 45px 15px 0 15px;
         background-color: var(--bg-pink);
         display: flex;
         flex-direction: column;
@@ -23,7 +39,28 @@
 
             .logo__img {
                 img {
-                    width: 145px;
+                    width: 155px;
+                }
+                &::before,
+                &::after {
+                    content: '';
+                    position: absolute;
+                    background-size: cover;
+                    background-position: center;
+                }
+                &::before {
+                    top: 110%;
+                    left: 65%;
+                    width: 11px;
+                    height: 9px;
+                    background-image: url('../../../img/small.png');
+                }
+                &::after {
+                    top: 130%;
+                    left: 77%;
+                    width: 23px;
+                    height: 19px;
+                    background-image: url('../../../img/big.png');
                 }
             }
         }
@@ -85,6 +122,29 @@
             flex-direction: column;
             align-items: center;
 
+            margin-top: 85px;
+            position: relative;
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                background-size: cover;
+                background-position: center;
+            }
+            &::before {
+                bottom: -65%;
+                left: -35%;
+                width: 35px;
+                height: 35px;
+                background-image: url('../../../img/pink-11.gif');
+            }
+            &::after {
+                bottom: -115%;
+                left: 95%;
+                width: 41px;
+                height: 41px;
+                background-image: url('../../../img/pink-11.gif');
+            }
             .user__profile {
                 background-color: var(--box-purple1);
                 border-radius: 50%;
@@ -269,14 +329,13 @@
 }
 
 #header_m {
-    // display: none;
-
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
     display: flex;
     justify-content: center;
+
     .header__wrap {
         display: flex;
         justify-content: center;

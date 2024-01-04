@@ -18,8 +18,8 @@
 @import 'section/write.scss';
 
 // layout
-@import 'section/header.scss';
-@import 'section/footer.scss';
+@import "section/layout/header.scss";
+@import "section/layout/footer.scss";
 
 // voca
 @import 'section/vocalist.scss';
