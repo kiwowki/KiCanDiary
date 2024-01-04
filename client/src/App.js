@@ -42,7 +42,7 @@ const App = () => {
 
                     {/* Write 페이지 */}
                     <Route
-                        path="/write"
+                        path="/write/:date"
                         element={
                             <>
                                 <Header />

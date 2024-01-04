@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 import logo from '../../assets/img/logo.png'
 import { Link } from 'react-router-dom'
 
@@ -35,3 +36,13 @@ const Footer = () => {
 }
 
 export default Footer
+=======
+
+const Footer = () => {
+  return (
+    <footer id="footer"></footer>
+  )
+}
+
+export default Footer
+>>>>>>> 88c059b99abb9f4260a4863eca3785289c8f4402
