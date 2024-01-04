@@ -9,14 +9,10 @@
 @import 'setting/quill.snow.scss';
 
 // section
-<<<<<<< HEAD
-@import "section/header.scss";
-@import "section/footer.scss";
+@import "section/layout/header.scss";
+@import "section/layout/footer.scss";
 @import "section/write.scss";
-=======
-@import 'section/layout/header';
-@import 'section/layout/footer';
->>>>>>> 88c059b99abb9f4260a4863eca3785289c8f4402
+
 @import 'section/main.scss';
 @import 'section/vocalist.scss';
 
