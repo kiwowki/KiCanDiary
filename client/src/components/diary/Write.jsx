@@ -46,12 +46,6 @@ const Write = () => {
                         setTranslation(prevTranslation => [...prevTranslation, ...translatedTextArray]);
                     }
                     console.log(setTranslation)
-
-                    // console.log(response.data.data.trans)
-                    // const translatedText = response.data.data.trans;
-                    // const translatedTextArray = response.data.data.dict[0].entry.map(item => item.word);
-                    // setTranslation([translatedText, ...translatedTextArray]);
-                    // console.log(setTranslation);
                 } else {
                     alert("번역 실패");
                 }
@@ -64,43 +58,57 @@ const Write = () => {
     // Ginger api 부분
     const [value, setValue] = useState('')
 
-    const [correctionsData, setCorrectionsData] = useState([]);
+    const [correctionsData, setCorrectionsData] = useState([])
 
     const mainhandleKeyPress = async (event) => {
         try {
             if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
-                const textValue = quillRef.current?.getEditor().getText();
-                console.log(textValue);
-                setValue(textValue);
+                event.preventDefault()
+                const textValue = quillRef.current?.getEditor().getText()
+                console.log(textValue)
+                setValue(textValue)
 
-                const response = await axios.post("/api/ginger", { search: value });
+                const response = await axios.post('/api/ginger', {
+                    search: value,
+                })
                 if (response.data.success) {
                     // console.log(response.data.data.GingerTheDocumentResult.Corrections);
 
-                    const newCorrectionsData = response.data.data.GingerTheDocumentResult.Corrections.map(correction => ({
-                        mistakeText: correction.MistakeText,
-                        suggestions: correction.Suggestions.map(suggestion => ({
-                            text: suggestion.Text,
-                            confidence: suggestion.Confidence,
-                            category: suggestion.CategoryDescription,
-                        })),
-                    }));
+                    const newCorrectionsData =
+                        response.data.data.GingerTheDocumentResult.Corrections.map(
+                            (correction) => ({
+                                mistakeText: correction.MistakeText,
+                                suggestions: correction.Suggestions.map(
+                                    (suggestion) => ({
+                                        text: suggestion.Text,
+                                        confidence: suggestion.Confidence,
+                                        category:
+                                            suggestion.CategoryDescription,
+                                    })
+                                ),
+                            })
+                        )
 
-                    console.log(newCorrectionsData);
-                    setCorrectionsData(newCorrectionsData);
+                    console.log(newCorrectionsData)
+                    setCorrectionsData(newCorrectionsData)
                 } else {
-                    alert("문법 요청 실패");
+                    alert('문법 요청 실패')
                 }
             }
         } catch (err) {
-            console.log("문법 요청 에러:", err);
+            console.log('문법 요청 에러:', err)
         }
-    };
+    }
+
+
+
+
 
     const [title, setTitle] = useState('');
     const content = quillRef.current?.getEditor().getContents()
     const user = useSelector((state) => state.user);
+    let navigate = useNavigate();
+
     useEffect(() => {
         if (!user.accessToken) {
             alert("로그인한 회원만 작성이 가능합니다.");
@@ -109,7 +117,6 @@ const Write = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    let navigate = useNavigate();
     const handleSave = (e) => {
         e.preventDefault();
 
@@ -165,13 +172,14 @@ const Write = () => {
                                         marginLeft: '4px',
                                     }}
                                     ref={quillRef}
+                                    // defaultValue={value}
                                     theme="snow"
-                                    value={value}
                                     onKeyDown={mainhandleKeyPress}
                                     onChange={setValue}
                                     modules={modules}
                                     placeholder="What's your story for today?"
                                 />
+
                             </article>
                         </section>
                         <section className="right ml_30">

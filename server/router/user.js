@@ -39,4 +39,9 @@ router.post('/emailcheck', (req, res) => {
             res.status(400).json({ success: false });
         })
 })
+
+router.post('/profileupload', (req, res) => {
+    console.log(req)
+
+})
 module.exports = router;
