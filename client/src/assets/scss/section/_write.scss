@@ -4,17 +4,20 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
+
     .write__wrap {
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
         .today__date {
             display: flex;
             justify-content: center;
             // margin-top: 94px;
             margin-bottom: 12px;
+
             p {
                 padding: 8px 115px;
                 font-size: 30px;
@@ -25,10 +28,12 @@
                 font-family: var(--dela);
             }
         }
+
         .write__main {
             width: 100%;
             display: flex;
             justify-content: center;
+
             .write {
                 .title {
                     display: flex;
@@ -50,6 +55,7 @@
                         font-family: var(--dela);
                         color: var(--white);
                     }
+
                     input {
                         width: 46.9vw;
                         padding-left: 20px;
@@ -60,6 +66,7 @@
                         font-family: var(--pre);
                     }
                 }
+
                 .content {
                     text-align: center;
                     width: 54.3vw;
@@ -68,6 +75,7 @@
                     background-color: var(--font-pink1);
                     border-radius: 30px;
                     position: relative;
+
                     h2 {
                         display: flex;
                         align-items: center;
@@ -81,7 +89,9 @@
                     }
                 }
             }
+
             .right {
+
                 // margin-left: 30px;
                 .search__wrap {
                     width: 27.75vw;
@@ -89,6 +99,7 @@
 
                     margin-bottom: 18px;
                     position: relative;
+
                     span {
                         position: absolute;
                         top: 5px;
@@ -100,6 +111,7 @@
                         background-position: center center;
                         background-repeat: no-repeat;
                     }
+
                     input {
                         width: 27.75vw;
                         height: 50px;
@@ -111,6 +123,7 @@
                         font-family: var(--pre);
                     }
                 }
+
                 .result {
                     margin-bottom: 18px;
                     position: relative;
@@ -127,7 +140,8 @@
                         height: 45px;
                         border-radius: 30px 30px 0 0;
                     }
-                    > div {
+
+                    >div {
                         width: 27.75vw;
                         height: 185px;
                         overflow: hidden;
@@ -147,8 +161,25 @@
                             flex-direction: column;
                             overflow: hidden;
                             overflow-y: auto;
+
+                            div {
+                                span {
+                                    display: flex;
+                                    align-items: center;
+
+                                    input {
+                                        width: 20px;
+                                        height: 20px;
+                                        border: 2px solid var(--font-pink1);
+                                        margin-right: 10px;
+                                    }
+                                }
+                            }
+
+
                             &::-webkit-scrollbar {
-                                width: 6px; /* 스크롤바의 너비 설정 */
+                                width: 6px;
+                                /* 스크롤바의 너비 설정 */
                             }
 
                             /* 스크롤바의 스타일 설정 */
@@ -160,8 +191,10 @@
                         }
                     }
                 }
+
                 .correction {
                     margin-bottom: 18px;
+
                     h2 {
                         display: flex;
                         align-items: center;
@@ -173,7 +206,8 @@
                         height: 45px;
                         border-radius: 30px 30px 0 0;
                     }
-                    > div {
+
+                    >div {
                         padding-bottom: 20px;
                         width: 27.75vw;
 
@@ -182,15 +216,19 @@
                         border-width: 0px 6px 6px 2px;
                         border-radius: 0 0 30px 30px;
                         overflow: hidden;
+
                         .correction_wrap {
                             padding: 20px;
                             width: 27.2vw;
 
                             height: 309px;
-                            overflow-y: auto; /* 스크롤이 수직으로 발생하도록 설정 */
+                            overflow-y: auto;
+                            /* 스크롤이 수직으로 발생하도록 설정 */
                             position: relative;
+
                             &::-webkit-scrollbar {
-                                width: 6px; /* 스크롤바의 너비 설정 */
+                                width: 6px;
+                                /* 스크롤바의 너비 설정 */
                             }
 
                             /* 스크롤바의 스타일 설정 */
@@ -198,6 +236,7 @@
                                 background-color: var(--black200);
                                 border-radius: 10px;
                             }
+
                             li {
                                 display: flex;
                                 justify-content: space-around;
@@ -217,12 +256,14 @@
                                             font-size: 20px;
                                         }
                                     }
+
                                     .wrong__reason {
                                         display: inline-block;
                                         font-family: var(--pre);
                                         font-size: 14px;
                                     }
                                 }
+
                                 .arrow {
                                     width: 65px;
                                     height: 23px;
@@ -231,6 +272,7 @@
                                     background-repeat: no-repeat;
                                     display: inline-block;
                                 }
+
                                 .correct {
                                     .correct__word {
                                         a {
@@ -246,10 +288,12 @@
                 }
             }
         }
+
         .button {
             width: 100%;
             display: flex;
             justify-content: flex-end;
+
             button {
                 padding: 10px 20px;
                 display: inline-block;
@@ -275,6 +319,7 @@
                     font-size: 1.5vw;
                 }
             }
+
             .write__main {
                 .write {
                     .title {
@@ -284,32 +329,40 @@
                             font-size: 1.4vw;
                         }
                     }
+
                     .content {
                         height: 616px;
+
                         h2 {
                             font-size: 1.4vw;
                             height: 45px;
                         }
+
                         textarea {
                             width: 1020px;
                             height: 570px;
                         }
                     }
                 }
+
                 .right {
+
                     // margin-left: 30px;
                     .search__wrap {
                         height: 45px;
                         margin-bottom: 18px;
+
                         span {
                             top: 3px;
                             left: 10px;
                             width: 30px;
                         }
+
                         input {
                             height: 45px;
                         }
                     }
+
                     .result {
                         margin-bottom: 18px;
 
@@ -317,7 +370,8 @@
                             font-size: 1.4vw;
                             height: 45px;
                         }
-                        > div {
+
+                        >div {
                             height: 185px;
                             border-width: 0px 6px 6px 2px;
                             border-radius: 0 0 30px 30px;
@@ -326,8 +380,10 @@
                             .result_wrap {
                                 height: 170px;
                                 padding: 10px 25px;
+
                                 &::-webkit-scrollbar {
-                                    width: 8px; /* 스크롤바의 너비 설정 */
+                                    width: 8px;
+                                    /* 스크롤바의 너비 설정 */
                                 }
 
                                 /* 스크롤바의 스타일 설정 */
@@ -335,35 +391,42 @@
                                     border-radius: 10px;
                                 }
 
-                                span {
-                                }
+                                span {}
                             }
                         }
                     }
+
                     .correction {
                         margin-bottom: 18px;
+
                         h2 {
                             font-size: 1.4vw;
                             height: 45px;
                         }
-                        > div {
+
+                        >div {
                             height: 323px;
+
                             .correction_wrap {
                                 li {
                                     padding-bottom: 12px;
+
                                     .wrong {
                                         .wrong__word {
                                             a {
                                                 font-size: 18px;
                                             }
                                         }
+
                                         .wrong__reason {
                                             font-size: 14px;
                                         }
                                     }
+
                                     .arrow {
                                         scale: 0.7;
                                     }
+
                                     .correct {
                                         .correct__word {
                                             a {
@@ -377,6 +440,7 @@
                     }
                 }
             }
+
             .button {
                 button {
                     padding: 10px 20px;
@@ -389,29 +453,35 @@
         }
     }
 }
-@media (max-width: 768px) {
-}
+
+@media (max-width: 768px) {}
+
 @media (max-width: 480px) {
     #write {
         height: auto;
+
         .write__wrap {
             .today__date {
                 margin-top: 70px;
                 margin-bottom: 30px;
                 width: 100%;
                 height: 40px;
+
                 p {
                     font-size: 4.5vw;
                     padding: 0 6vw;
                 }
             }
+
             .write__main {
                 flex-direction: column;
+
                 .write {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+
                     .title {
                         width: 80vw;
 
@@ -419,52 +489,66 @@
                             font-size: 3.5vw;
                             width: 16.5vw;
                         }
+
                         input {
                             width: 73vw;
                         }
                     }
+
                     .content {
                         width: 80vw;
                         height: 435px;
+
                         h2 {
                             font-size: 3.5vw;
                             height: 45px;
                         }
                     }
                 }
+
                 .right {
                     margin-left: 0;
                     width: 100%;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+
                     .search__wrap {
                         width: 80vw;
                         margin: 50px 0 20px 0;
+
                         input {
                             width: 80vw;
                         }
                     }
+
                     .result {
                         margin-bottom: 50px;
+
                         h2 {
                             font-size: 3.5vw;
                         }
-                        > div {
+
+                        >div {
                             width: 80vw;
+
                             .result_wrap {
                                 width: 77vw;
                             }
                         }
                     }
+
                     .correction {
                         margin-bottom: 18px;
+
                         h2 {
                             font-size: 3.5vw;
                             height: 45px;
                         }
-                        > div {
+
+                        >div {
                             width: 80vw;
+
                             .correction_wrap {
                                 width: 77vw;
                             }
@@ -472,9 +556,11 @@
                     }
                 }
             }
+
             .button {
                 display: flex;
                 justify-content: center;
+
                 button {
                     width: auto;
                     height: auto;

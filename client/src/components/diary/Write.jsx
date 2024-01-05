@@ -71,6 +71,46 @@ const Write = () => {
             }
         }
     }
+    // 구글 단어장
+    const [checkboxList, setCheckboxList] = useState([]);
+    const [checkmeaning, setCheckMeaning] = useState([]);
+    const isCheckboxChecked = (index) => {
+        return checkboxList.includes(index)
+    }
+    const handleCheckboxToggle = (result) => {
+        const updatedList = [...checkboxList];
+        const index = updatedList.indexOf(result);
+
+        if (index > -1) {
+            updatedList.splice(index, 1); // 이미 체크된 항목이라면 리스트에서 제거
+            alert("delete :" + result)
+            console.log(updatedList)
+
+        } else {
+            updatedList.push(result); // 체크되지 않은 항목이라면 리스트에 추가
+            alert("add :" + result)
+            console.log(updatedList)
+        }
+        setCheckboxList(updatedList);
+    };
+    const renderCheckboxes = () => {
+        return Array.isArray(translation) &&
+            translation.map((result, index) => (
+                <div key={index}>
+                    <span>
+                        <input
+                            type="checkbox"
+                            checked={isCheckboxChecked(index)}
+                            onClick={() => handleCheckboxToggle(result)}
+                        />
+                        {result}</span>
+                    <div>
+                        {/* 추가로 표시할 내용이 있다면 여기에 작성 */}
+                    </div>
+                </div>
+            ))
+    }
+
 
     // Ginger api 부분
     const [value, setValue] = useState('')
@@ -131,7 +171,7 @@ const Write = () => {
             alert('로그인한 회원만 작성이 가능합니다.')
             navigate('/login')
         }
-        
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -224,15 +264,7 @@ const Write = () => {
                                 <h2>Result</h2>
                                 <div>
                                     <div className="result_wrap">
-                                        {Array.isArray(translation) &&
-                                            translation.map((result, index) => (
-                                                <div key={index}>
-                                                    {result}
-                                                    <div>
-                                                        {/* 추가로 표시할 내용이 있다면 여기에 작성 */}
-                                                    </div>
-                                                </div>
-                                            ))}
+                                        {renderCheckboxes()}
                                     </div>
                                 </div>
                             </div>
@@ -274,12 +306,12 @@ const Write = () => {
                                                                             correction
                                                                                 .suggestions
                                                                                 .length -
-                                                                                1 && (
-                                                                            <span>
-                                                                                ,
-                                                                                &nbsp;{' '}
-                                                                            </span>
-                                                                        )}
+                                                                            1 && (
+                                                                                <span>
+                                                                                    ,
+                                                                                    &nbsp;{' '}
+                                                                                </span>
+                                                                            )}
                                                                     </React.Fragment>
                                                                 )
                                                             )}
@@ -299,9 +331,9 @@ const Write = () => {
                             Upload
                         </button>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div >
+            </div >
+        </div >
     )
 }
 
