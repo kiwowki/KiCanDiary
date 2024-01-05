@@ -1,16 +1,31 @@
 #aside {
-    height: 100vh;
-    width: 160px;
+    width: 200px;
+    height: 100vh !important;
     border-right: 5px solid var(--font-pink2);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+        top: 1%;
+        left: 7%;
+        width: 25px;
+        height: 25px;
+        transform: rotate(3deg);
+        background-image: url('../../../img/pink-11.gif');
+    }
 
     .aside__wrap {
         height: 100%;
-        padding: 30px 15px 0 15px;
+        height: 100vh;
+        padding: 45px 15px 0 15px;
         background-color: var(--bg-pink);
         display: flex;
         flex-direction: column;
         align-items: center;
-
         .logo {
             .logo__text {
                 text-align: center;
@@ -24,11 +39,31 @@
 
             .logo__img {
                 img {
-                    width: 145px;
+                    width: 155px;
+                }
+                &::before,
+                &::after {
+                    content: '';
+                    position: absolute;
+                    background-size: cover;
+                    background-position: center;
+                }
+                &::before {
+                    top: 110%;
+                    left: 65%;
+                    width: 11px;
+                    height: 9px;
+                    background-image: url('../../../img/small.png');
+                }
+                &::after {
+                    top: 130%;
+                    left: 77%;
+                    width: 23px;
+                    height: 19px;
+                    background-image: url('../../../img/big.png');
                 }
             }
         }
-
         .nav {
             ul {
                 background: var(--box-pink1);
@@ -87,6 +122,29 @@
             flex-direction: column;
             align-items: center;
 
+            margin-top: 85px;
+            position: relative;
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                background-size: cover;
+                background-position: center;
+            }
+            &::before {
+                bottom: -65%;
+                left: -35%;
+                width: 35px;
+                height: 35px;
+                background-image: url('../../../img/pink-11.gif');
+            }
+            &::after {
+                bottom: -115%;
+                left: 95%;
+                width: 41px;
+                height: 41px;
+                background-image: url('../../../img/pink-11.gif');
+            }
             .user__profile {
                 background-color: var(--box-purple1);
                 border-radius: 50%;
@@ -226,50 +284,41 @@
         }
     }
 }
-
 @media (max-width: 1280px) {
     #header .header__wrap .nav {
         width: 768px;
         height: 65px;
         padding: 0;
-
         .nav__list li a {
             padding-left: 50px;
         }
-
         .nav__session .user__info {
             width: 145px;
             flex-direction: row-reverse;
             margin-right: 15px;
-
             a {
                 em {
                     display: none;
                 }
             }
-
             img {
                 margin: 0 2px 0 10px;
             }
         }
     }
 }
-
 @media (max-width: 768px) {
     #header .header__wrap .nav {
         width: 480px;
         height: 65px;
         padding: 0;
-
         .nav__list li a {
             // padding-left: 10px;
             position: relative;
             padding: 0 10px;
         }
-
         .nav__session .user__info {
             display: none;
-
             a {
                 em {
                     display: none;
@@ -280,14 +329,13 @@
 }
 
 #header_m {
-    display: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
 
-    // position: fixed;
-    // top: 0;
-    // width: 100%;
-    // z-index: 1000;
-    // display: flex;
-    // justify-content: center;
     .header__wrap {
         display: flex;
         justify-content: center;
@@ -297,10 +345,8 @@
         border: solid var(--black);
         border-width: 0px 6px 6px 2px;
         border-radius: 0 0 30px 30px;
-
         .logo {
             text-align: center;
-
             a {
                 display: flex;
                 flex-wrap: wrap;
@@ -320,7 +366,6 @@
                     color: var(--box-purple2);
                     display: inline-block;
                 }
-
                 p:nth-child(2) {
                     width: 50%;
                     text-align-last: left;
@@ -329,7 +374,6 @@
                     color: var(--font-pink1);
                     display: inline-block;
                 }
-
                 em {
                     font-size: 20px;
                     z-index: 1;
@@ -337,7 +381,6 @@
                     display: inline-block;
                     -webkit-text-stroke: 1.5px black;
                 }
-
                 &::before {
                     position: absolute;
                     content: '';
@@ -350,16 +393,13 @@
                 }
             }
         }
-
         .nav {
             position: absolute;
             top: 50px;
-
             .nav__list {
                 width: 300px;
                 display: flex;
                 position: relative;
-
                 li {
                     width: 70px;
                     height: 30px;
@@ -367,26 +407,41 @@
                     text-align: center;
                     position: relative;
                     display: flex;
+                    z-index: 1;
 
                     a {
                         width: 100%;
                         font-size: 14px;
                         color: var(--white);
-                        display: none;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        opacity: 0;
+                        z-index: 1;
+                        transition: all 0.5s ease-in-out;
 
                         &.active {
                             height: 100%;
+                            z-index: 99;
+                            opacity: 1;
+                        }
+                    }
+                    &:hover {
+                        z-index: 100;
+
+                        a {
+                            height: 100%;
                             z-index: 100;
+                            opacity: 1;
                             display: flex;
                             justify-content: center;
                             align-items: center;
                         }
                     }
                 }
-
                 // 자식에 active가 붙었을 때 상위요소에 효과주기..
                 li:has(> a.active) {
-                    z-index: 100;
+                    z-index: 99;
                     display: block;
                 }
 
@@ -396,28 +451,24 @@
                     left: 64px;
                     background-color: #a295d9;
                 }
-
                 li:nth-child(2) {
                     position: absolute;
                     top: 0;
                     left: 94px;
                     background-color: #a1c8e7;
                 }
-
                 li:nth-child(3) {
                     position: absolute;
                     top: 0;
                     left: 124px;
                     background-color: #fcba4c;
                 }
-
                 li:nth-child(4) {
                     position: absolute;
                     top: 0;
                     left: 154px;
                     background-color: #ff8c8c;
                 }
-
                 li:nth-child(5) {
                     position: absolute;
                     top: 0;

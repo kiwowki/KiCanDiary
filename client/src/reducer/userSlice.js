@@ -26,6 +26,8 @@ export const userSlice = createSlice({
             state.displayName = "";
             state.uid = "";
             state.accessToken = "";
+            state.email = "";
+            state.password = "";
             state.isLoading = false;
         },
     },

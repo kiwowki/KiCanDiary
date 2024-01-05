@@ -1,11 +1,12 @@
 :root {
-    --dela: "Dela Gothic One";
-    --marc: "Marcellus";
-    --shrik: "Shrikhand";
-    --pre: "Pretendard-Regular";
+    --dela: 'Dela Gothic One';
+    --marc: 'Marcellus';
+    --shrik: 'Shrikhand';
+    --pre: 'Pretendard';
 
-    --mainfont-Shrikhand: "Shrikhand";
-    font-family: "Shrikhand", serif;
+    --mainfont-Shrikhand: 'Shrikhand';
+    font-family: 'Shrikhand', serif;
+
     font-size: 16px;
     line-height: 1.5;
     font-weight: 600;
@@ -18,31 +19,42 @@
 
     --black: #000;
     --black100: #333;
-    --black200: #D9D9D9;
+    --black200: #d9d9d9;
+    --black300: #cbcbcb;
+    --black400: #d1d1d1;
+
+    // 종한-마스터 비교 후 수정
+    // --black200: #d1d1d1;
+    // --black300: #d9d9d9;
 
     --white: #fff;
     --white100: #eaeaea;
 
     // font color
+    --font-white: #fdfdfd;
+    --font-red: #ff5252;
+    --font-blue: #477bff;
     --font-pink1: #ffc0d9;
-    --font-pink2: #FF8CC5;
-    --font-purple1: #A295DA;
-    --font-purple2: #8477C9;
-    --font-white: #FDFDFD;
-    --font-red: #FF5252;
-    --font-blue: #477BFF;
+    --font-pink2: #ff8cc5;
+    --font-pink3: #f8abc7;
+    --font-purple1: #a295da;
+    --font-purple2: #8477c9;
 
     // bg color
     --bg-pink: #fdf0f0;
 
     // box color
     --box-pink1: #ffc0d9;
-    --box-pink2: #FFC5C5;
-    --box-purple1: #A295DA;
-    --box-purple2: #8477C9;
+    --box-pink2: #ffc5c5;
+    --box-pink3: #ffdfdf;
+    --box-purple1: #a295da;
+    --box-purple2: #8477c9;
+    --box-purple3: #faf9ff;
 
     // border
-    --border-pink: #FE8C8C;
+    --border-pink: #fe8c8c;
+
+    // calender
 }
 
 @media (max-width: 1510px) {

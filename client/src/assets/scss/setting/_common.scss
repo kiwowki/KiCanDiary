@@ -14,22 +14,16 @@
     display: none;
 }
 
-// .box {
-//     border-radius: 10px;
-//     border: 1px solid var(--primary-color);
-//     // box-shadow: 3px 3px 2px 4px #000;
-//     box-shadow: 3px px 10px 4px #000;
-// }
-.box {
+.box1 {
     border: solid var(--black);
     border-width: 2px 4px 4px 2px;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .box2 {
     border: solid var(--box-purple2);
-    border-width: 3px 3px 12px 12px;
-    border-radius: 15px;
+    border-width: 2px 2px 6px 6px;
+    border-radius: 10px;
 }
 
 .box3 {
@@ -51,4 +45,12 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+input:focus {
+    outline: none;
+}
+
+.section__border {
+    border: 20px solid var(--bg-pink);
 }

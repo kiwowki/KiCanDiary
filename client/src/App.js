@@ -1,19 +1,44 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { useDispatch } from 'react-redux'
 import { loginUser, clearUser } from './reducer/userSlice'
 import firebase from './firebase.js'
 
+
 import "./assets/scss/style.scss";
 import Header from "./components/layout/Header";
+import HeaderMobile from "./components/layout/Header_m";
+
 import Main from "./components/layout/Main.jsx";
 import Home from "./pages/Home";
 import Write from "./components/diary/Write";
+
+import VocaList from "./components/voca/VocaList";
 import Join from "./components/user/Join";
 import Login from "./components/user/Login";
 import Mypage from "./components/user/Mypage";
+import Footer from "./components/layout/Footer";
+import DiaryList from "./components/diary/DiaryList.jsx";
+import DiaryView from "./components/diary/DiaryView.jsx";
+
 const App = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 480);
+        };
+
+        handleResize();
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -29,17 +54,83 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <Header />
             <Main>
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/write" element={<Write />} />
-                    <Route path="/join" element={<Join />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/mypage" element={<Mypage />} />
+                    {/* Home 페이지 */}
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                <Home />
+                            </>
+                        }
+                    />
+
+                    {/* Write 페이지 */}
+                    <Route
+                        path="/write"
+                        element={
+
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <Write />
+                            </>
+                        }
+                    />
+
+                    <Route
+                        path="/diarylist"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <DiaryList />
+                            </>
+                        }
+                    />
+
+                    <Route
+                        path="/diaryview"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <DiaryView />
+                            </>
+                        }
+                    />
+
+                    <Route
+                        path="/voca"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <VocaList />
+                            </>
+                        }
+                    />
+                    <Route path="/join" element={
+                        <>
+                            {isMobile ? <HeaderMobile /> : <Header />}
+                            <Join />
+                        </>
+                    } />
+                    <Route path="/login" element={
+                        <>
+                            {isMobile ? <HeaderMobile /> : <Header />}
+                            <Login />
+                        </>
+                    } />
+                    <Route path="/mypage" element={
+                        <>
+                            {isMobile ? <HeaderMobile /> : <Header />}
+                            <Mypage />
+                        </>
+                    } />
+
+                    {/* 다른 페이지에는 Header가 나오도록 설정 */}
+                    <Route path="/*" element={isMobile ? <HeaderMobile /> : <Header />} />
                 </Routes>
             </Main>
-            {/* <Footer /> */}
+            <Footer />
         </BrowserRouter>
     );
 };

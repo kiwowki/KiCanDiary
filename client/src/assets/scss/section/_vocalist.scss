@@ -1,0 +1,446 @@
+#vocalist {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+    .vocalist__wrap {
+        display: flex;
+        font-size: 18px;
+        font-weight: normal;
+        .voca__right {
+            width: 24vw;
+            height: 76.2vh;
+            margin: 0 0.5vw;
+            background-color: var(--box-purple3);
+            border-radius: 13px;
+            overflow: hidden;
+            h2 {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 60px;
+                background-color: var(--box-purple1);
+                color: var(--white);
+                -webkit-text-stroke: 1.3px var(--black);
+                font-size: 25px;
+            }
+            .contents {
+                height: calc(100% - 120px);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                border: 1px solid var(--box-purple1);
+                .contents__top {
+                    .searchlist__voca__title {
+                        display: flex;
+                        justify-content: center;
+                        padding: 30px;
+                        &::before {
+                            content: '';
+                            display: block;
+                            width: 25px;
+                            height: 25px;
+                        }
+                        h3 {
+                            width: calc(60% - 12.5px);
+                            font-size: 16px;
+                            font-family: var(--dela);
+                            color: var(--box-purple1);
+                            text-align: center;
+                            &:first-child {
+                                width: calc(40% - 12.5px);
+                            }
+                        }
+                    }
+                    .correctionlist__voca__title {
+                        display: flex;
+                        justify-content: center;
+                        padding: 30px;
+                        margin-right: 13px;
+                        &::before {
+                            content: '';
+                            display: block;
+                            width: 25px;
+                            height: 25px;
+                        }
+                        h3 {
+                            width: calc(50% - 12.5px);
+                            font-size: 16px;
+                            font-family: var(--dela);
+                            color: var(--box-purple1);
+                            text-align: center;
+                        }
+                    }
+                    > div {
+                        padding: 0 30px;
+                        label {
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            user-select: none;
+                            cursor: pointer;
+                            margin-top: 10px;
+                            &:first-child {
+                                margin-top: 0;
+                            }
+                            input {
+                                width: 20px;
+                                height: 20px;
+                                border: 1.5px solid gainsboro;
+                                border-radius: 0.35rem;
+                                margin: 5px 5px 0 0;
+                                cursor: pointer;
+                            }
+
+                            input[type='checkbox']:checked {
+                                margin: 0;
+                                width: 25px;
+                                height: 25px;
+                                background-image: url('../../img/checkbox.png');
+                                background-size: 100% 100%;
+                                background-position: 50%;
+                                background-repeat: no-repeat;
+                                border: none;
+                            }
+                            p {
+                                text-align: center;
+                                padding-top: 5px;
+                                font-family: var(--pre);
+                                width: calc(50% - 12.5px);
+                            }
+                            .meaning {
+                                width: calc(40% - 12.5px);
+                            }
+                            .word {
+                                width: calc(60% - 12.5px);
+                            }
+                            .wrong {
+                                color: var(--font-red);
+                            }
+                            .correct {
+                                color: var(--font-blue);
+                            }
+                        }
+                    }
+                    .correctionlist__voca__contents {
+                        overflow-y: scroll;
+                        height: 444px;
+                        margin-right: 5px;
+                        &::-webkit-scrollbar {
+                            width: 6px; /* 스크롤바의 너비 설정 */
+                        }
+
+                        /* 스크롤바의 스타일 설정 */
+                        &::-webkit-scrollbar-thumb {
+                            background-color: var(--black200);
+                            border-radius: 10px;
+                        }
+                        &::-webkit-scrollbar-track {
+                            background-color: var(--box-purple3);
+                        }
+                    }
+                }
+                .contents__bot {
+                    .select__all {
+                        padding: 0 15px;
+                        margin: 0 15px;
+                        border-top: 3px solid var(--box-purple1);
+                        label {
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            user-select: none;
+                            cursor: pointer;
+                            margin: 10px 0;
+                            input {
+                                width: 20px;
+                                height: 20px;
+                                border: 1.5px solid gainsboro;
+                                border-radius: 0.35rem;
+                                margin: 0px 5px 0 0;
+                                cursor: pointer;
+                            }
+
+                            input[type='checkbox']:checked {
+                                margin: 0;
+                                width: 25px;
+                                height: 25px;
+                                background-image: url('../../img/checkbox.png');
+                                background-size: 100% 100%;
+                                background-position: 50%;
+                                background-repeat: no-repeat;
+                                border: none;
+                            }
+                            p {
+                                text-align: center;
+                                padding-top: 0px;
+                                font-family: var(--pre);
+                                padding-left: 20px;
+                                padding-bottom: 2px;
+                            }
+                        }
+                    }
+                }
+            }
+            .searchlist__btn {
+                height: 60px;
+                background-color: var(--box-purple1);
+                > button {
+                    width: 49%;
+                    height: 100%;
+                    font-size: 18px;
+                    font-family: var(--dela);
+                    color: var(--white);
+                    background-color: var(--box-purple1);
+                    cursor: pointer;
+                }
+                .add__btn {
+                    height: 80%;
+                    margin: 6.4px 2px;
+                    border-right: 2px solid var(--white);
+                }
+            }
+            .correction__btn {
+                height: 60px;
+                background-color: var(--box-purple1);
+                > button {
+                    width: 49%;
+                    height: 100%;
+                    font-size: 18px;
+                    font-family: var(--dela);
+                    color: var(--white);
+                    background-color: var(--box-purple1);
+                    cursor: pointer;
+                }
+                .add__btn {
+                    height: 80%;
+                    margin: 6.4px 2px;
+                    border-right: 2px solid var(--white);
+                    color: #B1A6E3;
+                }
+            }
+        }
+        .mycollection {
+            width: 24vw;
+            height: 76.2vh;
+            margin: 0 0.5vw;
+            border-radius: 13px;
+            background-image: url(../../img/mycollection_bg.png);
+            background-position: center center;
+            background-repeat: no-repeat;
+            position: relative;
+            h2 {
+                width: 100%;
+                position: absolute;
+                top: -20px;
+                text-align: center;
+                background-image: url(../../img/mycollection_title.png);
+                background-position: center center;
+                background-repeat: no-repeat;
+                color: var(--box-purple1);
+                -webkit-text-stroke: 1.3px var(--black);
+            }
+            .contents {
+                height: calc(100% - 60px);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                .contents__top {
+                    .mycollection__voca__title {
+                        display: flex;
+                        justify-content: center;
+                        padding: 50px 30px 30px 30px;
+                        &::before {
+                            content: '';
+                            display: block;
+                            width: 25px;
+                            height: 25px;
+                        }
+                        h3 {
+                            width: calc(40% - 12.5px);
+                            font-size: 16px;
+                            font-family: var(--dela);
+                            color: var(--box-purple1);
+                            text-align: center;
+                            &:first-child {
+                                width: calc(60% - 12.5px);
+                            }
+                        }
+                    }
+                    > div {
+                        padding: 0 20px 0 30px;
+                        label {
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            user-select: none;
+                            cursor: pointer;
+                            margin-top: 10px;
+                            &:first-child {
+                                margin-top: 0;
+                            }
+                            input {
+                                width: 20px;
+                                height: 20px;
+                                border: 1.5px solid gainsboro;
+                                border-radius: 0.35rem;
+                                margin: 5px 5px 0 0;
+                                cursor: pointer;
+                            }
+
+                            input[type='checkbox']:checked {
+                                margin: 0;
+                                width: 25px;
+                                height: 25px;
+                                background-image: url('../../img/checkbox.png');
+                                background-size: 100% 100%;
+                                background-position: 50%;
+                                background-repeat: no-repeat;
+                                border: none;
+                            }
+                            p {
+                                text-align: center;
+                                padding-top: 5px;
+                                font-family: var(--pre);
+                            }
+                            .english {
+                                width: calc(60% - 12.5px);
+                            }
+                            .korean {
+                                width: calc(40% - 12.5px);
+                            }
+                        }
+                    }
+                    .mycollection__voca__contents {
+                        overflow-y: scroll;
+                        height: 484px;
+                        margin-right: 5px;
+                        &::-webkit-scrollbar {
+                            width: 6px; /* 스크롤바의 너비 설정 */
+                        }
+
+                        /* 스크롤바의 스타일 설정 */
+                        &::-webkit-scrollbar-thumb {
+                            background-color: var(--black200);
+                            border-radius: 10px;
+                        }
+                    }
+                }
+
+                .contents__bot {
+                    position: relative;
+                    .search__wrap {
+                        position: absolute;
+                        width: 100%;
+                        top: -40px;
+                        span {
+                            position: absolute;
+                            left: 15px;
+                            width: 30px;
+                            height: 30px;
+                            background-image: url(../../img/word_search.png);
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                        }
+                        input {
+                            position: absolute;
+                            left: 50px;
+
+                            height: 30px;
+                            border-radius: 15px;
+                            border: 1px solid var(--box-pink1);
+                            font-family: var(--pre);
+                            padding-left: 15px;
+                        }
+                        .word__search {
+                            opacity: 0;
+                            width: 0;
+                            transition: all 1s
+                                cubic-bezier(0.68, -0.6, 0.32, 1.6);
+                        }
+                        .input__visible {
+                            opacity: 1;
+                            width: calc(100% - 73px);
+                            animation-name: expand;
+                            animation-timing-function: ease-in-out;
+                            animation-fill-mode: forwards;
+                            transition: all 1.5s
+                                cubic-bezier(0.68, -0.6, 0.32, 1.6);
+                        }
+                    }
+                    .select__all {
+                        padding: 0 15px;
+                        margin: 0 15px;
+                        border-top: 3px solid var(--box-purple1);
+                        label {
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            user-select: none;
+                            cursor: pointer;
+                            margin: 10px 0;
+                            input {
+                                width: 20px;
+                                height: 20px;
+                                border: 1.5px solid gainsboro;
+                                border-radius: 0.35rem;
+                                margin: 0px 5px 0 0;
+                                cursor: pointer;
+                            }
+
+                            input[type='checkbox']:checked {
+                                margin: 0;
+                                width: 25px;
+                                height: 25px;
+                                background-image: url('../../img/checkbox.png');
+                                background-size: 100% 100%;
+                                background-position: 50%;
+                                background-repeat: no-repeat;
+                                border: none;
+                            }
+                            p {
+                                text-align: center;
+                                padding-top: 0px;
+                                font-family: var(--pre);
+                                padding-left: 20px;
+                                padding-bottom: 2px;
+                            }
+                        }
+                    }
+                }
+            }
+            .mycollection__btn {
+                height: 60px;
+                background-color: var(--box-purple1);
+                border-radius: 0 0 13px 13px;
+                > button {
+                    width: 49%;
+                    height: 100%;
+                    font-size: 18px;
+                    font-family: var(--dela);
+                    color: var(--white);
+                    background-color: var(--box-purple1);
+                    cursor: pointer;
+                }
+                .add__btn {
+                    height: 80%;
+                    margin: 6.4px 2px;
+                    border-right: 2px solid var(--white);
+                }
+                .del__btn {
+                    border-radius: 0 0 13px 13px;
+                }
+            }
+        }
+        .searchlist {
+            h2 {
+            }
+        }
+        .correction {
+            h2 {
+            }
+        }
+    }
+}
