@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 
 import { useDispatch } from 'react-redux'
 import { loginUser, clearUser } from './reducer/userSlice'
@@ -68,9 +68,8 @@ const App = () => {
 
                     {/* Write 페이지 */}
                     <Route
-                        path="/write"
+                        path="/write/:date"
                         element={
-
                             <>
                                 {isMobile ? <HeaderMobile /> : <Header />}
                                 <Write />

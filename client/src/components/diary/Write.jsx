@@ -117,24 +117,8 @@ const Write = () => {
         }
     }
 
+    // 글 작성 관련 코드
     const [title, setTitle] = useState()
-    const { date } = useParams()
-    const [dateObj, setDate] = useState({
-        year: '',
-        month: '',
-        day: '',
-    })
-    const user = useSelector((state) => state.user)
-    let navigate = useNavigate()
-    useEffect(() => {
-        if (!user.accessToken) {
-            alert('로그인한 회원만 작성이 가능합니다.')
-            navigate('/login')
-        }
-        
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
     const handleSave = async (e) => {
         e.preventDefault()
         if (title && value) {
@@ -162,143 +146,173 @@ const Write = () => {
         }
     }
 
+    // 로그인 관련 코드
+    const user = useSelector((state) => state.user)
+    let navigate = useNavigate()
+    useEffect(() => {
+        if (!user.accessToken) {
+            alert('로그인한 회원만 작성이 가능합니다.')
+            navigate('/login')
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    // 날짜 관련 코드
+    const { date } = useParams()
+    const monthsInEnglish = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ]
+    const [dateObj, setDate] = useState({
+        year: '',
+        month: '',
+        day: '',
+    })
+
     useEffect(() => {
         if (date && typeof date === 'string') {
             const [year, month, day] = date.split('-')
-            setDate({ year, month, day })
+            const monthInEnglish = monthsInEnglish[parseInt(month, 10) - 1]
+
+            setDate({ year, month: monthInEnglish, day })
         }
     }, [date])
 
     return (
-        <div id="wrap">
-            {/*<Header /> */}
-            <div id="write">
-                <div className="write__wrap">
-                    <div className="today__date">
-                        <p className="box">
-                            {dateObj.year}, {dateObj.month}{' '}
-                        </p>
-                    </div>
-                    <div className="write__main">
-                        <section className="write">
-                            <h3 className="blind">글쓰기</h3>
-                            <article className="title">
-                                <h2>Title</h2>
-                                <input
-                                    type="text"
-                                    onChange={(e) =>
-                                        setTitle(e.currentTarget.value)
-                                    }
-                                />
-                            </article>
-                            <article className="content">
-                                <h2>Story</h2>
-                                <ReactQuill
-                                    style={{
-                                        height: '530px',
-                                        marginRight: '4px',
-                                        marginLeft: '4px',
-                                    }}
-                                    ref={quillRef}
-                                    theme="snow"
-                                    value={value}
-                                    onKeyDown={mainhandleKeyPress}
-                                    onChange={setValue}
-                                    modules={modules}
-                                    placeholder="What's your story for today?"
-                                />
-                            </article>
-                        </section>
-                        <section className="right ml_30">
-                            <h2 className="blind">서치, 오류 결과 섹션</h2>
-                            <div className="search__wrap">
-                                <span></span>
-                                <input
-                                    type="text"
-                                    className="word__search"
-                                    onKeyPress={handleKeyPress}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div className="result">
-                                <h2>Result</h2>
-                                <div>
-                                    <div className="result_wrap">
-                                        {Array.isArray(translation) &&
-                                            translation.map((result, index) => (
-                                                <div key={index}>
-                                                    {result}
-                                                    <div>
-                                                        {/* 추가로 표시할 내용이 있다면 여기에 작성 */}
-                                                    </div>
+        <div id="write">
+            <div className="write__wrap section__border">
+                <div className="today__date">
+                    <p className="box">{`${dateObj.month}, ${dateObj.day}`}</p>
+                </div>
+                <div className="write__main">
+                    {/* <div> */}
+                    <section className="write">
+                        <h3 className="blind">글쓰기</h3>
+                        <article className="title">
+                            <h2>Title</h2>
+                            <input
+                                type="text"
+                                onChange={(e) =>
+                                    setTitle(e.currentTarget.value)
+                                }
+                            />
+                        </article>
+                        <article className="content">
+                            <h2>Story</h2>
+                            <ReactQuill
+                                style={{
+                                    height: '530px',
+                                    marginRight: '4px',
+                                    marginLeft: '4px',
+                                }}
+                                ref={quillRef}
+                                theme="snow"
+                                value={value}
+                                onKeyDown={mainhandleKeyPress}
+                                onChange={setValue}
+                                modules={modules}
+                                placeholder="What's your story for today?"
+                            />
+                        </article>
+                    </section>
+                    <section className="right ml_30">
+                        <h2 className="blind">서치, 오류 결과 섹션</h2>
+                        <div className="search__wrap">
+                            <span></span>
+                            <input
+                                type="text"
+                                className="word__search"
+                                onKeyPress={handleKeyPress}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="result">
+                            <h2>Result</h2>
+                            <div>
+                                <div className="result_wrap">
+                                    {Array.isArray(translation) &&
+                                        translation.map((result, index) => (
+                                            <div key={index}>
+                                                {result}
+                                                <div>
+                                                    {/* 추가로 표시할 내용이 있다면 여기에 작성 */}
                                                 </div>
-                                            ))}
-                                    </div>
+                                            </div>
+                                        ))}
                                 </div>
                             </div>
-                            <div className="correction">
-                                <h2>Correction</h2>
-                                <div>
-                                    <ul className="correction_wrap">
-                                        {correctionsData.map(
-                                            (correction, index) => (
-                                                <li key={index}>
-                                                    <div className="wrong">
-                                                        <p className="wrong__word">
-                                                            <Link to="/write">
-                                                                {
-                                                                    correction.mistakeText
-                                                                }
-                                                            </Link>
-                                                        </p>
-                                                    </div>
-                                                    <span className="arrow"></span>
-                                                    <div className="correct">
-                                                        <p className="correct__word">
-                                                            {correction.suggestions.map(
-                                                                (
-                                                                    suggestion,
-                                                                    sIndex
-                                                                ) => (
-                                                                    <React.Fragment
-                                                                        key={
-                                                                            sIndex
+                        </div>
+                        <div className="correction">
+                            <h2>Correction</h2>
+                            <div>
+                                <ul className="correction_wrap">
+                                    {correctionsData.map(
+                                        (correction, index) => (
+                                            <li key={index}>
+                                                <div className="wrong">
+                                                    <p className="wrong__word">
+                                                        <Link to="/write">
+                                                            {
+                                                                correction.mistakeText
+                                                            }
+                                                        </Link>
+                                                    </p>
+                                                </div>
+                                                <span className="arrow"></span>
+                                                <div className="correct">
+                                                    <p className="correct__word">
+                                                        {correction.suggestions.map(
+                                                            (
+                                                                suggestion,
+                                                                sIndex
+                                                            ) => (
+                                                                <React.Fragment
+                                                                    key={sIndex}
+                                                                >
+                                                                    <Link to="/write">
+                                                                        {
+                                                                            suggestion.text
                                                                         }
-                                                                    >
-                                                                        <Link to="/write">
-                                                                            {
-                                                                                suggestion.text
-                                                                            }
-                                                                        </Link>
-                                                                        {sIndex !==
-                                                                            correction
-                                                                                .suggestions
-                                                                                .length -
-                                                                                1 && (
-                                                                            <span>
-                                                                                ,
-                                                                                &nbsp;{' '}
-                                                                            </span>
-                                                                        )}
-                                                                    </React.Fragment>
-                                                                )
-                                                            )}
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                            )
-                                        )}
-                                    </ul>
-                                </div>
+                                                                    </Link>
+                                                                    {sIndex !==
+                                                                        correction
+                                                                            .suggestions
+                                                                            .length -
+                                                                            1 && (
+                                                                        <span>
+                                                                            ,
+                                                                            &nbsp;{' '}
+                                                                        </span>
+                                                                    )}
+                                                                </React.Fragment>
+                                                            )
+                                                        )}
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        )
+                                    )}
+                                </ul>
                             </div>
-                        </section>
-                    </div>
-                    {/* <button onClick={onClickSave}>저장</button> */}
-                    <div className="button">
-                        <button className="box" onClick={(e) => handleSave(e)}>
-                            Upload
-                        </button>
-                    </div>
+                        </div>
+                    </section>
+                    {/* </div> */}
+                </div>
+                <div className="button">
+                    <button className="box" onClick={(e) => handleSave(e)}>
+                        Upload
+                    </button>
                 </div>
             </div>
         </div>

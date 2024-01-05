@@ -13,16 +13,22 @@
         .today__date {
             display: flex;
             justify-content: center;
-            // margin-top: 94px;
             margin-bottom: 12px;
             p {
-                padding: 8px 115px;
+                width: 27vw;
+                height: 7vh;
+                text-align: center;
                 font-size: 30px;
                 background-color: var(--box-pink2);
-                border-color: var(--border-pink);
+                border: solid var(--border-pink);
+                border-width: 1px 4px 4px 1px;
                 border-radius: 30px;
                 color: var(--white);
                 font-family: var(--dela);
+                line-height: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
         .write__main {
@@ -115,7 +121,6 @@
                     margin-bottom: 18px;
                     position: relative;
 
-
                     h2 {
                         display: flex;
                         align-items: center;
@@ -156,7 +161,6 @@
                                 background-color: var(--black200);
                                 border-radius: 10px;
                             }
-
                         }
                     }
                 }
@@ -251,17 +255,16 @@
             display: flex;
             justify-content: flex-end;
             button {
-                padding: 10px 20px;
                 display: inline-block;
                 width: 180px;
-                height: 73px;
+                height: 65px;
                 font-size: 25px;
                 background-color: var(--box-pink2);
                 border-color: var(--border-pink);
                 border-radius: 30px;
                 color: var(--white);
                 font-family: var(--dela);
-                margin-right: 7vw;
+                margin-right: 8vw;
             }
         }
     }
@@ -273,6 +276,8 @@
             .today__date {
                 p {
                     font-size: 1.5vw;
+                    width: 24vw;
+                    height: 4.5vh;
                 }
             }
             .write__main {
@@ -379,11 +384,9 @@
             }
             .button {
                 button {
-                    padding: 10px 20px;
-                    width: 15vw;
-                    height: 6vw;
+                    width: 12vw;
+                    height: 5vw;
                     font-size: 1.5vw;
-                    margin-right: 6vw;
                 }
             }
         }
@@ -401,8 +404,8 @@
                 width: 100%;
                 height: 40px;
                 p {
+                    width: 50vw;
                     font-size: 4.5vw;
-                    padding: 0 6vw;
                 }
             }
             .write__main {
@@ -476,9 +479,9 @@
                 display: flex;
                 justify-content: center;
                 button {
+                    padding: 10px 20px;
                     width: auto;
                     height: auto;
-                    padding: 10px 35px;
                     font-size: 4vw;
                     margin: 0 0 70px 0;
                     display: flex;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import userImg from '../../assets/img/user.png'
 import { useSelector } from 'react-redux'
@@ -6,12 +6,28 @@ import firebase from '../../firebase.js'
 const Header = () => {
     const user = useSelector((state) => state.user)
     const navigate = useNavigate()
+    const [showHeader, setShowHeader] = useState(false)
+
     const LogoutHandler = () => {
         firebase.auth().signOut()
         navigate('/')
     }
+
+    const handleMouseOver = () => {
+        setShowHeader(true)
+    }
+
+    const handleMouseOut = () => {
+        setShowHeader(false)
+    }
+
     return (
-        <header id="header">
+        <header
+            id="header"
+            className={showHeader ? 'visible' : ''}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+        >
             <div className="header__wrap">
                 <nav className="nav">
                     <ul className="nav__list">

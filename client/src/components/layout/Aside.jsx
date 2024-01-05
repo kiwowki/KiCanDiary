@@ -26,7 +26,7 @@ const Aside = () => {
                                     <Link to={'/diarylist'}>list</Link>
                                 </li>
                                 <li className="mb10">
-                                    <Link to={'/write'}>today</Link>
+                                    <Link to={'/write/:date'}>today</Link>
                                 </li>
                             </ul>
                         </li>
