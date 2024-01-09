@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 
 const Write = () => {
+    const user = useSelector((state) => state.user)
     const quillRef = useRef(null)
     const modules = {
         toolbar: [
@@ -23,20 +24,20 @@ const Write = () => {
     const [translation, setTranslation] = useState('')
 
     useEffect(() => {
-        console.log(translation);
+        // console.log(translation);
     }, [translation]);
     // 검색창 글씨가 바뀔때마다 word값이 바뀜
 
     const handleChange = (event) => {
         setWord(event.target.value)
-        console.log(event)
+        // console.log(event)
     }
     // 엔터누르면 구글 api를 통해 결과값 제공
     const handleKeyPress = async (event) => {
         // word 상태 변수가 변경되었는지 확인합니다.
 
         if (event.key === 'Enter' && word !== '') {
-            console.log(word)
+            // console.log(word)
             try {
                 const response = await axios.post('/api/translate', {
                     search: word,
@@ -44,9 +45,10 @@ const Write = () => {
                 if (response.data.success) {
                     if (response.data.data.trans) {
                         const translatedText = response.data.data.trans
-                        setTranslation((prevTranslation) => [
+                        // setTranslation((prevTranslation) => [
+                        setTranslation(() => [
                             translatedText,
-                            ...prevTranslation,
+                            // ...prevTranslation,
                         ])
                     }
                     if (
@@ -57,13 +59,12 @@ const Write = () => {
                             response.data.data.dict[0].entry.map(
                                 (item) => item.word
                             )
-                        setTranslation((prevTranslation) => [
-                            ...prevTranslation,
+                        setTranslation(() => [
+                            // ...prevTranslation,
                             ...translatedTextArray,
                         ])
 
                     }
-                    console.log(setTranslation)
                 } else {
                     alert('번역 실패')
                 }
@@ -72,46 +73,56 @@ const Write = () => {
             }
         }
     };
+    const [resultSearchList, setResultSearchList] = useState([])
+
+
+
+    // const sendDataToServer = async (data) => {
+    //     try {
+    //         const response = await axios.post('/api/voca/searchlist', { data, uid: user.uid });
+    //         if (response.data.success) {
+    //             alert("단어 저장 성공")
+    //         } else {
+    //             alert("단어 저장 실패")
+    //         }
+
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 
     // 구글 단어장
-    const [checkboxList, setCheckboxList] = useState([]);
-    const [checkmeaning, setCheckMeaning] = useState([]);
-    const isCheckboxChecked = (index) => {
-        return checkboxList.includes(index)
-    }
-    const handleCheckboxToggle = (result) => {
-        const updatedList = [...checkboxList];
-        const index = updatedList.indexOf(result);
-
-        if (index > -1) {
-            updatedList.splice(index, 1); // 이미 체크된 항목이라면 리스트에서 제거
-            alert("delete :" + result)
-            console.log(updatedList)
-
-        } else {
-            updatedList.push(result); // 체크되지 않은 항목이라면 리스트에 추가
-            alert("add :" + result)
-            console.log(updatedList)
+    const submitSearchList = async () => {
+        const List = [];
+        for (let i = 0; i < translation.length; i++) {
+            const searchList = [word, translation[i]];
+            List.push(searchList);
         }
-        setCheckboxList(updatedList);
+        try {
+            const response = await axios.post('/api/voca/searchlist', { data: List, uid: user.uid });
+            if (response.data.success) {
+                alert("단어 저장 성공");
+            } else {
+                alert("단어 저장 실패");
+            }
+        } catch (err) {
+            console.log(err);
+        }
     };
+
+
+
     const renderCheckboxes = () => {
-        return Array.isArray(translation) &&
-            translation.map((result, index) => (
-                <div key={index}>
-                    <span>
-                        <input
-                            type="checkbox"
-                            checked={isCheckboxChecked(index)}
-                            onClick={() => handleCheckboxToggle(result)}
-                        />
-                        {result}</span>
-                    <div>
-                        {/* 추가로 표시할 내용이 있다면 여기에 작성 */}
-                    </div>
-                </div>
-            ))
-    }
+        return (
+            <div>
+                {Array.isArray(translation) &&
+                    translation.map((result, index) => (
+                        <span key={index}>{result}</span>
+                    ))}
+                <button className='submitSearchList' onClick={submitSearchList}>Click</button>
+            </div>
+        );
+    };
 
 
     // Ginger api 부분
@@ -166,7 +177,7 @@ const Write = () => {
         month: '',
         day: '',
     })
-    const user = useSelector((state) => state.user)
+
     let navigate = useNavigate()
     useEffect(() => {
         if (!user.accessToken) {

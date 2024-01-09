@@ -161,6 +161,7 @@
                             flex-direction: column;
                             overflow: hidden;
                             overflow-y: auto;
+                            position: relative;
 
                             div {
                                 span {
@@ -172,8 +173,21 @@
                                         height: 20px;
                                         border: 2px solid var(--font-pink1);
                                         margin-right: 10px;
+
                                     }
                                 }
+
+                                .submitSearchList {
+                                    background-color: var(--box-pink2);
+                                    padding: 8px 10px;
+                                    border-radius: 15px;
+                                    color: var(--white);
+                                    font-family: var(--dela);
+                                    position: absolute;
+                                    bottom: 3%;
+                                    right: 8%;
+                                }
+
                             }
 
 
@@ -454,6 +468,7 @@
     }
 }
 
+
 @media (max-width: 768px) {}
 
 @media (max-width: 480px) {
@@ -534,6 +549,9 @@
 
                             .result_wrap {
                                 width: 77vw;
+
+
+
                             }
                         }
                     }

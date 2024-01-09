@@ -7,6 +7,7 @@ const port = 5050;
 const axios = require('axios');
 // DB, Firebase, navercloud key
 const config = require("./config/key.js");
+const { Counter } = require('./model/Counter.js');
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // router
 app.use("/api/user", require("./router/user.js"));
 app.use("/api/post", require("./router/post.js"));
+app.use("/api/voca", require("./router/voca.js"));
 
 app.listen(port, () => {
     mongoose
@@ -88,3 +90,5 @@ app.post('/api/ginger', async (req, res) => {
         res.status(400).json({ success: false });
     }
 })
+
+
