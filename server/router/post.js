@@ -66,6 +66,19 @@ router.get('/list/:uid', (req, res) => {
     })
 })
 
+router.get(`/view/:postNum`, (req, res) => {
+    const postNum = req.params.postNum;
+    console.log(postNum)
+    Post.findOne({postNum: postNum}).then((result)=>{
+        res.status(200).json({success: true, post: result})
+    }).catch((err) => {
+        res.status(400).json({success: false})
+        console.log(err, "error")
+    })
+})
+
+
+
 // router.get('list/:uid', async(req, res) => {
 //     const userId = req.params.uid;
 //     console.log(userId);

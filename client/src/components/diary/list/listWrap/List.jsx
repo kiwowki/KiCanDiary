@@ -4,7 +4,7 @@ import diaryList from '../DiaryList';
 import { Link } from 'react-router-dom';
 import { getRandomSticker } from '../../../../util/stickers/getRandomSticker';
 
-const List = ({currentDate}) => {
+const List = ({ currentDate }) => {
     const uid = useSelector(state => state.user.uid)
     const [postList, setPostList] = useState([])
     const [filteredPostList, setFilteredPostList] = useState([])
@@ -23,35 +23,34 @@ const List = ({currentDate}) => {
     }, [postList, currentDate]);
     // 해당 월의 글을 필터링 해서 가져옴 내림차순으로 => 늦게 쓴게 먼저 
 
-  return (
-   <>
-    {filteredPostList && filteredPostList.map((post, key) => (
-                                <div className="list" key={key}>
-                                    <div className="weekday">
-                                        <span className="date">{key + 1}</span>
-                                        <span className="sticker">
-                                            <img
-                                                src={getRandomSticker()}
-                                                alt="Sticker"
-                                            />
-                                        </span>
-                                    </div>
-                                    <div className="day__diary">
-                                        <h3 className="title">
-                                            <Link to="/diaryview">
-                                                {post.title}
-                                            </Link>
-                                        </h3>
-                                        <p className="content">
-                                            <Link to="/diaryview">
-                                                {post.content}
-                                            </Link>
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-   </>
-  )
+    console.log(filteredPostList)
+    return (
+        <>
+            {filteredPostList && filteredPostList.map((post, key) => (
+                <div className="list" key={key}>
+                    <Link to={`/view/diaryview/${post.postNum}`}>
+                        <div className="weekday">
+                            <span className="date">{key + 1}</span>
+                            <span className="sticker">
+                                <img
+                                    src={getRandomSticker()}
+                                    alt="Sticker"
+                                />
+                            </span>
+                        </div>
+                        <div className="day__diary">
+                            <h3 className="title">
+                                {post.title}
+                            </h3>
+                            <p className="content">
+                                {post.content}
+                            </p>
+                        </div>
+                    </Link>
+                </div>
+            ))}
+        </>
+    )
 }
 
 export default List

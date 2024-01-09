@@ -27,17 +27,21 @@
                 width: 330px;
                 margin: 0 20px;
 
-                .prev {
-
-                    background-image: url(../../img/signZip.png);
+                span {
                     position: absolute;
-                    top: 4px;
-                    left: 0;
+                    top: 16px;
                     width: 17px;
                     height: 26px;
-
                 }
-
+                .prev {
+                    background-image: url(../../img/signZip.png);
+                    left: 0;
+                }
+                .next {
+                    background-image: url(../../img/signZip.png);
+                    background-position: -17px 0px;
+                    right: 0;
+                }
                 h2 {
                     text-align: center;
                     font-size: 35px;
@@ -46,16 +50,7 @@
                     text-transform: uppercase;
                 }
 
-                .next {
-                    background-image: url(../../img/signZip.png);
-                    position: absolute;
-                    background-position: -17px 0px;
-                    top: 4px;
-                    right: 0;
-                    width: 16px;
-                    height: 26px;
-
-                }
+                
             }
 
             .title {

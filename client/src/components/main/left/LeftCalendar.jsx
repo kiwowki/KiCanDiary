@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import { useSelector } from 'react-redux';
 import diaryList from '../../diary/list/DiaryList';
 import CalendarProps from '../../../util/calendar/CalendarProps';
+import { Link } from 'react-router-dom';
 
 const LeftCalendar = () => {
     const uid = useSelector(state => state.user.uid)
     const [postList, setPostList] = useState([])
-
+    const date = new Date()
+    
     const [today, setToday] = useState(() => {
         const now = new Date();
         now.setHours(0, 0, 0, 0);
@@ -21,14 +22,13 @@ const LeftCalendar = () => {
     }, [uid]);
 
     const calendarProps = CalendarProps({params, postList,today})
-
     return (
         <div className="left">
             <div className="date__info">
                 <div className="calendar relative">
                     <Calendar {...calendarProps} />
                     <div className="today">
-                        <p><Link to={`/write/${params}`}>Today </Link></p>
+                        <p onClick={() => calendarProps.onChange(date)}>Today</p>
                     </div>
                 </div>
                 <div>
