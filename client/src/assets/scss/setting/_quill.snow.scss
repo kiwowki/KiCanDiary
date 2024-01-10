@@ -15,6 +15,11 @@
         height: 330px !important;
     }
 }
+.viewQuill .ql-editor {
+}
+.viewQuill .ql-toolbar {
+    display: none;
+}
 .ql-container {
     box-sizing: border-box;
     font-family: Helvetica, Arial, sans-serif;
