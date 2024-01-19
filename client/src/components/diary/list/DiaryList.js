@@ -18,8 +18,6 @@ const diaryList = async (setPostList, uid) => {
                         }
                     })
                     setPostList(parsedPostList)
-                } else {
-                    console.log(res.data.error)
                 }
             })
             .catch((err) => {
