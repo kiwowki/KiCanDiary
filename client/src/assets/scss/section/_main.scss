@@ -3,6 +3,7 @@
         width: calc(100% - 200px);
         height: calc(100vh);
         border-left: none;
+
         .main__wrap {
             display: flex;
             height: 100%;
@@ -37,6 +38,10 @@
                     top: 100%;
                     right: 1%;
                     text-align: center;
+                    // width: 100%;
+                    // display: flex;
+                    // justify-content: flex-end;
+                    // padding: 5% 2% 20px 1%;
 
                     p {
                         background-color: var(--font-pink1);
@@ -53,10 +58,12 @@
                         &:hover {
                             scale: (0.95);
                         }
+                        // margin-right: 15px;
+                        // width: 6vw !important;
+                        // max-width: 120px !important;
                     }
                 }
             }
-
             .right {
                 width: 50%;
                 border-left: 10px solid var(--bg-pink);
@@ -82,15 +89,14 @@
                             height: 25px;
                             background-image: url('../../img/pink-11.gif');
                         }
-                        .voca__img {
-                            width: 14%;
-                            text-align: right;
-                            margin-top: -30px;
-                            z-index: -1;
-                            img {
-                                width: 200px;
-                                height: 200px;
-                            }
+                        &::after {
+                            top: -0.5%;
+                            // left: 15.5vw;
+                            // left: 295px;
+                            left: 17.5rem;
+                            width: 20px;
+                            height: 20px;
+                            background-image: url('../../img/pink-11.gif');
                         }
                         .list__title {
                             p {
@@ -219,7 +225,6 @@
                                 width: 14%;
                                 text-align: right;
                                 margin-top: -30px;
-                                z-index: -1;
                                 img {
                                     width: 200px;
                                     height: 200px;
@@ -229,7 +234,7 @@
                                 width: 86%;
                                 p {
                                     height: 52px;
-                                    width: 19rem;
+                                    width: 15rem;
                                     line-height: 52px;
                                     font-size: 1.6rem;
                                     letter-spacing: 1.2px;
@@ -242,7 +247,7 @@
                         }
                         .all__list {
                             margin-top: -110px;
-
+                            
                             .my__list {
                                 width: 90%;
                                 margin: 0 auto 10px auto;

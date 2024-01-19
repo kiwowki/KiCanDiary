@@ -119,6 +119,7 @@ const Write = () => {
 
     // 글 작성 관련 코드
     const [title, setTitle] = useState()
+
     const handleSave = async (e) => {
         e.preventDefault()
         if (title && value) {

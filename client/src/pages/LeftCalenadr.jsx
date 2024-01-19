@@ -1,8 +1,7 @@
-// import React, { Component, useState } from 'react'
-import React, { useState } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import Calendar from 'react-calendar'
-
 import { Link, useNavigate } from 'react-router-dom'
+import { getFormattedDate } from '../util/calendar/date/dateFormat';
 
 const LeftCalenadr = () => {
     const [value, setValue] = useState(new Date()); // 달력 전체의 날짜 값 
@@ -32,34 +31,16 @@ const LeftCalenadr = () => {
         view === 'month' && isSaturday(date) ? 'saturday' : null
     // 달력 마지막 css 조절하기 위한 컴포넌트 추가 작업
 
-    let date = new Date()
-    let day = date.getDay()
-    if (day < 10) {
-        day = '0' + day
-    }
-    let months = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-    ]
-    let month = months[date.getMonth()] // 월
+    
     const navigationLabel = ({ date, view }) => (
         <div className="my-custom-navigation">
-            <span>{month + '  ' + day + ', ' + date.getFullYear()}</span>
+            <span>{getFormattedDate(date)}</span>
         </div>
     )
     // 날짜 포매터
     
     
+
     return (
         <div className="left">
             <div className="date__info">
@@ -77,10 +58,6 @@ const LeftCalenadr = () => {
                     </div>
                 </div>
             </div>
-            <div className="today">
-                <p><Link to="/write">today</Link></p>
-            </div>
-
         </div>
     )
 }
