@@ -1,10 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const VocaList = () => {
     const [isInputVisible, setInputVisible] = useState(false)
 
     const searchClickHandler = () => {
         setInputVisible(!isInputVisible)
+    }
+
+    useEffect(() => {
+        fetchSearchList();
+
+    }, [])
+
+    const [searchList, setSearchList] = useState([])
+    const [searchListmeaning, setSearchListMeaning] = useState([])
+    const [searchListword, setSearchListWord] = useState([])
+    const fetchSearchList = async () => {
+        try {
+            const response = await axios.post('/api/voca/showsearchlist')
+            setSearchList(response.data.vocasearchList)
+            console.log(response.data.vocasearchList)
+            setSearchListMeaning(setSearchList.word)
+            setSearchListWord(setSearchList.meaning[0])
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (
@@ -27,29 +48,8 @@ const VocaList = () => {
                                             name="mycollection m1"
                                         />
                                         <p className="english">
-                                            elegant, grand, magnificant
-                                        </p>
-                                        <p className="korean">멋진</p>
-                                    </label>
-                                    <label htmlFor="mycollection m2">
-                                        <input
-                                            type="checkbox"
-                                            id="mycollection m2"
-                                            name="mycollection m2"
-                                        />
-                                        <p className="english">
-                                            elegant, grand, magnificant
-                                        </p>
-                                        <p className="korean">멋진</p>
-                                    </label>
-                                    <label htmlFor="mycollection m3">
-                                        <input
-                                            type="checkbox"
-                                            id="mycollection m3"
-                                            name="mycollection m3"
-                                        />
-                                        <p className="english">
-                                            elegant, grand, magnificant
+
+
                                         </p>
                                         <p className="korean">멋진</p>
                                     </label>
@@ -60,11 +60,10 @@ const VocaList = () => {
                                     <span onClick={searchClickHandler}></span>
                                     <input
                                         type="text"
-                                        className={`word__search ${
-                                            isInputVisible
-                                                ? 'input__visible'
-                                                : ''
-                                        }`}
+                                        className={`word__search ${isInputVisible
+                                            ? 'input__visible'
+                                            : ''
+                                            }`}
                                     />
                                 </div>
                                 <div className="select__all">
@@ -93,40 +92,25 @@ const VocaList = () => {
                                     <h3>WORD</h3>
                                 </div>
                                 <div className="searchlist__voca__contents">
-                                    <label htmlFor="SearchVoca s1">
-                                        <input
-                                            type="checkbox"
-                                            id="SearchVoca s1"
-                                            name="SearchVoca s1"
-                                        />
-                                        <p className="meaning">멋진</p>
-                                        <p className="word">
-                                            elegant, grand, magnificant
-                                        </p>
-                                    </label>
-                                    <label htmlFor="SearchVoca s2">
-                                        <input
-                                            type="checkbox"
-                                            id="SearchVoca s2"
-                                            name="SearchVoca s2"
-                                        />
-                                        <p className="meaning">
-                                            멋진멋진멋진멋진멋진
-                                        </p>
-                                        <p className="word">
-                                            elegant, grand, magnificant,
-                                            magnificant
-                                        </p>
-                                    </label>
-                                    <label htmlFor="SearchVoca s3">
-                                        <input
-                                            type="checkbox"
-                                            id="SearchVoca s3"
-                                            name="SearchVoca s3"
-                                        />
-                                        <p className="meaning">멋진</p>
-                                        <p className="word">elegant</p>
-                                    </label>
+
+
+                                    {searchList.map((search, index) => (
+                                        <>
+                                            <label htmlFor="SearchVoca s1">
+                                                <input
+                                                    type="checkbox"
+                                                    id="SearchVoca s1"
+                                                    name="SearchVoca s1"
+                                                />
+                                                <p className="meaning">{search.word}</p>
+
+
+                                                <p className="word">{search.meaning}</p>
+                                            </label>
+                                        </>
+                                    ))}
+
+
                                 </div>
                             </div>
                             <div className="contents__bot">

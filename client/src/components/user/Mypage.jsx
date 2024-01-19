@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useSelector } from 'react-redux'
 // import firebase from '../../firebase.js'
-import classNames from 'classnames';
+// import classNames from 'classnames';
 
 import { FilePond, registerPlugin } from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
@@ -51,17 +51,17 @@ const Mypage = () => {
     //     console.log('FilePond 초기화');
     // };
 
-    const handleFileUpload = (fileItems) => {
-        const uploadedFile = fileItems[0]?.file;
-        console.log(uploadedFile);
+    // const handleFileUpload = (fileItems) => {
+    //     const uploadedFile = fileItems[0]?.file;
+    //     console.log(uploadedFile);
 
-        // submit 버튼을 눌렀을 때만 파일 정보를 저장
-        if (uploadedFile && uploadedFile.submitted) {
-            const fileData = uploadedFile.file; // File 객체 추출
-            setFile(fileData);
-        }
+    //     // submit 버튼을 눌렀을 때만 파일 정보를 저장
+    //     if (uploadedFile && uploadedFile.submitted) {
+    //         const fileData = uploadedFile.file; // File 객체 추출
+    //         setFile(fileData);
+    //     }
 
-    };
+    // };
     const ProfileSubmit = async () => {
         try {
             if (!file) {
@@ -73,7 +73,7 @@ const Mypage = () => {
             const fileData = files[0];
 
             fileData.append('uid', user.uid);
-            console.log(fileData)
+            // console.log(fileData)
 
             const response = await axios.post('/api/user/profileupload', fileData, {
                 headers: {
@@ -128,7 +128,7 @@ const Mypage = () => {
                         <FilePond
                             allowMultiple={false}
                             // oninit={handleInit}
-                            onupdatefiles={handleFileUpload}
+                            // onupdatefiles={handleFileUpload}
                             className="custom-filepond"
                         />
                     </p>
@@ -150,12 +150,12 @@ const Mypage = () => {
 
                     <div className="mypage__menu">
                         <div
-                            className={classNames('menu-item', { 'active': selectedMenu === '계정' })}
+                            // className={classNames('menu-item', { 'active': selectedMenu === '계정' })}
                             onClick={() => handleMenuClick('계정')}>
                             <img src={account} alt="계정" />계정
                         </div>
                         <div
-                            className={classNames('menu-item', { 'active': selectedMenu === '개인정보' })}
+                            // className={classNames('menu-item', { 'active': selectedMenu === '개인정보' })}
                             onClick={() => handleMenuClick('개인정보')}>
                             <img src={protection} alt="개인정보 보호" />개인정보 보호
                         </div>

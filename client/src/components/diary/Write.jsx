@@ -110,8 +110,6 @@ const Write = () => {
         }
     };
 
-
-
     const renderCheckboxes = () => {
         return (
             <div>

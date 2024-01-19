@@ -25,6 +25,7 @@ npm install quill@1.3.6
 npm install gsap
 npm i @studio-freight/lenis
 npm i sass
+npm install react-filepond
 
 # import Lenis from '@studio-freight/lenis'
 

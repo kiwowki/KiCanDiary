@@ -8,6 +8,7 @@ const { Vocasearch } = require("../model/Vocasearch.js")
 
 router.post('/searchlist', async (req, res) => {
     const List = req.body.data;
+    console.log(List)
     const uid = req.body.uid;
     const result = [];
     try {
@@ -20,8 +21,8 @@ router.post('/searchlist', async (req, res) => {
             result.push(data);
 
             let temp = {
-                word: key,
-                search: value,
+                meaning: key,
+                word: value,
                 uid: uid,
             }
             Counter.findOne({ name: "counter" })
@@ -50,6 +51,20 @@ router.post('/searchlist', async (req, res) => {
         res.status(400).json({ success: false });
     }
 });
+
+router.post('/showsearchlist', async (req, res) => {
+    Vocasearch
+        .find()
+        .limit(50)
+        .exec()
+        .then((result) => {
+            res.status(200).json({ success: true, vocasearchList: result })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.status(400).json({ success: false })
+        })
+})
 
 
 

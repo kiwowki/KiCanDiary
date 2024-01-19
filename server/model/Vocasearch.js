@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const vocasearchSchema = new mongoose.Schema(
     {
         word: String,
-        search: Array,
+        meaning: String,
         vocalistNum: Number,
         author: {
             type: mongoose.Schema.Types.ObjectId,
