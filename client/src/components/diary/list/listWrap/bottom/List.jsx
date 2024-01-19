@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import diaryList from '../DiaryList'
+import diaryList from '../../DiaryList'
 import { Link } from 'react-router-dom'
-import { getRandomSticker } from '../../../../util/stickers/getRandomSticker'
+import { getRandomSticker } from '../../../../../util/stickers/getRandomSticker'
 import 'react-quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill'
+import { getFormattedDate } from '../../../../../util/calendar/date/dateFormat'
 
-const List = ({ currentDate }) => {
+const List = ({ currentDate, currentPage, postsPerPage }) => {
     const uid = useSelector((state) => state.user.uid)
     const [postList, setPostList] = useState([])
-    const [currentContent, setCurrentContent] = useState([]) // 현재 content 상태 추가
     const [filteredPostList, setFilteredPostList] = useState([])
 
     useEffect(() => {
@@ -37,14 +37,21 @@ const List = ({ currentDate }) => {
         console.log(filteredPostList[0].content)
     }
 
+    // 현재 페이지의 게시물 계산
+    const lastPost = currentPage * postsPerPage
+    const firstPost = lastPost - postsPerPage
+    const currentPosts = filteredPostList.slice(firstPost, lastPost)
+
     return (
         <>
-            {filteredPostList &&
-                filteredPostList.map((post, key) => (
+            {currentPosts &&
+                currentPosts.map((post, key) => (
                     <div className="list" key={key}>
                         <Link to={`/view/diaryview/${post.postNum}`}>
                             <div className="weekday">
-                                <span className="date">{key + 1}</span>
+                                <span className="date">
+                                    {getFormattedDate(post.createdAt).day}
+                                </span>
                                 <span className="sticker">
                                     <img
                                         src={getRandomSticker()}

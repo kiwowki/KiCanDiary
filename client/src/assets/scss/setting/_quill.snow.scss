@@ -16,6 +16,11 @@
     }
 }
 .viewQuill .ql-editor {
+    height: 150px;
+    padding-right: 3px;
+    p {
+        cursor: pointer;
+    }
 }
 .viewQuill .ql-toolbar {
     display: none;
