@@ -15,7 +15,7 @@ export const userSlice = createSlice({
             state.displayName = action.payload.displayName;
             state.uid = action.payload.uid;
             state.accessToken = action.payload.accessToken;
-            state.photoURL = action.payload.photoURL;
+            // state.photoURL = action.payload.photoURL;
             state.isLoading = true;
             state.isLoggedIn = true;
         },

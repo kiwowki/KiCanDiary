@@ -44,9 +44,10 @@ const App = () => {
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged((userInfo) => {
-            console.log("userInfo : " + userInfo)
+            console.log("userInfo:", userInfo);
             if (userInfo !== null) {
-                dispatch(loginUser(userInfo.multiFactor.user));
+                const { displayName, email, accessToken} = userInfo.multiFactor.user;
+                dispatch(loginUser({ displayName, email, accessToken}));
             } else {
                 dispatch(clearUser())
             }
