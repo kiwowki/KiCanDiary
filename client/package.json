@@ -56,5 +56,9 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
-  }
+  },
+  "description": "\"emmet.excludeLanguages\": [\r \"markdown\"\r ],\r \"emmet.includeLanguages\": { \"javascript\": \"javascriptreact\" }",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }

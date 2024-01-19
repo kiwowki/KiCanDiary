@@ -23,7 +23,8 @@
             border-width: 1px 2px 2px 1px;
             cursor: pointer;
 
-            :hover {}
+            :hover {
+            }
         }
 
         .react-calendar__navigation__label {
@@ -46,7 +47,8 @@
             white-space: nowrap;
 
             .my-custom-navigaiton {
-                span {}
+                span {
+                }
             }
         }
 
@@ -67,7 +69,6 @@
             order: 2;
             right: 7%;
             margin-right: 3px;
-
         }
 
         .react-calendar__navigation__next-button {
@@ -88,7 +89,6 @@
         .react-calendar__navigation__next2-button {
             display: none;
         }
-
     }
 
     .react-calendar__viewContainer {
@@ -121,6 +121,9 @@
                 background-color: #fff;
                 border-radius: 5px;
                 padding: 5px;
+            }
+            .diary__check {
+                cursor: pointer;
             }
         }
 
@@ -172,7 +175,6 @@
                         // padding-bottom: 30px;
                         font-weight: bold;
                         cursor: pointer;
-
                     }
 
                     &:hover {
@@ -229,7 +231,6 @@
         .react-calendar__decade-view__years__year:nth-child(10) {
             outline: 1px solid var(--font-pink1);
         }
-
     }
 }
 
@@ -238,14 +239,16 @@
         padding-bottom: 20px !important;
     }
 
-    .react-calendar__navigation__label {}
+    .react-calendar__navigation__label {
+    }
 
     .react-calendar__navigation__arrow {
         // left: 26.5vw;
         top: -10% !important;
     }
 
-    .react-calendar__navigation__prev-button {}
+    .react-calendar__navigation__prev-button {
+    }
 
     .react-calendar__navigation__next-button {
         // left: 30vw;
@@ -254,15 +257,18 @@
 }
 
 @media (max-width: 800px) {
-    .react-calendar__navigation {}
+    .react-calendar__navigation {
+    }
 
-    .react-calendar__navigation__label {}
+    .react-calendar__navigation__label {
+    }
 
     .react-calendar__navigation__arrow {
         top: -10% !important;
     }
 
-    .react-calendar__navigation__prev-button {}
+    .react-calendar__navigation__prev-button {
+    }
 
     .react-calendar__navigation__next-button {
         right: 1vw !important;
@@ -270,9 +276,11 @@
 }
 
 @media (max-width: 700px) {
-    .react-calendar__navigation {}
+    .react-calendar__navigation {
+    }
 
-    .react-calendar__navigation__label {}
+    .react-calendar__navigation__label {
+    }
 
     .react-calendar__navigation__arrow {
         border-radius: 0px !important;

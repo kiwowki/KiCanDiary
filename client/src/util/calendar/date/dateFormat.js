@@ -24,10 +24,11 @@ export const getFormattedDate = (input) => {
 
     } else if(typeof input === 'string' && input.includes('-')) { // 문자 전달
         const [year, month, day] = input.split('-');
+        const dayWithoutTime = day.split('T')[0];
         return {
             year: year,
             month: months[Number(month) - 1],
-            day: day
+            day:dayWithoutTime
         };
     } else if(typeof input === 'object'&& input.year && input.month && input.day) { // 객체 전달
         return `${months[Number(input.month) - 1]} ${input.day}, ${input.year}`;
