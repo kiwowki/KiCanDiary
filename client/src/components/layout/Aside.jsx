@@ -1,9 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import firebase from '../../firebase.js'
+
 import logo from '../../assets/img/logo.png'
-import user from '../../assets/img/user.png'
+import userImage from '../../assets/img/mypage__img.png';
 
 const Aside = () => {
+    const user = useSelector((state) => state.user)
+    const navigate = useNavigate()
+
+    const LogoutHandler = () => {
+        firebase.auth().signOut()
+        navigate('/')
+    }
+
     return (
         <aside id="aside">
             <div className="aside__wrap">
@@ -36,24 +47,41 @@ const Aside = () => {
                         <li>
                             <Link to={'/mypage'}>My page</Link>
                         </li>
-                        <li className="">
-                            <Link to={'/'}>Logout</Link>
-                        </li>
+                        {user.accessToken === '' ? (
+                            <>
+                                <li>
+                                    <Link to="/login">login</Link>
+                                </li>
+                                <li>
+                                    <Link to="/Join">join</Link>
+                                </li>
+                            </>
+                        ) : (
+                            <li>
+                                <Link onClick={() => LogoutHandler()}>
+                                    logout
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                 </nav>
-                <div className="user">
-                    <div className="user__profile mt60">
-                        <img src={user} alt="" />
-                    </div>
+                {user.accessToken === '' ? (
+                    ''
+                ) : (
+                    <div className="user">
+                        <div className="user__profile mt60">
+                            <img src={userImage} alt="" />
+                        </div>
 
-                    <div className="user__info">
-                        <span className="user__name">
-                            useruser <em>님</em>
-                            <br />
-                        </span>
-                        <span> 환영합니다.</span>
+                        <div className="user__info">
+                            <span className="user__name">
+                                useruser <em>님</em>
+                                <br />
+                            </span>
+                            <span> 환영합니다.</span>
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </aside>
     )

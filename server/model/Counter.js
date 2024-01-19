@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const countSchema = new mongoose.Schema(
     {
         name: String,
-        // postNum: Number,
+        postNum: Number,
         userNum: Number
     },
     { collection: "counter" });
