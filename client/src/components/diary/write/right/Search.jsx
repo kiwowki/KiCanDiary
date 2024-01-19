@@ -65,6 +65,7 @@ const Search = () => {
                     className="word__search"
                     onKeyPress={handleKeyPress}
                     onChange={handleChange}
+                    placeholder='Please enter the word you want to search for in Korean'
                 />
             </div>
             <div className="result">

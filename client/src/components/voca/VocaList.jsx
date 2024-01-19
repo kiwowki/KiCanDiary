@@ -156,137 +156,67 @@ const VocaList = () => {
                                     <h3>CORRECT</h3>
                                 </div>
                                 <div className="correctionlist__voca__contents">
-                                    <label htmlFor="CorrectVoca c1">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c1"
-                                            name="CorrectVoca c1"
-                                        />
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c2">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c2"
-                                            name="CorrectVoca c2"
-                                        />
+                                    </div>
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c3">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c3"
-                                            name="CorrectVoca c3"
-                                        />
+                                    </div>
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c4">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c4"
-                                            name="CorrectVoca c4"
-                                        />
+                                    </div>
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c5">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c5"
-                                            name="CorrectVoca c5"
-                                        />
+                                    </div>
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c6">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c6"
-                                            name="CorrectVoca c6"
-                                        />
+                                    </div>
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c7">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c7"
-                                            name="CorrectVoca c7"
-                                        />
+                                    </div>
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c8">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c8"
-                                            name="CorrectVoca c8"
-                                        />
+                                    </div>
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c9">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c9"
-                                            name="CorrectVoca c9"
-                                        />
+                                    </div>
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c10">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c10"
-                                            name="CorrectVoca c10"
-                                        />
+                                    </div>
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c11">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c11"
-                                            name="CorrectVoca c11"
-                                        />
+                                    </div>
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c12">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c12"
-                                            name="CorrectVoca c12"
-                                        />
+                                    </div>
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c13">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c13"
-                                            name="CorrectVoca c13"
-                                        />
+                                    </div>
+                                    <div>
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
-                                    </label>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="contents__bot">
+                            {/* <div className="contents__bot">
                                 <div className="select__all">
                                     <label htmlFor="SelectAllBtn">
-                                        <input
-                                            type="checkbox"
-                                            id="SelectAllBtn"
-                                            name="SelectAllBtn"
-                                        />
                                         <p>select all</p>
                                     </label>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="correction__btn">
                             <button className="add__btn">Add</button>

@@ -22,7 +22,7 @@ import DiaryList from "./components/diary/list/DiaryList.jsx";
 
 import DiaryView from "./components/diary/view/DiaryView.jsx";
 import Write from "./components/diary/write/Write.jsx";
-import MainHome from "./components/main/MainHome.jsx";
+import MainHome from "./components/main/MainHome.jsx"
 
 const App = () => {
     const [isMobile, setIsMobile] = useState(false);

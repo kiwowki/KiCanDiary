@@ -43,7 +43,6 @@ const Login = () => {
                                 Forgot ID?
                             </Link>
                         </p>
-
                         <input
                             type="text"
                             id="id"
@@ -54,7 +53,6 @@ const Login = () => {
                             onChange={(e) => setEmail(e.currentTarget.value)}
                         />
                     </div>
-
                     <div>
                         <label htmlFor="password">Password</label>
                         <p>
@@ -62,7 +60,6 @@ const Login = () => {
                                 Forgot password?
                             </Link>
                         </p>
-
                         <input
                             type="password"
                             id="password"
