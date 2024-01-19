@@ -10,11 +10,10 @@ import Upload from './post/Upload'
 import handleSave from './handleSave'
 import { getFormattedDate } from '../../../util/calendar/date/dateFormat'
 
-
 const Write = () => {
     const quillRef = useRef(null)
     const user = useSelector((state) => state.user)
-    const isLoading = user.isLoading;
+    const isLoading = user.isLoading
     const uid = user.uid
     const { date } = useParams()
     const [dateObj, setDate] = useState({
@@ -25,7 +24,8 @@ const Write = () => {
 
     let navigate = useNavigate()
     useEffect(() => {
-        if (user.isLoading) { // isLoading이 트루일 때만 로직을 실행 시킨다. 
+        if (user.isLoading) {
+            // isLoading이 트루일 때만 로직을 실행 시킨다.
             if (!user.accessToken) {
                 alert('로그인한 회원만 작성이 가능합니다.')
                 navigate('/login')
@@ -33,6 +33,7 @@ const Write = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isLoading])
+
     useEffect(() => {
         if (date && typeof date === 'string') {
             let formatDate = getFormattedDate(date)
@@ -40,23 +41,25 @@ const Write = () => {
         }
     }, [date])
 
-
     const [title, setTitle] = useState()
     // Ginger api 부분
     const [value, setValue] = useState('')
     const [correctionsData, setCorrectionsData] = useState([])
 
     const handleKeyPress = (event) => {
-            mainhandleKeyPress(event, value, setValue, correctionsData, setCorrectionsData, quillRef)
+        mainhandleKeyPress(
+            event,
+            value,
+            setValue,
+            correctionsData,
+            setCorrectionsData,
+            quillRef
+        )
     }
-
 
     const upload = async (e) => {
         handleSave(e, title, value, quillRef, uid, navigate)
     }
-
-    
-
 
     return (
         <div id="wrap">
@@ -65,12 +68,22 @@ const Write = () => {
                 <div className="write__wrap">
                     <div className="today__date">
                         <p className="box">
-                            {dateObj.month}, {dateObj.day} {' '}
+                            {dateObj.month}, {dateObj.day}{' '}
                         </p>
                     </div>
                     <div className="write__main">
-                        <LeftPart quillRef={quillRef} title={title} setTitle={setTitle} value={value} setValue={setValue} mainhandleKeyPress={handleKeyPress} />
-                        <RightPart correctionsData={correctionsData} mainhandleKeyPress={handleKeyPress} />
+                        <LeftPart
+                            quillRef={quillRef}
+                            title={title}
+                            setTitle={setTitle}
+                            value={value}
+                            setValue={setValue}
+                            mainhandleKeyPress={handleKeyPress}
+                        />
+                        <RightPart
+                            correctionsData={correctionsData}
+                            mainhandleKeyPress={handleKeyPress}
+                        />
                     </div>
                     {/* <button onClick={onClickSave}>저장</button> */}
                     <Upload upload={upload} />

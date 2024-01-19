@@ -20,7 +20,7 @@ import Footer from "./components/layout/Footer";
 
 import DiaryList from "./components/diary/list/DiaryList.jsx";
 
-import DiaryView from "./components/diary/DiaryView.jsx";
+import DiaryView from "./components/diary/view/DiaryView.jsx";
 import Write from "./components/diary/write/Write.jsx";
 import MainHome from "./components/main/MainHome.jsx";
 
@@ -90,7 +90,7 @@ const App = () => {
                     />
 
                     <Route
-                        path="/diaryview/:date"
+                        path="/view/diaryview/:postNum"
                         element={
                             <>
                                 {isMobile ? <HeaderMobile /> : <Header />}

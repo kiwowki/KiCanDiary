@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const postSchema = new mongoose.Schema(
     {
@@ -7,12 +7,12 @@ const postSchema = new mongoose.Schema(
         postNum: Number,
         author: {
             type: String,
-            ref: "User",
+            ref: 'User',
             // foreignField: 'uid'
-        }
+        },
     },
-    { collection: "posts", timestamps: true}
-);
+    { collection: 'posts', timestamps: true }
+)
 
-const Post = mongoose.model("Post", postSchema);
-module.exports = { Post };
+const Post = mongoose.model('Post', postSchema)
+module.exports = { Post }
