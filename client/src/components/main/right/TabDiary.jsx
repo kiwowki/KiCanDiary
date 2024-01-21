@@ -7,7 +7,7 @@ import monthList from '../../diary/list/MonthList'
 const TabDiary = ({ uid, currentDate }) => {
     const [postList, setPostList] = useState([])
     const [filteredPostList, setFilteredPostList] = useState([])
-    const [currentPage, setCurrentPage] = useState(3)
+    const [currentPage, setCurrentPage] = useState(1)
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage)
     }
@@ -31,8 +31,6 @@ const TabDiary = ({ uid, currentDate }) => {
     // 시작 인덱스와 끝 인덱스에 따라 아이템을 추출
     const currentItems = filteredPostList.slice(startIndex, endIndex)
 
-    console.log(currentItems)
-
     return (
         <div className="diary__list">
             <div className="list__title mb30">
@@ -44,31 +42,41 @@ const TabDiary = ({ uid, currentDate }) => {
                     {Array.from({ length: totalPage }, (_, key) => (
                         <button
                             key={key + 1}
-                            className={`tab__btn mr10 ${
-                                currentPage === key + 1 ? 'active' : ''
-                            }`}
+                            className={`tab__btn mr10 ${currentPage === key + 1 ? 'active' : ''
+                                }`}
                             onClick={() => handlePageChange(key + 1)}
                         >
                             {key + 1}
                         </button>
                     ))}
                 </div>
-                {currentItems.map((item, key) => (
-                    <div className="diary__tab" key={key}>
-                        <Link to={'#'}>
-                            <div className="tab__box box2">
-                                <h4 className="mb20">
-                                    {getFormattedDate(item.createdAt).day}
-                                    &nbsp;
-                                    {getFormattedDate(item.createdAt).month}
-                                    ,&nbsp;
-                                    {getFormattedDate(item.createdAt).year}
-                                </h4>
-                                <p className="">{item.content.ops[0].insert}</p>
-                            </div>
-                        </Link>
-                    </div>
-                ))}
+                {currentItems && currentItems.length > 0 ?
+                    currentItems.map((item, key) => (
+                        <div className="diary__tab" key={key}>
+                            <Link to={`/view/diaryview/${item.postNum}`}>
+                                <div className="tab__box box2">
+                                    <h4 className="mb20">
+                                        {getFormattedDate(item.createdAt).day}
+                                        &nbsp;
+                                        {getFormattedDate(item.createdAt).month}
+                                        ,&nbsp;
+                                        {getFormattedDate(item.createdAt).year}
+                                    </h4>
+                                    <p className="">{item.content.ops[0].insert}</p>
+                                </div>
+                            </Link>
+                        </div>
+                    ))
+                    : <div className="diary__tab">
+                            <Link to={'#'}>
+                                <div className="tab__box box2">
+                                    <h4 className="mb20">
+                                    </h4>
+                                    <p className="">아직 작성된 글이 없습니다.</p>
+                                </div>
+                            </Link>
+                        </div>
+                }
             </div>
         </div>
     )

@@ -1,22 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react'
-import ViewRight from './right/ViewRight'
 import { useParams } from 'react-router-dom'
 import fetchPost from '../util/view'
+import UpdateRight from './UpdateRight'
+import update from '../util/update'
 
-const DiaryView = () => {
+const DiaryUpdate = () => {
     const params = useParams()
     const postNum = params.postNum
     const [post, setPost] = useState()
     const [date, setDate] = useState({})
+    const [newTitle, setNewTitle] = useState();
+    const [newContent, setNewContent] = useState();
+    const {  updatePost } = update();
 
     useEffect(() => {
-        fetchPost(postNum,setPost,setDate)
+        fetchPost(postNum, setPost, setDate)
     }, [postNum])
 
     const quillRef = useRef()
+    
     useEffect(() => {
         if (quillRef.current) {
             quillRef.current.getEditor().setContents(post.content)
+            console.log(quillRef.current.getEditor().setContents(post.content))
         }
     }, [post])
 
@@ -34,16 +40,21 @@ const DiaryView = () => {
                             <p></p>
                         </div>
                         <span></span>
-                        <ViewRight
-                            post={post}
+                        <UpdateRight
                             quillRef={quillRef}
-                            readOnly={true}
+                            post={post}
+                            setNewTitle={setNewTitle}
+                            setNewContent={setNewContent}
                         />
                     </div>
+                    <div className='btn__wrap'>
+                        <button onClick={() => updatePost(newTitle, newContent, postNum, quillRef)}>update</button>
+                    </div>
                 </div>
+
             </div>
         </div>
     )
 }
 
-export default DiaryView
+export default DiaryUpdate

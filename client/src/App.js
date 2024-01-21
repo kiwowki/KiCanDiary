@@ -25,6 +25,7 @@ import DiaryList from "./components/diary/list/DiaryList.jsx";
 import DiaryView from "./components/diary/view/DiaryView.jsx";
 import Write from "./components/diary/write/Write.jsx";
 import MainHome from "./components/main/MainHome.jsx";
+import DiaryUpdate from "./components/diary/update/DiaryUpdate.jsx";
 
 const App = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -91,6 +92,15 @@ const App = () => {
                             <>
                                 {isMobile ? <HeaderMobile /> : <Header />}
                                 <DiaryView />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/update/diaryupdate/:postNum"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <DiaryUpdate />
                             </>
                         }
                     />

@@ -10,6 +10,7 @@ const Header = () => {
         firebase.auth().signOut()
         navigate('/')
     }
+    
     return (
         <header id="header">
             <div className="header__wrap">
