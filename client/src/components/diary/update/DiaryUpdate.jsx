@@ -9,20 +9,19 @@ const DiaryUpdate = () => {
     const postNum = params.postNum
     const [post, setPost] = useState()
     const [date, setDate] = useState({})
-    const [newTitle, setNewTitle] = useState();
-    const [newContent, setNewContent] = useState();
-    const {  updatePost } = update();
+    const [newTitle, setNewTitle] = useState()
+    const [newContent, setNewContent] = useState()
+    const { updatePost } = update()
 
     useEffect(() => {
         fetchPost(postNum, setPost, setDate)
     }, [postNum])
 
     const quillRef = useRef()
-    
+
     useEffect(() => {
         if (quillRef.current) {
             quillRef.current.getEditor().setContents(post.content)
-            console.log(quillRef.current.getEditor().setContents(post.content))
         }
     }, [post])
 
@@ -45,13 +44,10 @@ const DiaryUpdate = () => {
                             post={post}
                             setNewTitle={setNewTitle}
                             setNewContent={setNewContent}
+                            setPost={setPost}
                         />
                     </div>
-                    <div className='btn__wrap'>
-                        <button onClick={() => updatePost(newTitle, newContent, postNum, quillRef)}>update</button>
-                    </div>
                 </div>
-
             </div>
         </div>
     )

@@ -15,13 +15,17 @@ const ViewRight = ({ post, quillRef }) => {
     }
     return (
         <div className="right">
-            <h4>{post.title}</h4>
+            <div className="rightTitle">{post.title}</div>
             <ReactQuill
                 className="viewQuill"
                 ref={quillRef}
                 readOnly={true}
                 value={content}
             />
+            <div className="btn__wrap">
+                <button className="update">update</button>
+                <button>delete</button>
+            </div>
         </div>
     )
 }

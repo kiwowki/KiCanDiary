@@ -10,7 +10,7 @@ const DiaryView = () => {
     const [date, setDate] = useState({})
 
     useEffect(() => {
-        fetchPost(postNum,setPost,setDate)
+        fetchPost(postNum, setPost, setDate)
     }, [postNum])
 
     const quillRef = useRef()

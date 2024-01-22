@@ -80,12 +80,38 @@
                 height: 550px;
                 border-radius: 16px;
                 padding: 85px 55px;
-                h4 {
+                padding: 45px 55px;
+
+                .rightTitle {
                     margin-bottom: 30px;
-                    font-size: 20px;
+                    font-size: 1.3rem;
                     border-bottom: 5px solid var(--box-pink1);
                 }
                 p {
+                    font-size: 1rem;
+                }
+                .btn__wrap {
+                    height: 360px;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                    z-index: 999;
+                    button {
+                        z-index: 999;
+                        width: 20%;
+                        height: 35px;
+                        @include btn;
+                        border-radius: 5px;
+                        background-color: var(--box-pink1);
+
+                        &:hover {
+                            background-color: var(--font-white2);
+                            color: var(--box-pink1);
+                        }
+                    }
+                    .update {
+                        margin-right: 5px;
+                    }
                 }
             }
         }

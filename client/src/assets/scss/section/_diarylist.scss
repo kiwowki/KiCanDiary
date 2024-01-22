@@ -136,7 +136,7 @@
 
                 .list {
                     width: 250px;
-                    height: 280px;
+                    height: 285px;
                     background-color: var(--font-purple1);
                     border: 2px solid var(--font-purple1);
                     border-radius: 30px;
@@ -189,20 +189,20 @@
                         }
                     }
                     .btn__wrap {
-                        width: 100%;
-                        text-align: center;
+                        width: 102%;
                         background-color: #fff;
                         button {
-                            cursor: pointer;
-                            background-color: #4a90e2;
-                            color: var(--font-white2);
-                            padding: 1%;
-                            border: 1px solid black;
-                            border-radius: 5px;
-
+                            @include btn;
+                            width: 50%;
+                            background-color: var(--font-purple2);
+                            padding: 2%;
                             &:hover {
-
+                                color: var(--font-purple2);
+                                background-color: var(--font-white2);
                             }
+                        }
+                        .update {
+                            width: 49%;
                         }
                     }
                 }

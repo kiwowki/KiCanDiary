@@ -5,7 +5,6 @@ import CalendarProps from '../../../util/calendar/CalendarProps'
 
 const LeftCalendar = ({ uid }) => {
     const [postList, setPostList] = useState([])
-    const date = new Date()
 
     const [today, setToday] = useState(() => {
         const now = new Date()
@@ -27,7 +26,7 @@ const LeftCalendar = ({ uid }) => {
                 <div className="calendar relative">
                     <Calendar {...calendarProps} />
                     <div className="today">
-                        <p onClick={() => calendarProps.onChange(date)}>
+                        <p onClick={() => calendarProps.onChange(today)}>
                             Today
                         </p>
                     </div>

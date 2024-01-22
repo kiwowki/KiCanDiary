@@ -1,0 +1,6 @@
+@mixin btn {
+    text-align: center;
+    color: var(--font-white2);
+    cursor: pointer;
+    transition: all 0.1s;
+}
