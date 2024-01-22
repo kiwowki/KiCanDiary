@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import 'react-quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill'
+import { useParams, useNavigate } from 'react-router-dom'
+import update from '../../util/update'
+import diaryDelete from '../../util/diaryDelete'
+
 
 const ViewRight = ({ post, quillRef }) => {
+    const postNum = useParams().postNum
+    const navigate = useNavigate()
+    const { updateLink } = update()
     const [content, setContent] = useState(null)
+
     useEffect(() => {
         if (post && post.content) {
             setContent(JSON.parse(post.content))
@@ -23,8 +31,8 @@ const ViewRight = ({ post, quillRef }) => {
                 value={content}
             />
             <div className="btn__wrap">
-                <button className="update">update</button>
-                <button>delete</button>
+                <button className="update" onClick={(e) => updateLink(e, postNum, navigate)}>update</button>
+                <button onClick={(e)=>diaryDelete(e, postNum, () => navigate('/diaryList'))}>delete</button>
             </div>
         </div>
     )

@@ -8,6 +8,7 @@ import ReactQuill from 'react-quill'
 import { getFormattedDate } from '../../../../../util/calendar/date/dateFormat'
 import monthList from '../../MonthList'
 import update from '../../../util/update'
+import diaryDelete from '../../../util/diaryDelete'
 
 const List = ({ currentDate, currentPage, postsPerPage }) => {
     const uid = useSelector((state) => state.user.uid)
@@ -32,14 +33,6 @@ const List = ({ currentDate, currentPage, postsPerPage }) => {
     const firstPost = lastPost - postsPerPage
     const currentPosts = filteredPostList.slice(firstPost, lastPost)
     // 배열에서 짤라서 일정 길이만 보여주는 것
-
-    const diaryDelete = (e, postNum) => {
-        e.preventDefault();
-        console.log(postNum)
-
-    }
-
-
 
     return (
         <>
@@ -68,7 +61,7 @@ const List = ({ currentDate, currentPage, postsPerPage }) => {
                     </Link>
                     <div className='btn__wrap'>
                         <button className='update' onClick={(e) => updateLink(e, post.postNum, navigate)}>update</button>
-                        <button className='delete' onClick={(e) => diaryDelete(e, post.postNum)}>delete</button>
+                        <button className='delete' onClick={(e) => diaryDelete(e, post.postNum, setPostList)}>delete</button>
                     </div>
                 </div>
             ))}

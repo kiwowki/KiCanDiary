@@ -89,13 +89,27 @@ router.put(`/update/:postNum`, (req, res) => {
     const postNum = req.params.postNum
     const { title, content } = req.body;
 
-    Post.findOne({postNum: postNum}).exec().then((post) => {
-        return post.updateOne({title, content});
-    }).then(()=>{
-        res.status(200).json({ success: true})
+    Post.findOne({ postNum: postNum }).exec().then((post) => {
+        return post.updateOne({ title, content });
+    }).then(() => {
+        res.status(200).json({ success: true })
     })
-    .catch((err) => {
-        res.status(400).json({ success: false})
+        .catch((err) => {
+            res.status(400).json({ success: false })
+            console.log(err)
+        })
+})
+
+router.delete(`/delete/:postNum`, (req, res) => {
+    const postNum = req.params.postNum
+    console.log(postNum)
+
+    Post.findOne({ postNum: postNum }).exec().then((post) => {
+        return post.deleteOne()
+    }).then(() => {
+        res.status(200).json({ success: true })
+    }).catch((err) => {
+        res.status(400).json({ success: false })
         console.log(err)
     })
 })

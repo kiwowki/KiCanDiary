@@ -2,16 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import fetchPost from '../util/view'
 import UpdateRight from './UpdateRight'
-import update from '../util/update'
 
 const DiaryUpdate = () => {
     const params = useParams()
     const postNum = params.postNum
     const [post, setPost] = useState()
     const [date, setDate] = useState({})
-    const [newTitle, setNewTitle] = useState()
-    const [newContent, setNewContent] = useState()
-    const { updatePost } = update()
+  
+   
 
     useEffect(() => {
         fetchPost(postNum, setPost, setDate)
@@ -42,9 +40,7 @@ const DiaryUpdate = () => {
                         <UpdateRight
                             quillRef={quillRef}
                             post={post}
-                            setNewTitle={setNewTitle}
-                            setNewContent={setNewContent}
-                            setPost={setPost}
+                            postNum={postNum}
                         />
                     </div>
                 </div>

@@ -9,13 +9,14 @@ const update = () => {
         }
     }
 
-    const updatePost = async (newTitle, newContent, postNum, quillRef) => {
+    const updatePost = async (e, newTitle, newContent, postNum, quillRef) => {
+        e.preventDefault()
         const content = quillRef.current.getEditor().getContents()
 
         console.log(content)
         const contentString = JSON.stringify(content)
-        if (window.confirm('일기를 수정하시겠습니까?')) {
-            if (newTitle && newContent) {
+        if (window.confirm('수정을 완료하시겠습니까?')) {
+            if (newTitle || newContent) {
                 try {
                     const response = await axios.put(
                         `/api/post/update/${postNum}`,
@@ -38,8 +39,13 @@ const update = () => {
             }
         }
     }
-
-    return { updateLink, updatePost }
+    const cancel = (e) => {
+        e.preventDefault()
+        if(window.confirm("수정을 취소하겠습니까?")){
+            window.location.href = '/diarylist'
+        }
+    }
+    return { updateLink, updatePost, cancel }
 }
 
 export default update
