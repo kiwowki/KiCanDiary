@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
 import user from '../../assets/img/user.png'
 import { useSelector } from 'react-redux'
+import LogoutHandler from './handle/logOutHandler'
+import navigation from './nav/navLink'
+import nav from './nav/navList'
 
 const Aside = () => {
     const displayName = useSelector((state) => state.user.displayName)
-
-    console.log(displayName)
+    const { NavLink } = navigation()
+    const { list } = nav()
 
     return (
         <aside id="aside">
@@ -24,51 +27,54 @@ const Aside = () => {
                 </div>
                 <nav className="nav">
                     <ul className="box1">
-                        <li className="pt10">
-                            <Link to={'/diarylist'}>Diary</Link>
-                        </li>
-                        <li>
-                            <Link to={'/voca'}>Voca list</Link>
-                        </li>
-                        <li>
-                            <Link to={'/mypage'}>My page</Link>
-                        </li>
-                        <li className="">
-                            <Link to={'/'}>Logout</Link>
-                        </li>
+                        {list.map((li, index) => (
+                            <NavLink key={index} to={li.key} data={li.data}>
+                                {li.value}
+                            </NavLink>
+                        ))}
+                        {displayName ? (
+                            <li className="">
+                                <Link onClick={() => LogoutHandler()}>
+                                    Logout
+                                </Link>
+                            </li>
+                        ) : (
+                            <li className="">
+                                <Link to={'/login'}>LogIn</Link>
+                            </li>
+                        )}
                     </ul>
                 </nav>
                 <div className="user">
-                    <Link to={'/login'}>
-                        {displayName
-                            ? (
-                                <>
-                                    <div className="user__profile">
-                                        <img src={user} alt="" />
-                                    </div>
-                                    <div className="user__info">
-                                        <span className="user__name">
+                    <div>
+                        {displayName ? (
+                            <>
+                                <div className="user__profile">
+                                    <img src={user} alt="" />
+                                </div>
+                                <div className="user__info">
+                                    <span className="user__name">
                                         {displayName}
-                                            <em>님</em>
-                                            <br />
-                                        </span>
-                                        <span> 환영합니다.</span>
-                                    </div>
-                                </>
-                            )
-                            : <>
+                                        <em>님</em>
+                                        <br />
+                                    </span>
+                                    <span> 환영합니다.</span>
+                                </div>
+                            </>
+                        ) : (
+                            <>
                                 <div className="user__profile">
                                     <img src={user} alt="" />
                                 </div>
 
                                 <div className="user__info">
-                                    <span>로그인 바로가기</span>
+                                    <span>로그인 해주세요</span>
                                 </div>
-                            </>}
-                    </Link>
-
+                            </>
+                        )}
+                    </div>
                 </div>
-                <div className='bottomSticker'>
+                <div className="bottomSticker">
                     <div className="small"></div>
                     <div className="big"></div>
                 </div>

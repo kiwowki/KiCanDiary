@@ -5,7 +5,7 @@
     position: relative;
 
     &::before {
-        content: "";
+        content: '';
         position: absolute;
         background-size: cover;
         background-position: center;
@@ -15,7 +15,7 @@
         width: 25px;
         height: 25px;
         transform: rotate(3deg);
-        background-image: url("../../../img/pink-11.gif");
+        background-image: url('../../../img/pink-11.gif');
     }
 
     .aside__wrap {
@@ -43,7 +43,7 @@
                 }
                 &::before,
                 &::after {
-                    content: "";
+                    content: '';
                     position: absolute;
                     background-size: cover;
                     background-position: center;
@@ -53,14 +53,14 @@
                     left: 65%;
                     width: 11px;
                     height: 9px;
-                    background-image: url("../../../img/small.png");
+                    background-image: url('../../../img/small.png');
                 }
                 &::after {
                     top: 18%;
                     left: 77%;
                     width: 23px;
                     height: 19px;
-                    background-image: url("../../../img/big.png");
+                    background-image: url('../../../img/big.png');
                 }
             }
         }
@@ -74,7 +74,7 @@
                         text-align: left;
                         width: 100%;
                         display: inline-block;
-                        padding: 5px 0px 10px 25px;
+                        padding: 5px 0px 5px 25px;
                         font-size: 1.2rem;
                         // color: var(--font-purple1);
                         color: var(--font-white2);
@@ -83,6 +83,9 @@
                         &:hover {
                             color: var(--white-hover);
                         }
+                    }
+                    .active {
+                        color: var(--white-hover);
                     }
 
                     &:last-child a {
@@ -93,8 +96,6 @@
                             color: var(--white-hover);
                         }
                     }
-
-                   
 
                     .aside__diary {
                         margin-top: -10px;
@@ -111,7 +112,7 @@
                                 margin-top: 0;
 
                                 &::before {
-                                    content: "";
+                                    content: '';
                                     position: absolute;
                                     width: 8px;
                                     height: 8px;
@@ -130,12 +131,12 @@
 
         .user {
             margin-top: 200px;
-            a {
+            > div {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 cursor: pointer;
-                
+
                 .user__profile {
                     background-color: var(--box-purple1);
                     border-radius: 50%;
@@ -159,14 +160,13 @@
                         font-size: 1rem;
                         font-family: var(--mainfont-Shrikhand);
                         color: var(--font-purple1);
-                        
+
                         em {
                             color: black;
                         }
                     }
                 }
             }
-
         }
         .bottomSticker {
             width: 100%;
@@ -174,7 +174,7 @@
             height: 200px;
             > div {
                 position: absolute;
-                background-image: url("../../../img/pink-11.gif");
+                background-image: url('../../../img/pink-11.gif');
                 background-size: cover;
                 background-position: center;
             }
@@ -228,7 +228,7 @@
                         font-size: 16px;
                         color: var(--white);
                         -webkit-text-stroke: 1px var(--black);
-
+                        transition: all 0.2s;
                         &:hover {
                             color: var(--font-purple2);
                         }
@@ -248,14 +248,21 @@
                     display: flex;
                     align-items: center;
 
-                    a {
-                        color: var(--white);
-                        -webkit-text-stroke: 1px var(--black);
-                        font-size: 14px;
-                        padding-right: 20px;
+                    ul {
+                        li {
+                            a {
+                                color: var(--white);
+                                -webkit-text-stroke: 1px var(--black);
+                                font-size: 14px;
+                                padding-right: 20px;
 
-                        &:hover {
-                            color: var(--font-purple1);
+                                &:hover {
+                                    color: var(--font-purple1);
+                                }
+                            }
+                            .active {
+                                color: var(--font-purple1);
+                            }
                         }
                     }
                 }
@@ -275,6 +282,7 @@
                         align-items: center;
 
                         em {
+                            font-size: 1rem;
                             display: inline-block;
                             color: var(--black);
                             font-family: var(--marc);
@@ -391,7 +399,7 @@
                 }
                 &::before {
                     position: absolute;
-                    content: "";
+                    content: '';
                     width: 105px;
                     height: 30px;
                     background-color: var(--white);

@@ -1,61 +1,60 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes} from "react-router-dom";
-
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { loginUser, clearUser } from './reducer/userSlice'
 import firebase from './firebase.js'
-
-
-import "./assets/scss/style.scss";
-import Header from "./components/layout/Header";
-import HeaderMobile from "./components/layout/Header_m";
-
-import Main from "./components/layout/Main.jsx";
-import Home from "./pages/Home";
-
-
-import VocaList from "./components/voca/VocaList";
-import Join from "./components/user/Join";
-import Login from "./components/user/Login";
-import Mypage from "./components/user/Mypage";
-import Footer from "./components/layout/Footer";
-
-import DiaryList from "./components/diary/list/DiaryList.jsx";
-
-import DiaryView from "./components/diary/view/DiaryView.jsx";
-import Write from "./components/diary/write/Write.jsx";
-import MainHome from "./components/main/MainHome.jsx";
-import DiaryUpdate from "./components/diary/update/DiaryUpdate.jsx";
+import './assets/scss/style.scss'
+import Header from './components/layout/Header'
+import HeaderMobile from './components/layout/Header_m'
+import Main from './components/layout/Main.jsx'
+import VocaList from './components/voca/VocaList'
+import Join from './components/user/joinpage/Join'
+import Login from './components/user/Login'
+import Mypage from './components/user/Mypage'
+import Footer from './components/layout/Footer'
+import DiaryList from './components/diary/list/DiaryList.jsx'
+import DiaryView from './components/diary/view/DiaryView.jsx'
+import Write from './components/diary/write/Write.jsx'
+import MainHome from './components/main/MainHome.jsx'
+import DiaryUpdate from './components/diary/update/DiaryUpdate.jsx'
 
 const App = () => {
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(false)
+
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 480);
-        };
+            setIsMobile(window.innerWidth <= 480)
+        }
 
-        handleResize();
+        handleResize()
 
-        window.addEventListener("resize", handleResize);
+        window.addEventListener('resize', handleResize)
 
         return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        firebase.auth().onAuthStateChanged((userInfo) => {
-            console.log("userInfo : " + userInfo)
-            if (userInfo !== null) {
-                dispatch(loginUser(userInfo.multiFactor.user));
-            } else {
-                dispatch(clearUser())
-            }
-        })
-    }, [dispatch]);
-
+        const unsubscribe = firebase
+            .auth()
+            .onAuthStateChanged(async (userInfo) => {
+                console.log('userInfo:' + userInfo)
+                if (userInfo !== null) {
+                    await dispatch(loginUser(userInfo.multiFactor.user))
+                } else {
+                    dispatch(clearUser())
+                }
+            })
+        return () => {
+            unsubscribe()
+        }
+    }, [dispatch])
+    // 현재 문제
+    // 회원가입을 하는 순간 유저 정보가 생김
+    // 그런데 유저 정보가 생기더라도 상태 변경을 감지하지 못함
     return (
         <BrowserRouter>
             <Main>
@@ -73,7 +72,12 @@ const App = () => {
                     {/* Write 페이지 */}
                     <Route
                         path="/write/:date"
-                        element={<>{/* {isMobile ? <HeaderMobile /> : <Header />} */}<Write /></>}
+                        element={
+                            <>
+                                {/* {isMobile ? <HeaderMobile /> : <Header />} */}
+                                <Write />
+                            </>
+                        }
                     />
 
                     <Route
@@ -114,32 +118,44 @@ const App = () => {
                             </>
                         }
                     />
-                    <Route path="/join" element={
-                        <>
-                            {isMobile ? <HeaderMobile /> : <Header />}
-                            <Join />
-                        </>
-                    } />
-                    <Route path="/login" element={
-                        <>
-                            {isMobile ? <HeaderMobile /> : <Header />}
-                            <Login />
-                        </>
-                    } />
-                    <Route path="/mypage" element={
-                        <>
-                            {isMobile ? <HeaderMobile /> : <Header />}
-                            <Mypage />
-                        </>
-                    } />
+                    <Route
+                        path="/join"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <Join />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/login"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <Login />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/mypage"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <Mypage />
+                            </>
+                        }
+                    />
 
                     {/* 다른 페이지에는 Header가 나오도록 설정 */}
-                    <Route path="/*" element={isMobile ? <HeaderMobile /> : <Header />} />
+                    <Route
+                        path="/*"
+                        element={isMobile ? <HeaderMobile /> : <Header />}
+                    />
                 </Routes>
             </Main>
             <Footer />
         </BrowserRouter>
-    );
-};
+    )
+}
 
-export default App;
+export default App

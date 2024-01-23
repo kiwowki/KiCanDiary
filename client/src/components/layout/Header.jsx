@@ -1,66 +1,44 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import userImg from '../../assets/img/user.png'
 import { useSelector } from 'react-redux'
-import firebase from '../../firebase.js'
+import LogoutHandler from './handle/logOutHandler'
+import navigation from './nav/navLink'
+import nav from './nav/navList'
+
 const Header = () => {
     const user = useSelector((state) => state.user)
-    const navigate = useNavigate()
-    const LogoutHandler = () => {
-        firebase.auth().signOut()
-        navigate('/')
-    }
-    
+    const { NavLink, LoginLink } = navigation()
+    const { list, login } = nav()
+
     return (
         <header id="header">
             <div className="header__wrap">
                 <nav className="nav">
                     <ul className="nav__list">
-                        <li>
-                            <Link to={'/'} data-first-letter="H">
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={'/diarylist'}
-                                data-first-letter="D"
-                                className="active"
-                            >
-                                Diary
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={'/voca'} data-first-letter="V">
-                                VOCA list
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={'/mypage'} data-first-letter="M">
-                                My page
-                            </Link>
-                        </li>
+                        {list.map((li, index) => (
+                            <NavLink key={index} to={li.key} data={li.data}>
+                                {li.value}
+                            </NavLink>
+                        ))}
                     </ul>
                     <div className="nav__session">
                         <div className="right">
-                            {user.accessToken === '' ? (
-                                <ul>
-                                    <li>
-                                        <Link to="/login">login</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/Join">join</Link>
-                                    </li>
-                                </ul>
-                            ) : (
-                                <ul>
+                            <ul>
+                                {user.accessToken === '' ? (
+                                    login.map((user, index) => (
+                                        <LoginLink key={index} to={user.key}>
+                                            {user.value}
+                                        </LoginLink>
+                                    ))
+                                ) : (
                                     <li>
                                         <Link onClick={() => LogoutHandler()}>
                                             logout
                                         </Link>
                                     </li>
-                                </ul>
-                            )}
+                                )}
+                            </ul>
                         </div>
                         <div className="user__info box1">
                             {user.accessToken === '' ? (

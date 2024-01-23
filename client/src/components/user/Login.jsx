@@ -3,20 +3,20 @@ import { Link, useNavigate } from 'react-router-dom'
 import firebase from '../../firebase.js'
 
 const Login = () => {
-    const [Email, setEmail] = useState('')
-    const [Pass, setPass] = useState('')
+    const [email, setEmail] = useState('')
+    const [pass, setPass] = useState('')
     const [errorMsg, setErrorMsg] = useState('')
 
     const navigate = useNavigate()
 
     const LoginFunc = async (e) => {
         e.preventDefault()
-        if (!(Email && Pass)) {
+        if (!(email && pass)) {
             return alert('이메일과 비밀번호를 채워주세요')
         }
 
         try {
-            await firebase.auth().signInWithEmailAndPassword(Email, Pass)
+            await firebase.auth().signInWithEmailAndPassword(email, pass)
             alert('로그인 성공')
             navigate('/')
         } catch (err) {
@@ -50,7 +50,7 @@ const Login = () => {
                             name="id"
                             className="login__input"
                             required
-                            value={Email}
+                            value={email}
                             onChange={(e) => setEmail(e.currentTarget.value)}
                         />
                     </div>
@@ -69,7 +69,7 @@ const Login = () => {
                             name="password"
                             className="login__input"
                             required
-                            value={Pass}
+                            value={pass}
                             onChange={(e) => setPass(e.currentTarget.value)}
                         />
                     </div>
