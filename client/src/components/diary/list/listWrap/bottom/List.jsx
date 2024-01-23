@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import diaryList from '../../DiaryList'
 import { Link, useNavigate } from 'react-router-dom'
 import { getRandomSticker } from '../../../../../util/stickers/getRandomSticker'
@@ -15,12 +15,14 @@ const List = ({ currentDate, currentPage, postsPerPage }) => {
     const [postList, setPostList] = useState([])
     const [filteredPostList, setFilteredPostList] = useState([])
     const navigate = useNavigate()
-    const { updateLink } = update();
-
+    const { updateLink } = update()
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        diaryList(setPostList, uid)
-    }, [uid])
+        if (uid && dispatch) {
+            diaryList(setPostList, uid, dispatch)
+        }
+    }, [uid, dispatch])
 
     useEffect(() => {
         const sortedPosts = monthList(currentDate, postList)
@@ -44,10 +46,7 @@ const List = ({ currentDate, currentPage, postsPerPage }) => {
                                 {getFormattedDate(post.createdAt).day}
                             </span>
                             <span className="sticker">
-                                <img
-                                    src={getRandomSticker()}
-                                    alt="Sticker"
-                                />
+                                <img src={getRandomSticker()} alt="Sticker" />
                             </span>
                         </div>
                         <div className="day__diary">
@@ -59,34 +58,50 @@ const List = ({ currentDate, currentPage, postsPerPage }) => {
                             />
                         </div>
                     </Link>
-                    <div className='btn__wrap'>
-                        <button className='update' onClick={(e) => updateLink(e, post.postNum, navigate)}>update</button>
-                        <button className='delete' onClick={(e) => diaryDelete(e, post.postNum, setPostList)}>delete</button>
+                    <div className="btn__wrap">
+                        <button
+                            className="update"
+                            onClick={(e) =>
+                                updateLink(e, post.postNum, navigate)
+                            }
+                        >
+                            update
+                        </button>
+                        <button
+                            className="delete"
+                            onClick={(e) =>
+                                diaryDelete(e, post.postNum, setPostList)
+                            }
+                        >
+                            delete
+                        </button>
                     </div>
                 </div>
             ))}
-            {Array(7 - currentPosts.length).fill().map((_, key) => (
-                <div className="list null" key={key + currentPosts.length}>
-                    <Link to={`#`}>
-                        <div className="weekday">
-                            <span className="date"></span>
-                            <span className="sticker">
-                                <img
-                                    src={getRandomSticker()}
-                                    alt="Sticker"
+            {Array(7 - currentPosts.length)
+                .fill()
+                .map((_, key) => (
+                    <div className="list null" key={key + currentPosts.length}>
+                        <Link to={`#`}>
+                            <div className="weekday">
+                                <span className="date"></span>
+                                <span className="sticker">
+                                    <img
+                                        src={getRandomSticker()}
+                                        alt="Sticker"
+                                    />
+                                </span>
+                            </div>
+                            <div className="day__diary">
+                                <h3 className="title">작성된 일기가 없어요</h3>
+                                <ReactQuill
+                                    className="viewQuill"
+                                    readOnly={true}
                                 />
-                            </span>
-                        </div>
-                        <div className="day__diary">
-                            <h3 className="title">작성된 일기가 없어요</h3>
-                            <ReactQuill
-                                className="viewQuill"
-                                readOnly={true}
-                            />
-                        </div>
-                    </Link>
-                </div>
-            ))}
+                            </div>
+                        </Link>
+                    </div>
+                ))}
         </>
     )
 }

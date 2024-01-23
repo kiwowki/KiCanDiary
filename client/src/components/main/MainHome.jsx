@@ -2,11 +2,12 @@ import React from 'react'
 import Right from './right/Right'
 import LeftCalendar from './left/LeftCalendar'
 import Aside from '../layout/Aside'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import useMonthNav from '../diary/list/listWrap/navigation/useMonthNav'
 
 const MainHome = () => {
     const uid = useSelector((state) => state.user.uid)
+
     const { currentDate } = useMonthNav()
     return (
         <div id="wrap">

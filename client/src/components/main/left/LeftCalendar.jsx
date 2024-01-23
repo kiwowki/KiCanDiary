@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import Calendar from 'react-calendar'
 import diaryList from '../../diary/list/DiaryList'
 import CalendarProps from '../../../util/calendar/CalendarProps'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { BeatLoader } from 'react-spinners'
 const LeftCalendar = ({ uid }) => {
     const [postList, setPostList] = useState([])
-
+    const dispatch = useDispatch()
+    const isLoading = useSelector((state) => state.loading)
     const [today, setToday] = useState(() => {
         const now = new Date()
         now.setHours(0, 0, 0, 0)
@@ -16,15 +18,26 @@ const LeftCalendar = ({ uid }) => {
     }-${today.getDate()}`
 
     useEffect(() => {
-        diaryList(setPostList, uid)
-    }, [uid])
+        if (uid && dispatch) {
+            diaryList(setPostList, uid, dispatch)
+        }
+    }, [uid, dispatch])
 
     const calendarProps = CalendarProps({ params, postList, today })
     return (
+        // {isLoading ? Loding}
         <div className="left">
             <div className="date__info">
                 <div className="calendar relative">
-                    <Calendar {...calendarProps} />
+                    {isLoading ? (
+                        <BeatLoader
+                            color={'#123abc'}
+                            loading={true}
+                            size={150}
+                        />
+                    ) : (
+                        <Calendar {...calendarProps} />
+                    )}
                     <div className="today">
                         <p onClick={() => calendarProps.onChange(today)}>
                             Today
