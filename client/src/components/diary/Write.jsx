@@ -76,21 +76,6 @@ const Write = () => {
     const [resultSearchList, setResultSearchList] = useState([])
 
 
-
-    // const sendDataToServer = async (data) => {
-    //     try {
-    //         const response = await axios.post('/api/voca/searchlist', { data, uid: user.uid });
-    //         if (response.data.success) {
-    //             alert("단어 저장 성공")
-    //         } else {
-    //             alert("단어 저장 실패")
-    //         }
-
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
-
     // 구글 단어장
     const submitSearchList = async () => {
         const List = [];

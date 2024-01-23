@@ -5,6 +5,7 @@ const router = express.Router();
 const { User } = require("../model/User.js");
 const { Counter } = require("../model/Counter.js");
 const { Vocasearch } = require("../model/Vocasearch.js")
+const { Vocawrite } = require("../model/Voca.js")
 
 router.post('/searchlist', async (req, res) => {
     const List = req.body.data;
@@ -64,6 +65,44 @@ router.post('/showsearchlist', async (req, res) => {
             console.log(err)
             res.status(400).json({ success: false })
         })
+})
+
+router.post('/vocalist', async (req, res) => {
+    const List = req.body.data;
+    console.log(List)
+    const uid = req.body.uid;
+    try {
+        let temp = {
+            meaning: List[0].meaning,
+            word: List[0].word,
+            uid: uid,
+        }
+        console.log(temp)
+        Counter.findOne({ name: "counter" })
+            .exec()
+            .then((counter) => {
+                temp.vocaNum = counter.vocaNum;
+
+                User.findOne({ uid: temp.uid })
+                    .exec()
+                    .then((userInfo) => {
+                        temp.author = userInfo._id;
+
+                        const MyVoca = new Vocawrite(temp)
+                        MyVoca
+                            .save()
+                            .then(() => {
+                                Counter.updateOne({ name: "counter" }, { $inc: { vocaNum: 1 } }).then(() => {
+                                });
+                            });
+                    });
+            });
+
+        res.status(200).json({ success: true });
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ success: false });
+    }
 })
 
 

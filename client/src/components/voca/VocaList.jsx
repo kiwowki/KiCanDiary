@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 const VocaList = () => {
+    const user = useSelector((state) => state.user)
     const [isInputVisible, setInputVisible] = useState(false)
 
     const searchClickHandler = () => {
@@ -13,18 +15,101 @@ const VocaList = () => {
 
     }, [])
 
+    // search voca List
     const [searchList, setSearchList] = useState([])
-    const [searchListmeaning, setSearchListMeaning] = useState([])
-    const [searchListword, setSearchListWord] = useState([])
     const fetchSearchList = async () => {
         try {
             const response = await axios.post('/api/voca/showsearchlist')
             setSearchList(response.data.vocasearchList)
-            console.log(response.data.vocasearchList)
-            setSearchListMeaning(setSearchList.word)
-            setSearchListWord(setSearchList.meaning[0])
+            // console.log(response.data.vocasearchList)
         } catch (err) {
             console.log(err)
+        }
+    }
+
+    // searchList -> voca
+    const [checkboxList, setCheckboxList] = useState([]);
+    const [checkBoxListAll, setCheckboxListAll] = useState(false)
+
+    const isCheckboxChecked = (index) => {
+        return checkboxList.includes(index)
+    }
+
+    const handleCheckboxToggle = (i) => {
+        const updatedList = [...checkboxList];
+        const indexPosition = updatedList.indexOf(i);
+
+        if (indexPosition > -1) {
+            setCheckboxListAll(false)
+            updatedList.splice(indexPosition, 1); // 이미 체크된 항목이라면 리스트에서 제거
+        } else {
+            updatedList.push(i); // 체크되지 않은 항목이라면 리스트에 추가
+        }
+        setCheckboxList(updatedList);
+        console.log(checkboxList)
+    }
+
+    const handleCheckboxToggleAll = () => {
+        if (checkboxList.length === searchList.length) {
+            // If all checkboxes are currently selected, unselect all
+            setCheckboxListAll(false)
+            setCheckboxList([]);
+        } else {
+            // If not all checkboxes are selected, select all
+            setCheckboxListAll(true)
+            const newList = searchList.map((_, index) => index);
+            setCheckboxList(newList);
+        }
+        console.log(checkboxList)
+    }
+
+    const renderCheckboxes = () => {
+        return Array.isArray(searchList) &&
+            searchList.map((search, index) => (
+                <div key={index}>
+                    <label htmlFor="SearchVoca">
+                        <input
+                            type="checkbox"
+                            id={`SearchVoca s${index}`}
+                            name={`SearchVoca s${index}`}
+                            checked={isCheckboxChecked(index)}
+                            onChange={() => handleCheckboxToggle(index)}
+                        />
+                        <p className="meaning">{search.word}</p>
+                        <p className="word">{search.meaning}</p>
+                    </label>
+                </div>
+            ))
+    }
+
+    const renderCheckboxesAll = () => {
+        return (
+            <label htmlFor="SelectAllBtn">
+                <input
+                    type="checkbox"
+                    id="SelectAllBtn"
+                    name="SelectAllBtn"
+                    checked={checkBoxListAll}
+                    onClick={handleCheckboxToggleAll}
+                />
+                <p>select all</p>
+            </label>
+        )
+    }
+
+    // 단어 voca에 저장
+    const wirteVoca = async () => {
+        const selectedWords = checkboxList.map(index => searchList[index]);
+        // console.log(selectedWords);
+        try {
+            const response = await axios.post('/api/voca/vocalist', { data: selectedWords, uid: user.uid })
+            if (response.data.success) {
+                alert("단어 저장 성공");
+            } else {
+                alert("단어 저장 실패");
+            }
+        } catch (err) {
+            console.log(err);
         }
     }
 
@@ -83,6 +168,7 @@ const VocaList = () => {
                             <button className="del__btn">Delete</button>
                         </div>
                     </div>
+
                     <div className="searchlist voca__right">
                         <h2>Search List</h2>
                         <div className="contents">
@@ -92,45 +178,21 @@ const VocaList = () => {
                                     <h3>WORD</h3>
                                 </div>
                                 <div className="searchlist__voca__contents">
-
-
-                                    {searchList.map((search, index) => (
-                                        <>
-                                            <label htmlFor="SearchVoca s1">
-                                                <input
-                                                    type="checkbox"
-                                                    id="SearchVoca s1"
-                                                    name="SearchVoca s1"
-                                                />
-                                                <p className="meaning">{search.word}</p>
-
-
-                                                <p className="word">{search.meaning}</p>
-                                            </label>
-                                        </>
-                                    ))}
-
-
+                                    {renderCheckboxes()}
                                 </div>
                             </div>
                             <div className="contents__bot">
                                 <div className="select__all">
-                                    <label htmlFor="SelectAllBtn">
-                                        <input
-                                            type="checkbox"
-                                            id="SelectAllBtn"
-                                            name="SelectAllBtn"
-                                        />
-                                        <p>select all</p>
-                                    </label>
+                                    {renderCheckboxesAll()}
                                 </div>
                             </div>
                         </div>
                         <div className="searchlist__btn">
-                            <button className="add__btn">Add</button>
+                            <button className="add__btn" onClick={wirteVoca}>Add</button>
                             <button className="del__btn">Delete</button>
                         </div>
                     </div>
+
                     <div className="correction voca__right">
                         <h2>Correction</h2>
                         <div className="contents">
