@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 // 스키마
-// const { Post } = require("../model/Post.js");
 const { User } = require("../model/User.js");
 const { Counter } = require("../model/Counter.js");
 const { Vocasearch } = require("../model/Vocasearch.js")
@@ -9,14 +8,13 @@ const { Vocawrite } = require("../model/Voca.js")
 
 router.post('/searchlist', async (req, res) => {
     const List = req.body.data;
-    console.log(List)
     const uid = req.body.uid;
     const result = [];
+
     try {
         for (let i = 0; i < List.length; i++) {
             const item = List[i];
             const key = item[0];
-
             const value = item[1];
             const data = [key, value];
             result.push(data);
@@ -26,26 +24,19 @@ router.post('/searchlist', async (req, res) => {
                 word: value,
                 uid: uid,
             }
-            Counter.findOne({ name: "counter" })
-                .exec()
-                .then((counter) => {
-                    temp.vocalistNum = counter.vocalistNum;
 
-                    User.findOne({ uid: temp.uid })
-                        .exec()
-                        .then((userInfo) => {
-                            temp.author = userInfo._id;
+            const counter = await Counter.findOne({ name: "counter" }).exec();
+            temp.vocalistNum = counter.vocalistNum;
 
-                            const VocaList = new Vocasearch(temp)
-                            VocaList
-                                .save()
-                                .then(() => {
-                                    Counter.updateOne({ name: "counter" }, { $inc: { vocalistNum: 1 } }).then(() => {
-                                    });
-                                });
-                        });
-                });
+            const userInfo = await User.findOne({ uid: temp.uid }).exec();
+            temp.author = userInfo._id;
+
+            const VocaList = new Vocasearch(temp);
+            await VocaList.save();
+
+            await Counter.updateOne({ name: "counter" }, { $inc: { vocalistNum: 1 } });
         }
+
         res.status(200).json({ success: true });
     } catch (err) {
         console.log(err);
@@ -54,59 +45,58 @@ router.post('/searchlist', async (req, res) => {
 });
 
 router.post('/showsearchlist', async (req, res) => {
-    Vocasearch
-        .find()
-        .limit(50)
-        .exec()
-        .then((result) => {
-            res.status(200).json({ success: true, vocasearchList: result })
-        })
-        .catch((err) => {
-            console.log(err)
-            res.status(400).json({ success: false })
-        })
-})
+    try {
+        const result = await Vocasearch.find().limit(50).exec();
+        res.status(200).json({ success: true, vocasearchList: result });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: err.message });
+    }
+});
 
 router.post('/vocalist', async (req, res) => {
     const List = req.body.data;
-    console.log(List)
     const uid = req.body.uid;
+
     try {
-        let temp = {
-            meaning: List[0].meaning,
-            word: List[0].word,
-            uid: uid,
-        }
-        console.log(temp)
-        Counter.findOne({ name: "counter" })
-            .exec()
-            .then((counter) => {
-                temp.vocaNum = counter.vocaNum;
+        const result = List.map(async item => {
+            let temp = {
+                meaning: item.meaning,
+                word: item.word,
+                uid: uid,
+            }
 
-                User.findOne({ uid: temp.uid })
-                    .exec()
-                    .then((userInfo) => {
-                        temp.author = userInfo._id;
+            const counter = await Counter.findOne({ name: "counter" }).exec();
+            temp.vocaNum = counter.vocaNum;
 
-                        const MyVoca = new Vocawrite(temp)
-                        MyVoca
-                            .save()
-                            .then(() => {
-                                Counter.updateOne({ name: "counter" }, { $inc: { vocaNum: 1 } }).then(() => {
-                                });
-                            });
-                    });
-            });
+            const userInfo = await User.findOne({ uid: temp.uid }).exec();
+            temp.author = userInfo._id;
 
+            const MyVoca = new Vocawrite(temp);
+            await MyVoca.save();
+
+            await Counter.updateOne({ name: "counter" }, { $inc: { vocaNum: 1 } });
+
+            return temp;
+        });
+
+        await Promise.all(result);
         res.status(200).json({ success: true });
+
     } catch (err) {
         console.log(err);
         res.status(400).json({ success: false });
     }
+});
+
+router.post('/showvocalist', async (req, res) => {
+    try {
+        const result = await Vocawrite.find().exec();
+        res.status(200).json({ success: true, vocaList: result });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: err.message });
+    }
 })
-
-
-
-
 
 module.exports = router;

@@ -12,7 +12,7 @@ const VocaList = () => {
 
     useEffect(() => {
         fetchSearchList();
-
+        fetchVocaList();
     }, [])
 
     // search voca List
@@ -21,7 +21,6 @@ const VocaList = () => {
         try {
             const response = await axios.post('/api/voca/showsearchlist')
             setSearchList(response.data.vocasearchList)
-            // console.log(response.data.vocasearchList)
         } catch (err) {
             console.log(err)
         }
@@ -46,16 +45,14 @@ const VocaList = () => {
             updatedList.push(i); // 체크되지 않은 항목이라면 리스트에 추가
         }
         setCheckboxList(updatedList);
-        console.log(checkboxList)
+        // console.log(checkboxList)
     }
 
     const handleCheckboxToggleAll = () => {
         if (checkboxList.length === searchList.length) {
-            // If all checkboxes are currently selected, unselect all
             setCheckboxListAll(false)
             setCheckboxList([]);
         } else {
-            // If not all checkboxes are selected, select all
             setCheckboxListAll(true)
             const newList = searchList.map((_, index) => index);
             setCheckboxList(newList);
@@ -63,6 +60,7 @@ const VocaList = () => {
         console.log(checkboxList)
     }
 
+    // layout
     const renderCheckboxes = () => {
         return Array.isArray(searchList) &&
             searchList.map((search, index) => (
@@ -98,7 +96,7 @@ const VocaList = () => {
     }
 
     // 단어 voca에 저장
-    const wirteVoca = async () => {
+    const writeVoca = async () => {
         const selectedWords = checkboxList.map(index => searchList[index]);
         // console.log(selectedWords);
         try {
@@ -113,6 +111,101 @@ const VocaList = () => {
         }
     }
 
+
+    // voca List
+    const [vocaList, setVocaList] = useState([])
+    const fetchVocaList = async () => {
+        try {
+            const response = await axios.post('/api/voca/showvocalist')
+            setVocaList(response.data.vocaList)
+            console.log(response.data.vocaList)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const [vocacheckboxList, setVocaCheckBoxList] = useState([])
+    const [vocacheckboxListAll, setvocacheckboxListAll] = useState(false)
+    const isVocaCheckboxChecked = (index) => {
+        return vocacheckboxList.includes(index)
+    }
+
+    const handleVocaCheckboxToggle = (i) => {
+        const updatedList = [...vocacheckboxList];
+        const indexPosition = updatedList.indexOf(i);
+
+        if (indexPosition > -1) {
+            setvocacheckboxListAll(false)
+            updatedList.splice(indexPosition, 1)
+        } else {
+            updatedList.push(i)
+        }
+        setVocaCheckBoxList(updatedList);
+        console.log(updatedList)
+    }
+
+    const handleVocaCheckboxToggleAll = () => {
+        if (vocacheckboxList.length === vocaList.length) {
+            setvocacheckboxListAll(false)
+            setVocaCheckBoxList([]);
+        } else {
+            setvocacheckboxListAll(true)
+            const newList = vocaList.map((_, index) => index);
+            setVocaCheckBoxList(newList)
+        }
+    }
+
+    // 단어 삭제
+    const deleteVoca = async () => {
+        const selectedWords = vocacheckboxList.map(index => vocaList[index]);
+        // console.log(index);
+        // try {
+        //     const response = await axios.post('/api/voca/deletevoca', { data: selectedWords, uid: user.uid })
+        //     if (response.data.success) {
+        //         alert("단어 저장 성공");
+        //     } else {
+        //         alert("단어 저장 실패");
+        //     }
+        // } catch (err) {
+        //     console.log(err);
+        // }
+    }
+
+    // layout
+    const vocarendercheckboxes = () => {
+        return Array.isArray(vocaList) &&
+
+            vocaList.map((voca, index) => (
+                <label htmlFor="mycollection" index={index}>
+                    <input
+                        type="checkbox"
+                        id={`mycollection m${index}`}
+                        name={`mycollection m${index}`}
+                        checked={isVocaCheckboxChecked(index)}
+                        onChange={() => handleVocaCheckboxToggle(index)}
+                    />
+                    <p className="english">{voca.word}</p>
+                    <p className="korean">{voca.meaning}</p>
+                </label>
+            ))
+    }
+
+    const vocarenderCheckboxesAll = () => {
+        return (
+            <label htmlFor="SelectAllBtn">
+                <input
+                    type="checkbox"
+                    id="SelectAllBtn"
+                    name="SelectAllBtn"
+                    checked={vocacheckboxListAll}
+                    onChange={handleVocaCheckboxToggleAll}
+                />
+                <p>select all</p>
+            </label>
+        )
+    }
+
+
     return (
         <div id="wrap">
             <div id="vocalist" className="section__border">
@@ -120,26 +213,17 @@ const VocaList = () => {
                     <div className="mycollection">
                         <h2>My Collection</h2>
                         <div className="contents">
+
                             <div className="contents__top">
                                 <div className="mycollection__voca__title">
                                     <h3>ENGLISH</h3>
                                     <h3>KOREAN</h3>
                                 </div>
                                 <div className="mycollection__voca__contents">
-                                    <label htmlFor="mycollection m1">
-                                        <input
-                                            type="checkbox"
-                                            id="mycollection m1"
-                                            name="mycollection m1"
-                                        />
-                                        <p className="english">
-
-
-                                        </p>
-                                        <p className="korean">멋진</p>
-                                    </label>
+                                    {vocarendercheckboxes()}
                                 </div>
                             </div>
+
                             <div className="contents__bot">
                                 <div className="search__wrap">
                                     <span onClick={searchClickHandler}></span>
@@ -152,20 +236,14 @@ const VocaList = () => {
                                     />
                                 </div>
                                 <div className="select__all">
-                                    <label htmlFor="SelectAllBtn">
-                                        <input
-                                            type="checkbox"
-                                            id="SelectAllBtn"
-                                            name="SelectAllBtn"
-                                        />
-                                        <p>select all</p>
-                                    </label>
+                                    {vocarenderCheckboxesAll()}
                                 </div>
                             </div>
                         </div>
+
                         <div className="mycollection__btn">
                             <button className="add__btn">Add</button>
-                            <button className="del__btn">Delete</button>
+                            <button className="del__btn" onClick={deleteVoca}>Delete</button>
                         </div>
                     </div>
 
@@ -188,7 +266,7 @@ const VocaList = () => {
                             </div>
                         </div>
                         <div className="searchlist__btn">
-                            <button className="add__btn" onClick={wirteVoca}>Add</button>
+                            <button className="add__btn" onClick={deleteVoca()}>Add</button>
                             <button className="del__btn">Delete</button>
                         </div>
                     </div>
@@ -211,114 +289,6 @@ const VocaList = () => {
                                         <p className="wrong">investmant</p>
                                         <p className="correct">investment</p>
                                     </label>
-                                    <label htmlFor="CorrectVoca c2">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c2"
-                                            name="CorrectVoca c2"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c3">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c3"
-                                            name="CorrectVoca c3"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c4">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c4"
-                                            name="CorrectVoca c4"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c5">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c5"
-                                            name="CorrectVoca c5"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c6">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c6"
-                                            name="CorrectVoca c6"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c7">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c7"
-                                            name="CorrectVoca c7"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c8">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c8"
-                                            name="CorrectVoca c8"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c9">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c9"
-                                            name="CorrectVoca c9"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c10">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c10"
-                                            name="CorrectVoca c10"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c11">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c11"
-                                            name="CorrectVoca c11"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c12">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c12"
-                                            name="CorrectVoca c12"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
-                                    <label htmlFor="CorrectVoca c13">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c13"
-                                            name="CorrectVoca c13"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
                                 </div>
                             </div>
                             <div className="contents__bot">
@@ -328,6 +298,7 @@ const VocaList = () => {
                                             type="checkbox"
                                             id="SelectAllBtn"
                                             name="SelectAllBtn"
+
                                         />
                                         <p>select all</p>
                                     </label>
