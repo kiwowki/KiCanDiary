@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
 import user from '../../assets/img/user.png'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import LogoutHandler from './handle/logOutHandler'
 import navigation from './nav/navLink'
 import nav from './nav/navList'
@@ -11,6 +11,7 @@ const Aside = () => {
     const displayName = useSelector((state) => state.user.displayName)
     const { NavLink } = navigation()
     const { list } = nav()
+    const dispatch = useDispatch()
 
     return (
         <aside id="aside">
@@ -34,7 +35,7 @@ const Aside = () => {
                         ))}
                         {displayName ? (
                             <li className="">
-                                <Link onClick={() => LogoutHandler()}>
+                                <Link onClick={() => LogoutHandler(dispatch)}>
                                     Logout
                                 </Link>
                             </li>

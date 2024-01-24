@@ -5,7 +5,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import update from '../../util/update'
 import diaryDelete from '../../util/diaryDelete'
 
-
 const ViewRight = ({ post, quillRef }) => {
     const postNum = useParams().postNum
     const navigate = useNavigate()
@@ -31,8 +30,19 @@ const ViewRight = ({ post, quillRef }) => {
                 value={content}
             />
             <div className="btn__wrap">
-                <button className="update" onClick={(e) => updateLink(e, postNum, navigate)}>update</button>
-                <button onClick={(e)=>diaryDelete(e, postNum, () => navigate('/diaryList'))}>delete</button>
+                <button
+                    className="update"
+                    onClick={(e) => updateLink(e, postNum, navigate)}
+                >
+                    update
+                </button>
+                <button
+                    onClick={(e) =>
+                        diaryDelete(e, postNum, () => navigate('/diary'))
+                    }
+                >
+                    delete
+                </button>
             </div>
         </div>
     )

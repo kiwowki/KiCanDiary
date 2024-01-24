@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
 import { useDispatch } from 'react-redux'
 import { loginUser, clearUser } from './reducer/userSlice'
 import firebase from './firebase.js'
@@ -17,9 +18,9 @@ import DiaryView from './components/diary/view/DiaryView.jsx'
 import Write from './components/diary/write/Write.jsx'
 import MainHome from './components/main/MainHome.jsx'
 import DiaryUpdate from './components/diary/update/DiaryUpdate.jsx'
-
 const App = () => {
     const [isMobile, setIsMobile] = useState(false)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const handleResize = () => {
@@ -35,13 +36,11 @@ const App = () => {
         }
     }, [])
 
-    const dispatch = useDispatch()
-
     useEffect(() => {
         const unsubscribe = firebase
             .auth()
             .onAuthStateChanged(async (userInfo) => {
-                console.log('userInfo:' + userInfo)
+                console.log(userInfo)
                 if (userInfo !== null) {
                     await dispatch(loginUser(userInfo.multiFactor.user))
                 } else {
@@ -52,9 +51,7 @@ const App = () => {
             unsubscribe()
         }
     }, [dispatch])
-    // 현재 문제
-    // 회원가입을 하는 순간 유저 정보가 생김
-    // 그런데 유저 정보가 생기더라도 상태 변경을 감지하지 못함
+
     return (
         <BrowserRouter>
             <Main>
@@ -71,7 +68,7 @@ const App = () => {
 
                     {/* Write 페이지 */}
                     <Route
-                        path="/write/:date"
+                        path="/diary/write/:date"
                         element={
                             <>
                                 {/* {isMobile ? <HeaderMobile /> : <Header />} */}
@@ -81,7 +78,7 @@ const App = () => {
                     />
 
                     <Route
-                        path="/diarylist"
+                        path="/diary"
                         element={
                             <>
                                 {isMobile ? <HeaderMobile /> : <Header />}
@@ -91,7 +88,7 @@ const App = () => {
                     />
 
                     <Route
-                        path="/view/diaryview/:postNum"
+                        path="/diary/view/:postNum"
                         element={
                             <>
                                 {isMobile ? <HeaderMobile /> : <Header />}
@@ -100,7 +97,7 @@ const App = () => {
                         }
                     />
                     <Route
-                        path="/update/diaryupdate/:postNum"
+                        path="/diary/update/:postNum"
                         element={
                             <>
                                 {isMobile ? <HeaderMobile /> : <Header />}

@@ -1,15 +1,22 @@
-import { Link, useMatch } from 'react-router-dom'
+import { Link, useLocation, useMatch } from 'react-router-dom'
 
 const navigation = () => {
     const NavLink = ({ to, data, children }) => {
-        const match = useMatch(to)
+        const location = useLocation()
+        let isActive
+
+        if (to === '/') {
+            isActive = location.pathname === to
+        } else {
+            isActive = location.pathname.includes(to)
+        }
 
         return (
             <li>
                 <Link
                     to={to}
                     data-first-letter={data}
-                    className={match ? 'active' : ''}
+                    className={isActive ? 'active' : ''}
                 >
                     {children}
                 </Link>
@@ -17,7 +24,7 @@ const navigation = () => {
         )
     }
 
-    const LoginLink = ({ to, data, children }) => {
+    const LoginLink = ({ to, children }) => {
         const match = useMatch(to)
 
         return (

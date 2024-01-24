@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import ViewRight from './right/ViewRight'
-import { useParams } from 'react-router-dom'
+import { useMatch, useParams } from 'react-router-dom'
 import fetchPost from '../util/view'
 
 const DiaryView = () => {

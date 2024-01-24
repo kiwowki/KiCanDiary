@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import firebase from '../../firebase.js'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser } from '../../reducer/userSlice.js'
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
     const [errorMsg, setErrorMsg] = useState('')
-
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+    const user = useSelector((state) => state.user)
+    const isLoading = user.isLoading
+    const accessToken = user.accessToken
+
+    useEffect(() => {
+        if (user.isLoading) {
+            if (user.accessToken) {
+                navigate('/')
+            }
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoading, accessToken])
 
     const LoginFunc = async (e) => {
         e.preventDefault()

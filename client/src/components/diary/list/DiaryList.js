@@ -1,10 +1,7 @@
 import axios from 'axios'
-import { finishLoading, startLoading } from '../../../reducer/loadingSlice'
 
 const diaryList = async (setPostList, uid, dispatch) => {
     if (uid) {
-        console.log(uid)
-        dispatch(startLoading())
         await axios
             .get(`/api/post/list/${uid}`)
             .then((res) => {
@@ -25,9 +22,6 @@ const diaryList = async (setPostList, uid, dispatch) => {
             })
             .catch((err) => {
                 console.log(err, '엑시오스 ')
-            })
-            .finally(() => {
-                dispatch(finishLoading()) // 로딩 완료
             })
     }
 }

@@ -40,7 +40,7 @@ const List = ({ currentDate, currentPage, postsPerPage }) => {
         <>
             {currentPosts.map((post, key) => (
                 <div className="list" key={key}>
-                    <Link to={`/view/diaryview/${post.postNum}`}>
+                    <Link to={`/diary/view/${post.postNum}`}>
                         <div className="weekday">
                             <span className="date">
                                 {getFormattedDate(post.createdAt).day}

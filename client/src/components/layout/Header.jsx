@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import userImg from '../../assets/img/user.png'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import LogoutHandler from './handle/logOutHandler'
 import navigation from './nav/navLink'
 import nav from './nav/navList'
@@ -10,6 +10,7 @@ const Header = () => {
     const user = useSelector((state) => state.user)
     const { NavLink, LoginLink } = navigation()
     const { list, login } = nav()
+    const dispatch = useDispatch()
 
     return (
         <header id="header">
@@ -33,7 +34,11 @@ const Header = () => {
                                     ))
                                 ) : (
                                     <li>
-                                        <Link onClick={() => LogoutHandler()}>
+                                        <Link
+                                            onClick={() =>
+                                                LogoutHandler(dispatch)
+                                            }
+                                        >
                                             logout
                                         </Link>
                                     </li>

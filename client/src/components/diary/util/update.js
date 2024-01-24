@@ -5,7 +5,7 @@ const update = () => {
         console.log('upsta')
         e.preventDefault()
         if (window.confirm('일기를 수정하시겠습니까?')) {
-            navigate(`/update/diaryupdate/${postNum}`)
+            navigate(`/diary/update/${postNum}`)
         }
     }
 
@@ -27,7 +27,7 @@ const update = () => {
                     )
                     if (response.status === 200) {
                         alert('일기가 수정되었어요')
-                        window.location.href = '/diarylist'
+                        window.location.href = '/diary'
                     } else {
                         alert('일기가 수정이 실패했어요.')
                     }
@@ -41,8 +41,8 @@ const update = () => {
     }
     const cancel = (e) => {
         e.preventDefault()
-        if(window.confirm("수정을 취소하겠습니까?")){
-            window.location.href = '/diarylist'
+        if (window.confirm('수정을 취소하겠습니까?')) {
+            window.location.href = '/diary'
         }
     }
     return { updateLink, updatePost, cancel }

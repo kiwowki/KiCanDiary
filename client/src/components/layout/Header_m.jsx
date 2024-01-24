@@ -1,8 +1,12 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
+import LogoutHandler from './handle/logOutHandler'
+import { useDispatch } from 'react-redux'
 
 const Header_m = () => {
+    const dispatch = useDispatch()
+
     return (
         <header id="header_m">
             <div className="header__wrap">
@@ -16,12 +20,10 @@ const Header_m = () => {
                 <nav className="nav">
                     <ul className="nav__list">
                         <li>
-                            <Link to={'/diarylist'}>Diary</Link>
+                            <Link to={'/diary'}>Diary</Link>
                         </li>
                         <li>
-                            <Link to={'/write'}>
-                                Today
-                            </Link>
+                            <Link to={'/write'}>Today</Link>
                         </li>
                         <li>
                             <Link to={'/voca'}>VOCA</Link>
@@ -30,7 +32,13 @@ const Header_m = () => {
                             <Link to={'/mypage'}>My</Link>
                         </li>
                         <li>
-                            <Link to={'/logout'} className="active">Logout</Link>
+                            <Link
+                                to={'/logout'}
+                                className="active"
+                                onClick={() => LogoutHandler(dispatch)}
+                            >
+                                Logout
+                            </Link>
                         </li>
                     </ul>
                 </nav>

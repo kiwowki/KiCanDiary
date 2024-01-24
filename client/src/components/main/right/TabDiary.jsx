@@ -42,18 +42,19 @@ const TabDiary = ({ uid, currentDate }) => {
                     {Array.from({ length: totalPage }, (_, key) => (
                         <button
                             key={key + 1}
-                            className={`tab__btn mr10 ${currentPage === key + 1 ? 'active' : ''
-                                }`}
+                            className={`tab__btn mr10 ${
+                                currentPage === key + 1 ? 'active' : ''
+                            }`}
                             onClick={() => handlePageChange(key + 1)}
                         >
                             {key + 1}
                         </button>
                     ))}
                 </div>
-                {currentItems && currentItems.length > 0 ?
+                {currentItems && currentItems.length > 0 ? (
                     currentItems.map((item, key) => (
                         <div className="diary__tab" key={key}>
-                            <Link to={`/view/diaryview/${item.postNum}`}>
+                            <Link to={`/diary/view/${item.postNum}`}>
                                 <div className="tab__box box2">
                                     <h4 className="mb20">
                                         {getFormattedDate(item.createdAt).day}
@@ -62,21 +63,23 @@ const TabDiary = ({ uid, currentDate }) => {
                                         ,&nbsp;
                                         {getFormattedDate(item.createdAt).year}
                                     </h4>
-                                    <p className="">{item.content.ops[0].insert}</p>
+                                    <p className="">
+                                        {item.content.ops[0].insert}
+                                    </p>
                                 </div>
                             </Link>
                         </div>
                     ))
-                    : <div className="diary__tab">
-                            <Link to={'#'}>
-                                <div className="tab__box box2">
-                                    <h4 className="mb20">
-                                    </h4>
-                                    <p className="">아직 작성된 글이 없습니다.</p>
-                                </div>
-                            </Link>
-                        </div>
-                }
+                ) : (
+                    <div className="diary__tab">
+                        <Link to={'#'}>
+                            <div className="tab__box box2">
+                                <h4 className="mb20"></h4>
+                                <p className="">아직 작성된 글이 없습니다.</p>
+                            </div>
+                        </Link>
+                    </div>
+                )}
             </div>
         </div>
     )

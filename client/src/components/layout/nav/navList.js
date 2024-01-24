@@ -6,7 +6,7 @@ const nav = () => {
             data: 'H',
         },
         {
-            key: '/diarylist',
+            key: '/diary',
             value: 'Diary',
             data: 'D',
         },
