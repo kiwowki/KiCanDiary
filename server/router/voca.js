@@ -12,6 +12,7 @@ router.post('/searchlist', async (req, res) => {
     const result = [];
 
     try {
+
         for (let i = 0; i < List.length; i++) {
             const item = List[i];
             const key = item[0];
@@ -59,12 +60,14 @@ router.post('/vocalist', async (req, res) => {
     const uid = req.body.uid;
 
     try {
+
         const result = List.map(async item => {
             let temp = {
                 meaning: item.meaning,
                 word: item.word,
                 uid: uid,
             }
+            let id = item._id;
 
             const counter = await Counter.findOne({ name: "counter" }).exec();
             temp.vocaNum = counter.vocaNum;
@@ -75,6 +78,7 @@ router.post('/vocalist', async (req, res) => {
             const MyVoca = new Vocawrite(temp);
             await MyVoca.save();
 
+            await Vocasearch.deleteOne({ _id: id }).exec();
             await Counter.updateOne({ name: "counter" }, { $inc: { vocaNum: 1 } });
 
             return temp;
@@ -98,5 +102,19 @@ router.post('/showvocalist', async (req, res) => {
         res.status(500).json({ success: false, message: err.message });
     }
 })
+
+router.post('/delete', async (req, res) => {
+    try {
+        let data = req.body.id;
+        console.log(data);
+        for (let id of data) {
+            await Vocawrite.deleteOne({ _id: id }).exec();
+        }
+        res.status(200).json({ success: true });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: err.message });
+    }
+});
 
 module.exports = router;

@@ -297,7 +297,26 @@
                                     }
                                 }
                             }
+
+                            div {
+
+                                .submitGingerList {
+                                    background-color: var(--box-pink2);
+                                    padding: 8px 10px;
+                                    border-radius: 15px;
+                                    color: var(--white);
+                                    font-family: var(--dela);
+                                    position: absolute;
+                                    bottom: 3%;
+                                    right: 8%;
+                                }
+
+                            }
                         }
+
+
+
+
                     }
                 }
             }

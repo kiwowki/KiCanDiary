@@ -20,7 +20,8 @@ const VocaList = () => {
     const fetchSearchList = async () => {
         try {
             const response = await axios.post('/api/voca/showsearchlist')
-            setSearchList(response.data.vocasearchList)
+            const reverseData = response.data.vocasearchList.reverse();
+            setSearchList(reverseData)
         } catch (err) {
             console.log(err)
         }
@@ -98,11 +99,15 @@ const VocaList = () => {
     // 단어 voca에 저장
     const writeVoca = async () => {
         const selectedWords = checkboxList.map(index => searchList[index]);
-        // console.log(selectedWords);
+        console.log(selectedWords);
         try {
             const response = await axios.post('/api/voca/vocalist', { data: selectedWords, uid: user.uid })
             if (response.data.success) {
-                alert("단어 저장 성공");
+                alert("단어 저장 합니다.");
+                fetchSearchList();
+                fetchVocaList();
+                setCheckboxList([]);
+                setCheckboxListAll(false)
             } else {
                 alert("단어 저장 실패");
             }
@@ -117,8 +122,8 @@ const VocaList = () => {
     const fetchVocaList = async () => {
         try {
             const response = await axios.post('/api/voca/showvocalist')
-            setVocaList(response.data.vocaList)
-            console.log(response.data.vocaList)
+            const reverseData = response.data.vocaList.reverse();
+            setVocaList(reverseData)
         } catch (err) {
             console.log(err)
         }
@@ -158,18 +163,26 @@ const VocaList = () => {
     // 단어 삭제
     const deleteVoca = async () => {
         const selectedWords = vocacheckboxList.map(index => vocaList[index]);
-        // console.log(index);
-        // try {
-        //     const response = await axios.post('/api/voca/deletevoca', { data: selectedWords, uid: user.uid })
-        //     if (response.data.success) {
-        //         alert("단어 저장 성공");
-        //     } else {
-        //         alert("단어 저장 실패");
-        //     }
-        // } catch (err) {
-        //     console.log(err);
-        // }
-    }
+        console.log(selectedWords);
+        try {
+            if (window.confirm('확인버튼을 누르면 선택한 단어가 단어장에서 삭제됩니다. 정말 삭제하시겠습니까?')) {
+                let body = selectedWords.map(item => item._id);
+                axios
+                    .post('/api/voca/delete', { id: body })
+                    .then((response) => {
+                        if (response.data.success) {
+                            alert('단어가 삭제되었습니다.');
+                            fetchVocaList();
+                            setVocaCheckBoxList([])
+                            setvocacheckboxListAll(false)
+                        }
+                    });
+            }
+        } catch (err) {
+            console.log(err);
+            alert('단어 삭제가 실패되었습니다.');
+        }
+    };
 
     // layout
     const vocarendercheckboxes = () => {
@@ -266,7 +279,7 @@ const VocaList = () => {
                             </div>
                         </div>
                         <div className="searchlist__btn">
-                            <button className="add__btn" onClick={deleteVoca()}>Add</button>
+                            <button className="add__btn" onClick={writeVoca}>Add</button>
                             <button className="del__btn">Delete</button>
                         </div>
                     </div>

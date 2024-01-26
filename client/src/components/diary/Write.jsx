@@ -73,7 +73,7 @@ const Write = () => {
             }
         }
     };
-    const [resultSearchList, setResultSearchList] = useState([])
+    // const [resultSearchList, setResultSearchList] = useState([])
 
 
     // 구글 단어장
@@ -102,7 +102,7 @@ const Write = () => {
                     translation.map((result, index) => (
                         <span key={index}>{result}</span>
                     ))}
-                <button className='submitSearchList' onClick={submitSearchList}>Click</button>
+                <button className='submitSearchList' onClick={submitSearchList}>save</button>
             </div>
         );
     };
@@ -110,7 +110,6 @@ const Write = () => {
 
     // Ginger api 부분
     const [value, setValue] = useState('')
-
     const [correctionsData, setCorrectionsData] = useState([])
 
     const mainhandleKeyPress = async (event) => {
@@ -152,6 +151,82 @@ const Write = () => {
             console.log('문법 요청 에러:', err)
         }
     }
+
+    const submitGingerList = async () => {
+        const List = [];
+        for (let i = 0; i < correctionsData.length; i++) {
+            const correctionList = [value, correctionsData[i]];
+            List.push(correctionList);
+        }
+        console.log(List)
+        // try {
+        //     const response = await axios.post('/api/voca/searchlist', { data: List, uid: user.uid });
+        //     if (response.data.success) {
+        //         alert("단어 저장 성공");
+        //     } else {
+        //         alert("단어 저장 실패");
+        //     }
+        // } catch (err) {
+        //     console.log(err);
+        // }
+    };
+
+
+    const gingerrenderCheckboxes = () => {
+        return (
+            <div>
+                {correctionsData.map(
+                    (correction, index) => (
+                        <li key={index}>
+                            <div className="wrong">
+                                <p className="wrong__word">
+                                    <Link to="/write">
+                                        {
+                                            correction.mistakeText
+                                        }
+                                    </Link>
+                                </p>
+                            </div>
+                            <span className="arrow"></span>
+                            <div className="correct">
+                                <p className="correct__word">
+                                    {correction.suggestions.map(
+                                        (
+                                            suggestion,
+                                            sIndex
+                                        ) => (
+                                            <React.Fragment
+                                                key={
+                                                    sIndex
+                                                }
+                                            >
+                                                <Link to="/write">
+                                                    {
+                                                        suggestion.text
+                                                    }
+                                                </Link>
+                                                {sIndex !==
+                                                    correction
+                                                        .suggestions
+                                                        .length -
+                                                    1 && (
+                                                        <span>
+                                                            ,
+                                                            &nbsp;{' '}
+                                                        </span>
+                                                    )}
+                                            </React.Fragment>
+                                        )
+                                    )}
+                                </p>
+                            </div>
+                        </li>
+                    )
+                )}
+                <button className='submitGingerList' onClick={submitGingerList}>save</button>
+            </div>
+        );
+    };
 
     const [title, setTitle] = useState()
     const { date } = useParams()
@@ -273,54 +348,7 @@ const Write = () => {
                                 <h2>Correction</h2>
                                 <div>
                                     <ul className="correction_wrap">
-                                        {correctionsData.map(
-                                            (correction, index) => (
-                                                <li key={index}>
-                                                    <div className="wrong">
-                                                        <p className="wrong__word">
-                                                            <Link to="/write">
-                                                                {
-                                                                    correction.mistakeText
-                                                                }
-                                                            </Link>
-                                                        </p>
-                                                    </div>
-                                                    <span className="arrow"></span>
-                                                    <div className="correct">
-                                                        <p className="correct__word">
-                                                            {correction.suggestions.map(
-                                                                (
-                                                                    suggestion,
-                                                                    sIndex
-                                                                ) => (
-                                                                    <React.Fragment
-                                                                        key={
-                                                                            sIndex
-                                                                        }
-                                                                    >
-                                                                        <Link to="/write">
-                                                                            {
-                                                                                suggestion.text
-                                                                            }
-                                                                        </Link>
-                                                                        {sIndex !==
-                                                                            correction
-                                                                                .suggestions
-                                                                                .length -
-                                                                            1 && (
-                                                                                <span>
-                                                                                    ,
-                                                                                    &nbsp;{' '}
-                                                                                </span>
-                                                                            )}
-                                                                    </React.Fragment>
-                                                                )
-                                                            )}
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                            )
-                                        )}
+                                        {gingerrenderCheckboxes()}
                                     </ul >
                                 </div >
                             </div >
