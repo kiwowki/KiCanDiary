@@ -11,6 +11,7 @@ const Header = () => {
     const { NavLink, LoginLink } = navigation()
     const { list, login } = nav()
     const dispatch = useDispatch()
+    const MemoizedNavLink = React.memo(NavLink);
 
     return (
         <header id="header">
@@ -28,9 +29,9 @@ const Header = () => {
                             <ul>
                                 {user.accessToken === '' ? (
                                     login.map((user, index) => (
-                                        <LoginLink key={index} to={user.key}>
+                                        <MemoizedNavLink key={index} to={user.key}>
                                             {user.value}
-                                        </LoginLink>
+                                        </MemoizedNavLink>
                                     ))
                                 ) : (
                                     <li>

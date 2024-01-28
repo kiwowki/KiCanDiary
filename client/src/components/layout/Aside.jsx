@@ -12,7 +12,9 @@ const Aside = () => {
     const { NavLink } = navigation()
     const { list } = nav()
     const dispatch = useDispatch()
-
+    const MemoizedNavLink = React.memo(NavLink);
+   
+   
     return (
         <aside id="aside">
             <div className="aside__wrap">
@@ -29,9 +31,9 @@ const Aside = () => {
                 <nav className="nav">
                     <ul className="box1">
                         {list.map((li, index) => (
-                            <NavLink key={index} to={li.key} data={li.data}>
+                            <MemoizedNavLink key={index} to={li.key} data={li.data}>
                                 {li.value}
-                            </NavLink>
+                            </MemoizedNavLink>
                         ))}
                         {displayName ? (
                             <li className="">

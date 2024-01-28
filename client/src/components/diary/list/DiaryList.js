@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const diaryList = async (setPostList, uid, dispatch) => {
+const diaryList = async (setPostList, uid) => {
     if (uid) {
         await axios
             .get(`/api/post/list/${uid}`)
@@ -11,6 +11,7 @@ const diaryList = async (setPostList, uid, dispatch) => {
                             return {
                                 ...post,
                                 content: JSON.parse(post.content),
+                                
                             }
                         } catch (err) {
                             console.error('json parse', err)

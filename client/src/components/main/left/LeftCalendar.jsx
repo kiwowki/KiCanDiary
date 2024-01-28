@@ -8,7 +8,6 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 const LeftCalendar = ({ uid }) => {
     const [postList, setPostList] = useState([])
-    const dispatch = useDispatch()
     const isLoading = useSelector((state) => state.loading)
     const [today, setToday] = useState(() => {
         const now = new Date()
@@ -20,10 +19,10 @@ const LeftCalendar = ({ uid }) => {
     }-${today.getDate()}`
 
     useEffect(() => {
-        if (uid && dispatch) {
-            diaryList(setPostList, uid, dispatch)
+        if (uid) {
+            diaryList(setPostList, uid)
         }
-    }, [uid, dispatch])
+    }, [uid])
 
     const calendarProps = CalendarProps({ params, postList, today })
     return (

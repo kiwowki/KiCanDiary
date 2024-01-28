@@ -6,6 +6,7 @@
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@react-spring/web": "^9.7.3",
     "@reduxjs/toolkit": "^2.0.1",
     "@studio-freight/lenis": "^1.0.33",
     "@testing-library/jest-dom": "^5.17.0",
