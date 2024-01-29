@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 const Main = (props) => {
-
     const location = useLocation()
     const pathname = location.pathname
     const state = location.state
@@ -35,10 +34,10 @@ const Main = (props) => {
                 }
             }}
         >
-            <CSSTransition nodeRef={nodeRef}  key={pathname} timeout={300}>
-            <main ref={nodeRef} id='Main' role='main'>
-                {props.children}
-            </main>
+            <CSSTransition nodeRef={nodeRef} key={pathname} timeout={300}>
+                <main ref={nodeRef} id="Main" role="main">
+                    {props.children}
+                </main>
             </CSSTransition>
         </TransitionGroup>
     )
