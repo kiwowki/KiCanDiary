@@ -150,8 +150,8 @@ const App = () => {
                         element={isMobile ? <HeaderMobile /> : <Header />}
                     />
                 </Routes>
+                <Footer />
             </Main>
-            <Footer />
         </BrowserRouter>
     )
 }

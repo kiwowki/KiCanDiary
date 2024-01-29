@@ -6,17 +6,17 @@ const Main = (props) => {
     const [isRendered, setIsRendered] = useState(false)
 
     const pageTransition = {
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        exit: { opacity: 0 },
-        transition: { duration: 0.7, delay: 0.8, ease: 'easeInOut' },
+        initial: { opacity: 0, visibility: 'hidden' },
+        animate: { opacity: 1, visibility: 'visible' },
+        exit: { opacity: 0, visibility: 'hidden' },
+        transition: { duration: 0.5, delay: 0.6, ease: 'easeIn' },
     }
 
     useEffect(() => {
         setIsRendered(false)
         const timer = setTimeout(() => {
             setIsRendered(true)
-        }, 1000) // 1초 후에 렌더링
+        }, 1200) // 1초 후에 렌더링
 
         // 컴포넌트 unmount 시 타이머 제거
         return () => clearTimeout(timer)
