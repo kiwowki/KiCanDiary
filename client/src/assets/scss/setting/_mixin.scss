@@ -1,0 +1,31 @@
+// diary view-update
+@mixin btn {
+    text-align: center;
+    color: var(--font-white2);
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+// join page
+@mixin btnShadow {
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 4px solid #000;
+    border-bottom: 4px solid #000;
+    border-radius: 0 0 30px 30px;
+}
+
+@mixin requiredImg {
+    width: 25px;
+    height: 25px;
+    background-image: url(../../img/join__check__img.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 25%;
+    right: 5%;
+    z-index: 2000;
+    cursor: pointer;
+}

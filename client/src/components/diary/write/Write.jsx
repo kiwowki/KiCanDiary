@@ -14,7 +14,9 @@ const Write = () => {
     const quillRef = useRef(null)
     const user = useSelector((state) => state.user)
     const isLoading = user.isLoading
+    const accessToken = user.accessToken
     const uid = user.uid
+
     const { date } = useParams()
     const [dateObj, setDate] = useState({
         year: '',
@@ -23,16 +25,16 @@ const Write = () => {
     })
 
     let navigate = useNavigate()
+
     useEffect(() => {
-        if (user.isLoading) {
-            // isLoading이 트루일 때만 로직을 실행 시킨다.
-            if (!user.accessToken) {
-                alert('로그인한 회원만 작성이 가능합니다.')
-                navigate('/login')
-            }
+        if (!isLoading && accessToken === '' && uid === '') {
+            alert('로그인한 회원만 작성이 가능합니다.')
         }
+        // navigate('/login')
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isLoading])
+    }, [isLoading, accessToken, uid])
+
+   
 
     useEffect(() => {
         if (date && typeof date === 'string') {
