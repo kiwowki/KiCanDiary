@@ -1,59 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import tabData from '../../../Data/tabData/tabData'
 import face from '../../../assets/img/pink-18.gif'
 import vocaData from '../../../Data/tabData/vocaData'
 
-const Right = () => {
+import TabDiary from './TabDiary'
+
+const Right = ({ uid, currentDate }) => {
     const [myList, setMyList] = useState([])
+
     useEffect(() => {
         setMyList(vocaData)
-    }, [])
+    }, []) // voca 부분
 
-    const [activeTab, setActiveTab] = useState('tab1')
-    const TabContent = ({ title, content }) => (
-        <div className="diary__tab">
-            <Link to={'#'}>
-                <div className="tab__box box2">
-                    <h4 className="mb20">{title}</h4>
-                    <p className="">{content}</p>
-                </div>
-            </Link>
-        </div>
-    )
     return (
         <div className="right pt50">
             <div className="main__diary">
-                <div className="diary__list">
-                    <div className="list__title mb30">
-                        <p className="whiteSpaceNo">Recent Diary</p>
-                    </div>
-
-                    <div className="tabWrap">
-                        <div className="btnWrap pr10">
-                            {tabData.map((tab, index) => (
-                                <button
-                                    className={`tab__btn mr10 ${
-                                        activeTab === tab.id ? 'active' : ''
-                                    }`}
-                                    key={tab.id}
-                                    onClick={() => setActiveTab(tab.id)}
-                                >
-                                    {index + 1}
-                                </button>
-                            ))}
-                        </div>
-                        {tabData
-                            .filter((tab) => tab.id === activeTab)
-                            .map((tab) => (
-                                <TabContent
-                                    key={tab.id}
-                                    title={tab.title}
-                                    content={tab.content}
-                                />
-                            ))}
-                    </div>
-                </div>
+                <TabDiary uid={uid} currentDate={currentDate} />
 
                 <div className="voca__list pt6rem">
                     <div className="list__title mb20">

@@ -19,7 +19,7 @@ const handleSave = (e, title, value, quillRef, uid, navigate) => {
             .then((res) => {
                 if (res.data.success) {
                     alert('작성 성공')
-                    navigate('/diarylist')
+                    navigate('/diary')
                 }
             })
             .catch((err) => {

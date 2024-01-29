@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Calendar from 'react-calendar'
-// import { useSelector } from 'react-redux'
+
 import diaryList from '../../diary/list/DiaryList'
 import CalendarProps from '../../../util/calendar/CalendarProps'
+import { useDispatch, useSelector } from 'react-redux'
+import { BeatLoader } from 'react-spinners'
+import { useLocation, useNavigate } from 'react-router-dom'
+
 const LeftCalendar = ({ uid }) => {
     const [postList, setPostList] = useState([])
-    const date = new Date()
+    const isLoading = useSelector((state) => state.loading)
     const [today, setToday] = useState(() => {
         const now = new Date()
         now.setHours(0, 0, 0, 0)
@@ -14,22 +18,35 @@ const LeftCalendar = ({ uid }) => {
     const params = `${today.getFullYear()}-${
         today.getMonth() + 1
     }-${today.getDate()}`
+
     useEffect(() => {
-        diaryList(setPostList, uid)
+        if (uid) {
+            diaryList(setPostList, uid)
+        }
     }, [uid])
+
     const calendarProps = CalendarProps({ params, postList, today })
     return (
+        // {isLoading ? Loding}
         <div className="left">
             <div className="date__info">
                 <div className="calendar relative">
-                    <Calendar {...calendarProps} />
+                    {isLoading ? (
+                        <BeatLoader
+                            color={'#123abc'}
+                            loading={true}
+                            size={150}
+                        />
+                    ) : (
+                        <Calendar {...calendarProps} />
+                    )}
                     <div className="today">
-                        <p onClick={() => calendarProps.onChange(date)}>
+                        <p onClick={() => calendarProps.onChange(today)}>
                             Today
                         </p>
                     </div>
                 </div>
-                {/* <div></div> */}
+                <div></div>
             </div>
         </div>
     )

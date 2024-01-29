@@ -1,22 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import firebase from '../../firebase.js'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser } from '../../reducer/userSlice.js'
 
 const Login = () => {
-    const [Email, setEmail] = useState('')
-    const [Pass, setPass] = useState('')
+    const [email, setEmail] = useState('')
+    const [pass, setPass] = useState('')
     const [errorMsg, setErrorMsg] = useState('')
-
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+    const user = useSelector((state) => state.user)
+    const isLoading = user.isLoading
+    const accessToken = user.accessToken
+
+    useEffect(() => {
+        if (user.isLoading) {
+            if (user.accessToken) {
+                navigate('/')
+            }
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoading, accessToken])
 
     const LoginFunc = async (e) => {
         e.preventDefault()
-        if (!(Email && Pass)) {
+        if (!(email && pass)) {
             return alert('이메일과 비밀번호를 채워주세요')
         }
 
         try {
-            await firebase.auth().signInWithEmailAndPassword(Email, Pass)
+            await firebase.auth().signInWithEmailAndPassword(email, pass)
             alert('로그인 성공')
             navigate('/')
         } catch (err) {
@@ -49,7 +63,7 @@ const Login = () => {
                             name="id"
                             className="login__input"
                             required
-                            value={Email}
+                            value={email}
                             onChange={(e) => setEmail(e.currentTarget.value)}
                         />
                     </div>
@@ -66,7 +80,7 @@ const Login = () => {
                             name="password"
                             className="login__input"
                             required
-                            value={Pass}
+                            value={pass}
                             onChange={(e) => setPass(e.currentTarget.value)}
                         />
                     </div>

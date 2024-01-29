@@ -208,7 +208,7 @@
                             &::before {
                                 top: -10%;
                                 // left: 13vw;
-                                left: 15.5rem;
+                                left: 17.5rem;
                                 width: 35px;
                                 height: 35px;
                                 background-image: url('../../img/red-1.gif');
@@ -216,7 +216,7 @@
                             &::after {
                                 top: -2%;
                                 // left: 15vw;
-                                left: 18rem;
+                                left: 20rem;
                                 width: 25px;
                                 height: 25px;
                                 background-image: url('../../img/red-1.gif');
@@ -225,16 +225,17 @@
                                 width: 14%;
                                 text-align: right;
                                 margin-top: -30px;
+                                z-index: -1;
                                 img {
                                     width: 200px;
                                     height: 200px;
                                 }
                             }
                             .tit {
-                                width: 86%;
+                                width: 100%;
                                 p {
                                     height: 52px;
-                                    width: 15rem;
+                                    width: 17rem;
                                     line-height: 52px;
                                     font-size: 1.6rem;
                                     letter-spacing: 1.2px;
@@ -247,7 +248,7 @@
                         }
                         .all__list {
                             margin-top: -110px;
-                            
+
                             .my__list {
                                 width: 90%;
                                 margin: 0 auto 10px auto;

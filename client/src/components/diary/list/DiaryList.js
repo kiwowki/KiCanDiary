@@ -11,6 +11,7 @@ const diaryList = async (setPostList, uid) => {
                             return {
                                 ...post,
                                 content: JSON.parse(post.content),
+                                
                             }
                         } catch (err) {
                             console.error('json parse', err)
@@ -18,8 +19,6 @@ const diaryList = async (setPostList, uid) => {
                         }
                     })
                     setPostList(parsedPostList)
-                } else {
-                    console.log(res.data.error)
                 }
             })
             .catch((err) => {

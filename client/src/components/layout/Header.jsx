@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 import userImg from '../../assets/img/user.png'
-import { useSelector } from 'react-redux'
-import firebase from '../../firebase.js'
+import { useDispatch, useSelector } from 'react-redux'
+import LogoutHandler from './handle/logOutHandler'
+import navigation from './nav/navLink'
+import nav from './nav/navList'
+
 const Header = () => {
     const user = useSelector((state) => state.user)
-    const navigate = useNavigate()
-    const [showHeader, setShowHeader] = useState(false)
-
-    const LogoutHandler = () => {
-        firebase.auth().signOut()
-        navigate('/')
-    }
+    const { NavLink, LoginLink } = navigation()
+    const { list, login } = nav()
+    const dispatch = useDispatch()
+    const MemoizedNavLink = React.memo(NavLink)
 
     const handleMouseOver = () => {
         setShowHeader(true)
@@ -20,6 +21,8 @@ const Header = () => {
     const handleMouseOut = () => {
         setShowHeader(false)
     }
+
+    const [showHeader, setShowHeader] = useState(false)
 
     return (
         <header
@@ -31,51 +34,36 @@ const Header = () => {
             <div className="header__wrap">
                 <nav className="nav">
                     <ul className="nav__list">
-                        <li>
-                            <Link to={'/'} data-first-letter="H">
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={'/diarylist'}
-                                data-first-letter="D"
-                                className="active"
-                            >
-                                Diary
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={'/voca'} data-first-letter="V">
-                                VOCA list
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={'/mypage'} data-first-letter="M">
-                                My page
-                            </Link>
-                        </li>
+                        {list.map((li, index) => (
+                            <NavLink key={index} to={li.key} data={li.data}>
+                                {li.value}
+                            </NavLink>
+                        ))}
                     </ul>
                     <div className="nav__session">
                         <div className="right">
-                            {user.accessToken === '' ? (
-                                <ul>
+                            <ul>
+                                {user.accessToken === '' ? (
+                                    login.map((user, index) => (
+                                        <MemoizedNavLink
+                                            key={index}
+                                            to={user.key}
+                                        >
+                                            {user.value}
+                                        </MemoizedNavLink>
+                                    ))
+                                ) : (
                                     <li>
-                                        <Link to="/login">login</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/Join">join</Link>
-                                    </li>
-                                </ul>
-                            ) : (
-                                <ul>
-                                    <li>
-                                        <Link onClick={() => LogoutHandler()}>
+                                        <Link
+                                            onClick={() =>
+                                                LogoutHandler(dispatch)
+                                            }
+                                        >
                                             logout
                                         </Link>
                                     </li>
-                                </ul>
-                            )}
+                                )}
+                            </ul>
                         </div>
                         <div className="user__info box1">
                             {user.accessToken === '' ? (

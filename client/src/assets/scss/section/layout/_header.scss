@@ -49,14 +49,14 @@
                     background-position: center;
                 }
                 &::before {
-                    top: 110%;
+                    top: 17%;
                     left: 65%;
                     width: 11px;
                     height: 9px;
                     background-image: url('../../../img/small.png');
                 }
                 &::after {
-                    top: 130%;
+                    top: 18%;
                     left: 77%;
                     width: 23px;
                     height: 19px;
@@ -74,15 +74,27 @@
                         text-align: left;
                         width: 100%;
                         display: inline-block;
-                        padding: 5px 0px 10px 25px;
-                        font-size: 1rem;
+                        padding: 5px 0px 5px 25px;
+                        font-size: 1.2rem;
+                        // color: var(--font-purple1);
                         color: var(--font-purple1);
                         -webkit-text-stroke: 1.5px black;
+                        transition: all 0.1s;
+                        &:hover {
+                            color: var(--white-hover);
+                        }
+                    }
+                    .active {
+                        color: var(--white-hover);
                     }
 
                     &:last-child a {
+                        transition: all 0.1s;
                         padding-top: 20%;
-                        color: var(--font-pink2);
+                        color: var(--font-white2);
+                        &:hover {
+                            color: var(--white-hover);
+                        }
                     }
 
                     .aside__diary {
@@ -118,69 +130,65 @@
         }
 
         .user {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin-top: 200px;
+            > div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                cursor: pointer;
 
-            margin-top: 85px;
+                .user__profile {
+                    background-color: var(--box-purple1);
+                    border-radius: 50%;
+                    width: 80px;
+                    height: 80px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    img {
+                        width: 55px;
+                        height: 55px;
+                    }
+                }
+                .user__info {
+                    display: inline-block;
+                    margin-top: 5px;
+                    width: 100%;
+                    text-align: center;
+                    font-size: 0.9rem;
+                    .user__name {
+                        font-size: 1rem;
+                        font-family: var(--mainfont-Shrikhand);
+                        color: var(--font-purple1);
+
+                        em {
+                            color: black;
+                        }
+                    }
+                }
+            }
+        }
+        .bottomSticker {
+            width: 100%;
             position: relative;
-            &::before,
-            &::after {
-                content: '';
+            height: 200px;
+            > div {
                 position: absolute;
+                background-image: url('../../../img/pink-11.gif');
                 background-size: cover;
                 background-position: center;
             }
-            &::before {
-                bottom: -65%;
-                left: -35%;
-                width: 35px;
-                height: 35px;
-                background-image: url('../../../img/pink-11.gif');
+            .small {
+                top: 65%;
+                left: 1.5%;
+                width: 21px;
+                height: 21px;
             }
-            &::after {
-                bottom: -115%;
-                left: 95%;
-                width: 41px;
-                height: 41px;
-                background-image: url('../../../img/pink-11.gif');
-            }
-            .user__profile {
-                background-color: var(--box-purple1);
-                border-radius: 50%;
-                width: 70px;
-                height: 70px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                img {
-                    width: 52px;
-                    height: 52px;
-                }
-            }
-
-            .user__info {
-                display: inline-block;
-                width: 100%;
-                margin: 5px 0 0 10px;
-
-                span {
-                    font-family: var(--pre);
-                    font-weight: 600;
-                    font-size: 0.9rem;
-                }
-
-                .user__name {
-                    font-size: 1rem;
-                    font-family: var(--mainfont-Shrikhand);
-                    color: var(--font-puple1);
-
-                    em {
-                        font-size: 0.9rem;
-                        color: black;
-                    }
-                }
+            .big {
+                top: 75%;
+                left: 83%;
+                width: 28px;
+                height: 28px;
             }
         }
     }
@@ -221,7 +229,7 @@
                         font-size: 16px;
                         color: var(--white);
                         -webkit-text-stroke: 1px var(--black);
-
+                        transition: all 0.2s;
                         &:hover {
                             color: var(--font-purple2);
                         }
@@ -241,14 +249,21 @@
                     display: flex;
                     align-items: center;
 
-                    a {
-                        color: var(--white);
-                        -webkit-text-stroke: 1px var(--black);
-                        font-size: 14px;
-                        padding-right: 20px;
+                    ul {
+                        li {
+                            a {
+                                color: var(--white);
+                                -webkit-text-stroke: 1px var(--black);
+                                font-size: 14px;
+                                padding-right: 20px;
 
-                        &:hover {
-                            color: var(--font-purple1);
+                                &:hover {
+                                    color: var(--font-purple1);
+                                }
+                            }
+                            .active {
+                                color: var(--font-purple1);
+                            }
                         }
                     }
                 }
@@ -268,6 +283,7 @@
                         align-items: center;
 
                         em {
+                            font-size: 1rem;
                             display: inline-block;
                             color: var(--black);
                             font-family: var(--marc);

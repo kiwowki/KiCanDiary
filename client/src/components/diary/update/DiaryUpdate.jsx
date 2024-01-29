@@ -1,19 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react'
-import ViewRight from './right/ViewRight'
-import { useMatch, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import fetchPost from '../util/view'
+import UpdateRight from './UpdateRight'
 
-const DiaryView = () => {
+const DiaryUpdate = () => {
     const params = useParams()
     const postNum = params.postNum
     const [post, setPost] = useState()
     const [date, setDate] = useState({})
+  
+   
 
     useEffect(() => {
         fetchPost(postNum, setPost, setDate)
     }, [postNum])
 
     const quillRef = useRef()
+
     useEffect(() => {
         if (quillRef.current) {
             quillRef.current.getEditor().setContents(post.content)
@@ -32,12 +35,13 @@ const DiaryView = () => {
                     <div className="detail">
                         <div className="left">
                             <p></p>
-                            <span className="spring"></span>
                         </div>
-                        <ViewRight
-                            post={post}
+                        <span className='spring'></span>
+                        <UpdateRight
+                        
                             quillRef={quillRef}
-                            readOnly={true}
+                            post={post}
+                            postNum={postNum}
                         />
                     </div>
                 </div>
@@ -46,4 +50,4 @@ const DiaryView = () => {
     )
 }
 
-export default DiaryView
+export default DiaryUpdate

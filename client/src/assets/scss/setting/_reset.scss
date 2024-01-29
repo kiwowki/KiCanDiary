@@ -168,6 +168,11 @@ body {
     justify-content: flex-end;
     align-content: stretch; /* 추가 */
 }
+@media (max-width: 1280px) {
+    #wrap {
+        height: auto;
+    }
+}
 @media (max-width: 650px) {
     #wrap {
     }
