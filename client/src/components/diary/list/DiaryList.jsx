@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react'
 import DiaryTop from './listWrap/top/DiaryTop'
 import DiaryBottom from './listWrap/bottom/DiaryBottom'
 import useMonthNav from './listWrap/navigation/useMonthNav'
-
-
 const DiaryList = () => {
-    
     const { currentDate, handleNextMonth, handlePrevMonth } = useMonthNav()
     const [currentPage, setCurrentPage] = useState(
         parseInt(sessionStorage.getItem('currentPage')) || 1
@@ -17,7 +14,7 @@ const DiaryList = () => {
         return () => {
             sessionStorage.removeItem('currentPage')
         }
-    }, []) 
+    }, [])
 
     return (
         <div id="wrap">
