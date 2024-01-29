@@ -9,14 +9,14 @@ const Main = (props) => {
         initial: { opacity: 0, visibility: 'hidden' },
         animate: { opacity: 1, visibility: 'visible' },
         exit: { opacity: 0, visibility: 'hidden' },
-        transition: { duration: 0.5, delay: 0.6, ease: 'easeIn' },
+        transition: { duration: 0.2, delay: 0.4, ease: 'easeIn' },
     }
 
     useEffect(() => {
         setIsRendered(false)
         const timer = setTimeout(() => {
             setIsRendered(true)
-        }, 1200) // 1초 후에 렌더링
+        }, 1000) // 1초 후에 렌더링
 
         // 컴포넌트 unmount 시 타이머 제거
         return () => clearTimeout(timer)
@@ -30,6 +30,7 @@ const Main = (props) => {
                     variants={pageTransition}
                     initial="initial"
                     animate="animate"
+                    exit="exit"
                     id="Main"
                 >
                     {props.children}
