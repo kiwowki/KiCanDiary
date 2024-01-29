@@ -6,7 +6,6 @@ const VocaList = () => {
     const searchClickHandler = () => {
         setInputVisible(!isInputVisible)
     }
-
     return (
         <div id="wrap">
             <div id="vocalist" className="section__border">

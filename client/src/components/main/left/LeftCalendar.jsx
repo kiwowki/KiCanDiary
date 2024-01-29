@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Calendar from 'react-calendar'
 import diaryList from '../../diary/list/DiaryList'
 import CalendarProps from '../../../util/calendar/CalendarProps'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { BeatLoader } from 'react-spinners'
-import { useLocation, useNavigate } from 'react-router-dom'
 
 const LeftCalendar = ({ uid }) => {
     const [postList, setPostList] = useState([])
@@ -23,8 +22,8 @@ const LeftCalendar = ({ uid }) => {
             diaryList(setPostList, uid)
         }
     }, [uid])
+    const calendarProps = CalendarProps({ params, postList, today, uid })
 
-    const calendarProps = CalendarProps({ params, postList, today })
     return (
         // {isLoading ? Loding}
         <div className="left">
@@ -45,7 +44,6 @@ const LeftCalendar = ({ uid }) => {
                         </p>
                     </div>
                 </div>
-                <div></div>
             </div>
         </div>
     )
