@@ -12,7 +12,7 @@ const Write = () => {
     const modules = {
         toolbar: [
             [{ header: [1, 2, 3, 4, 5, 6, false] }],
-            ['bold', 'italic', 'underline', 'strike'],
+            ['boldapi부분', 'italic', 'underline', 'strike'],
             [{ list: 'ordered' }, { list: 'bullet' }],
             ['link', 'image'],
             ['clean'],
@@ -117,7 +117,7 @@ const Write = () => {
             if (event.key === 'Enter' && !event.shiftKey) {
                 event.preventDefault()
                 const textValue = quillRef.current?.getEditor().getText()
-                console.log(textValue)
+                // console.log(textValue)
                 setValue(textValue)
 
                 const response = await axios.post('/api/ginger', {
@@ -141,7 +141,7 @@ const Write = () => {
                             })
                         )
 
-                    console.log(newCorrectionsData)
+                    // console.log(newCorrectionsData)
                     setCorrectionsData(newCorrectionsData)
                 } else {
                     alert('문법 요청 실패')
@@ -154,21 +154,25 @@ const Write = () => {
 
     const submitGingerList = async () => {
         const List = [];
+        console.log(correctionsData)
         for (let i = 0; i < correctionsData.length; i++) {
-            const correctionList = [value, correctionsData[i]];
-            List.push(correctionList);
+            for (let j = 0; j < correctionsData[i].suggestions.length; j++) {
+                const correctionList = [correctionsData[i].mistakeText, correctionsData[i].suggestions[j].text];
+                List.push(correctionList);
+                // console.log(correctionList)
+            }
+            console.log(List)
         }
-        console.log(List)
-        // try {
-        //     const response = await axios.post('/api/voca/searchlist', { data: List, uid: user.uid });
-        //     if (response.data.success) {
-        //         alert("단어 저장 성공");
-        //     } else {
-        //         alert("단어 저장 실패");
-        //     }
-        // } catch (err) {
-        //     console.log(err);
-        // }
+        try {
+            const response = await axios.post('/api/voca/correctlist', { data: List, uid: user.uid });
+            if (response.data.success) {
+                alert("단어 저장 성공");
+            } else {
+                alert("단어 저장 실패");
+            }
+        } catch (err) {
+            console.log(err);
+        }
     };
 
 
@@ -357,7 +361,6 @@ const Write = () => {
                     {/* <button onClick={onClickSave}>저장</button> */}
                     < div className="button" >
                         <button className="box" onClick={(e) => handleSave(e)}>
-
                             Upload
                         </button>
                     </div>

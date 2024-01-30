@@ -12,7 +12,6 @@ router.post('/searchlist', async (req, res) => {
     const result = [];
 
     try {
-
         for (let i = 0; i < List.length; i++) {
             const item = List[i];
             const key = item[0];
@@ -101,7 +100,7 @@ router.post('/showvocalist', async (req, res) => {
         console.error(err);
         res.status(500).json({ success: false, message: err.message });
     }
-})
+});
 
 router.post('/delete', async (req, res) => {
     try {
@@ -114,6 +113,34 @@ router.post('/delete', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: err.message });
+    }
+});
+
+router.post('/correctlist', async (req, res) => {
+    const List = req.body.data;
+    const uid = req.body.uid;
+    const result = [];
+    console.log(List)
+
+    try {
+        for (let i = 0; i < List.length; i++) {
+            const item = List[i];
+            const correct = item[0];
+            const wrong = item[1];
+            const data = [wrong, correct];
+            result.push(data)
+
+            let temp = {
+                wrong: wrong,
+                correct: correct,
+                uid: uid
+            }
+
+
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ success: false });
     }
 });
 
