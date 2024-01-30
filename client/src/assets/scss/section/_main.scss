@@ -76,7 +76,7 @@
                         position: relative;
                         &::before,
                         &::after {
-                            content: "";
+                            content: '';
                             position: absolute;
                             background-size: cover;
                             background-position: center;
@@ -87,7 +87,7 @@
                             left: 15.1rem;
                             width: 25px;
                             height: 25px;
-                            background-image: url("../../img/pink-11.gif");
+                            background-image: url('../../img/pink-11.gif');
                         }
                         &::after {
                             top: -0.5%;
@@ -96,7 +96,7 @@
                             left: 17.5rem;
                             width: 20px;
                             height: 20px;
-                            background-image: url("../../img/pink-11.gif");
+                            background-image: url('../../img/pink-11.gif');
                         }
                         .list__title {
                             p {
@@ -141,16 +141,18 @@
                             }
 
                             .diary__tab {
-                                width: 100%; 
+                                width: 100%;
                                 overflow: visible;
                                 position: relative;
                                 height: 250px;
-
+                                overflow: hidden;
+                                background-color: #fff;
                                 a {
                                     position: absolute;
                                     left: 0;
                                     top: 0;
                                     width: 100%;
+                                    background-color: var(--white200);
 
                                     .tab__box {
                                         padding: 20px;
@@ -162,7 +164,7 @@
                                         }
                                         p {
                                             font-size: 1.1rem;
-                                            font-family: "Poppins";
+                                            font-family: 'Poppins';
                                             font-weight: 400;
                                             letter-spacing: -0.7px;
                                             overflow-y: scroll;
@@ -179,7 +181,7 @@
                             width: 100%;
                             &::before,
                             &::after {
-                                content: "";
+                                content: '';
                                 position: absolute;
                                 background-size: cover;
                                 background-position: center;
@@ -190,7 +192,7 @@
                                 left: 17.5rem;
                                 width: 35px;
                                 height: 35px;
-                                background-image: url("../../img/red-1.gif");
+                                background-image: url('../../img/red-1.gif');
                             }
                             &::after {
                                 top: -2%;
@@ -198,7 +200,7 @@
                                 left: 20rem;
                                 width: 25px;
                                 height: 25px;
-                                background-image: url("../../img/red-1.gif");
+                                background-image: url('../../img/red-1.gif');
                             }
                             .voca__img {
                                 width: 14%;
@@ -245,7 +247,7 @@
                                 }
 
                                 &::before {
-                                    content: "";
+                                    content: '';
                                     position: absolute;
                                     bottom: -20%;
                                     left: 0;

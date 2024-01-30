@@ -9,6 +9,7 @@ const DiaryTop = ({
     setCurrentPage,
     handleNextMonth,
     handlePrevMonth,
+    handlePageChange,
 }) => {
     return (
         <div className="diarylist__top">
@@ -27,6 +28,7 @@ const DiaryTop = ({
                 fixedPageCount={fixedPageCount}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
+                handlePageChange={handlePageChange}
             />{' '}
             {/** 페이지네이션 기능 */}
             <div className="search__wrap">
