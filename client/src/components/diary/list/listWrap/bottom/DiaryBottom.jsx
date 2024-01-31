@@ -3,18 +3,23 @@ import List from './List'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const DiaryBottom = ({ currentDate, currentPage, postsPerPage, direction }) => {
+const DiaryBottom = ({
+    currentDate,
+    currentPage,
+    postsPerPage,
+    direction,
+    start,
+    monthAnima,
+}) => {
     const variants = {
         hidden: { x: direction === 1 ? '100%' : '-100%' },
         show: { x: '0%' },
         exit: { x: direction === 1 ? '100%' : '-100%' },
     }
 
-    // custom={currentPage > prevPage ? 1 : -1}
-
     return (
         <div className="diarylist__bottomWrap">
-            <AnimatePresence exitBeforeEnter={false} mode="wait">
+            <AnimatePresence mode="wait">
                 <motion.div
                     key={currentPage}
                     className="diarylist__bottom"
@@ -25,8 +30,8 @@ const DiaryBottom = ({ currentDate, currentPage, postsPerPage, direction }) => {
                         delay: 0.5,
                         ease: 'easeInOut',
                     }}
-                    initial="hidden"
-                    animate="show"
+                    initial={start || monthAnima ? 'hidden' : ''}
+                    animate={start || monthAnima ? 'show' : ''}
                 >
                     <div className="list__wrap">
                         <List

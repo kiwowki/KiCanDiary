@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { getFormattedDate } from '../../../../util/calendar/date/dateFormat'
 
-const TabContent = ({ item, direction }) => {
+const TabContent = ({ item, direction, start }) => {
     const variants = {
         hidden: { x: direction === 1 ? '100%' : '-100%' },
         show: { x: '0%' },
@@ -14,8 +14,8 @@ const TabContent = ({ item, direction }) => {
             key={item.postNum}
             href={`/diary/view/${item.postNum}`}
             variants={variants}
-            initial="hidden"
-            animate="show"
+            initial={start ? 'hidden' : ''}
+            animate={start ? 'show' : ''}
             transition={{ duration: 0.4, delay: 0.3, ease: 'easeInOut' }}
         >
             <div className="tab__box">

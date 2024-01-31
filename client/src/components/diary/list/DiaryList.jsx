@@ -3,18 +3,28 @@ import DiaryTop from './listWrap/top/DiaryTop'
 import DiaryBottom from './listWrap/bottom/DiaryBottom'
 import useMonthNav from './listWrap/navigation/useMonthNav'
 const DiaryList = () => {
-    const { currentDate, handleNextMonth, handlePrevMonth } = useMonthNav()
+    const {
+        currentDate,
+        handleNextMonth,
+        handlePrevMonth,
+        monthAnima,
+        setMonthAnima,
+    } = useMonthNav()
+
     const [currentPage, setCurrentPage] = useState(
         parseInt(sessionStorage.getItem('currentPage')) || 1
     )
+
     const [prevPage, setPrevPage] = useState(currentPage)
     const [direction, setDirection] = useState(1)
+    const [start, setStart] = useState(false)
 
     const handlePageChange = (newPage) => {
         if (newPage !== currentPage) {
-            setCurrentPage(newPage)
             sessionStorage.setItem('currentPage', newPage.toString())
+            setCurrentPage(newPage)
             setPrevPage(currentPage)
+            setStart(true)
         }
     }
 
@@ -50,6 +60,8 @@ const DiaryList = () => {
                         currentPage={currentPage}
                         postsPerPage={postsPerPage}
                         direction={direction}
+                        start={start}
+                        monthAnima={monthAnima}
                     />
                 </div>
             </div>
