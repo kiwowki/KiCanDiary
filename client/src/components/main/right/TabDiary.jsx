@@ -31,9 +31,11 @@ const TabDiary = ({ uid, currentDate }) => {
     // 시작 인덱스와 끝 인덱스에 따라 아이템을 추출
     const currentItems = filteredPostList.slice(startIndex, endIndex)
 
+    // console.log(currentItems)
+
     return (
         <div className="diary__list">
-            <div className="list__title mb30">
+            <div className="list__title mb70">
                 <p className="whiteSpaceNo">Recent Diary</p>
             </div>
 
@@ -55,7 +57,7 @@ const TabDiary = ({ uid, currentDate }) => {
                     currentItems.map((item, key) => (
                         <div className="diary__tab" key={key}>
                             <Link to={`/diary/view/${item.postNum}`}>
-                                <div className="tab__box box2">
+                                <div className="tab__box">
                                     <h4 className="mb20">
                                         {getFormattedDate(item.createdAt).day}
                                         &nbsp;
@@ -64,7 +66,14 @@ const TabDiary = ({ uid, currentDate }) => {
                                         {getFormattedDate(item.createdAt).year}
                                     </h4>
                                     <p className="">
-                                        {item.content.ops[0].insert}
+                                        {item.content.ops.length === 1 ? (
+                                            item.content.ops[0].insert
+                                        ) : (
+                                            <>
+                                                {item.content.ops[0].insert}{' '}
+                                                <br /> <br /> ...
+                                            </>
+                                        )}
                                     </p>
                                 </div>
                             </Link>

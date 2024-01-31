@@ -41,18 +41,18 @@ import DiaryUpdate from './components/diary/update/DiaryUpdate.jsx'
 const App = () => {
     const [isMobile, setIsMobile] = useState(false)
     const dispatch = useDispatch()
-
+    
     useEffect(() => {
-        const handleResize = () => {
+        const handleHeaderResize = () => {
             setIsMobile(window.innerWidth <= 480)
         }
+        
+        handleHeaderResize()
 
-        handleResize()
-
-        window.addEventListener('resize', handleResize)
-
+        window.addEventListener('resize', handleHeaderResize)
+        
         return () => {
-            window.removeEventListener('resize', handleResize)
+            window.removeEventListener('resize', handleHeaderResize)
         }
     }, [])
 

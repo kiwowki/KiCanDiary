@@ -130,7 +130,7 @@
         }
 
         .user {
-            margin-top: 200px;
+            margin-top: 5vh;
             > div {
                 display: flex;
                 flex-direction: column;
@@ -164,6 +164,10 @@
                         em {
                             color: black;
                         }
+                    }
+                    .not__login {
+                        font-family: var(--marc);
+                        font-size: 1.2rem;
                     }
                 }
             }
@@ -352,6 +356,20 @@
                 }
             }
         }
+    }
+}
+
+@media (max-width: 700px) {
+    #aside {
+        transform: translateX(-200px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        transition: all 0.5s;
+    }
+    #aside.visible2 {
+        transform: translateY(0);
     }
 }
 
