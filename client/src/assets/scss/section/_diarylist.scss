@@ -339,42 +339,44 @@
                     }
                 }
             }
+            .diarylist__bottomWrap {
+                //css 수정하기
+                .diarylist__bottom {
+                    width: 100%;
+                    min-height: 670px;
+                    height: auto;
+                    border-radius: 0 0 13px 13px;
 
-            .diarylist__bottom {
-                border-radius: 0 0 13px 13px;
-                width: 100%;
-                min-height: 670px;
-                height: auto;
-
-                .list__wrap {
-                    .list {
-                        width: 40%;
-                        height: 230px;
-                        border-radius: 30px;
-                        margin: 25px;
-                    }
-
-                    .voca__list {
-                        width: 40%;
-                        height: 230px;
-                        margin: 25px;
-
-                        .title {
-                            top: -15px;
-                            width: 100%;
+                    .list__wrap {
+                        .list {
+                            width: 40%;
+                            height: 230px;
+                            border-radius: 30px;
+                            margin: 25px;
                         }
 
-                        ul {
-                            padding: 40px 30px 30px 30px;
+                        .voca__list {
+                            width: 40%;
+                            height: 230px;
+                            margin: 25px;
 
-                            li {
-                                span {
-                                    font-size: 18px;
-                                    font-weight: 400;
-                                }
+                            .title {
+                                top: -15px;
+                                width: 100%;
+                            }
 
-                                &:last-child {
-                                    display: none;
+                            ul {
+                                padding: 40px 30px 30px 30px;
+
+                                li {
+                                    span {
+                                        font-size: 18px;
+                                        font-weight: 400;
+                                    }
+
+                                    &:last-child {
+                                        display: none;
+                                    }
                                 }
                             }
                         }

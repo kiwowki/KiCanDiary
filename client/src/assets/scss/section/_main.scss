@@ -142,52 +142,33 @@
 
                             .diary__tab {
                                 width: 100%;
-                                .tab__box {
-                                    a {
-                                        display: block;
-                                        background-color: #fff;
-                                    }
+                                overflow: visible;
+                                position: relative;
+                                height: 250px;
+                                overflow: hidden;
+                                background-color: #fff;
+                                a {
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
                                     width: 100%;
-                                    height: 250px;
-                                    padding: 20px;
-                                    position: relative;
-                                    z-index: 5;
-                                    background-color: #fff;
-                                    overflow: hidden;
-                                    h4 {
-                                        font-size: 1.4rem;
-                                    }
-                                    p {
-                                        font-size: 1.1rem;
-                                        font-family: 'Poppins';
-                                        font-weight: 400;
-                                        letter-spacing: -0.7px;
-                                        overflow-y: scroll;
-                                        height: 130px;
-                                    }
-                                    &::before,
-                                    &::after {
-                                        content: '';
-                                        position: absolute;
-                                        width: 101.5%;
-                                        height: 101%;
-                                        border: solid var(--box-purple2);
-                                        border-width: 1px 1px 5px 5px;
-                                        border-radius: 7px;
-                                        z-index: -3;
-                                        margin: 0;
-                                        z-index: -1; /* 수정 */
-                                        box-sizing: border-box; /* 추가 */
-                                    }
-                                    &::before {
-                                        top: -2px;
-                                        left: -5px;
-                                        display: none;
-                                    }
+                                    background-color: var(--white200);
 
-                                    &::after {
-                                        top: 0px;
-                                        left: -8.2px;
+                                    .tab__box {
+                                        padding: 20px;
+                                        overflow: hidden;
+                                        height: 250px;
+
+                                        h4 {
+                                            font-size: 1.4rem;
+                                        }
+                                        p {
+                                            font-size: 1.1rem;
+                                            font-family: 'Poppins';
+                                            font-weight: 400;
+                                            letter-spacing: -0.7px;
+                                            overflow-y: scroll;
+                                        }
                                     }
                                 }
                             }

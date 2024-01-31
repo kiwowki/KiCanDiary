@@ -1,10 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const DiaryPageNav = ({ fixedPageCount, currentPage, setCurrentPage }) => {
-    const handlePageChange = (newPage) => {
-        setCurrentPage(newPage)
-        sessionStorage.setItem('currentPage', newPage.toString())
-    }
+const DiaryPageNav = ({ fixedPageCount, currentPage, handlePageChange }) => {
     return (
         <div className="diary__list__pages">
             <ul>
