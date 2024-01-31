@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import face from '../../../assets/img/pink-18.gif'
 import vocaData from '../../../Data/tabData/vocaData'
 
-import TabDiary from './TabDiary'
+import TabDiary from './tabMenu/TabDiary'
 
 const Right = ({ uid, currentDate }) => {
     const [myList, setMyList] = useState([])

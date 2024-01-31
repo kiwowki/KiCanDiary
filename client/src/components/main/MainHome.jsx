@@ -34,12 +34,10 @@ const MainHome = () => {
         <div id="wrap">
             <Aside isAsideVisible={isAsideVisible} />
             <div id="main" className="section__border">
-                <div
-                    className="aside_ham"
-                    onClick={toggleAsideVisibility}
-                >
+                <div className="aside_ham" onClick={toggleAsideVisibility}>
                     <span></span>
                 </div>
+
                 <div className="main__wrap">
                     <LeftCalendar uid={uid} />
                     <Right uid={uid} currentDate={currentDate} />

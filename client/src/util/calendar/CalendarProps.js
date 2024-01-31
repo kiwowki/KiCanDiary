@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { getRandomSticker } from '../stickers/getRandomSticker.js'
 import NavigationLabel from './class/navigationLabel'
 
-export default function CalendarProps({ params, postList, today }) {
+export default function CalendarProps({ params, postList, today, uid }) {
     const navigate = useNavigate()
     const date = new Date()
     const view = 'month'
@@ -23,23 +23,39 @@ export default function CalendarProps({ params, postList, today }) {
             )
         })
     }
-    const onChange = async (date) => {
-        const posts = await getPostsByDate(date, postList)
-        let postNum = null
 
-        if (posts.length === 0 && date.getTime() === today.getTime()) {
-            if (window.confirm('새로운 글을 작성하시겠습니까?')) {
-                navigate(`/diary/write/${params}`)
-            } // 값이 없으면 쓰기
-        } else if (posts.length !== 0) {
-            if (window.confirm('이전에 작성한 글을 보시겠습니까?')) {
-                postNum = posts[0].postNum
-                console.log(postNum)
-                navigate(`/diary/view/${postNum}`)
+    const onChange = async (date) => {
+        if (!uid) {
+            if (window.confirm('로그인 후 이용하시겠습니까?')) {
+                navigate('/login')
+                return
             }
-        } else {
-            alert('오늘의 날짜를 선택하도록') // 다 해당 안되면 오늘 날짜
+            return
         }
+
+        const posts = await getPostsByDate(date, postList)
+        const isToday = date.getTime() === today.getTime()
+
+        if (
+            posts.length === 0 &&
+            isToday &&
+            window.confirm('새로운 글을 작성하시겠습니까?')
+        ) {
+            navigate(`/diary/write/${params}`)
+            return
+        }
+
+        if (
+            posts.length !== 0 &&
+            window.confirm('이전에 작성한 글을 보시겠습니까?')
+        ) {
+            const postNum = posts[0].postNum
+            console.log(postNum)
+            navigate(`/diary/view/${postNum}`)
+            return
+        }
+
+        alert('오늘의 날짜를 선택하도록') // 다 해당 안되면 오늘 날짜
     }
     // 전달되는 postList는 post 스키마에 저장된 글목록임
     // 필터링을 통해 날짜 별로 달력 타일에 바인딩 함

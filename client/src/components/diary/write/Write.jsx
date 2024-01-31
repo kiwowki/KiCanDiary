@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import 'react-quill/dist/quill.snow.css'
 import { useParams } from 'react-router-dom'
@@ -25,16 +25,6 @@ const Write = () => {
     })
 
     let navigate = useNavigate()
-
-    useEffect(() => {
-        if (!isLoading && accessToken === '' && uid === '') {
-            alert('로그인한 회원만 작성이 가능합니다.')
-        }
-        // navigate('/login')
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isLoading, accessToken, uid])
-
-   
 
     useEffect(() => {
         if (date && typeof date === 'string') {

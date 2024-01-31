@@ -13,6 +13,7 @@ const DiaryTop = ({
     handleNextMonth,
     handlePrevMonth,
     uid,
+    handlePageChange,
 }) => {
     // const [postList, setPostList] = useState([])
     // const isLoading = useSelector((state) => state.loading)
@@ -33,7 +34,6 @@ const DiaryTop = ({
 
     // const calendarProps = CalendarProps({ params, postList, today })
 
-    
     return (
         <div className="diarylist__top">
             <div className="month">
@@ -56,6 +56,7 @@ const DiaryTop = ({
                 fixedPageCount={fixedPageCount}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
+                handlePageChange={handlePageChange}
             />{' '}
             {/** 페이지네이션 기능 */}
             <div className="search__wrap">

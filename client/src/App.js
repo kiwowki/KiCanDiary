@@ -41,16 +41,16 @@ import DiaryUpdate from './components/diary/update/DiaryUpdate.jsx'
 const App = () => {
     const [isMobile, setIsMobile] = useState(false)
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
         const handleHeaderResize = () => {
             setIsMobile(window.innerWidth <= 480)
         }
-        
+
         handleHeaderResize()
 
         window.addEventListener('resize', handleHeaderResize)
-        
+
         return () => {
             window.removeEventListener('resize', handleHeaderResize)
         }
@@ -77,9 +77,14 @@ const App = () => {
             <Main>
                 <Routes>
                     {/* Home 페이지 */}
-                    <Route path="/" element={<><MainHome /></>} />
-
-                    {/* Write 페이지 */}
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                <MainHome />
+                            </>
+                        }
+                    />
                     <Route path="/diary/write/:date" element={<> {isMobile ? <HeaderMobile /> : <Header />} <Write /> </>} />
 
                     <Route path="/diary" element={<> {isMobile ? <HeaderMobile /> : <Header />} <DiaryList /></>} />
@@ -92,9 +97,10 @@ const App = () => {
                     <Route path="/mypage" element={<>{isMobile ? <HeaderMobile /> : <Header />}<Mypage /> </>} />
                     {/* 다른 페이지에는 Header가 나오도록 설정 */}
                     <Route path="/*" element={isMobile ? <HeaderMobile /> : <Header />} />
+
                 </Routes>
+                <Footer />
             </Main>
-            <Footer />
         </BrowserRouter>
     )
 }

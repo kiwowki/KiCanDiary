@@ -1,45 +1,42 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import { AnimatePresence, motion } from 'framer-motion'
 const Main = (props) => {
     const location = useLocation()
-    const pathname = location.pathname
-    const state = location.state
-    const pageOrder = ['/', '/diary', '/voca', '/diary/view/2']
-    console.log(state)
-    const nodeRef = useRef(null)
+    const [isRendered, setIsRendered] = useState(false)
+
+    const pageTransition = {
+        initial: { opacity: 0, visibility: 'hidden' },
+        animate: { opacity: 1, visibility: 'visible' },
+        exit: { opacity: 0, visibility: 'hidden' },
+        transition: { duration: 0.2, delay: 0.4, ease: 'easeIn' },
+    }
+
+    useEffect(() => {
+        setIsRendered(false)
+        const timer = setTimeout(() => {
+            setIsRendered(true)
+        }, 1000) // 1초 후에 렌더링
+
+        // 컴포넌트 unmount 시 타이머 제거
+        return () => clearTimeout(timer)
+    }, [location.pathname])
 
     return (
-        <TransitionGroup
-            className={'transition-wrapper'}
-            childFactory={(child) => {
-                if (!state?.prev) {
-                    return React.cloneElement(child, {
-                        classNames:
-                            location.state?.direction || 'navigate-push',
-                    })
-                } else {
-                    if (
-                        pageOrder.indexOf(pathname) >
-                        pageOrder.indexOf(state.prev)
-                    ) {
-                        return React.cloneElement(child, {
-                            classNames: 'slide-next',
-                        })
-                    } else {
-                        return React.cloneElement(child, {
-                            classNames: 'slide-prev',
-                        })
-                    }
-                }
-            }}
-        >
-            <CSSTransition nodeRef={nodeRef} key={pathname} timeout={300}>
-                <main ref={nodeRef} id="Main" role="main">
+        <AnimatePresence mode="wait">
+            {isRendered && (
+                <motion.main
+                    key={location.pathname}
+                    variants={pageTransition}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    id="Main"
+                >
                     {props.children}
-                </main>
-            </CSSTransition>
-        </TransitionGroup>
+                </motion.main>
+            )}
+        </AnimatePresence>
     )
 }
 
