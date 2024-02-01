@@ -6,6 +6,7 @@ const countSchema = new mongoose.Schema(
         userNum: Number,
         vocalistNum: Number,
         vocaNum: Number,
+        correctNum: Number,
     },
     { collection: "counter" });
 const Counter = mongoose.model("Counter", countSchema);

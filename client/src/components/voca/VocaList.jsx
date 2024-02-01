@@ -13,6 +13,7 @@ const VocaList = () => {
     useEffect(() => {
         fetchSearchList();
         fetchVocaList();
+        fetchCorrectList();
     }, [])
 
     // search voca List
@@ -29,10 +30,10 @@ const VocaList = () => {
 
     // searchList -> voca
     const [checkboxList, setCheckboxList] = useState([]);
-    const [checkBoxListAll, setCheckboxListAll] = useState(false)
+    const [checkBoxListAll, setCheckboxListAll] = useState(false);
 
     const isCheckboxChecked = (index) => {
-        return checkboxList.includes(index)
+        return checkboxList.includes(index);
     }
 
     const handleCheckboxToggle = (i) => {
@@ -40,7 +41,7 @@ const VocaList = () => {
         const indexPosition = updatedList.indexOf(i);
 
         if (indexPosition > -1) {
-            setCheckboxListAll(false)
+            setCheckboxListAll(false);
             updatedList.splice(indexPosition, 1); // 이미 체크된 항목이라면 리스트에서 제거
         } else {
             updatedList.push(i); // 체크되지 않은 항목이라면 리스트에 추가
@@ -89,7 +90,7 @@ const VocaList = () => {
                     id="SelectAllBtn"
                     name="SelectAllBtn"
                     checked={checkBoxListAll}
-                    onClick={handleCheckboxToggleAll}
+                    onChange={handleCheckboxToggleAll}
                 />
                 <p>select all</p>
             </label>
@@ -151,12 +152,12 @@ const VocaList = () => {
 
     const handleVocaCheckboxToggleAll = () => {
         if (vocacheckboxList.length === vocaList.length) {
-            setvocacheckboxListAll(false)
+            setvocacheckboxListAll(false);
             setVocaCheckBoxList([]);
         } else {
-            setvocacheckboxListAll(true)
+            setvocacheckboxListAll(true);
             const newList = vocaList.map((_, index) => index);
-            setVocaCheckBoxList(newList)
+            setVocaCheckBoxList(newList);
         }
     }
 
@@ -168,15 +169,14 @@ const VocaList = () => {
             if (window.confirm('확인버튼을 누르면 선택한 단어가 단어장에서 삭제됩니다. 정말 삭제하시겠습니까?')) {
                 let body = selectedWords.map(item => item._id);
                 axios
-                    .post('/api/voca/delete', { id: body })
+                    .post('/api/voca/vocadelete', { id: body })
                     .then((response) => {
                         if (response.data.success) {
-                            alert('단어가 삭제되었습니다.');
                             fetchVocaList();
-                            setVocaCheckBoxList([])
-                            setvocacheckboxListAll(false)
+                            setVocaCheckBoxList([]);
+                            setvocacheckboxListAll(false);
                         }
-                    });
+                    })
             }
         } catch (err) {
             console.log(err);
@@ -218,6 +218,103 @@ const VocaList = () => {
         )
     }
 
+    // correct List
+    const [correctList, setCorrectList] = useState([])
+    const fetchCorrectList = async () => {
+        try {
+            const response = await axios.post('/api/voca/showcorrectlist')
+            const reverseData = response.data.correctList.reverse();
+            setCorrectList(reverseData)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const [correctcheckboxList, setCorrectCheckBoxList] = useState([]);
+    const [correctcheckboxListAll, setCorrectCheckBoxListAll] = useState(false);
+    const isCorrectCheckboxChecked = (index) => {
+        return correctcheckboxList.includes(index);
+    }
+
+    const handleCorrectCheckboxToggle = (i) => {
+        const updateList = [...correctcheckboxList];
+        const indexPosition = updateList.indexOf(i);
+
+        if (indexPosition > -1) {
+            setCorrectCheckBoxListAll(false);
+            updateList.splice(indexPosition, 1);
+        } else {
+            updateList.push(i);
+        }
+        setCorrectCheckBoxList(updateList);
+        console.log(correctcheckboxList);
+    }
+
+    const handleCorrectCheckboxToggleAll = () => {
+        if (correctcheckboxList.length === correctList.length) {
+            setCorrectCheckBoxListAll(false);
+            setCorrectCheckBoxList([]);
+        } else {
+            setCorrectCheckBoxListAll(true);
+            const newList = correctList.map((_, index) => index);
+            setCorrectCheckBoxList(newList);
+        }
+    }
+
+    const deleteCorrect = async () => {
+        const selectedWords = correctcheckboxList.map(index => correctList[index]);
+        console.log(selectedWords);
+
+        try {
+            if (window.confirm('확인버튼을 누르면 삭제됩니다. 정말 삭제하시겠습니까?')) { }
+            let body = selectedWords.map(item => item._id);
+            axios
+                .post('/api/voca/correctdelete', { id: body })
+                .then((response) => {
+                    if (response.data.success) {
+                        fetchCorrectList();
+                        setCorrectCheckBoxList([]);
+                        setCorrectCheckBoxListAll(false);
+                    }
+                })
+        } catch (err) {
+            console.log(err);
+            alert('삭제가 실패되었습니다.');
+        }
+    }
+
+    // layout
+    const correctrendercheckboxes = () => {
+        return Array.isArray(correctList) &&
+            correctList.map((correct, index) => (
+                <label htmlFor="CorrectVoca" index={index}>
+                    <input
+                        type="checkbox"
+                        id={`CorrectVoca c${index}`}
+                        name={`CorrectVoca c${index}`}
+                        checked={isCorrectCheckboxChecked(index)}
+                        onChange={() => handleCorrectCheckboxToggle(index)}
+                    />
+                    <p className="wrong">{correct.wrong}</p>
+                    <p className="correct">{correct.correct}</p>
+                </label>
+            ))
+    }
+
+    const correctrenderCheckboxesAll = () => {
+        return (
+            <label htmlFor="SelectAllBtn">
+                <input
+                    type="checkbox"
+                    id="SelectAllBtn"
+                    name="SelectAllBtn"
+                    checked={correctcheckboxListAll}
+                    onChange={handleCorrectCheckboxToggleAll}
+                />
+                <p>select all</p>
+            </label>
+        )
+    }
 
     return (
         <div id="wrap">
@@ -293,34 +390,18 @@ const VocaList = () => {
                                     <h3>CORRECT</h3>
                                 </div>
                                 <div className="correctionlist__voca__contents">
-                                    <label htmlFor="CorrectVoca c1">
-                                        <input
-                                            type="checkbox"
-                                            id="CorrectVoca c1"
-                                            name="CorrectVoca c1"
-                                        />
-                                        <p className="wrong">investmant</p>
-                                        <p className="correct">investment</p>
-                                    </label>
+                                    {correctrendercheckboxes()}
                                 </div>
                             </div>
                             <div className="contents__bot">
                                 <div className="select__all">
-                                    <label htmlFor="SelectAllBtn">
-                                        <input
-                                            type="checkbox"
-                                            id="SelectAllBtn"
-                                            name="SelectAllBtn"
-
-                                        />
-                                        <p>select all</p>
-                                    </label>
+                                    {correctrenderCheckboxesAll()}
                                 </div>
                             </div>
                         </div>
                         <div className="correction__btn">
                             <button className="add__btn">Add</button>
-                            <button className="del__btn">Delete</button>
+                            <button className="del__btn" onClick={deleteCorrect}>Delete</button>
                         </div>
                     </div>
                 </div>

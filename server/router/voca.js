@@ -5,6 +5,7 @@ const { User } = require("../model/User.js");
 const { Counter } = require("../model/Counter.js");
 const { Vocasearch } = require("../model/Vocasearch.js")
 const { Vocawrite } = require("../model/Voca.js")
+const { Correction } = require("../model/Correct.js")
 
 router.post('/searchlist', async (req, res) => {
     const List = req.body.data;
@@ -102,7 +103,7 @@ router.post('/showvocalist', async (req, res) => {
     }
 });
 
-router.post('/delete', async (req, res) => {
+router.post('/vocadelete', async (req, res) => {
     try {
         let data = req.body.id;
         console.log(data);
@@ -125,23 +126,58 @@ router.post('/correctlist', async (req, res) => {
     try {
         for (let i = 0; i < List.length; i++) {
             const item = List[i];
-            const correct = item[0];
-            const wrong = item[1];
+            const wrong = item[0];
+            const correct = item[1];
             const data = [wrong, correct];
             result.push(data)
 
             let temp = {
                 wrong: wrong,
                 correct: correct,
-                uid: uid
+                uid: uid,
             }
 
+            const counter = await Counter.findOne({ name: "counter" }).exec();
+            temp.correctNum = counter.correctNum;
 
+            const userInfo = await User.findOne({ uid: temp.uid }).exec();
+            temp.author = userInfo._id;
+
+            const CorrectList = new Correction(temp);
+            await CorrectList.save();
+
+            await Counter.updateOne({ name: "counter" }, { $inc: { correctNum: 1 } });
         }
+        res.status(200).json({ success: true });
     } catch (err) {
         console.log(err);
         res.status(400).json({ success: false });
     }
 });
+
+router.post('/showcorrectlist', async (req, res) => {
+    try {
+        const result = await Correction.find().limit(50).exec();
+        res.status(200).json({ success: true, correctList: result });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: err.message });
+    }
+});
+
+router.post('/correctdelete', async (req, res) => {
+    try {
+        let data = req.body.id;
+        console.log(data);
+        for (let id of data) {
+            await Correction.deleteOne({ _id: id }).exec();
+        }
+        res.status(200).json({ success: true });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: err.message });
+    }
+});
+
 
 module.exports = router;
