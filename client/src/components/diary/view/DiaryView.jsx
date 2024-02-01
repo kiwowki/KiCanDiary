@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import ViewRight from './right/ViewRight'
-import { useMatch, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import fetchPost from '../util/view'
 
 const DiaryView = () => {
@@ -32,8 +32,8 @@ const DiaryView = () => {
                     <div className="detail">
                         <div className="left">
                             <p></p>
+                            <span className="spring"></span>
                         </div>
-                        <span></span>
                         <ViewRight
                             post={post}
                             quillRef={quillRef}

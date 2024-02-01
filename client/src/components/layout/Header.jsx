@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import userImg from '../../assets/img/user.png'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,10 +11,24 @@ const Header = () => {
     const { NavLink, LoginLink } = navigation()
     const { list, login } = nav()
     const dispatch = useDispatch()
-    const MemoizedNavLink = React.memo(NavLink);
+    const MemoizedNavLink = React.memo(NavLink)
+    const [showHeader, setShowHeader] = useState(false)
+
+    const handleMouseOver = () => {
+        setShowHeader(true)
+    }
+
+    const handleMouseOut = () => {
+        setShowHeader(false)
+    }
 
     return (
-        <header id="header">
+        <header
+            id="header"
+            className={showHeader ? 'visible' : ''}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+        >
             <div className="header__wrap">
                 <nav className="nav">
                     <ul className="nav__list">
@@ -29,7 +43,10 @@ const Header = () => {
                             <ul>
                                 {user.accessToken === '' ? (
                                     login.map((user, index) => (
-                                        <MemoizedNavLink key={index} to={user.key}>
+                                        <MemoizedNavLink
+                                            key={index}
+                                            to={user.key}
+                                        >
                                             {user.value}
                                         </MemoizedNavLink>
                                     ))

@@ -47,6 +47,9 @@
                     text-align: center;
                     font-size: 35px;
                     color: var(--white);
+
+                    // 종한
+                    // color: var(--whitdiarylist__bottomWrape);
                     font-family: var(--dela);
                     text-transform: uppercase;
                 }
@@ -146,46 +149,48 @@
                         margin-bottom: 25px;
                     }
 
-                    .weekday {
-                        display: flex;
-                        align-items: flex-end;
-                        justify-content: space-between;
-                        height: 40px;
+                    a {
+                        .weekday {
+                            display: flex;
+                            align-items: flex-end;
+                            justify-content: space-between;
+                            height: 40px;
 
-                        .date {
-                            font-size: 20px;
-                            color: var(--white);
-                            padding-left: 15px;
-                            text-transform: uppercase;
-                            font-family: var(--dela);
+                            .date {
+                                font-size: 20px;
+                                color: var(--white);
+                                padding-left: 15px;
+                                text-transform: uppercase;
+                                font-family: var(--dela);
+                            }
+
+                            .sticker {
+                                padding: 0 15px 5px;
+                            }
                         }
 
-                        .sticker {
-                            padding: 0 15px 5px;
-                        }
-                    }
+                        .day__diary {
+                            background-color: var(--white);
+                            // height: 240px;
+                            height: 210px;
+                            padding: 15px;
 
-                    .day__diary {
-                        background-color: var(--white);
-                        // height: 240px;
-                        height: 210px;
-                        padding: 15px;
+                            .title {
+                                width: 70%;
+                                font-size: 20px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
 
-                        .title {
-                            width: 70%;
-                            font-size: 20px;
-                            white-space: nowrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                        }
-
-                        .content {
-                            font-size: 18px;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            display: -webkit-box;
-                            -webkit-line-clamp: 7;
-                            -webkit-box-orient: vertical;
+                            .content {
+                                font-size: 18px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 7;
+                                -webkit-box-orient: vertical;
+                            }
                         }
                     }
                     .btn__wrap {
@@ -280,21 +285,12 @@
 
                 .month {
                     width: 200px;
-
-                    .prev {
-                        a {
-                            top: 3px;
-                        }
+                    span {
+                        top: 3px;
                     }
 
                     h2 {
                         font-size: 20px;
-                    }
-
-                    .next {
-                        a {
-                            top: 3px;
-                        }
                     }
                 }
 
@@ -339,44 +335,98 @@
                     }
                 }
             }
-            .diarylist__bottomWrap {
-                //css 수정하기
-                .diarylist__bottom {
-                    width: 100%;
-                    min-height: 670px;
-                    height: auto;
-                    border-radius: 0 0 13px 13px;
+            // 종한님 거
+            // .diarylist__bottomWrap {
+            //     //css 수정하기
+            //     .diarylist__bottom {
+            //         width: 100%;
+            //         min-height: 670px;
+            //         height: auto;
+            //         border-radius: 0 0 13px 13px;
 
-                    .list__wrap {
-                        .list {
-                            width: 40%;
-                            height: 230px;
-                            border-radius: 30px;
-                            margin: 25px;
+            //         .list__wrap {
+            //             .list {
+            //                 width: 40%;
+            //                 height: 230px;
+            //                 border-radius: 30px;
+            //                 margin: 25px;
+            //             }
+
+            //             .voca__list {
+            //                 width: 40%;
+            //                 height: 230px;
+            //                 margin: 25px;
+
+            //                 .title {
+            //                     top: -15px;
+            //                     width: 100%;
+            //                 }
+
+            //                 ul {
+            //                     padding: 40px 30px 30px 30px;
+
+            //                     li {
+            //                         span {
+            //                             font-size: 18px;
+            //                             font-weight: 400;
+            //                         }
+
+            //                         &:last-child {
+            //                             display: none;
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+
+            // 내 거
+            .diarylist__bottom {
+                border-radius: 0 0 13px 13px;
+                width: 100%;
+                min-height: 670px;
+                height: auto;
+
+                .list__wrap {
+                    .list {
+                        width: 40%;
+                        height: 230px;
+                        border-radius: 30px;
+                        margin: 25px;
+                        a {
+                            .day__diary {
+                                height: 150px;
+                            }
+                        }
+                        .btn__wrap {
+                            button {
+                                height: 35px;
+                            }
+                        }
+                    }
+
+                    .voca__list {
+                        width: 40%;
+                        height: 230px;
+                        margin: 25px;
+
+                        .title {
+                            top: -15px;
+                            width: 100%;
                         }
 
-                        .voca__list {
-                            width: 40%;
-                            height: 230px;
-                            margin: 25px;
+                        ul {
+                            padding: 40px 30px 30px 30px;
 
-                            .title {
-                                top: -15px;
-                                width: 100%;
-                            }
+                            li {
+                                span {
+                                    font-size: 18px;
+                                    font-weight: 400;
+                                }
 
-                            ul {
-                                padding: 40px 30px 30px 30px;
-
-                                li {
-                                    span {
-                                        font-size: 18px;
-                                        font-weight: 400;
-                                    }
-
-                                    &:last-child {
-                                        display: none;
-                                    }
+                                &:last-child {
+                                    display: none;
                                 }
                             }
                         }
@@ -407,27 +457,31 @@
 
                         &:first-child {
                         }
+                        a {
+                            .weekday {
+                            }
 
-                        .weekday {
+                            .day__diary {
+                                height: 201px;
+                                padding: 15px;
+
+                                .title {
+                                    width: 70%;
+                                    font-size: 20px;
+                                }
+
+                                .content {
+                                    font-size: 18px;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 7;
+                                    -webkit-box-orient: vertical;
+                                }
+                            }
                         }
 
-                        .day__diary {
-                            height: 240px;
-                            padding: 15px;
-
-                            .title {
-                                width: 70%;
-                                font-size: 20px;
-                            }
-
-                            .content {
-                                font-size: 18px;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                display: -webkit-box;
-                                -webkit-line-clamp: 7;
-                                -webkit-box-orient: vertical;
-                            }
+                        .btn__wrap {
                         }
                     }
 
@@ -505,45 +559,68 @@
                             margin-top: 5vh;
                             margin-bottom: 1.2vh;
                         }
-
-                        .weekday {
-                            height: 40px;
-                            width: 35%;
+                        a {
+                            width: 100%;
+                            display: flex;
                             justify-content: flex-start;
                             align-items: center;
+                            .weekday {
+                                height: 40px;
+                                width: 35%;
+                                justify-content: flex-start;
+                                align-items: center;
 
-                            .date {
-                                color: var(--font-purple1);
+                                .date {
+                                    color: var(--font-purple1);
+                                    font-size: 1rem;
+                                }
+
+                                .sticker {
+                                    height: 100%;
+                                    padding: 0 0 0 10px;
+                                    display: flex;
+                                    align-content: center;
+                                    flex-wrap: wrap;
+
+                                    img {
+                                        width: 20px;
+                                        height: 20px;
+                                    }
+                                }
                             }
 
-                            .sticker {
-                                height: 100%;
-                                padding: 0 0 0 10px;
+                            .day__diary {
+                                padding: 0;
+                                width: 65%;
                                 display: flex;
-                                align-content: center;
-                                flex-wrap: wrap;
+                                justify-content: center;
+                                align-items: center;
 
-                                img {
-                                    width: 20px;
-                                    height: 20px;
+                                .title {
+                                    width: 90%;
+                                    font-size: 2.2vh;
+                                }
+
+                                .content {
+                                    display: none;
                                 }
                             }
                         }
 
-                        .day__diary {
-                            padding: 0;
-                            width: 65%;
-                            display: flex;
+                        .btn__wrap {
+                            display: none;
+                        }
+                    }
+                    .list.null {
+                        a {
                             justify-content: center;
-                            align-items: center;
-
-                            .title {
-                                width: 90%;
-                                font-size: 2.2vh;
-                            }
-
-                            .content {
+                            .weekday {
                                 display: none;
+                            }
+                            .day__diary {
+                                h3 {
+                                    font-size: 0.9rem;
+                                }
                             }
                         }
                     }

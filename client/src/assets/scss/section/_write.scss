@@ -13,16 +13,22 @@
         .today__date {
             display: flex;
             justify-content: center;
-            // margin-top: 94px;
             margin-bottom: 12px;
             p {
-                padding: 8px 115px;
-                font-size: 30px;
+                width: 25rem;
+                height: 7vh;
+                text-align: center;
+                font-size: 1.5rem;
                 background-color: var(--box-pink2);
-                border-color: var(--border-pink);
+                border: solid var(--border-pink);
+                border-width: 1px 4px 4px 1px;
                 border-radius: 30px;
                 color: var(--white);
                 font-family: var(--dela);
+                line-height: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
         .write__main {
@@ -46,7 +52,7 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        font-size: 20px;
+                        font-size: 1.2rem;
                         font-family: var(--dela);
                         color: var(--white);
                     }
@@ -115,12 +121,11 @@
                     margin-bottom: 18px;
                     position: relative;
 
-
                     h2 {
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        font-size: 20px;
+                        font-size: 1.2rem;
                         font-family: var(--dela);
                         color: var(--white);
                         background-color: var(--box-pink2);
@@ -136,7 +141,7 @@
                         border-width: 0px 6px 6px 2px;
                         border-radius: 0 0 30px 30px;
                         font-family: var(--marc);
-                        font-size: 18px;
+                        font-size: 1.1rem;
                         /* 스크롤이 수직으로 발생하도록 설정 */
 
                         .result_wrap {
@@ -156,7 +161,6 @@
                                 background-color: var(--black200);
                                 border-radius: 10px;
                             }
-
                         }
                     }
                 }
@@ -166,7 +170,7 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        font-size: 20px;
+                        font-size: 1.2rem;
                         font-family: var(--dela);
                         color: var(--white);
                         background-color: var(--box-pink2);
@@ -214,13 +218,13 @@
                                         a {
                                             display: inline-block;
                                             color: var(--font-red);
-                                            font-size: 20px;
+                                            font-size: 1.2rem;
                                         }
                                     }
                                     .wrong__reason {
                                         display: inline-block;
                                         font-family: var(--pre);
-                                        font-size: 14px;
+                                        font-size: 0.8rem;
                                     }
                                 }
                                 .arrow {
@@ -236,7 +240,7 @@
                                         a {
                                             display: inline-block;
                                             color: var(--font-blue);
-                                            font-size: 20px;
+                                            font-size: 1.2rem;
                                         }
                                     }
                                 }
@@ -251,17 +255,16 @@
             display: flex;
             justify-content: flex-end;
             button {
-                padding: 10px 20px;
                 display: inline-block;
                 width: 180px;
-                height: 73px;
-                font-size: 25px;
+                height: 65px;
+                font-size: 1.4rem;
                 background-color: var(--box-pink2);
                 border-color: var(--border-pink);
                 border-radius: 30px;
                 color: var(--white);
                 font-family: var(--dela);
-                margin-right: 7vw;
+                margin-right: 8vw;
             }
         }
     }
@@ -272,7 +275,9 @@
         .write__wrap {
             .today__date {
                 p {
-                    font-size: 1.5vw;
+                    font-size: 1.1rem;
+                    width: 16rem;
+                    height: 4.5vh;
                 }
             }
             .write__main {
@@ -281,13 +286,13 @@
                         height: 45px;
 
                         h2 {
-                            font-size: 1.4vw;
+                            font-size: 1rem;
                         }
                     }
                     .content {
                         height: 616px;
                         h2 {
-                            font-size: 1.4vw;
+                            font-size: 1rem;
                             height: 45px;
                         }
                         textarea {
@@ -314,7 +319,7 @@
                         margin-bottom: 18px;
 
                         h2 {
-                            font-size: 1.4vw;
+                            font-size: 1rem;
                             height: 45px;
                         }
                         > div {
@@ -343,7 +348,7 @@
                     .correction {
                         margin-bottom: 18px;
                         h2 {
-                            font-size: 1.4vw;
+                            font-size: 1rem;
                             height: 45px;
                         }
                         > div {
@@ -379,17 +384,39 @@
             }
             .button {
                 button {
-                    padding: 10px 20px;
-                    width: 15vw;
-                    height: 6vw;
-                    font-size: 1.5vw;
-                    margin-right: 6vw;
+                    width: 9rem;
+                    height: 4rem;
+                    font-size: 1.2rem;
                 }
             }
         }
     }
 }
 @media (max-width: 768px) {
+    #write {
+        .write__wrap {
+            .write__main {
+                .write {
+                    .title {
+                        input {
+                            width: 44.9vw;
+                        }
+                        h2 {
+                            width: 10vw;
+                        }
+                    }
+                }
+                .right {
+                    // margin-left: 30px;
+                    .search__wrap {
+                        input {
+                            padding-left: 40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 @media (max-width: 480px) {
     #write {
@@ -401,8 +428,8 @@
                 width: 100%;
                 height: 40px;
                 p {
+                    width: 50vw;
                     font-size: 4.5vw;
-                    padding: 0 6vw;
                 }
             }
             .write__main {
@@ -421,6 +448,7 @@
                         }
                         input {
                             width: 73vw;
+                            padding-left: 10px;
                         }
                     }
                     .content {
@@ -476,9 +504,9 @@
                 display: flex;
                 justify-content: center;
                 button {
+                    padding: 10px 20px;
                     width: auto;
                     height: auto;
-                    padding: 10px 35px;
                     font-size: 4vw;
                     margin: 0 0 70px 0;
                     display: flex;

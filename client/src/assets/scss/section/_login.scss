@@ -1,5 +1,5 @@
 .login__wrap {
-    background-color: #FDF0F0;
+    background-color: #fdf0f0;
     font-family: 'Marcellus';
     width: 100%;
     height: 100vh;
@@ -36,7 +36,7 @@
                 margin-top: 70px;
 
                 label {
-                    background-color: #FFE1E1;
+                    background-color: #ffe1e1;
                     font-size: 18px;
                     padding: 10px 20px;
                     border-radius: 10px 10px 0 0;
@@ -55,23 +55,20 @@
                 .login__input {
                     width: 100%;
                     height: 50px;
-                    border: 3px solid #FE8C8C;
+                    border: 3px solid #fe8c8c;
                     border-radius: 10px;
-                    background-color: #FDF0F0;
+                    background-color: #fdf0f0;
                     box-sizing: border-box;
 
                     &:focus {
                         outline: none;
-
                     }
                 }
-
-
             }
 
             .login__btn {
                 margin-top: 70px;
-                background-color: #FE8C8C;
+                background-color: #fe8c8c;
                 padding: 15px 35px;
                 font-size: 25px;
                 border-top: 1px solid #000;
@@ -100,22 +97,17 @@
             width: 100%;
             height: 100vh;
             border: none;
-            background-color: #FDF0F0;
+            background-color: #fdf0f0;
 
             form {
                 div {
-
                     .login__input {
                         background-color: #fff;
                     }
                 }
             }
-
         }
-
-
     }
-
 }
 
 @media (max-width: 768px) {

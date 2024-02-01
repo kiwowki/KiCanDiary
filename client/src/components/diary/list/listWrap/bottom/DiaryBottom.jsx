@@ -17,6 +17,8 @@ const DiaryBottom = ({
         exit: { x: direction === 1 ? '100%' : '-100%' },
     }
 
+    console.log(monthAnima)
+
     return (
         <div className="diarylist__bottomWrap">
             <AnimatePresence mode="wait">

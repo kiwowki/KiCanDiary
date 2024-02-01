@@ -56,7 +56,6 @@ const App = () => {
         <BrowserRouter>
             <Main>
                 <Routes>
-                    {/* Home 페이지 */}
                     <Route
                         path="/"
                         element={
@@ -65,14 +64,12 @@ const App = () => {
                             </>
                         }
                     />
-
-                    {/* Write 페이지 */}
                     <Route
                         path="/diary/write/:date"
                         element={
                             <>
                                 {' '}
-                                {/* {isMobile ? <HeaderMobile /> : <Header />} */}{' '}
+                                {isMobile ? <HeaderMobile /> : <Header />}{' '}
                                 <Write />{' '}
                             </>
                         }
