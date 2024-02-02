@@ -9,6 +9,8 @@
     .diaryview__wrap {
         width: 1210px;
         height: 750px;
+        padding: 0 50px;
+        margin: 0 10px;
         border-radius: 25px;
         overflow: hidden;
         box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
@@ -43,7 +45,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             .left {
                 box-shadow: 2px 4px 10px rgb(0 0 0 / 65%);
                 background-image: url(../../img/diaryView_bg_1.png);
@@ -54,22 +55,25 @@
                 height: 550px;
                 border-radius: 16px;
                 margin-right: 11px;
+                position: relative;
 
                 p {
                 }
+                .spring {
+                    background-image: url(../../img/diaryview_spring.png);
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: cover;
+                    width: 65px;
+                    height: 398px;
+                    position: absolute;
+                    top: 50%;
+                    right: -39px;
+                    transform: translateY(-50%);
+                    cursor: text;
+                }
             }
-            span {
-                background-image: url(../../img/diaryview_spring.png);
-                background-repeat: no-repeat;
-                background-position: center center;
-                background-size: cover;
-                width: 65px;
-                height: 398px;
-                position: absolute;
-                top: 50%;
-                left: 378px;
-                transform: translateY(-50%);
-            }
+
             .right {
                 box-shadow: 2px 4px 10px rgb(0 0 0 / 65%);
                 background-image: url(../../img/diaryView_bg_2.png);
@@ -81,23 +85,24 @@
                 border-radius: 16px;
                 padding: 85px 55px;
                 padding: 45px 55px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
 
                 .rightTitle {
-                    margin-bottom: 30px;
                     font-size: 1.3rem;
                     border-bottom: 5px solid var(--box-pink1);
+                    padding: 5px 15px;
                 }
                 p {
                     font-size: 1rem;
+                    cursor: text;
                 }
                 .btn__wrap {
-                    height: 360px;
                     display: flex;
                     justify-content: flex-end;
-                    align-items: flex-end;
-                    z-index: 999;
+
                     button {
-                        z-index: 999;
                         width: 20%;
                         height: 35px;
                         @include btn;
@@ -105,7 +110,7 @@
                         background-color: var(--box-pink1);
 
                         &:hover {
-                            background-color: var(--font-white2);
+                            background-color: var(--white);
                             color: var(--box-pink1);
                         }
                     }

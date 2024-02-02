@@ -49,7 +49,7 @@ const List = ({ currentDate, currentPage, postsPerPage }) => {
                         <div className="day__diary">
                             <h3 className="title">{post.title}</h3>
                             <ReactQuill
-                                className="viewQuill"
+                                className="ListQuill"
                                 readOnly={true}
                                 value={post.content}
                             />
@@ -82,19 +82,19 @@ const List = ({ currentDate, currentPage, postsPerPage }) => {
                         <Link to={`#`}>
                             <div className="weekday">
                                 <span className="date"></span>
-                                <span className="sticker">
+                                {/* <span className="sticker">
                                     <img
                                         src={getRandomSticker()}
                                         alt="Sticker"
                                     />
-                                </span>
+                                </span> */}
                             </div>
                             <div className="day__diary">
                                 <h3 className="title">작성된 일기가 없어요</h3>
-                                <ReactQuill
+                                {/* <ReactQuill
                                     className="viewQuill"
                                     readOnly={true}
-                                />
+                                /> */}
                             </div>
                         </Link>
                     </div>

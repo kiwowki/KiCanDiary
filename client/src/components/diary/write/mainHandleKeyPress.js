@@ -1,16 +1,25 @@
-import axios from 'axios';
+import axios from 'axios'
 
-const mainhandleKeyPress = async (event, value, setValue, correctionsData, setCorrectionsData, quillRef) => {
+const mainhandleKeyPress = async (
+    event,
+    value,
+    setValue,
+    correctionsData,
+    setCorrectionsData,
+    quillRef
+) => {
     try {
         if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault()
             const textValue = quillRef.current?.getEditor().getText()
-            console.log(textValue)
+            // console.log(textValue)
+            setValue(textValue)
 
             const response = await axios.post('/api/ginger', {
                 search: value,
             })
             if (response.data.success) {
+                // console.log(response.data.data.GingerTheDocumentResult.Corrections);
 
                 const newCorrectionsData =
                     response.data.data.GingerTheDocumentResult.Corrections.map(
@@ -26,7 +35,7 @@ const mainhandleKeyPress = async (event, value, setValue, correctionsData, setCo
                         })
                     )
 
-                console.log(newCorrectionsData)
+                // console.log(newCorrectionsData)
                 setCorrectionsData(newCorrectionsData)
             } else {
                 alert('문법 요청 실패')
@@ -37,4 +46,4 @@ const mainhandleKeyPress = async (event, value, setValue, correctionsData, setCo
     }
 }
 
-export default mainhandleKeyPress;
+export default mainhandleKeyPress

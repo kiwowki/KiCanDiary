@@ -6,9 +6,7 @@
 @import 'setting/reset.scss';
 @import 'setting/vars.scss';
 @import 'setting/marginpadding.scss';
-@import 'setting/quill.snow.scss';
 @import 'setting/mixin.scss';
-@import 'setting/transition';
 
 // section
 // components
@@ -33,3 +31,4 @@
 
 // util
 @import 'util/calendar.scss';
+@import 'util/quill.snow.scss';
