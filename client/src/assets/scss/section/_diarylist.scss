@@ -6,12 +6,14 @@
     align-items: center;
     font-family: var(--marc);
     font-weight: 400;
+
     .diarylist__wrap {
         width: 1210px;
         height: 750px;
         border-radius: 13px;
         overflow: hidden;
         box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.137);
+
         .diarylist__top {
             width: 100%;
             height: 80px;
@@ -24,35 +26,35 @@
                 position: relative;
                 width: 330px;
                 margin: 0 20px;
+
+                span {
+                    position: absolute;
+                    top: 16px;
+                    width: 17px;
+                    height: 26px;
+                    cursor: pointer;
+                }
                 .prev {
-                    a {
-                        background-image: url(../../img/signZip.png);
-                        position: absolute;
-                        top: 15px;
-                        left: 0;
-                        width: 17px;
-                        height: 26px;
-                    }
+                    background-image: url(../../img/signZip.png);
+                    left: 0;
+                }
+                .next {
+                    background-image: url(../../img/signZip.png);
+                    background-position: -17px 0px;
+                    right: 0;
                 }
                 h2 {
                     text-align: center;
                     font-size: 35px;
                     color: var(--white);
+
+                    // 종한
+                    // color: var(--whitdiarylist__bottomWrape);
                     font-family: var(--dela);
                     text-transform: uppercase;
                 }
-                .next {
-                    a {
-                        background-image: url(../../img/signZip.png);
-                        position: absolute;
-                        background-position: -17px 0px;
-                        top: 15px;
-                        right: 0;
-                        width: 16px;
-                        height: 26px;
-                    }
-                }
             }
+
             .title {
                 font-family: var(--shrik);
                 font-size: 35px;
@@ -61,12 +63,16 @@
                 padding-top: 10px;
                 margin-right: 110px;
             }
+
             .diary__list__pages {
                 margin-right: 25px;
+
                 ul {
                     display: flex;
+
                     li {
-                        a {
+                        cursor: pointer;
+                        span {
                             width: 40px;
                             height: 40px;
                             background-color: var(--white);
@@ -79,8 +85,10 @@
                             border-radius: 50%;
                             margin-right: 5px;
                         }
-                        &.active {
-                            a {
+
+                        &.active,
+                        &:hover {
+                            span {
                                 background-color: var(--box-pink3);
                             }
                         }
@@ -92,6 +100,7 @@
                 width: 350px;
                 height: 40px;
                 position: relative;
+
                 span {
                     position: absolute;
                     top: 2px;
@@ -103,6 +112,7 @@
                     background-repeat: no-repeat;
                     cursor: pointer;
                 }
+
                 input {
                     width: 350px;
                     height: 40px;
@@ -113,72 +123,115 @@
                 }
             }
         }
+
         .diarylist__bottom {
             width: 100%;
             height: calc(750px - 80px);
             background-color: var(--box-pink3);
             display: flex;
+
             .list__wrap {
                 display: flex;
                 flex-wrap: wrap;
                 align-content: center;
                 justify-content: space-between;
                 padding: 0 70px;
+
                 .list {
                     width: 250px;
-                    height: 280px;
+                    height: 285px;
                     background-color: var(--font-purple1);
                     border: 2px solid var(--font-purple1);
                     border-radius: 30px;
                     overflow: hidden;
+
                     &:first-child {
                         margin-bottom: 25px;
                     }
-                    .weekday {
-                        display: flex;
-                        align-items: flex-end;
-                        justify-content: space-between;
-                        height: 40px;
 
-                        .date {
-                            font-size: 20px;
-                            color: var(--white);
-                            padding-left: 15px;
-                            text-transform: uppercase;
-                            font-family: var(--dela);
+                    a {
+                        .weekday {
+                            display: flex;
+                            align-items: flex-end;
+                            justify-content: space-between;
+                            height: 40px;
+
+                            .date {
+                                font-size: 20px;
+                                color: var(--white);
+                                padding-left: 15px;
+                                text-transform: uppercase;
+                                font-family: var(--dela);
+                            }
+
+                            .sticker {
+                                padding: 0 15px 5px;
+                            }
                         }
-                        .sticker {
-                            padding: 0 15px 5px;
+
+                        .day__diary {
+                            background-color: var(--white);
+                            // height: 240px;
+                            height: 210px;
+                            padding: 15px;
+
+                            .title {
+                                width: 70%;
+                                font-size: 20px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+
+                            .content {
+                                font-size: 18px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 7;
+                                -webkit-box-orient: vertical;
+                            }
                         }
                     }
-                    .day__diary {
-                        background-color: var(--white);
-                        height: 240px;
-                        padding: 15px;
-
-                        .title {
-                            width: 70%;
-                            font-size: 20px;
-                            white-space: nowrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
+                    .btn__wrap {
+                        width: 102%;
+                        background-color: #fff;
+                        button {
+                            @include btn;
+                            width: 50%;
+                            background-color: var(--font-purple2);
+                            padding: 2%;
+                            &:hover {
+                                color: var(--font-purple2);
+                                background-color: var(--font-white2);
+                            }
                         }
-                        .content {
-                            font-size: 18px;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            display: -webkit-box;
-                            -webkit-line-clamp: 7;
-                            -webkit-box-orient: vertical;
+                        .update {
+                            width: 49%;
                         }
                     }
                 }
+                .list.null {
+                    position: relative;
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        height: inherit;
+                        top: 0;
+                        left: 0;
+                        z-index: 999;
+                        background-color: rgba(0, 0, 0, 0.438);
+                    }
+                }
+
                 .voca__list {
                     width: 250px;
                     height: 280px;
                     background-color: var(--white);
                     background-image: url(../../img/diarylist_voca_bg.png);
                     position: relative;
+
                     .title {
                         position: absolute;
                         top: -15px;
@@ -189,11 +242,14 @@
                         background-position: center center;
                         font-size: 18px;
                     }
+
                     ul {
                         padding: 40px 30px 30px 30px;
+
                         li {
                             display: flex;
                             justify-content: space-between;
+
                             span {
                                 font-size: 18px;
                                 font-weight: 400;
@@ -202,6 +258,7 @@
                     }
                 }
             }
+
             .mobile__page {
                 display: none;
             }
@@ -213,11 +270,13 @@
     #diarylist {
         min-height: 100vh;
         height: auto;
+
         .diarylist__wrap {
             width: 100%;
             height: auto;
             margin: 20px;
             margin-top: 50px;
+
             .diarylist__top {
                 width: 100%;
                 height: 80px;
@@ -226,26 +285,23 @@
 
                 .month {
                     width: 200px;
-                    .prev {
-                        a {
-                            top: 3px;
-                        }
+                    span {
+                        top: 3px;
                     }
+
                     h2 {
                         font-size: 20px;
                     }
-                    .next {
-                        a {
-                            top: 3px;
-                        }
-                    }
                 }
+
                 .title {
                     display: none;
                 }
+
                 .diary__list__pages {
                     ul {
                         display: flex;
+                        //
                         li {
                             a {
                                 width: 30px;
@@ -253,6 +309,7 @@
                                 font-size: 15px;
                             }
                         }
+
                         &.active {
                             a {
                             }
@@ -263,12 +320,14 @@
                 .search__wrap {
                     width: 30vw;
                     height: 40px;
+
                     span {
                         top: 2px;
                         right: 10px;
                         width: 40px;
                         height: 40px;
                     }
+
                     input {
                         width: 30vw;
                         height: 40px;
@@ -276,6 +335,53 @@
                     }
                 }
             }
+            // 종한님 거
+            // .diarylist__bottomWrap {
+            //     //css 수정하기
+            //     .diarylist__bottom {
+            //         width: 100%;
+            //         min-height: 670px;
+            //         height: auto;
+            //         border-radius: 0 0 13px 13px;
+
+            //         .list__wrap {
+            //             .list {
+            //                 width: 40%;
+            //                 height: 230px;
+            //                 border-radius: 30px;
+            //                 margin: 25px;
+            //             }
+
+            //             .voca__list {
+            //                 width: 40%;
+            //                 height: 230px;
+            //                 margin: 25px;
+
+            //                 .title {
+            //                     top: -15px;
+            //                     width: 100%;
+            //                 }
+
+            //                 ul {
+            //                     padding: 40px 30px 30px 30px;
+
+            //                     li {
+            //                         span {
+            //                             font-size: 18px;
+            //                             font-weight: 400;
+            //                         }
+
+            //                         &:last-child {
+            //                             display: none;
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+
+            // 내 거
             .diarylist__bottom {
                 border-radius: 0 0 13px 13px;
                 width: 100%;
@@ -288,22 +394,37 @@
                         height: 230px;
                         border-radius: 30px;
                         margin: 25px;
+                        a {
+                            .day__diary {
+                                height: 150px;
+                            }
+                        }
+                        .btn__wrap {
+                            button {
+                                height: 35px;
+                            }
+                        }
                     }
+
                     .voca__list {
                         width: 40%;
                         height: 230px;
                         margin: 25px;
+
                         .title {
                             top: -15px;
                             width: 100%;
                         }
+
                         ul {
                             padding: 40px 30px 30px 30px;
+
                             li {
                                 span {
                                     font-size: 18px;
                                     font-weight: 400;
                                 }
+
                                 &:last-child {
                                     display: none;
                                 }
@@ -315,6 +436,7 @@
         }
     }
 }
+
 @media (max-width: 768px) {
     #diarylist {
         .diarylist__wrap {
@@ -323,35 +445,46 @@
                     display: none;
                 }
             }
+
             .diarylist__bottom {
                 .list__wrap {
                     justify-content: center;
                     padding: 0;
+
                     .list {
                         width: 70%;
                         height: 280px;
+
                         &:first-child {
                         }
-                        .weekday {
-                        }
-                        .day__diary {
-                            height: 240px;
-                            padding: 15px;
+                        a {
+                            .weekday {
+                            }
 
-                            .title {
-                                width: 70%;
-                                font-size: 20px;
+                            .day__diary {
+                                height: 201px;
+                                padding: 15px;
+
+                                .title {
+                                    width: 70%;
+                                    font-size: 20px;
+                                }
+
+                                .content {
+                                    font-size: 18px;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 7;
+                                    -webkit-box-orient: vertical;
+                                }
                             }
-                            .content {
-                                font-size: 18px;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                display: -webkit-box;
-                                -webkit-line-clamp: 7;
-                                -webkit-box-orient: vertical;
-                            }
+                        }
+
+                        .btn__wrap {
                         }
                     }
+
                     .voca__list {
                         display: none;
                     }
@@ -360,26 +493,33 @@
         }
     }
 }
+
 @media (max-width: 480px) {
     #diarylist {
         height: 100vh;
+
         .diarylist__wrap {
             height: 80vh;
             margin-top: 0;
+
             .diarylist__top {
                 height: 10vh;
+
                 .month {
                     width: 100%;
+
                     .prev {
                         a {
                             top: 2px;
                             left: 0;
                         }
                     }
+
                     h2 {
                         font-size: 7vw;
                         line-height: 0.9;
                     }
+
                     .next {
                         a {
                             top: 2px;
@@ -387,12 +527,15 @@
                         }
                     }
                 }
+
                 .diary__list__pages {
                 }
+
                 .search__wrap {
                     display: none;
                 }
             }
+
             .diarylist__bottom {
                 display: block;
                 min-height: calc(100% - 10vh);
@@ -411,53 +554,87 @@
                         background-color: var(--white);
                         border-radius: 15px;
                         margin: 1.2vh;
+
                         &:first-child {
                             margin-top: 5vh;
                             margin-bottom: 1.2vh;
                         }
-                        .weekday {
-                            height: 40px;
-                            width: 35%;
+                        a {
+                            width: 100%;
+                            display: flex;
                             justify-content: flex-start;
                             align-items: center;
-                            .date {
-                                color: var(--font-purple1);
+                            .weekday {
+                                height: 40px;
+                                width: 35%;
+                                justify-content: flex-start;
+                                align-items: center;
+
+                                .date {
+                                    color: var(--font-purple1);
+                                    font-size: 1rem;
+                                }
+
+                                .sticker {
+                                    height: 100%;
+                                    padding: 0 0 0 10px;
+                                    display: flex;
+                                    align-content: center;
+                                    flex-wrap: wrap;
+
+                                    img {
+                                        width: 20px;
+                                        height: 20px;
+                                    }
+                                }
                             }
-                            .sticker {
-                                height: 100%;
-                                padding: 0 0 0 10px;
+
+                            .day__diary {
+                                padding: 0;
+                                width: 65%;
                                 display: flex;
-                                align-content: center;
-                                flex-wrap: wrap;
-                                img {
-                                    width: 20px;
-                                    height: 20px;
+                                justify-content: center;
+                                align-items: center;
+
+                                .title {
+                                    width: 90%;
+                                    font-size: 2.2vh;
+                                }
+
+                                .content {
+                                    display: none;
                                 }
                             }
                         }
-                        .day__diary {
-                            padding: 0;
-                            width: 65%;
-                            display: flex;
+
+                        .btn__wrap {
+                            display: none;
+                        }
+                    }
+                    .list.null {
+                        a {
                             justify-content: center;
-                            align-items: center;
-                            .title {
-                                width: 90%;
-                                font-size: 2.2vh;
-                            }
-                            .content {
+                            .weekday {
                                 display: none;
+                            }
+                            .day__diary {
+                                h3 {
+                                    font-size: 0.9rem;
+                                }
                             }
                         }
                     }
                 }
+
                 .mobile__page {
                     display: block;
+
                     ul {
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         padding-bottom: 5px;
+
                         li {
                             a {
                                 color: var(--white);
@@ -465,6 +642,7 @@
                                 font-size: 20px;
                                 padding: 5px;
                             }
+
                             &.active {
                                 a {
                                     color: var(--font-purple1);

@@ -1,5 +1,5 @@
 .mypage__wrap {
-    background-color: #FDF0F0;
+    background-color: #fdf0f0;
     font-family: 'Marcellus';
     width: 100%;
     height: 100vh;
@@ -51,7 +51,7 @@
 
                 div {
                     margin-top: 13px;
-                    color: #A2A8B2;
+                    color: #a2a8b2;
 
                     img {
                         width: 23px;
@@ -76,36 +76,29 @@
 
                 >div {
                     width: 20vw;
-                    border-bottom: 2px solid #F4F4F4;
+                    border-bottom: 2px solid #f4f4f4;
                     margin-bottom: 15px;
                     padding-bottom: 7px;
                     padding-left: 10px;
 
-
                     &.user__Delete {
                         width: 120px;
                         margin-top: 55px;
-                        color: #F54E5E;
+                        color: #f54e5e;
                     }
-
                 }
-
-
             }
-
         }
-
     }
 }
 
 @media (max-width: 1280px) {
     .mypage__wrap {
-
         .mypage__inner {
             width: 100%;
             height: 100vh;
             border: none;
-            background-color: #FDF0F0;
+            background-color: #fdf0f0;
 
             .left {}
 
@@ -117,18 +110,12 @@
                     }
                 }
             }
-
-
         }
-
-
     }
-
 }
 
 @media (max-width: 768px) {
     .mypage__wrap {
-
         .mypage__inner {
             height: 70vh;
 
@@ -159,7 +146,6 @@
             .right {
                 width: 100%;
 
-
                 .click__menu {
                     width: 80%;
                     margin-top: 0;
@@ -175,13 +161,10 @@
             }
         }
     }
-
 }
 
 @media (max-width: 480px) {
     .mypage__wrap {
-
-
         .mypage__inner {
             .right {
                 .click__menu {

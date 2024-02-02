@@ -1,38 +1,39 @@
 #write {
     width: 100%;
     height: 100vh;
-    display: flex;
-    justify-content: center;
     overflow: hidden;
+    @include FJcc;
 
     .write__wrap {
         width: 100%;
-        display: flex;
+        @include FJcc;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
 
         .today__date {
-            display: flex;
-            justify-content: center;
-            // margin-top: 94px;
+            @include FJcc;
             margin-bottom: 12px;
 
             p {
-                padding: 8px 115px;
-                font-size: 30px;
+                width: 25rem;
+                height: 7vh;
+                text-align: center;
+                font-size: 1.5rem;
                 background-color: var(--box-pink2);
-                border-color: var(--border-pink);
+                border: solid var(--border-pink);
+                border-width: 1px 4px 4px 1px;
                 border-radius: 30px;
                 color: var(--white);
                 font-family: var(--dela);
+                line-height: 1;
+                @include FJcc;
+                align-items: center;
             }
         }
 
         .write__main {
             width: 100%;
-            display: flex;
-            justify-content: center;
+            @include FJcc;
 
             .write {
                 .title {
@@ -40,18 +41,15 @@
                     text-align: center;
                     width: 54.3vw;
                     height: 50px;
-
                     background-color: var(--box-pink2);
                     border-radius: 30px;
-
                     margin-bottom: 18px;
 
                     h2 {
                         width: 7.5vw;
-                        display: flex;
+                        @include FJcc;
                         align-items: center;
-                        justify-content: center;
-                        font-size: 20px;
+                        font-size: 1.2rem;
                         font-family: var(--dela);
                         color: var(--white);
                     }
@@ -59,7 +57,6 @@
                     input {
                         width: 46.9vw;
                         padding-left: 20px;
-
                         border: solid var(--font-pink1);
                         border-width: 2px 6px 6px 0;
                         border-radius: 0 30px 30px 0;
@@ -70,16 +67,14 @@
                 .content {
                     text-align: center;
                     width: 54.3vw;
-
                     height: 616px;
                     background-color: var(--font-pink1);
                     border-radius: 30px;
                     position: relative;
 
                     h2 {
-                        display: flex;
+                        @include FJcc;
                         align-items: center;
-                        justify-content: center;
                         font-size: 20px;
                         font-family: var(--dela);
                         color: var(--white);
@@ -96,14 +91,12 @@
                 .search__wrap {
                     width: 27.75vw;
                     height: 50px;
-
                     margin-bottom: 18px;
                     position: relative;
 
                     span {
                         position: absolute;
                         top: 5px;
-
                         left: 15px;
                         width: 40px;
                         height: 40px;
@@ -115,7 +108,6 @@
                     input {
                         width: 27.75vw;
                         height: 50px;
-
                         padding-left: 60px;
                         border: solid var(--font-pink1);
                         border-width: 2px 6px 6px 2px;
@@ -128,12 +120,11 @@
                     margin-bottom: 18px;
                     position: relative;
 
-
                     h2 {
-                        display: flex;
+                        @include FJcc;
+
                         align-items: center;
-                        justify-content: center;
-                        font-size: 20px;
+                        font-size: 1.2rem;
                         font-family: var(--dela);
                         color: var(--white);
                         background-color: var(--box-pink2);
@@ -145,12 +136,11 @@
                         width: 27.75vw;
                         height: 185px;
                         overflow: hidden;
-
                         border: solid var(--font-pink1);
                         border-width: 0px 6px 6px 2px;
                         border-radius: 0 0 30px 30px;
                         font-family: var(--marc);
-                        font-size: 18px;
+                        font-size: 1.1rem;
                         /* 스크롤이 수직으로 발생하도록 설정 */
 
                         .result_wrap {
@@ -173,23 +163,13 @@
                                         height: 20px;
                                         border: 2px solid var(--font-pink1);
                                         margin-right: 10px;
-
                                     }
                                 }
 
                                 .submitSearchList {
-                                    background-color: var(--box-pink2);
-                                    padding: 8px 10px;
-                                    border-radius: 15px;
-                                    color: var(--white);
-                                    font-family: var(--dela);
-                                    position: absolute;
-                                    bottom: 3%;
-                                    right: 8%;
+                                    @include rightBtnPink;
                                 }
-
                             }
-
 
                             &::-webkit-scrollbar {
                                 width: 6px;
@@ -201,7 +181,6 @@
                                 background-color: var(--black200);
                                 border-radius: 10px;
                             }
-
                         }
                     }
                 }
@@ -210,10 +189,9 @@
                     margin-bottom: 18px;
 
                     h2 {
-                        display: flex;
+                        @include FJcc;
                         align-items: center;
-                        justify-content: center;
-                        font-size: 20px;
+                        font-size: 1.2rem;
                         font-family: var(--dela);
                         color: var(--white);
                         background-color: var(--box-pink2);
@@ -267,14 +245,14 @@
                                         a {
                                             display: inline-block;
                                             color: var(--font-red);
-                                            font-size: 20px;
+                                            font-size: 1.2rem;
                                         }
                                     }
 
                                     .wrong__reason {
                                         display: inline-block;
                                         font-family: var(--pre);
-                                        font-size: 14px;
+                                        font-size: 0.8rem;
                                     }
                                 }
 
@@ -292,31 +270,18 @@
                                         a {
                                             display: inline-block;
                                             color: var(--font-blue);
-                                            font-size: 20px;
+                                            font-size: 1.2rem;
                                         }
                                     }
                                 }
                             }
 
                             div {
-
                                 .submitGingerList {
-                                    background-color: var(--box-pink2);
-                                    padding: 8px 10px;
-                                    border-radius: 15px;
-                                    color: var(--white);
-                                    font-family: var(--dela);
-                                    position: absolute;
-                                    bottom: 3%;
-                                    right: 8%;
+                                    @include rightBtnPink;
                                 }
-
                             }
                         }
-
-
-
-
                     }
                 }
             }
@@ -328,17 +293,17 @@
             justify-content: flex-end;
 
             button {
-                padding: 10px 20px;
                 display: inline-block;
                 width: 180px;
-                height: 73px;
-                font-size: 25px;
+                height: 65px;
+                font-size: 1.4rem;
                 background-color: var(--box-pink2);
                 border-color: var(--border-pink);
                 border-radius: 30px;
                 color: var(--white);
                 font-family: var(--dela);
-                margin-right: 7vw;
+                margin-right: 8vw;
+                cursor: pointer;
             }
         }
     }
@@ -349,7 +314,9 @@
         .write__wrap {
             .today__date {
                 p {
-                    font-size: 1.5vw;
+                    font-size: 1.1rem;
+                    width: 16rem;
+                    height: 4.5vh;
                 }
             }
 
@@ -359,7 +326,7 @@
                         height: 45px;
 
                         h2 {
-                            font-size: 1.4vw;
+                            font-size: 1rem;
                         }
                     }
 
@@ -367,7 +334,7 @@
                         height: 616px;
 
                         h2 {
-                            font-size: 1.4vw;
+                            font-size: 1rem;
                             height: 45px;
                         }
 
@@ -400,7 +367,7 @@
                         margin-bottom: 18px;
 
                         h2 {
-                            font-size: 1.4vw;
+                            font-size: 1rem;
                             height: 45px;
                         }
 
@@ -433,7 +400,7 @@
                         margin-bottom: 18px;
 
                         h2 {
-                            font-size: 1.4vw;
+                            font-size: 1rem;
                             height: 45px;
                         }
 
@@ -476,19 +443,44 @@
 
             .button {
                 button {
-                    padding: 10px 20px;
-                    width: 15vw;
-                    height: 6vw;
-                    font-size: 1.5vw;
-                    margin-right: 6vw;
+                    width: 9rem;
+                    height: 4rem;
+                    font-size: 1.2rem;
                 }
             }
         }
     }
 }
 
+@media (max-width: 768px) {
+    #write {
+        .write__wrap {
+            .write__main {
+                .write {
+                    .title {
+                        input {
+                            width: 44.9vw;
+                        }
 
-@media (max-width: 768px) {}
+                        h2 {
+                            width: 10vw;
+                        }
+                    }
+                }
+
+                .right {
+
+                    // margin-left: 30px;
+                    .search__wrap {
+                        input {
+                            padding-left: 40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 @media (max-width: 480px) {
     #write {
@@ -502,8 +494,8 @@
                 height: 40px;
 
                 p {
+                    width: 50vw;
                     font-size: 4.5vw;
-                    padding: 0 6vw;
                 }
             }
 
@@ -526,6 +518,7 @@
 
                         input {
                             width: 73vw;
+                            padding-left: 10px;
                         }
                     }
 
@@ -568,9 +561,6 @@
 
                             .result_wrap {
                                 width: 77vw;
-
-
-
                             }
                         }
                     }
@@ -599,9 +589,9 @@
                 justify-content: center;
 
                 button {
+                    padding: 10px 20px;
                     width: auto;
                     height: auto;
-                    padding: 10px 35px;
                     font-size: 4vw;
                     margin: 0 0 70px 0;
                     display: flex;

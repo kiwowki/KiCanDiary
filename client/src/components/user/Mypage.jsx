@@ -47,21 +47,21 @@ const Mypage = () => {
     }, []);
 
     // 이미지파일 업로드 부분
-    // const handleInit = () => {
-    //     console.log('FilePond 초기화');
-    // };
+    const handleInit = () => {
+        console.log('FilePond 초기화');
+    };
 
-    // const handleFileUpload = (fileItems) => {
-    //     const uploadedFile = fileItems[0]?.file;
-    //     console.log(uploadedFile);
+    const handleFileUpload = (fileItems) => {
+        const uploadedFile = fileItems[0]?.file;
+        console.log(uploadedFile);
 
-    //     // submit 버튼을 눌렀을 때만 파일 정보를 저장
-    //     if (uploadedFile && uploadedFile.submitted) {
-    //         const fileData = uploadedFile.file; // File 객체 추출
-    //         setFile(fileData);
-    //     }
+        // submit 버튼을 눌렀을 때만 파일 정보를 저장
+        if (uploadedFile && uploadedFile.submitted) {
+            const fileData = uploadedFile.file; // File 객체 추출
+            setFile(fileData);
+        }
 
-    // };
+    };
     const ProfileSubmit = async () => {
         try {
             if (!file) {
@@ -119,8 +119,8 @@ const Mypage = () => {
 
     const ProfileModal = ({ onClose }) => {
         return (
-            <div className='passmodal'>
-                <div className='passmodal__content'>
+            <div className='profilemodal'>
+                <div className='profilemodal__content'>
                     <div className="logo">kitch <span>Candy</span></div>
                     <h2>Modify  profile</h2>
                     <p>

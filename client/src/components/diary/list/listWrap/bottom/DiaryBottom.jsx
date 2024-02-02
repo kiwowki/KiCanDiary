@@ -1,0 +1,75 @@
+import React from 'react'
+import List from './List'
+import { Link } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
+import DiaryVocaList from './DiaryVocaList'
+
+const DiaryBottom = ({
+    currentDate,
+    currentPage,
+    postsPerPage,
+    direction,
+    start,
+    monthAnima,
+}) => {
+    const variants = {
+        hidden: { x: direction === 1 ? '100%' : '-100%' },
+        show: { x: '0%' },
+        exit: { x: direction === 1 ? '100%' : '-100%' },
+    }
+
+    console.log(monthAnima)
+
+    return (
+        <div className="diarylist__bottomWrap">
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={`${currentPage}-${currentDate}`}
+                    className="diarylist__bottom"
+                    variants={variants}
+                    custom={direction}
+                    transition={{
+                        duration: 0.3,
+                        delay: 0.5,
+                        ease: 'easeInOut',
+                    }}
+                    initial={start || monthAnima ? 'hidden' : ''}
+                    animate={start || monthAnima ? 'show' : ''}
+                >
+                    <div className="list__wrap">
+                        <List
+                            currentDate={currentDate}
+                            currentPage={currentPage}
+                            postsPerPage={postsPerPage}
+                        />
+
+                        <div className="voca__list">
+                            <DiaryVocaList />
+                        </div>
+                    </div>
+
+                    <div className="mobile__page">
+                        <ul>
+                            <li className="active">
+                                <Link to="/">1</Link>
+                            </li>
+                            <li>
+                                <Link to="/">2</Link>
+                            </li>
+                            <li>
+                                <Link to="/">3</Link>
+                            </li>
+                            <li>
+                                <Link to="/">4</Link>
+                            </li>
+                            {/* 페이지 번호 표시 부분은 생략하거나 원하면 추가 */}
+                            {/* {nextPage()} */}
+                        </ul>
+                    </div>
+                </motion.div>
+            </AnimatePresence>
+        </div>
+    )
+}
+
+export default DiaryBottom

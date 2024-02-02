@@ -11,9 +11,9 @@ const VocaList = () => {
     }
 
     useEffect(() => {
-        fetchSearchList();
-        fetchVocaList();
-        fetchCorrectList();
+        fetchSearchList()
+        fetchVocaList()
+        fetchCorrectList()
     }, [])
 
     // search voca List
@@ -21,7 +21,7 @@ const VocaList = () => {
     const fetchSearchList = async () => {
         try {
             const response = await axios.post('/api/voca/showsearchlist')
-            const reverseData = response.data.vocasearchList.reverse();
+            const reverseData = response.data.vocasearchList.reverse()
             setSearchList(reverseData)
         } catch (err) {
             console.log(err)
@@ -29,42 +29,43 @@ const VocaList = () => {
     }
 
     // searchList -> voca
-    const [checkboxList, setCheckboxList] = useState([]);
-    const [checkBoxListAll, setCheckboxListAll] = useState(false);
+    const [checkboxList, setCheckboxList] = useState([])
+    const [checkBoxListAll, setCheckboxListAll] = useState(false)
 
     const isCheckboxChecked = (index) => {
-        return checkboxList.includes(index);
+        return checkboxList.includes(index)
     }
 
     const handleCheckboxToggle = (i) => {
-        const updatedList = [...checkboxList];
-        const indexPosition = updatedList.indexOf(i);
+        const updatedList = [...checkboxList]
+        const indexPosition = updatedList.indexOf(i)
 
         if (indexPosition > -1) {
-            setCheckboxListAll(false);
-            updatedList.splice(indexPosition, 1); // 이미 체크된 항목이라면 리스트에서 제거
+            setCheckboxListAll(false)
+            updatedList.splice(indexPosition, 1) // 이미 체크된 항목이라면 리스트에서 제거
         } else {
-            updatedList.push(i); // 체크되지 않은 항목이라면 리스트에 추가
+            updatedList.push(i) // 체크되지 않은 항목이라면 리스트에 추가
         }
-        setCheckboxList(updatedList);
+        setCheckboxList(updatedList)
         // console.log(checkboxList)
     }
 
     const handleCheckboxToggleAll = () => {
         if (checkboxList.length === searchList.length) {
             setCheckboxListAll(false)
-            setCheckboxList([]);
+            setCheckboxList([])
         } else {
             setCheckboxListAll(true)
-            const newList = searchList.map((_, index) => index);
-            setCheckboxList(newList);
+            const newList = searchList.map((_, index) => index)
+            setCheckboxList(newList)
         }
         console.log(checkboxList)
     }
 
     // layout
     const renderCheckboxes = () => {
-        return Array.isArray(searchList) &&
+        return (
+            Array.isArray(searchList) &&
             searchList.map((search, index) => (
                 <div key={index}>
                     <label htmlFor="SearchVoca">
@@ -80,6 +81,7 @@ const VocaList = () => {
                     </label>
                 </div>
             ))
+        )
     }
 
     const renderCheckboxesAll = () => {
@@ -99,31 +101,33 @@ const VocaList = () => {
 
     // 단어 voca에 저장
     const writeVoca = async () => {
-        const selectedWords = checkboxList.map(index => searchList[index]);
-        console.log(selectedWords);
+        const selectedWords = checkboxList.map((index) => searchList[index])
+        console.log(selectedWords)
         try {
-            const response = await axios.post('/api/voca/vocalist', { data: selectedWords, uid: user.uid })
+            const response = await axios.post('/api/voca/vocalist', {
+                data: selectedWords,
+                uid: user.uid,
+            })
             if (response.data.success) {
-                alert("단어 저장 합니다.");
-                fetchSearchList();
-                fetchVocaList();
-                setCheckboxList([]);
+                alert('단어 저장 합니다.')
+                fetchSearchList()
+                fetchVocaList()
+                setCheckboxList([])
                 setCheckboxListAll(false)
             } else {
-                alert("단어 저장 실패");
+                alert('단어 저장 실패')
             }
         } catch (err) {
-            console.log(err);
+            console.log(err)
         }
     }
-
 
     // voca List
     const [vocaList, setVocaList] = useState([])
     const fetchVocaList = async () => {
         try {
             const response = await axios.post('/api/voca/showvocalist')
-            const reverseData = response.data.vocaList.reverse();
+            const reverseData = response.data.vocaList.reverse()
             setVocaList(reverseData)
         } catch (err) {
             console.log(err)
@@ -137,8 +141,8 @@ const VocaList = () => {
     }
 
     const handleVocaCheckboxToggle = (i) => {
-        const updatedList = [...vocacheckboxList];
-        const indexPosition = updatedList.indexOf(i);
+        const updatedList = [...vocacheckboxList]
+        const indexPosition = updatedList.indexOf(i)
 
         if (indexPosition > -1) {
             setvocacheckboxListAll(false)
@@ -146,48 +150,52 @@ const VocaList = () => {
         } else {
             updatedList.push(i)
         }
-        setVocaCheckBoxList(updatedList);
+        setVocaCheckBoxList(updatedList)
         console.log(updatedList)
     }
 
     const handleVocaCheckboxToggleAll = () => {
         if (vocacheckboxList.length === vocaList.length) {
-            setvocacheckboxListAll(false);
-            setVocaCheckBoxList([]);
+            setvocacheckboxListAll(false)
+            setVocaCheckBoxList([])
         } else {
-            setvocacheckboxListAll(true);
-            const newList = vocaList.map((_, index) => index);
-            setVocaCheckBoxList(newList);
+            setvocacheckboxListAll(true)
+            const newList = vocaList.map((_, index) => index)
+            setVocaCheckBoxList(newList)
         }
     }
 
     // 단어 삭제
     const deleteVoca = async () => {
-        const selectedWords = vocacheckboxList.map(index => vocaList[index]);
-        console.log(selectedWords);
+        const selectedWords = vocacheckboxList.map((index) => vocaList[index])
+        console.log(selectedWords)
         try {
-            if (window.confirm('확인버튼을 누르면 선택한 단어가 단어장에서 삭제됩니다. 정말 삭제하시겠습니까?')) {
-                let body = selectedWords.map(item => item._id);
+            if (
+                window.confirm(
+                    '확인버튼을 누르면 선택한 단어가 단어장에서 삭제됩니다. 정말 삭제하시겠습니까?'
+                )
+            ) {
+                let body = selectedWords.map((item) => item._id)
                 axios
                     .post('/api/voca/vocadelete', { id: body })
                     .then((response) => {
                         if (response.data.success) {
-                            fetchVocaList();
-                            setVocaCheckBoxList([]);
-                            setvocacheckboxListAll(false);
+                            fetchVocaList()
+                            setVocaCheckBoxList([])
+                            setvocacheckboxListAll(false)
                         }
                     })
             }
         } catch (err) {
-            console.log(err);
-            alert('단어 삭제가 실패되었습니다.');
+            console.log(err)
+            alert('단어 삭제가 실패되었습니다.')
         }
-    };
+    }
 
     // layout
     const vocarendercheckboxes = () => {
-        return Array.isArray(vocaList) &&
-
+        return (
+            Array.isArray(vocaList) &&
             vocaList.map((voca, index) => (
                 <label htmlFor="mycollection" index={index}>
                     <input
@@ -201,6 +209,7 @@ const VocaList = () => {
                     <p className="korean">{voca.meaning}</p>
                 </label>
             ))
+        )
     }
 
     const vocarenderCheckboxesAll = () => {
@@ -223,69 +232,77 @@ const VocaList = () => {
     const fetchCorrectList = async () => {
         try {
             const response = await axios.post('/api/voca/showcorrectlist')
-            const reverseData = response.data.correctList.reverse();
+            const reverseData = response.data.correctList.reverse()
             setCorrectList(reverseData)
         } catch (err) {
             console.log(err)
         }
     }
 
-    const [correctcheckboxList, setCorrectCheckBoxList] = useState([]);
-    const [correctcheckboxListAll, setCorrectCheckBoxListAll] = useState(false);
+    const [correctcheckboxList, setCorrectCheckBoxList] = useState([])
+    const [correctcheckboxListAll, setCorrectCheckBoxListAll] = useState(false)
     const isCorrectCheckboxChecked = (index) => {
-        return correctcheckboxList.includes(index);
+        return correctcheckboxList.includes(index)
     }
 
     const handleCorrectCheckboxToggle = (i) => {
-        const updateList = [...correctcheckboxList];
-        const indexPosition = updateList.indexOf(i);
+        const updateList = [...correctcheckboxList]
+        const indexPosition = updateList.indexOf(i)
 
         if (indexPosition > -1) {
-            setCorrectCheckBoxListAll(false);
-            updateList.splice(indexPosition, 1);
+            setCorrectCheckBoxListAll(false)
+            updateList.splice(indexPosition, 1)
         } else {
-            updateList.push(i);
+            updateList.push(i)
         }
-        setCorrectCheckBoxList(updateList);
-        console.log(correctcheckboxList);
+        setCorrectCheckBoxList(updateList)
+        console.log(correctcheckboxList)
     }
 
     const handleCorrectCheckboxToggleAll = () => {
         if (correctcheckboxList.length === correctList.length) {
-            setCorrectCheckBoxListAll(false);
-            setCorrectCheckBoxList([]);
+            setCorrectCheckBoxListAll(false)
+            setCorrectCheckBoxList([])
         } else {
-            setCorrectCheckBoxListAll(true);
-            const newList = correctList.map((_, index) => index);
-            setCorrectCheckBoxList(newList);
+            setCorrectCheckBoxListAll(true)
+            const newList = correctList.map((_, index) => index)
+            setCorrectCheckBoxList(newList)
         }
     }
 
     const deleteCorrect = async () => {
-        const selectedWords = correctcheckboxList.map(index => correctList[index]);
-        console.log(selectedWords);
+        const selectedWords = correctcheckboxList.map(
+            (index) => correctList[index]
+        )
+        console.log(selectedWords)
 
         try {
-            if (window.confirm('확인버튼을 누르면 삭제됩니다. 정말 삭제하시겠습니까?')) { }
-            let body = selectedWords.map(item => item._id);
+            if (
+                window.confirm(
+                    '확인버튼을 누르면 삭제됩니다. 정말 삭제하시겠습니까?'
+                )
+            ) {
+            }
+            let body = selectedWords.map((item) => item._id)
             axios
                 .post('/api/voca/correctdelete', { id: body })
                 .then((response) => {
                     if (response.data.success) {
-                        fetchCorrectList();
-                        setCorrectCheckBoxList([]);
-                        setCorrectCheckBoxListAll(false);
+                        fetchCorrectList()
+                        setCorrectCheckBoxList([])
+                        setCorrectCheckBoxListAll(false)
                     }
                 })
         } catch (err) {
-            console.log(err);
-            alert('삭제가 실패되었습니다.');
+            console.log(err)
+            alert('삭제가 실패되었습니다.')
         }
     }
 
     // layout
     const correctrendercheckboxes = () => {
-        return Array.isArray(correctList) &&
+        return (
+            Array.isArray(correctList) &&
             correctList.map((correct, index) => (
                 <label htmlFor="CorrectVoca" index={index}>
                     <input
@@ -299,6 +316,7 @@ const VocaList = () => {
                     <p className="correct">{correct.correct}</p>
                 </label>
             ))
+        )
     }
 
     const correctrenderCheckboxesAll = () => {
@@ -323,7 +341,6 @@ const VocaList = () => {
                     <div className="mycollection">
                         <h2>My Collection</h2>
                         <div className="contents">
-
                             <div className="contents__top">
                                 <div className="mycollection__voca__title">
                                     <h3>ENGLISH</h3>
@@ -340,8 +357,8 @@ const VocaList = () => {
                                     <input
                                         type="text"
                                         className={`word__search ${isInputVisible
-                                            ? 'input__visible'
-                                            : ''
+                                                ? 'input__visible'
+                                                : ''
                                             }`}
                                     />
                                 </div>
@@ -353,7 +370,9 @@ const VocaList = () => {
 
                         <div className="mycollection__btn">
                             <button className="add__btn">Add</button>
-                            <button className="del__btn" onClick={deleteVoca}>Delete</button>
+                            <button className="del__btn" onClick={deleteVoca}>
+                                Delete
+                            </button>
                         </div>
                     </div>
 
@@ -376,7 +395,9 @@ const VocaList = () => {
                             </div>
                         </div>
                         <div className="searchlist__btn">
-                            <button className="add__btn" onClick={writeVoca}>Add</button>
+                            <button className="add__btn" onClick={writeVoca}>
+                                Add
+                            </button>
                             <button className="del__btn">Delete</button>
                         </div>
                     </div>
@@ -401,7 +422,12 @@ const VocaList = () => {
                         </div>
                         <div className="correction__btn">
                             <button className="add__btn">Add</button>
-                            <button className="del__btn" onClick={deleteCorrect}>Delete</button>
+                            <button
+                                className="del__btn"
+                                onClick={deleteCorrect}
+                            >
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </div>
