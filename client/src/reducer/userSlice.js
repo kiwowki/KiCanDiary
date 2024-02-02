@@ -14,6 +14,8 @@ export const userSlice = createSlice({
                 photoURL: '',
                 isLoading: false,
                 isLoggedIn: false,
+                email: "",
+                password: "",
             }
         }
     },
@@ -26,6 +28,8 @@ export const userSlice = createSlice({
             state.isLoading = true
             state.isLoggedIn = true
             sessionStorage.setItem('user', JSON.stringify(state))
+            state.email = action.payload.email;
+            state.password = action.payload.password;
             //  로컬 스토리지 사용자 정보
         },
 
@@ -35,6 +39,8 @@ export const userSlice = createSlice({
             state.accessToken = ''
             state.isLoading = false
             state.isLoggedIn = false
+            state.email = '';
+            state.password = '';
             sessionStorage.removeItem('user')
         },
     },

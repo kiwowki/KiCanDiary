@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import face from '../../../assets/img/pink-18.gif'
-import vocaData from '../../../Data/tabData/vocaData'
-
 import TabDiary from './tabMenu/TabDiary'
+
+import axios from 'axios'
 
 const Right = ({ uid, currentDate }) => {
     const [myList, setMyList] = useState([])
 
     useEffect(() => {
-        setMyList(vocaData)
+        fetchVocaList()
     }, []) // voca 부분
+
+    const fetchVocaList = async () => {
+        try {
+            const response = await axios.post('/api/voca/showvocalist')
+            const reverseData = response.data.vocaList.reverse()
+            const slicedData = reverseData.slice(0, 7);
+            setMyList(slicedData)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
 
     return (
         <div className="right pt50">
@@ -29,10 +41,10 @@ const Right = ({ uid, currentDate }) => {
                         {myList.map((list, key) => (
                             <p className="my__list" key={key}>
                                 <span className="list__key pl50">
-                                    {list.key}
+                                    {list.word}
                                 </span>
                                 <span className="list__value">
-                                    {list.value}
+                                    {list.meaning}
                                 </span>
                             </p>
                         ))}

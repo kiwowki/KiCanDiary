@@ -2,6 +2,7 @@ import React from 'react'
 import List from './List'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import DiaryVocaList from './DiaryVocaList'
 
 const DiaryBottom = ({
     currentDate,
@@ -43,41 +44,7 @@ const DiaryBottom = ({
                         />
 
                         <div className="voca__list">
-                            <h3 className="title">Voca List</h3>
-                            <ul>
-                                <li>
-                                    <span>overcome</span>
-                                    <span>극복하다</span>
-                                </li>
-                                <li>
-                                    <span>overcome</span>
-                                    <span>극복하다</span>
-                                </li>
-                                <li>
-                                    <span>overcome</span>
-                                    <span>극복하다</span>
-                                </li>
-                                <li>
-                                    <span>overcome</span>
-                                    <span>극복하다</span>
-                                </li>
-                                <li>
-                                    <span>overcome</span>
-                                    <span>극복하다</span>
-                                </li>
-                                <li>
-                                    <span>overcome</span>
-                                    <span>극복하다</span>
-                                </li>
-                                <li>
-                                    <span>overcome</span>
-                                    <span>극복하다</span>
-                                </li>
-                                <li>
-                                    <span>overcome</span>
-                                    <span>극복하다</span>
-                                </li>
-                            </ul>
+                            <DiaryVocaList />
                         </div>
                     </div>
 

@@ -67,19 +67,17 @@ const VocaList = () => {
         return (
             Array.isArray(searchList) &&
             searchList.map((search, index) => (
-                <div key={index}>
-                    <label htmlFor="SearchVoca">
-                        <input
-                            type="checkbox"
-                            id={`SearchVoca s${index}`}
-                            name={`SearchVoca s${index}`}
-                            checked={isCheckboxChecked(index)}
-                            onChange={() => handleCheckboxToggle(index)}
-                        />
-                        <p className="meaning">{search.word}</p>
-                        <p className="word">{search.meaning}</p>
-                    </label>
-                </div>
+                <label htmlFor="SearchVoca" index={index}>
+                    <input
+                        type="checkbox"
+                        id={`SearchVoca s${index}`}
+                        name={`SearchVoca s${index}`}
+                        checked={isCheckboxChecked(index)}
+                        onChange={() => handleCheckboxToggle(index)}
+                    />
+                    <p className="meaning">{search.word}</p>
+                    <p className="word">{search.meaning}</p>
+                </label>
             ))
         )
     }
@@ -338,6 +336,7 @@ const VocaList = () => {
         <div id="wrap">
             <div id="vocalist" className="section__border">
                 <div className="vocalist__wrap">
+
                     <div className="mycollection">
                         <h2>My Collection</h2>
                         <div className="contents">
@@ -356,11 +355,10 @@ const VocaList = () => {
                                     <span onClick={searchClickHandler}></span>
                                     <input
                                         type="text"
-                                        className={`word__search ${
-                                            isInputVisible
-                                                ? 'input__visible'
-                                                : ''
-                                        }`}
+                                        className={`word__search ${isInputVisible
+                                            ? 'input__visible'
+                                            : ''
+                                            }`}
                                     />
                                 </div>
                                 <div className="select__all">
@@ -370,7 +368,6 @@ const VocaList = () => {
                         </div>
 
                         <div className="mycollection__btn">
-                            <button className="add__btn">Add</button>
                             <button className="del__btn" onClick={deleteVoca}>
                                 Delete
                             </button>
@@ -422,7 +419,6 @@ const VocaList = () => {
                             </div>
                         </div>
                         <div className="correction__btn">
-                            <button className="add__btn">Add</button>
                             <button
                                 className="del__btn"
                                 onClick={deleteCorrect}

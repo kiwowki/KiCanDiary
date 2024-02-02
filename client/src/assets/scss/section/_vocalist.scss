@@ -85,7 +85,7 @@
                         }
                     }
 
-                    > div {
+                    >div {
                         padding: 0 30px;
 
                         label {
@@ -142,6 +142,27 @@
                             .correct {
                                 color: var(--font-blue);
                             }
+                        }
+                    }
+
+                    .searchlist__voca__contents {
+                        overflow-y: scroll;
+                        height: 444px;
+                        margin-right: 5px;
+
+                        &::-webkit-scrollbar {
+                            width: 6px;
+                            /* 스크롤바의 너비 설정 */
+                        }
+
+                        /* 스크롤바의 스타일 설정 */
+                        &::-webkit-scrollbar-thumb {
+                            background-color: var(--black200);
+                            border-radius: 10px;
+                        }
+
+                        &::-webkit-scrollbar-track {
+                            background-color: var(--box-purple3);
                         }
                     }
 
@@ -216,8 +237,11 @@
             .searchlist__btn {
                 height: 60px;
                 background-color: var(--box-purple1);
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
-                > button {
+                >button {
                     width: 49%;
                     height: 100%;
                     font-size: 18px;
@@ -237,8 +261,11 @@
             .correction__btn {
                 height: 60px;
                 background-color: var(--box-purple1);
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
-                > button {
+                >button {
                     width: 49%;
                     height: 100%;
                     font-size: 18px;
@@ -311,7 +338,7 @@
                         }
                     }
 
-                    > div {
+                    >div {
                         padding: 0 20px 0 30px;
 
                         label {
@@ -412,8 +439,7 @@
                         .word__search {
                             opacity: 0;
                             width: 0;
-                            transition: all 1s
-                                cubic-bezier(0.68, -0.6, 0.32, 1.6);
+                            transition: all 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
                         }
 
                         .input__visible {
@@ -422,8 +448,7 @@
                             animation-name: expand;
                             animation-timing-function: ease-in-out;
                             animation-fill-mode: forwards;
-                            transition: all 1.5s
-                                cubic-bezier(0.68, -0.6, 0.32, 1.6);
+                            transition: all 1.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
                         }
                     }
 
@@ -476,8 +501,11 @@
                 height: 60px;
                 background-color: var(--box-purple1);
                 border-radius: 0 0 13px 13px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
-                > button {
+                >button {
                     width: 49%;
                     height: 100%;
                     font-size: 18px;
@@ -500,13 +528,11 @@
         }
 
         .searchlist {
-            h2 {
-            }
+            h2 {}
         }
 
         .correction {
-            h2 {
-            }
+            h2 {}
         }
     }
 }
