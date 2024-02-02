@@ -23,7 +23,7 @@ const DiaryBottom = ({
         <div className="diarylist__bottomWrap">
             <AnimatePresence mode="wait">
                 <motion.div
-                    key={currentPage}
+                    key={`${currentPage}-${currentDate}`}
                     className="diarylist__bottom"
                     variants={variants}
                     custom={direction}

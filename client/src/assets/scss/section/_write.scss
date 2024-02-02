@@ -1,18 +1,17 @@
 #write {
     width: 100%;
     height: 100vh;
-    display: flex;
-    justify-content: center;
     overflow: hidden;
+    @include FJcc;
+
     .write__wrap {
         width: 100%;
-        display: flex;
+        @include FJcc;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+
         .today__date {
-            display: flex;
-            justify-content: center;
+            @include FJcc;
             margin-bottom: 12px;
             p {
                 width: 25rem;
@@ -26,58 +25,53 @@
                 color: var(--white);
                 font-family: var(--dela);
                 line-height: 1;
-                display: flex;
+                @include FJcc;
                 align-items: center;
-                justify-content: center;
             }
         }
         .write__main {
             width: 100%;
-            display: flex;
-            justify-content: center;
+            @include FJcc;
+
             .write {
                 .title {
                     display: flex;
                     text-align: center;
                     width: 54.3vw;
                     height: 50px;
-
                     background-color: var(--box-pink2);
                     border-radius: 30px;
-
                     margin-bottom: 18px;
 
                     h2 {
                         width: 7.5vw;
-                        display: flex;
+                        @include FJcc;
                         align-items: center;
-                        justify-content: center;
                         font-size: 1.2rem;
                         font-family: var(--dela);
                         color: var(--white);
                     }
+
                     input {
                         width: 46.9vw;
                         padding-left: 20px;
-
                         border: solid var(--font-pink1);
                         border-width: 2px 6px 6px 0;
                         border-radius: 0 30px 30px 0;
                         font-family: var(--pre);
                     }
                 }
+
                 .content {
                     text-align: center;
                     width: 54.3vw;
-
                     height: 616px;
                     background-color: var(--font-pink1);
                     border-radius: 30px;
                     position: relative;
                     h2 {
-                        display: flex;
+                        @include FJcc;
                         align-items: center;
-                        justify-content: center;
                         font-size: 20px;
                         font-family: var(--dela);
                         color: var(--white);
@@ -92,13 +86,12 @@
                 .search__wrap {
                     width: 27.75vw;
                     height: 50px;
-
                     margin-bottom: 18px;
                     position: relative;
+
                     span {
                         position: absolute;
                         top: 5px;
-
                         left: 15px;
                         width: 40px;
                         height: 40px;
@@ -109,7 +102,6 @@
                     input {
                         width: 27.75vw;
                         height: 50px;
-
                         padding-left: 60px;
                         border: solid var(--font-pink1);
                         border-width: 2px 6px 6px 2px;
@@ -122,9 +114,9 @@
                     position: relative;
 
                     h2 {
-                        display: flex;
+                        @include FJcc;
+
                         align-items: center;
-                        justify-content: center;
                         font-size: 1.2rem;
                         font-family: var(--dela);
                         color: var(--white);
@@ -136,7 +128,6 @@
                         width: 27.75vw;
                         height: 185px;
                         overflow: hidden;
-
                         border: solid var(--font-pink1);
                         border-width: 0px 6px 6px 2px;
                         border-radius: 0 0 30px 30px;
@@ -152,8 +143,29 @@
                             flex-direction: column;
                             overflow: hidden;
                             overflow-y: auto;
+                            position: relative;
+
+                            div {
+                                span {
+                                    display: flex;
+                                    align-items: center;
+
+                                    input {
+                                        width: 20px;
+                                        height: 20px;
+                                        border: 2px solid var(--font-pink1);
+                                        margin-right: 10px;
+                                    }
+                                }
+
+                                .submitSearchList {
+                                    @include rightBtnPink;
+                                }
+                            }
+
                             &::-webkit-scrollbar {
-                                width: 6px; /* 스크롤바의 너비 설정 */
+                                width: 6px;
+                                /* 스크롤바의 너비 설정 */
                             }
 
                             /* 스크롤바의 스타일 설정 */
@@ -167,9 +179,8 @@
                 .correction {
                     margin-bottom: 18px;
                     h2 {
-                        display: flex;
+                        @include FJcc;
                         align-items: center;
-                        justify-content: center;
                         font-size: 1.2rem;
                         font-family: var(--dela);
                         color: var(--white);
@@ -186,6 +197,7 @@
                         border-width: 0px 6px 6px 2px;
                         border-radius: 0 0 30px 30px;
                         overflow: hidden;
+
                         .correction_wrap {
                             padding: 20px;
                             width: 27.2vw;
@@ -245,6 +257,11 @@
                                     }
                                 }
                             }
+                            div {
+                                .submitGingerList {
+                                    @include rightBtnPink;
+                                }
+                            }
                         }
                     }
                 }
@@ -265,6 +282,7 @@
                 color: var(--white);
                 font-family: var(--dela);
                 margin-right: 8vw;
+                cursor: pointer;
             }
         }
     }

@@ -1,8 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-const Search = () => {
-    
+const Search = ({ uid }) => {
     // 구글 api부분
     const [word, setWord] = useState('')
     const [translation, setTranslation] = useState('')
@@ -16,12 +15,13 @@ const Search = () => {
         setWord(event.target.value)
         console.log(event)
     }
-    
+
     // 엔터누르면 구글 api를 통해 결과값 제공
     const handleKeyPress = async (event) => {
         // word 상태 변수가 변경되었는지 확인합니다.
+
         if (event.key === 'Enter' && word !== '') {
-            console.log(word)
+            // console.log(word)
             try {
                 const response = await axios.post('/api/translate', {
                     search: word,
@@ -29,9 +29,10 @@ const Search = () => {
                 if (response.data.success) {
                     if (response.data.data.trans) {
                         const translatedText = response.data.data.trans
-                        setTranslation((prevTranslation) => [
+                        // setTranslation((prevTranslation) => [
+                        setTranslation(() => [
                             translatedText,
-                            ...prevTranslation,
+                            // ...prevTranslation,
                         ])
                     }
                     if (
@@ -42,12 +43,11 @@ const Search = () => {
                             response.data.data.dict[0].entry.map(
                                 (item) => item.word
                             )
-                        setTranslation((prevTranslation) => [
-                            ...prevTranslation,
+                        setTranslation(() => [
+                            // ...prevTranslation,
                             ...translatedTextArray,
                         ])
                     }
-                    console.log(setTranslation)
                 } else {
                     alert('번역 실패')
                 }
@@ -56,8 +56,45 @@ const Search = () => {
             }
         }
     }
+    // 구글 단어장
+    const submitSearchList = async () => {
+        const List = []
+        for (let i = 0; i < translation.length; i++) {
+            const searchList = [word, translation[i]]
+            List.push(searchList)
+        }
+        try {
+            const response = await axios.post('/api/voca/searchlist', {
+                data: List,
+                uid: uid,
+            })
+            if (response.data.success) {
+                alert('단어 저장 성공')
+            } else {
+                alert('단어 저장 실패')
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const renderCheckboxes = () => {
+        return (
+            <div>
+                {Array.isArray(translation) &&
+                    translation.map((result, index) => (
+                        <span key={index}>{result}</span>
+                    ))}
+                <button className="submitSearchList" onClick={submitSearchList}>
+                    save
+                </button>
+            </div>
+        )
+    }
+
     return (
         <>
+            <h2 className="blind">서치, 오류 결과 섹션</h2>
             <div className="search__wrap">
                 <span></span>
                 <input
@@ -70,17 +107,7 @@ const Search = () => {
             <div className="result">
                 <h2>Result</h2>
                 <div>
-                    <div className="result_wrap">
-                        {Array.isArray(translation) &&
-                            translation.map((result, index) => (
-                                <div key={index}>
-                                    {result}
-                                    <div>
-                                        {/* 추가로 표시할 내용이 있다면 여기에 작성 */}
-                                    </div>
-                                </div>
-                            ))}
-                    </div>
+                    <div className="result_wrap">{renderCheckboxes()}</div>
                 </div>
             </div>
         </>

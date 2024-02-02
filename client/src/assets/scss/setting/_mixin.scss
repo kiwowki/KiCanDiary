@@ -29,3 +29,20 @@
     z-index: 2000;
     cursor: pointer;
 }
+
+@mixin rightBtnPink {
+    background-color: var(--box-pink2);
+    padding: 8px 10px;
+    border-radius: 15px;
+    color: var(--white);
+    font-family: var(--dela);
+    position: absolute;
+    bottom: 3%;
+    right: 8%;
+    cursor: pointer;
+}
+
+@mixin FJcc {
+    display: flex;
+    justify-content: center;
+}

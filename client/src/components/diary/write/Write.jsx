@@ -73,6 +73,7 @@ const Write = () => {
                         <RightPart
                             correctionsData={correctionsData}
                             mainhandleKeyPress={handleKeyPress}
+                            uid={uid}
                         />
                     </div>
                     {/* <button onClick={onClickSave}>저장</button> */}

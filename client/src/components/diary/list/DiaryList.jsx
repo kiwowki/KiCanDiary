@@ -8,8 +8,11 @@ const DiaryList = () => {
         handleNextMonth,
         handlePrevMonth,
         monthAnima,
-        setMonthAnima,
+        prevDate,
     } = useMonthNav()
+
+    const postsPerPage = 7 // => 페이지에 보여줄 게시물의 숫자
+    const fixedPageCount = 5 // => 고정 페이지 값
 
     const [currentPage, setCurrentPage] = useState(
         parseInt(sessionStorage.getItem('currentPage')) || 1
@@ -33,8 +36,13 @@ const DiaryList = () => {
         setDirection(newDirection)
     }, [currentPage, prevPage])
 
-    const postsPerPage = 7 // => 페이지에 보여줄 게시물의 숫자
-    const fixedPageCount = 5 // => 고정 페이지 값
+    useEffect(() => {
+        if (prevDate) {
+            const newDirection =
+                currentDate.getTime() > prevDate.getTime() ? 1 : -1
+            setDirection(newDirection)
+        }
+    }, [currentDate, prevDate])
 
     useEffect(() => {
         return () => {
