@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { getFormattedDate } from '../../../../../util/calendar/date/dateFormat'
 import DiaryPageNav from './pageNav/DiaryPageNav'
-
+import axios from 'axios'
 const DiaryTop = ({
     fixedPageCount,
     currentPage,
@@ -10,7 +10,45 @@ const DiaryTop = ({
     handleNextMonth,
     handlePrevMonth,
     handlePageChange,
+    uid,
 }) => {
+    const [keyword, setKeyword] = useState('')
+    const [searchResult, setSearchResult] = useState([])
+
+    const diarySearch = async (e) => {
+        e.preventDefault()
+        console.log('search start')
+        let body = {
+            content: keyword,
+            uid: uid,
+        }
+
+        await axios
+            .post('/api/post/search/', body)
+            .then((res) => {
+                if (res.data.success) {
+                    const parsedPostList = res.data.postList.map((post) => {
+                        try {
+                            return {
+                                ...post,
+                                content: JSON.parse(post.content),
+                            }
+                        } catch (err) {
+                            console.error('json parse', err)
+                            return post
+                        }
+                    })
+                    setSearchResult(parsedPostList)
+                    console.log('검색확인')
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+                alert('axios')
+            })
+    }
+    console.log(searchResult)
+    
     return (
         <div className="diarylist__top">
             <div className="month">
@@ -32,8 +70,16 @@ const DiaryTop = ({
             />{' '}
             {/** 페이지네이션 기능 */}
             <div className="search__wrap">
-                <span></span>
-                <input type="text" className="diary__search" />
+                <input
+                    type="text"
+                    className="diary__search"
+                    onChange={(e) => setKeyword(e.currentTarget.value)}
+                />
+                <button
+                    type="submit"
+                    className="searchBtn"
+                    onClick={(e) => diarySearch(e)}
+                ></button>
             </div>
         </div>
     )

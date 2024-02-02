@@ -2,10 +2,16 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 import LogoutHandler from './handle/logOutHandler'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import navigation from './nav/navLink'
+import nav from './nav/navList'
 
 const Header_m = () => {
+    const user = useSelector((state) => state.user)
+    const { NavLink, LoginLink } = navigation()
+    const { list, login } = nav()
     const dispatch = useDispatch()
+    const MemoizedNavLink = React.memo(NavLink)
 
     return (
         <header id="header_m">
@@ -19,27 +25,24 @@ const Header_m = () => {
                 </div>
                 <nav className="nav">
                     <ul className="nav__list">
-                        <li>
-                            <Link to={'/diary'}>Diary</Link>
-                        </li>
-                        <li>
-                            <Link to={'/write'}>Today</Link>
-                        </li>
-                        <li>
-                            <Link to={'/voca'}>VOCA</Link>
-                        </li>
-                        <li>
-                            <Link to={'/mypage'}>My</Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={'/logout'}
-                                className="active"
-                                onClick={() => LogoutHandler(dispatch)}
-                            >
-                                Logout
-                            </Link>
-                        </li>
+                        {list.map((li, index) => (
+                            <NavLink key={index} to={li.key} data={li.data}>
+                                {li.value}
+                            </NavLink>
+                        ))}
+                        {user.accessToken === '' ? (
+                            login.map((user, index) => (
+                                <MemoizedNavLink key={index} to={user.key}>
+                                    {user.value}
+                                </MemoizedNavLink>
+                            ))
+                        ) : (
+                            <li>
+                                <Link onClick={() => LogoutHandler(dispatch)}>
+                                    logout
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                 </nav>
             </div>

@@ -39,3 +39,8 @@ npm i multer
 npm i multer-s3
 
 npm i aws-sdk@2.348.0 --save
+
+npm install classnames
+npm install filepond-plugin-file-validate-type filepond-plugin-image-preview
+npm install filepond
+npm install react-filepond

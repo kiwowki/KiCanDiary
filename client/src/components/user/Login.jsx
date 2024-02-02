@@ -8,7 +8,6 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
     const [errorMsg, setErrorMsg] = useState('')
-    const dispatch = useDispatch()
     const navigate = useNavigate()
     const user = useSelector((state) => state.user)
     const isLoading = user.isLoading
