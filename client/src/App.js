@@ -58,7 +58,6 @@ const App = () => {
         <BrowserRouter>
             <Main>
                 <Routes>
-                    {/* Home 페이지 */}
                     <Route
                         path="/"
                         element={
@@ -67,9 +66,16 @@ const App = () => {
                             </>
                         }
                     />
-                    <Route path="/diary/write/:date" element={<> {isMobile ? <HeaderMobile /> : <Header />} <Write /> </>} />
-
-                    <Route path="/diary" element={<> {isMobile ? <HeaderMobile /> : <Header />} <DiaryList /></>} />
+                    <Route
+                        path="/diary/write/:date"
+                        element={
+                            <>
+                                {' '}
+                                {isMobile ? <HeaderMobile /> : <Header />}{' '}
+                                <Write />{' '}
+                            </>
+                        }
+                    />
 
                     <Route path="/diary/view/:postNum" element={<> {isMobile ? <HeaderMobile /> : <Header />} <DiaryView /> </>} />
                     <Route path="/diary/update/:postNum" element={<>{isMobile ? <HeaderMobile /> : <Header />} <DiaryUpdate /></>} />

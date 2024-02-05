@@ -14,6 +14,8 @@ const Header = () => {
     const dispatch = useDispatch()
     const MemoizedNavLink = React.memo(NavLink)
 
+    const [showHeader, setShowHeader] = useState(false)
+
     const handleMouseOver = () => {
         setShowHeader(true)
     }
@@ -21,8 +23,6 @@ const Header = () => {
     const handleMouseOut = () => {
         setShowHeader(false)
     }
-
-    const [showHeader, setShowHeader] = useState(false)
 
     return (
         <header

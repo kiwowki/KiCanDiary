@@ -13,8 +13,6 @@ import { getFormattedDate } from '../../../util/calendar/date/dateFormat'
 const Write = () => {
     const quillRef = useRef(null)
     const user = useSelector((state) => state.user)
-    const isLoading = user.isLoading
-    const accessToken = user.accessToken
     const uid = user.uid
 
     const { date } = useParams()
@@ -75,6 +73,7 @@ const Write = () => {
                         <RightPart
                             correctionsData={correctionsData}
                             mainhandleKeyPress={handleKeyPress}
+                            uid={uid}
                         />
                     </div>
                     {/* <button onClick={onClickSave}>저장</button> */}

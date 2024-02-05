@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import monthList from '../../../diary/list/MonthList'
 import diaryList from '../../../diary/list/DiaryList'
-
 import { AnimatePresence, motion } from 'framer-motion'
 import TabContent from './TabContent'
 
@@ -11,18 +10,12 @@ const TabDiary = ({ uid, currentDate }) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [prevPage, setPrevPage] = useState(currentPage)
     const [direction, setDirection] = useState(1)
+    const [start, setStart] = useState(false)
 
     useEffect(() => {
         const newDirection = currentPage > prevPage ? 1 : -1
         setDirection(newDirection)
     }, [currentPage, prevPage])
-
-    const handlePageChange = (newPage) => {
-        if (newPage !== currentPage) {
-            setPrevPage(currentPage)
-            setCurrentPage(newPage)
-        }
-    }
 
     useEffect(() => {
         diaryList(setPostList, uid)
@@ -32,6 +25,16 @@ const TabDiary = ({ uid, currentDate }) => {
         const sortedPosts = monthList(currentDate, postList)
         setFilteredPostList(sortedPosts)
     }, [postList, currentDate])
+
+    useEffect(() => {})
+
+    const handlePageChange = (newPage) => {
+        if (newPage !== currentPage) {
+            setPrevPage(currentPage)
+            setCurrentPage(newPage)
+            setStart(true)
+        }
+    }
 
     const pageSize = 1
     const totalPage = 3
@@ -51,8 +54,8 @@ const TabDiary = ({ uid, currentDate }) => {
                 href="#"
                 custom={currentPage > prevPage ? 1 : -1}
                 variants={variants}
-                initial="hidden"
-                animate="show"
+                initial={start ? 'hidden' : ''}
+                animate={start ? 'show' : ''}
                 transition={{ duration: 0.4, delay: 0.3, ease: 'easeInOut' }}
             >
                 <div className="tab__box">
@@ -91,6 +94,7 @@ const TabDiary = ({ uid, currentDate }) => {
                                     key={item.postNum}
                                     item={item}
                                     direction={direction}
+                                    start={start}
                                 />
                             ))
                         ) : (

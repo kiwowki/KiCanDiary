@@ -8,7 +8,6 @@ import useMonthNav from '../diary/list/listWrap/navigation/useMonthNav'
 const MainHome = () => {
     const uid = useSelector((state) => state.user.uid)
     const { currentDate } = useMonthNav()
-
     const [isNav700, setIsNav700] = useState(false)
     const [isAsideVisible, setAsideVisible] = useState(true)
 
@@ -37,7 +36,6 @@ const MainHome = () => {
                 <div className="aside_ham" onClick={toggleAsideVisibility}>
                     <span></span>
                 </div>
-
                 <div className="main__wrap">
                     <LeftCalendar uid={uid} />
                     <Right uid={uid} currentDate={currentDate} />
