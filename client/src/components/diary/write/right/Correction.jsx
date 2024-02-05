@@ -3,32 +3,40 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Correction = ({ correctionsData, uid }) => {
-    const submitGingerList = async () => {
+    const submitGingerList = async (e) => {
+        e.preventDefault()
+
         const List = []
         console.log(correctionsData)
-        for (let i = 0; i < correctionsData.length; i++) {
-            for (let j = 0; j < correctionsData[i].suggestions.length; j++) {
-                const correctionList = [
-                    correctionsData[i].mistakeText,
-                    correctionsData[i].suggestions[j].text,
-                ]
-                List.push(correctionList)
-                // console.log(correctionList)
+        if (correctionsData.length > 0) {
+            for (let i = 0; i < correctionsData.length; i++) {
+                for (
+                    let j = 0;
+                    j < correctionsData[i].suggestions.length;
+                    j++
+                ) {
+                    const correctionList = [
+                        correctionsData[i].mistakeText,
+                        correctionsData[i].suggestions[j].text,
+                    ]
+                    List.push(correctionList)
+                    // console.log(correctionList)
+                }
+                console.log(List)
             }
-            console.log(List)
-        }
-        try {
-            const response = await axios.post('/api/voca/correctlist', {
-                data: List,
-                uid: uid,
-            })
-            if (response.data.success) {
-                alert('단어 저장 성공')
-            } else {
-                alert('단어 저장 실패')
+            try {
+                const response = await axios.post('/api/voca/correctlist', {
+                    data: List,
+                    uid: uid,
+                })
+                if (response.data.success) {
+                    alert('단어 저장 성공')
+                } else {
+                    alert('단어 저장 실패')
+                }
+            } catch (err) {
+                console.log(err)
             }
-        } catch (err) {
-            console.log(err)
         }
     }
 
@@ -39,9 +47,7 @@ const Correction = ({ correctionsData, uid }) => {
                     <li key={index}>
                         <div className="wrong">
                             <p className="wrong__word">
-                                <Link to="/write">
-                                    {correction.mistakeText}
-                                </Link>
+                                <Link to="#">{correction.mistakeText}</Link>
                             </p>
                         </div>
                         <span className="arrow"></span>
@@ -50,7 +56,7 @@ const Correction = ({ correctionsData, uid }) => {
                                 {correction.suggestions.map(
                                     (suggestion, sIndex) => (
                                         <React.Fragment key={sIndex}>
-                                            <Link to="/write">
+                                            <Link to="#">
                                                 {suggestion.text}
                                             </Link>
                                             {sIndex !==
@@ -63,7 +69,10 @@ const Correction = ({ correctionsData, uid }) => {
                         </div>
                     </li>
                 ))}
-                <button className="submitGingerList" onClick={submitGingerList}>
+                <button
+                    className="submitGingerList"
+                    onClick={(e) => submitGingerList(e)}
+                >
                     save
                 </button>
             </div>
