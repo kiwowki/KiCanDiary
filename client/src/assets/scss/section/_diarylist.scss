@@ -104,10 +104,12 @@
                     right: 13px;
                     width: 30px;
                     height: 30px;
+                    width: 2vw;
+                    height: 1.7vw;
                     background-image: url(../../img/word_search.png);
                     background-position: center center;
                     background-repeat: no-repeat;
-                    background-color: #fff;
+                    cursor: pointer;
                 }
 
                 input {

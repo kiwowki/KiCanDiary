@@ -17,38 +17,38 @@ const DiaryTop = ({
 
     const diarySearch = async (e) => {
         e.preventDefault()
-        console.log('search start')
-        let body = {
-            content: keyword,
-            uid: uid,
-        }
+        if (keyword) {
+            let body = {
+                content: keyword,
+                uid: uid,
+            }
 
-        await axios
-            .post('/api/post/search/', body)
-            .then((res) => {
-                if (res.data.success) {
-                    const parsedPostList = res.data.postList.map((post) => {
-                        try {
-                            return {
-                                ...post,
-                                content: JSON.parse(post.content),
+            await axios
+                .post('/api/post/search/', body)
+                .then((res) => {
+                    if (res.data.success) {
+                        const parsedPostList = res.data.postList.map((post) => {
+                            try {
+                                return {
+                                    ...post,
+                                    content: JSON.parse(post.content),
+                                }
+                            } catch (err) {
+                                console.error('json parse', err)
+                                return post
                             }
-                        } catch (err) {
-                            console.error('json parse', err)
-                            return post
-                        }
-                    })
-                    setSearchResult(parsedPostList)
-                    console.log('검색확인')
-                }
-            })
-            .catch((err) => {
-                console.log(err)
-                alert('axios')
-            })
+                        })
+                        setSearchResult(parsedPostList)
+                        console.log('검색확인')
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                    alert('axios')
+                })
+        }
     }
-    console.log(searchResult)
-    
+
     return (
         <div className="diarylist__top">
             <div className="month">
@@ -75,11 +75,11 @@ const DiaryTop = ({
                     className="diary__search"
                     onChange={(e) => setKeyword(e.currentTarget.value)}
                 />
-                <button
+                <div
                     type="submit"
                     className="searchBtn"
                     onClick={(e) => diarySearch(e)}
-                ></button>
+                ></div>
             </div>
         </div>
     )
