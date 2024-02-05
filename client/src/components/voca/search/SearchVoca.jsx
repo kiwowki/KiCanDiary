@@ -5,6 +5,7 @@ import VocaContentsBot from './contents/VocaContentsBot'
 
 const SearchVoca = ({
     searchList,
+    vocaList,
     uid,
     fetchSearchList,
     setSearchList,
@@ -64,6 +65,7 @@ const SearchVoca = ({
                             e,
                             checkboxList,
                             searchList,
+                            vocaList,
                             uid,
                             fetchSearchList,
                             setSearchList,

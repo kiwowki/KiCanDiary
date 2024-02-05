@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom'
 const Correction = ({ correctionsData, uid }) => {
     const submitGingerList = async (e) => {
         e.preventDefault()
-
+        console.log(uid)
         const List = []
         console.log(correctionsData)
+
         if (correctionsData.length > 0) {
             for (let i = 0; i < correctionsData.length; i++) {
                 for (

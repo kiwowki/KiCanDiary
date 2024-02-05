@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import deleteCorrect from '../deleteCorrect'
 import CorrectionTop from './contents/CorrectionTop'
 import CorrectionBot from './contents/CorrectionBot'
+import fetchCorrectList from '../fetchCorrect'
 
-const Correction = ({ correctList, fetchCorrectList, setCorrectList }) => {
+const Correction = ({ correctList, setCorrectList, uid }) => {
     const [correctcheckboxList, setCorrectCheckBoxList] = useState([])
     const [correctcheckboxListAll, setCorrectCheckBoxListAll] = useState(false)
 
@@ -36,10 +37,6 @@ const Correction = ({ correctList, fetchCorrectList, setCorrectList }) => {
         }
     }
 
-    useEffect(() => {
-        fetchCorrectList(setCorrectList)
-    }, [correctList, fetchCorrectList])
-
     return (
         <div className="correction voca__right">
             <h2>Correction</h2>
@@ -69,7 +66,8 @@ const Correction = ({ correctList, fetchCorrectList, setCorrectList }) => {
                             fetchCorrectList,
                             setCorrectList,
                             setCorrectCheckBoxList,
-                            setCorrectCheckBoxListAll
+                            setCorrectCheckBoxListAll,
+                            uid
                         )
                     }
                 >

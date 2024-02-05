@@ -6,7 +6,8 @@ export const deleteCorrect = async (
     fetchCorrectList,
     setCorrectList,
     setCorrectCheckBoxList,
-    setCorrectCheckBoxListAll
+    setCorrectCheckBoxListAll,
+    uid
 ) => {
     const selectedWords = correctcheckboxList.map((index) => correctList[index])
     console.log(selectedWords)
@@ -17,7 +18,7 @@ export const deleteCorrect = async (
                 .post('/api/voca/correctdelete', { id: body })
                 .then((response) => {
                     if (response.data.success) {
-                        fetchCorrectList(setCorrectList)
+                        fetchCorrectList(correctList, setCorrectList, uid)
                         setCorrectCheckBoxList([])
                         setCorrectCheckBoxListAll(false)
                         alert('단어가 삭제되었습니다.')

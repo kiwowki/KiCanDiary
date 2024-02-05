@@ -3,7 +3,7 @@ import deleteVoca from '../deleteVoca'
 import VocaCheck from './VocaCheck'
 import VocaCheckAll from './VocaCheckAll'
 
-const MyCollection = ({ vocaList, fetchVocaList, setVocaList }) => {
+const MyCollection = ({ vocaList, fetchVocaList, setVocaList, uid }) => {
     const [vocacheckboxList, setVocaCheckBoxList] = useState([])
     const [vocacheckboxListAll, setvocacheckboxListAll] = useState(false)
     const isVocaCheckboxChecked = (index) => {
@@ -57,6 +57,7 @@ const MyCollection = ({ vocaList, fetchVocaList, setVocaList }) => {
                     onClick={(e) =>
                         deleteVoca(
                             e,
+                            uid,
                             vocacheckboxList,
                             vocaList,
                             setVocaList,

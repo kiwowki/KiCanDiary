@@ -33,13 +33,6 @@ const Mypage = () => {
     const [isPassModalOpen, setIsPassModalOpen] = useState(false)
     const [selectedMenu, setSelectedMenu] = useState('계정')
     // 초기상태
-    useEffect(() => {
-        if (!user.accessToken) {
-            alert('로그인한 회원만 작성이 가능합니다.')
-            navigate('/login')
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
 
     // 이미지파일 업로드 부분
     // const handleInit = () => {
@@ -157,7 +150,8 @@ const Mypage = () => {
                     <div className="user">
                         <img src={userImage} alt="유저 이미지" />
                         <div className="user__name">
-                            {user.displayName}({user.email})
+                            {user.displayName}
+                            {user.email}
                         </div>
                     </div>
 

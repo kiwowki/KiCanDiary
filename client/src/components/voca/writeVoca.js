@@ -4,6 +4,7 @@ export const writeVoca = async (
     e,
     checkboxList,
     searchList,
+    vocaList,
     uid,
     fetchSearchList,
     setSearchList,
@@ -14,6 +15,8 @@ export const writeVoca = async (
 ) => {
     e.preventDefault()
     const selectedWords = checkboxList.map((index) => searchList[index])
+    console.log(selectedWords)
+    console.log(uid)
     if (selectedWords.length > 0) {
         try {
             const response = await axios.post('/api/voca/vocalist', {
@@ -22,8 +25,8 @@ export const writeVoca = async (
             })
             if (response.data.success) {
                 alert('단어를 저장 합니다.')
-                fetchSearchList(setSearchList)
-                fetchVocaList(setVocaList)
+                fetchSearchList(searchList, setSearchList, uid)
+                fetchVocaList(vocaList, setVocaList, uid)
                 setCheckboxList([])
                 setCheckboxListAll(false)
             } else {

@@ -17,11 +17,27 @@ const VocaList = () => {
     const [correctList, setCorrectList] = useState([])
 
     useEffect(() => {
-        fetchVocaList(setVocaList)
-    }, [])
+        let isMounted = true
+        if (isMounted) {
+            fetchVocaList(vocaList, setVocaList, uid)
+        }
+
+        return () => {
+            isMounted = false
+        }
+    }, [uid])
+
     useEffect(() => {
-        fetchSearchList(setSearchList)
-    }, [])
+        fetchSearchList(searchList, setSearchList, uid)
+    }, [searchList, uid])
+
+    useEffect(() => {
+        fetchCorrectList(correctList, setCorrectList, uid)
+    }, [correctList, uid])
+
+    console.log(vocaList)
+    console.log(searchList)
+    console.log(correctList)
 
     return (
         <div id="wrap">
@@ -31,10 +47,12 @@ const VocaList = () => {
                         vocaList={vocaList}
                         setVocaList={setVocaList}
                         fetchVocaList={fetchVocaList}
+                        uid={uid}
                     />
 
                     <SearchVoca
                         searchList={searchList}
+                        vocaList={vocaList}
                         uid={uid}
                         fetchSearchList={fetchSearchList}
                         setSearchList={setSearchList}
@@ -44,8 +62,8 @@ const VocaList = () => {
 
                     <Correction
                         correctList={correctList}
-                        fetchCorrectList={fetchCorrectList}
                         setCorrectList={setCorrectList}
+                        uid={uid}
                     />
                 </div>
             </div>
