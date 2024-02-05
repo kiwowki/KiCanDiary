@@ -5,24 +5,6 @@ import { useDispatch } from 'react-redux'
 import { loginUser, clearUser } from './reducer/userSlice'
 import firebase from './firebase.js'
 
-// import "./assets/scss/style.scss";
-// import Header from "./components/layout/Header";
-// import HeaderMobile from "./components/layout/Header_m";
-
-// import Main from "./components/layout/Main.jsx";
-
-// import VocaList from "./components/voca/VocaList";
-// import Join from "./components/user/Join";
-// import Login from "./components/user/Login";
-// import Mypage from "./components/user/Mypage";
-// import Footer from "./components/layout/Footer";
-
-// import DiaryList from "./components/diary/list/DiaryList.jsx";
-
-// import DiaryView from "./components/diary/view/DiaryView.jsx";
-// import Write from "./components/diary/write/Write.jsx";
-// import MainHome from "./components/main/MainHome.jsx"
-
 import './assets/scss/style.scss'
 import Header from './components/layout/Header'
 import HeaderMobile from './components/layout/Header_m'
