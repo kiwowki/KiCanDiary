@@ -2,14 +2,11 @@ import React, { useEffect, useState } from 'react'
 import DiaryTop from './listWrap/top/DiaryTop'
 import DiaryBottom from './listWrap/bottom/DiaryBottom'
 import useMonthNav from './listWrap/navigation/useMonthNav'
+import { useSelector } from 'react-redux'
 const DiaryList = () => {
-    const {
-        currentDate,
-        handleNextMonth,
-        handlePrevMonth,
-        monthAnima,
-        prevDate,
-    } = useMonthNav()
+    const uid = useSelector((state) => state.user.uid)
+    const { currentDate, handleNextMonth, handlePrevMonth, prevDate } =
+        useMonthNav()
 
     const postsPerPage = 7 // => 페이지에 보여줄 게시물의 숫자
     const fixedPageCount = 5 // => 고정 페이지 값
@@ -20,14 +17,13 @@ const DiaryList = () => {
 
     const [prevPage, setPrevPage] = useState(currentPage)
     const [direction, setDirection] = useState(1)
-    const [start, setStart] = useState(false)
 
     const handlePageChange = (newPage) => {
         if (newPage !== currentPage) {
             sessionStorage.setItem('currentPage', newPage.toString())
             setCurrentPage(newPage)
             setPrevPage(currentPage)
-            setStart(true)
+            console.log(direction)
         }
     }
 
@@ -62,14 +58,13 @@ const DiaryList = () => {
                         handleNextMonth={handleNextMonth}
                         handlePrevMonth={handlePrevMonth}
                         handlePageChange={handlePageChange}
+                        uid={uid}
                     />
                     <DiaryBottom
                         currentDate={currentDate}
                         currentPage={currentPage}
                         postsPerPage={postsPerPage}
                         direction={direction}
-                        start={start}
-                        monthAnima={monthAnima}
                     />
                 </div>
             </div>

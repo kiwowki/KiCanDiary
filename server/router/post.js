@@ -87,13 +87,16 @@ router.get(`/view/:postNum`, (req, res) => {
 
 router.put(`/update/:postNum`, (req, res) => {
     const postNum = req.params.postNum
-    const { title, content } = req.body;
+    const { title, content } = req.body
 
-    Post.findOne({ postNum: postNum }).exec().then((post) => {
-        return post.updateOne({ title, content });
-    }).then(() => {
-        res.status(200).json({ success: true })
-    })
+    Post.findOne({ postNum: postNum })
+        .exec()
+        .then((post) => {
+            return post.updateOne({ title, content })
+        })
+        .then(() => {
+            res.status(200).json({ success: true })
+        })
         .catch((err) => {
             res.status(400).json({ success: false })
             console.log(err)
@@ -104,14 +107,52 @@ router.delete(`/delete/:postNum`, (req, res) => {
     const postNum = req.params.postNum
     console.log(postNum)
 
-    Post.findOne({ postNum: postNum }).exec().then((post) => {
-        return post.deleteOne()
-    }).then(() => {
-        res.status(200).json({ success: true })
-    }).catch((err) => {
-        res.status(400).json({ success: false })
-        console.log(err)
-    })
+    Post.findOne({ postNum: postNum })
+        .exec()
+        .then((post) => {
+            return post.deleteOne()
+        })
+        .then(() => {
+            res.status(200).json({ success: true })
+        })
+        .catch((err) => {
+            res.status(400).json({ success: false })
+            console.log(err)
+        })
+})
+
+router.post('/search', (req, res) => {
+    const userId = req.body.uid
+    const keyword = req.body.content
+    console.log(userId)
+    User.findOne({ uid: userId })
+        .exec()
+        .then((user) => {
+            console.log(user, 'user')
+            if (!user) {
+                throw new Error('User not found')
+            }
+            return Post.find({
+                content: { $regex: keyword, $options: 'i' },
+            }).exec()
+        })
+        .then((result) => {
+            console.log(result, 'reuslt')
+            if (result.length === 0) {
+                res.status(200).json({
+                    success: true,
+                    message: 'No posts found for this user',
+                    postList: result,
+                })
+            } else {
+                console.log({ success: true, postList: result }, 'cons')
+                res.status(200).json({ success: true, postList: result })
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+            res.status(400).json({ success: false, error: err.toString() })
+        })
 })
 
 module.exports = router

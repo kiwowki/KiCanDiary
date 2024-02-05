@@ -2,7 +2,6 @@
 @mixin btn {
     text-align: center;
     color: var(--font-white2);
-    cursor: pointer;
     transition: all 0.1s;
 }
 
@@ -39,7 +38,6 @@
     position: absolute;
     bottom: 3%;
     right: 8%;
-    cursor: pointer;
 }
 
 @mixin FJcc {

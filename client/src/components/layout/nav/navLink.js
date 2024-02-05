@@ -1,30 +1,23 @@
-import { useEffect, useMemo } from 'react'
-import { Link, useLocation, useMatch, useNavigate } from 'react-router-dom'
+import { useMemo } from 'react'
+import { Link, useLocation, useMatch } from 'react-router-dom'
 
 const navigation = () => {
     const NavLink = ({ to, data, children }) => {
-       
-        const location = useLocation()   
+        const location = useLocation()
         const isActive = useMemo(() => {
             if (to === '/') {
-                return location.pathname === to;
+                return location.pathname === to
             } else {
-                return location.pathname.includes(to);
+                return location.pathname.includes(to)
             }
-        },[location.pathname, to])
-
-        useEffect(() => {
-            if (isActive) {
-                console.log(location.pathname);
-            }
-        }, [location.pathname, isActive]);
+        }, [location.pathname, to])
 
         return (
             <li>
                 <Link
                     to={{
                         pathname: to,
-                        state: {prev: location.pathname}
+                        state: { prev: location.pathname },
                     }}
                     data-first-letter={data}
                     className={isActive ? 'active' : ''}
