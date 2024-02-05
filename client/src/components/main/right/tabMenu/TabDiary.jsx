@@ -10,7 +10,6 @@ const TabDiary = ({ uid, currentDate }) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [prevPage, setPrevPage] = useState(currentPage)
     const [direction, setDirection] = useState(1)
-    const [start, setStart] = useState(false)
 
     useEffect(() => {
         const newDirection = currentPage > prevPage ? 1 : -1
@@ -32,7 +31,6 @@ const TabDiary = ({ uid, currentDate }) => {
         if (newPage !== currentPage) {
             setPrevPage(currentPage)
             setCurrentPage(newPage)
-            setStart(true)
         }
     }
 
@@ -45,17 +43,17 @@ const TabDiary = ({ uid, currentDate }) => {
 
     const EmptyContents = () => {
         const variants = {
-            hidden: { x: direction === 1 ? '150%' : '-150%' },
+            hidden: { x: direction === 1 ? '100%' : '-100%' },
             show: { x: '0%' },
-            exit: { x: direction === 1 ? '-150%' : '150%' },
+            exit: { x: direction === 1 ? '-100%' : '100%' },
         }
         return (
             <motion.a
                 href="#"
                 custom={currentPage > prevPage ? 1 : -1}
                 variants={variants}
-                initial={start ? 'hidden' : ''}
-                animate={start ? 'show' : ''}
+                initial="hidden"
+                animate="show"
                 transition={{ duration: 0.4, delay: 0.3, ease: 'easeInOut' }}
             >
                 <div className="tab__box">
@@ -68,7 +66,7 @@ const TabDiary = ({ uid, currentDate }) => {
 
     return (
         <div className="diary__list">
-            <div className="list__title mb70">
+            <div className="list__title mb30">
                 <p className="whiteSpaceNo">Recent Diary</p>
             </div>
 
@@ -86,15 +84,14 @@ const TabDiary = ({ uid, currentDate }) => {
                         </button>
                     ))}
                 </div>
-                <div className="diary__tab">
-                    <AnimatePresence mode="wait">
+                <div className="diary__tab box2">
+                    <AnimatePresence mode="wait" initial={false}>
                         {currentItems && currentItems.length > 0 ? (
                             currentItems.map((item, key) => (
                                 <TabContent
                                     key={item.postNum}
                                     item={item}
                                     direction={direction}
-                                    start={start}
                                 />
                             ))
                         ) : (

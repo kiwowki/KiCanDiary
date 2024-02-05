@@ -13,6 +13,8 @@ export const userSlice = createSlice({
                 accessToken: '',
                 photoURL: '',
                 isLoading: false,
+                email: '',
+                password: '',
                 isLoggedIn: false,
             }
         }
@@ -23,6 +25,8 @@ export const userSlice = createSlice({
             state.uid = action.payload.uid
             state.accessToken = action.payload.accessToken
             state.photoURL = action.payload.photoURL || ''
+            state.email = action.payload.email
+            state.password = action.payload.password
             state.isLoading = true
             state.isLoggedIn = true
             sessionStorage.setItem('user', JSON.stringify(state))
@@ -33,6 +37,8 @@ export const userSlice = createSlice({
             state.displayName = ''
             state.uid = ''
             state.accessToken = ''
+            state.email = ''
+            state.password = ''
             state.isLoading = false
             state.isLoggedIn = false
             sessionStorage.removeItem('user')

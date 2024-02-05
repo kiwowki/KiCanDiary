@@ -7,12 +7,12 @@
 // quill 전체 조절
 @media (max-width: 1280px) {
     .quill {
-        height: 510px !important;
+        height: auto;
     }
 }
 @media (max-width: 480px) {
     .quill {
-        height: 330px !important;
+        height: calc(100vh - 180px) !important;
     }
 }
 // .viewQuill {
@@ -36,6 +36,13 @@
             padding: 12px 15px;
             p {
                 cursor: pointer;
+            }
+            @media(max-width: 768px){
+                height: 35vh;
+            }
+            @media(max-width: 480px){
+                height: calc(100% - 65px);
+                margin-top: 5px;
             }
         }
     }

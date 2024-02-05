@@ -377,58 +377,63 @@ const VocaList = () => {
                         </div>
                     </div>
 
-                    <div className="searchlist voca__right">
-                        <h2>Search List</h2>
-                        <div className="contents">
-                            <div className="contents__top">
-                                <div className="searchlist__voca__title">
-                                    <h3>MEANING</h3>
-                                    <h3>WORD</h3>
+                    <div className='vocalist__right'>
+                        <div className="searchlist voca__right">
+                            <h2>Search List</h2>
+                            <div className="contents">
+                                <div className="contents__top">
+                                    <div className="searchlist__voca__title">
+                                        <h3>MEANING</h3>
+                                        <h3>WORD</h3>
+                                    </div>
+                                    <div className="searchlist__voca__contents">
+                                        {renderCheckboxes()}
+                                    </div>
                                 </div>
-                                <div className="searchlist__voca__contents">
-                                    {renderCheckboxes()}
+                                <div className="contents__bot">
+                                    <div className="select__all">
+                                        {renderCheckboxesAll()}
+                                    </div>
                                 </div>
                             </div>
-                            <div className="contents__bot">
-                                <div className="select__all">
-                                    {renderCheckboxesAll()}
-                                </div>
+                            <div className="searchlist__btn">
+                                <button
+                                    className="add__btn"
+                                    onClick={writeVoca}
+                                >
+                                    Add
+                                </button>
+                                <button className="del__btn">Delete</button>
                             </div>
                         </div>
-                        <div className="searchlist__btn">
-                            <button className="add__btn" onClick={writeVoca}>
-                                Add
-                            </button>
-                            <button className="del__btn">Delete</button>
-                        </div>
-                    </div>
 
-                    <div className="correction voca__right">
-                        <h2>Correction</h2>
-                        <div className="contents">
-                            <div className="contents__top">
-                                <div className="correctionlist__voca__title">
-                                    <h3>WRONG</h3>
-                                    <h3>CORRECT</h3>
+                        <div className="correction voca__right">
+                            <h2>Correction</h2>
+                            <div className="contents">
+                                <div className="contents__top">
+                                    <div className="correctionlist__voca__title">
+                                        <h3>WRONG</h3>
+                                        <h3>CORRECT</h3>
+                                    </div>
+                                    <div className="correctionlist__voca__contents">
+                                        {correctrendercheckboxes()}
+                                    </div>
                                 </div>
-                                <div className="correctionlist__voca__contents">
-                                    {correctrendercheckboxes()}
+                                <div className="contents__bot">
+                                    <div className="select__all">
+                                        {correctrenderCheckboxesAll()}
+                                    </div>
                                 </div>
                             </div>
-                            {/* <div className="contents__bot">
-                                <div className="select__all">
-                                    {correctrenderCheckboxesAll()}
-                                </div>
-                            </div> */}
-                        </div>
-                        <div className="correction__btn">
-                            <button className="add__btn">Add</button>
-                            <button
-                                className="del__btn"
-                                onClick={deleteCorrect}
-                            >
-                                Delete
-                            </button>
+                            <div className="correction__btn">
+                                <button className="add__btn">Add</button>
+                                <button
+                                    className="del__btn"
+                                    onClick={deleteCorrect}
+                                >
+                                    Delete
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

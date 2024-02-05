@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getFormattedDate } from '../../../../../util/calendar/date/dateFormat'
 import DiaryPageNav from './pageNav/DiaryPageNav'
-import diaryList from '../../DiaryList'
-import { useSelector } from 'react-redux'
-import CalendarProps from '../../../../../util/calendar/CalendarProps'
-
+import axios from 'axios'
 const DiaryTop = ({
     fixedPageCount,
     currentPage,
@@ -12,27 +9,45 @@ const DiaryTop = ({
     setCurrentPage,
     handleNextMonth,
     handlePrevMonth,
-    uid,
     handlePageChange,
+    uid,
 }) => {
-    // const [postList, setPostList] = useState([])
-    // const isLoading = useSelector((state) => state.loading)
-    // const [today, setToday] = useState(() => {
-    //     const now = new Date()
-    //     now.setHours(0, 0, 0, 0)
-    //     return now
-    // }) // 오늘 날짜값 상태관리
-    // const params = `${today.getFullYear()}-${
-    //     today.getMonth() + 1
-    // }-${today.getDate()}`
+    const [keyword, setKeyword] = useState('')
+    const [searchResult, setSearchResult] = useState([])
 
-    // useEffect(() => {
-    //     if (uid) {
-    //         diaryList(setPostList, uid, params) // params를 넘겨줌
-    //     }
-    // }, [uid, params])
+    const diarySearch = async (e) => {
+        e.preventDefault()
+        if (keyword) {
+            let body = {
+                content: keyword,
+                uid: uid,
+            }
 
-    // const calendarProps = CalendarProps({ params, postList, today })
+            await axios
+                .post('/api/post/search/', body)
+                .then((res) => {
+                    if (res.data.success) {
+                        const parsedPostList = res.data.postList.map((post) => {
+                            try {
+                                return {
+                                    ...post,
+                                    content: JSON.parse(post.content),
+                                }
+                            } catch (err) {
+                                console.error('json parse', err)
+                                return post
+                            }
+                        })
+                        setSearchResult(parsedPostList)
+                        console.log('검색확인')
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                    alert('axios')
+                })
+        }
+    }
 
     return (
         <div className="diarylist__top">
@@ -46,12 +61,7 @@ const DiaryTop = ({
                 <span className="next" onClick={() => handleNextMonth()}></span>
             </div>{' '}
             {/** 월 페이지기능  */}
-            <div
-                className="title"
-                // onClick={() => calendarProps.onChange(today)}
-            >
-                Diary
-            </div>
+            <div className="title">Diary</div>
             <DiaryPageNav
                 fixedPageCount={fixedPageCount}
                 currentPage={currentPage}
@@ -60,8 +70,16 @@ const DiaryTop = ({
             />{' '}
             {/** 페이지네이션 기능 */}
             <div className="search__wrap">
-                <span></span>
-                <input type="text" className="diary__search" />
+                <input
+                    type="text"
+                    className="diary__search"
+                    onChange={(e) => setKeyword(e.currentTarget.value)}
+                />
+                <div
+                    type="submit"
+                    className="searchBtn"
+                    onClick={(e) => diarySearch(e)}
+                ></div>
             </div>
         </div>
     )

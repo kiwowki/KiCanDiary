@@ -16,10 +16,10 @@ const Right = ({ uid, currentDate }) => {
             <div className="main__diary">
                 <TabDiary uid={uid} currentDate={currentDate} />
 
-                <div className="voca__list pt5rem">
-                    <div className="list__title">
+                <div className="voca__list pt6rem">
+                    <div className="list__title mb20">
                         <div className="tit">
-                            <p className="whiteSpaceNo">My Collection</p>
+                            <p className="whiteSpaceNo">vocabulary List</p>
                         </div>
                         <div className="voca__img">
                             <img src={face} alt="" />
@@ -28,7 +28,7 @@ const Right = ({ uid, currentDate }) => {
                     <div className="all__list">
                         {myList.map((list, key) => (
                             <p className="my__list" key={key}>
-                                <span className="list__key pl30">
+                                <span className="list__key pl50">
                                     {list.key}
                                 </span>
                                 <span className="list__value">

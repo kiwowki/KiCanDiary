@@ -1,39 +1,52 @@
-import React from 'react'
+import React, { useEffect, useLayoutEffect, useRef } from 'react'
 import List from './List'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const DiaryBottom = ({
-    currentDate,
-    currentPage,
-    postsPerPage,
-    direction,
-    start,
-    monthAnima,
-}) => {
+const DiaryBottom = ({ currentDate, currentPage, postsPerPage, direction }) => {
     const variants = {
-        hidden: { x: direction === 1 ? '100%' : '-100%' },
-        show: { x: '0%' },
-        exit: { x: direction === 1 ? '100%' : '-100%' },
+        enter: (direction) => {
+            return {
+                zIndex: 0,
+                x: direction > 0 ? 1000 : -1000,
+                opacity: 0,
+            }
+        },
+        center: {
+            zIndex: 1,
+            x: 0,
+            opacity: 1,
+        },
+        exit: (direction) => {
+            console.log('exit direction 값: ', direction) // 이렇게 추가
+            return {
+                zIndex: 0,
+                x: direction < 0 ? 1000 : -1000,
+                opacity: 0,
+            }
+        },
     }
-
-    console.log(monthAnima)
 
     return (
         <div className="diarylist__bottomWrap">
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                     key={`${currentPage}-${currentDate}`}
                     className="diarylist__bottom"
-                    variants={variants}
                     custom={direction}
+                    variants={variants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
                     transition={{
-                        duration: 0.3,
-                        delay: 0.5,
-                        ease: 'easeInOut',
+                        x: {
+                            type: 'spring',
+                            stiffness: 200,
+                            damping: 30,
+                            duration: 2.5,
+                        },
+                        opacity: { duration: 0.3 },
                     }}
-                    initial={start || monthAnima ? 'hidden' : ''}
-                    animate={start || monthAnima ? 'show' : ''}
                 >
                     <div className="list__wrap">
                         <List
@@ -102,6 +115,7 @@ const DiaryBottom = ({
                 </motion.div>
             </AnimatePresence>
         </div>
+        // 해당 컴포넌트가 돔에 유지된채 다음에 올 컴포넌트가 마운트되면서 밀고들어오는 애니메이션
     )
 }
 

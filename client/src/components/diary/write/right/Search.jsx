@@ -80,15 +80,17 @@ const Search = ({ uid }) => {
 
     const renderCheckboxes = () => {
         return (
-            <div>
-                {Array.isArray(translation) &&
-                    translation.map((result, index) => (
-                        <span key={index}>{result}</span>
-                    ))}
+            <>
+                <div>
+                    {Array.isArray(translation) &&
+                        translation.map((result, index) => (
+                            <span key={index}>{result}</span>
+                        ))}
+                </div>
                 <button className="submitSearchList" onClick={submitSearchList}>
                     save
                 </button>
-            </div>
+            </>
         )
     }
 
@@ -102,7 +104,6 @@ const Search = ({ uid }) => {
                     className="word__search"
                     onKeyPress={handleKeyPress}
                     onChange={handleChange}
-                    placeholder='Search for words in Korean'
                 />
             </div>
             <div className="result">

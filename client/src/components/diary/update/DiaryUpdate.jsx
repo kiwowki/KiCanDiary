@@ -36,9 +36,8 @@ const DiaryUpdate = () => {
                         <div className="left">
                             <p></p>
                         </div>
-                        <span className='spring'></span>
+                        <span></span>
                         <UpdateRight
-                        
                             quillRef={quillRef}
                             post={post}
                             postNum={postNum}

@@ -1,8 +1,7 @@
 // diary view-update
 @mixin btn {
     text-align: center;
-    color: var(--font-white);
-    cursor: pointer;
+    color: var(--font-white2);
     transition: all 0.1s;
 }
 
@@ -37,9 +36,8 @@
     color: var(--white);
     font-family: var(--dela);
     position: absolute;
-    bottom: 3%;
+    bottom: 10%;
     right: 8%;
-    cursor: pointer;
 }
 
 @mixin FJcc {

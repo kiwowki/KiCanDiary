@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Link } from 'react-router-dom'
 import LogoutHandler from './handle/logOutHandler'
@@ -10,11 +10,25 @@ const Header_m = () => {
     const user = useSelector((state) => state.user)
     const { NavLink, LoginLink } = navigation()
     const { list, login } = nav()
+    const [showHeader, setShowHeader] = useState(false)
     const dispatch = useDispatch()
     const MemoizedNavLink = React.memo(NavLink)
 
+    const handleMouseOver = () => {
+        setShowHeader(true)
+    }
+
+    const handleMouseOut = () => {
+        setShowHeader(false)
+    }
+
     return (
-        <header id="header_m">
+        <header
+            id="header_m"
+            className={showHeader ? 'visible' : ''}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+        >
             <div className="header__wrap">
                 <div className="logo">
                     <Link to={'/'}>
@@ -43,27 +57,6 @@ const Header_m = () => {
                                 </Link>
                             </li>
                         )}
-                        {/* <li>
-                            <Link to={'/diary'}>Diary</Link>
-                        </li>
-                        <li>
-                            <Link to={'/list'}>Today</Link>
-                        </li>
-                        <li>
-                            <Link to={'/voca'}>VOCA</Link>
-                        </li>
-                        <li>
-                            <Link to={'/mypage'}>My</Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={'/logout'}
-                                className="active"
-                                onClick={() => LogoutHandler(dispatch)}
-                            >
-                                Logout
-                            </Link>
-                        </li> */}
                     </ul>
                 </nav>
             </div>

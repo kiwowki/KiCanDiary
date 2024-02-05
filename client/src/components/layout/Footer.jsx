@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../assets/img/logo.png'
+import logo from '../../assets/img/logo__footer.png'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
@@ -11,7 +11,7 @@ const Footer = () => {
             <div className="footer__2">
                 <div className="footer__2-1">
                     team K C Diary (97.eugene.s@gmail.com, danziro57@gmail.com,
-                    wolves941110@gmail.com, hongjihyeon1004@gmail.com)
+                    wolves941110@gmail.com)
                 </div>
                 <div className="footer__2-2">
                     <ul>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
 import userImg from '../../assets/img/user.png'
 import { useDispatch, useSelector } from 'react-redux'
 import LogoutHandler from './handle/logOutHandler'
@@ -13,7 +12,6 @@ const Header = () => {
     const { list, login } = nav()
     const dispatch = useDispatch()
     const MemoizedNavLink = React.memo(NavLink)
-
     const [showHeader, setShowHeader] = useState(false)
 
     const handleMouseOver = () => {
@@ -28,6 +26,7 @@ const Header = () => {
         <header
             id="header"
             className={showHeader ? 'visible' : ''}
+            // className="visible"
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
         >
@@ -67,20 +66,7 @@ const Header = () => {
                         </div>
                         <div className="user__info box1">
                             {user.accessToken === '' ? (
-                                <>
-                                    <Link to={'/mypage'}>
-                                        <em className="line1">
-                                            {user.displayName}
-                                        </em>
-                                    </Link>
-                                    's DIARY
-                                    <Link to={'/mypage'}>
-                                        <img
-                                            src={userImg}
-                                            alt="마이페이지 이미지"
-                                        />
-                                    </Link>
-                                </>
+                                <span>로그인을 해주세요</span>
                             ) : (
                                 <>
                                     <Link to={'/mypage'}>
@@ -88,7 +74,7 @@ const Header = () => {
                                             {user.displayName}
                                         </em>
                                     </Link>
-                                    's DIARY
+                                    <span>'s DIARY</span>
                                     <Link to={'/mypage'}>
                                         <img
                                             src={userImg}

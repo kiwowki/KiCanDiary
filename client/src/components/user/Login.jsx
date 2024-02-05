@@ -8,7 +8,6 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
     const [errorMsg, setErrorMsg] = useState('')
-    const dispatch = useDispatch()
     const navigate = useNavigate()
     const user = useSelector((state) => state.user)
     const isLoading = user.isLoading
@@ -57,6 +56,7 @@ const Login = () => {
                                 Forgot ID?
                             </Link>
                         </p>
+
                         <input
                             type="text"
                             id="id"
@@ -67,6 +67,7 @@ const Login = () => {
                             onChange={(e) => setEmail(e.currentTarget.value)}
                         />
                     </div>
+
                     <div>
                         <label htmlFor="password">Password</label>
                         <p>
@@ -74,6 +75,7 @@ const Login = () => {
                                 Forgot password?
                             </Link>
                         </p>
+
                         <input
                             type="password"
                             id="password"

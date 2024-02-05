@@ -34,14 +34,14 @@ const ViewRight = ({ post, quillRef }) => {
                     className="update"
                     onClick={(e) => updateLink(e, postNum, navigate)}
                 >
-                    update
+                    EDIT
                 </button>
                 <button
                     onClick={(e) =>
                         diaryDelete(e, postNum, () => navigate('/diary'))
                     }
                 >
-                    delete
+                    DELETE
                 </button>
             </div>
         </div>

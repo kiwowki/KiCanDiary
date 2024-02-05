@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { loginUser, clearUser } from './reducer/userSlice'
 import firebase from './firebase.js'
-
 import './assets/scss/style.scss'
 import Header from './components/layout/Header'
 import HeaderMobile from './components/layout/Header_m'
@@ -19,22 +18,21 @@ import DiaryView from './components/diary/view/DiaryView.jsx'
 import Write from './components/diary/write/Write.jsx'
 import MainHome from './components/main/MainHome.jsx'
 import DiaryUpdate from './components/diary/update/DiaryUpdate.jsx'
-
 const App = () => {
     const [isMobile, setIsMobile] = useState(false)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const handleHeaderResize = () => {
+        const handleResize = () => {
             setIsMobile(window.innerWidth <= 480)
         }
 
-        handleHeaderResize()
+        handleResize()
 
-        window.addEventListener('resize', handleHeaderResize)
+        window.addEventListener('resize', handleResize)
 
         return () => {
-            window.removeEventListener('resize', handleHeaderResize)
+            window.removeEventListener('resize', handleResize)
         }
     }, [])
 
@@ -77,15 +75,77 @@ const App = () => {
                         }
                     />
 
-                    <Route path="/diary/view/:postNum" element={<> {isMobile ? <HeaderMobile /> : <Header />} <DiaryView /> </>} />
-                    <Route path="/diary/update/:postNum" element={<>{isMobile ? <HeaderMobile /> : <Header />} <DiaryUpdate /></>} />
-                    <Route path="/voca" element={<>{isMobile ? <HeaderMobile /> : <Header />} <VocaList /> </>} />
-                    <Route path="/join" element={<>{isMobile ? <HeaderMobile /> : <Header />} <Join /> </>} />
-                    <Route path="/login" element={<>{isMobile ? <HeaderMobile /> : <Header />}<Login /></>} />
-                    <Route path="/mypage" element={<>{isMobile ? <HeaderMobile /> : <Header />}<Mypage /> </>} />
-                    {/* 다른 페이지에는 Header가 나오도록 설정 */}
-                    <Route path="/*" element={isMobile ? <HeaderMobile /> : <Header />} />
+                    <Route
+                        path="/diary"
+                        element={
+                            <>
+                                {' '}
+                                {isMobile ? <HeaderMobile /> : <Header />}{' '}
+                                <DiaryList />
+                            </>
+                        }
+                    />
 
+                    <Route
+                        path="/diary/view/:postNum"
+                        element={
+                            <>
+                                {' '}
+                                {isMobile ? <HeaderMobile /> : <Header />}{' '}
+                                <DiaryView />{' '}
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/diary/update/:postNum"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}{' '}
+                                <DiaryUpdate />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/voca"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}{' '}
+                                <VocaList />{' '}
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/join"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}{' '}
+                                <Join />{' '}
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/login"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <Login />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/mypage"
+                        element={
+                            <>
+                                {isMobile ? <HeaderMobile /> : <Header />}
+                                <Mypage />{' '}
+                            </>
+                        }
+                    />
+                    {/* 다른 페이지에는 Header가 나오도록 설정 */}
+                    <Route
+                        path="/*"
+                        element={isMobile ? <HeaderMobile /> : <Header />}
+                    />
                 </Routes>
                 <Footer />
             </Main>

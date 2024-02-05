@@ -62,7 +62,7 @@ const List = ({ currentDate, currentPage, postsPerPage }) => {
                                 updateLink(e, post.postNum, navigate)
                             }
                         >
-                            update
+                            EDIT
                         </button>
                         <button
                             className="delete"
@@ -70,7 +70,7 @@ const List = ({ currentDate, currentPage, postsPerPage }) => {
                                 diaryDelete(e, post.postNum, setPostList)
                             }
                         >
-                            delete
+                            DELETE
                         </button>
                     </div>
                 </div>
@@ -90,11 +90,7 @@ const List = ({ currentDate, currentPage, postsPerPage }) => {
                                 </span> */}
                             </div>
                             <div className="day__diary">
-<<<<<<< HEAD
-                                <h3>No diary written yet!</h3>
-=======
                                 <h3 className="title">작성된 일기가 없어요</h3>
->>>>>>> master
                                 {/* <ReactQuill
                                     className="viewQuill"
                                     readOnly={true}

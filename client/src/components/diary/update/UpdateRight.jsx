@@ -48,6 +48,7 @@ const UpdateRight = ({ post, quillRef, postNum }) => {
             <div
                 className="editable-title whiteSpaceNo rightTitle"
                 contentEditable="true"
+                draggable="true"
                 suppressContentEditableWarning={true}
                 onBlur={(e) =>
                     setNewTitle(filterInput(e.currentTarget.textContent))
@@ -60,12 +61,7 @@ const UpdateRight = ({ post, quillRef, postNum }) => {
             </div>
             {post && post.content && (
                 <ReactQuill
-                    style={{
-                        height: '350px',
-                        marginRight: '4px',
-                        marginLeft: '4px',
-                    }}
-                    className="updateQuill"
+                    className="viewQuill"
                     modules={modules}
                     ref={quillRef}
                     value={newPost} // 상태를 사용하여 에디터의 내용을 설정합니다.
@@ -86,9 +82,9 @@ const UpdateRight = ({ post, quillRef, postNum }) => {
                         updatePost(e, newTitle, newContent, postNum, quillRef)
                     }
                 >
-                    update
+                    SAVE
                 </button>
-                <button onClick={(e) => cancel(e)}>cancel</button>
+                <button onClick={(e) => cancel(e)}>CANCEL</button>
             </div>
         </div>
     )
