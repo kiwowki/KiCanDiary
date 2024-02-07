@@ -10,6 +10,7 @@ const TabDiary = ({ uid, currentDate }) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [prevPage, setPrevPage] = useState(currentPage)
     const [direction, setDirection] = useState(1)
+    const [clickAni, setClickAni] = useState(false)
 
     useEffect(() => {
         const newDirection = currentPage > prevPage ? 1 : -1
@@ -31,6 +32,7 @@ const TabDiary = ({ uid, currentDate }) => {
         if (newPage !== currentPage) {
             setPrevPage(currentPage)
             setCurrentPage(newPage)
+            setClickAni(true)
         }
     }
 
@@ -52,9 +54,17 @@ const TabDiary = ({ uid, currentDate }) => {
                 href="#"
                 custom={currentPage > prevPage ? 1 : -1}
                 variants={variants}
-                initial="hidden"
+                initial={clickAni ? 'hidden' : 'show'}
                 animate="show"
-                transition={{ duration: 0.4, delay: 0.3, ease: 'easeInOut' }}
+                transition={{
+                    x: {
+                        type: 'spring',
+                        stiffness: 200,
+                        damping: 60,
+                        duration: 2.5,
+                    },
+                    opacity: { duration: 0.3 },
+                }}
             >
                 <div className="tab__box">
                     <h4 className="mb20"></h4>
@@ -92,6 +102,7 @@ const TabDiary = ({ uid, currentDate }) => {
                                     key={item.postNum}
                                     item={item}
                                     direction={direction}
+                                    clickAni={clickAni}
                                 />
                             ))
                         ) : (

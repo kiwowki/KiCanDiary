@@ -27,34 +27,42 @@ const Join = () => {
         if (!mailCheck) {
             return alert('아이디 중복 검사를 통과 해주세요')
         }
-        let createdUser = await firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, pass)
+        try {
+            let createdUser = await firebase
+                .auth()
+                .createUserWithEmailAndPassword(email, pass)
 
-        await createdUser.user.updateProfile({
-            displayName: name,
-        })
+            await createdUser.user.updateProfile({
+                displayName: name,
+            })
 
-        let accessToken = await createdUser.user.getIdToken()
+            let accessToken = await createdUser.user.getIdToken()
 
-        console.log(createdUser.user)
-        let body = {
-            email: createdUser.user.multiFactor.user.email,
-            displayName: createdUser.user.multiFactor.user.displayName,
-            uid: createdUser.user.multiFactor.user.uid,
-            accessToken: accessToken,
-            photoURL: createdUser.user.multiFactor.user.photoURL || '',
-        }
-        axios.post('api/user/join', body).then((response) => {
-            if (response.data.success) {
-                alert('회원가입이 완료되었습니다.')
-                console.log(body)
-                dispatch(loginUser(body))
-                navigate('/')
-            } else {
-                alert('회원가입에 실패하였습니다.')
+            let body = {
+                email: createdUser.user.multiFactor.user.email,
+                displayName: createdUser.user.multiFactor.user.displayName,
+                uid: createdUser.user.multiFactor.user.uid,
+                accessToken: accessToken,
+                photoURL: createdUser.user.multiFactor.user.photoURL || '',
             }
-        })
+            axios.post('api/user/join', body).then((response) => {
+                if (response.data.success) {
+                    alert('회원가입이 완료되었습니다.')
+                    console.log(body)
+                    dispatch(loginUser(body))
+                    navigate('/')
+                } else {
+                    alert('회원가입에 실패하였습니다.')
+                }
+            })
+        } catch (err) {
+            console.log(err)
+            if (err.code === 'auth/email-already-in-use') {
+                alert('이미 사용 중인 이메일 주소입니다.')
+            } else {
+                alert('Firebase 회원가입에 실패했습니다.')
+            }
+        }
     }
 
     return (

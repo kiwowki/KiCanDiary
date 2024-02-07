@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { getFormattedDate } from '../../../../../util/calendar/date/dateFormat'
 import DiaryPageNav from './pageNav/DiaryPageNav'
-import axios from 'axios'
+import searchList from '../../SearchList'
 const DiaryTop = ({
     fixedPageCount,
     currentPage,
@@ -11,43 +11,9 @@ const DiaryTop = ({
     handlePrevMonth,
     handlePageChange,
     uid,
+    setSearchResult,
 }) => {
     const [keyword, setKeyword] = useState('')
-    const [searchResult, setSearchResult] = useState([])
-
-    const diarySearch = async (e) => {
-        e.preventDefault()
-        if (keyword) {
-            let body = {
-                content: keyword,
-                uid: uid,
-            }
-
-            await axios
-                .post('/api/post/search/', body)
-                .then((res) => {
-                    if (res.data.success) {
-                        const parsedPostList = res.data.postList.map((post) => {
-                            try {
-                                return {
-                                    ...post,
-                                    content: JSON.parse(post.content),
-                                }
-                            } catch (err) {
-                                console.error('json parse', err)
-                                return post
-                            }
-                        })
-                        setSearchResult(parsedPostList)
-                        console.log('검색확인')
-                    }
-                })
-                .catch((err) => {
-                    console.log(err)
-                    alert('axios')
-                })
-        }
-    }
 
     return (
         <div className="diarylist__top">
@@ -78,7 +44,9 @@ const DiaryTop = ({
                 <div
                     type="submit"
                     className="searchBtn"
-                    onClick={(e) => diarySearch(e)}
+                    onClick={(e) =>
+                        searchList(e, uid, keyword, setSearchResult)
+                    }
                 ></div>
             </div>
         </div>

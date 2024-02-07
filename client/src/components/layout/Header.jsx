@@ -70,8 +70,8 @@ const Header = () => {
                                         <em className="line1">
                                             {user.displayName}
                                         </em>
+                                        's DIARY
                                     </Link>
-                                    's DIARY
                                     <Link to={'/mypage'}>
                                         <img
                                             src={userImg}
@@ -85,8 +85,8 @@ const Header = () => {
                                         <em className="line1">
                                             {user.displayName}
                                         </em>
+                                        's DIARY
                                     </Link>
-                                    's DIARY
                                     <Link to={'/mypage'}>
                                         <img
                                             src={userImg}

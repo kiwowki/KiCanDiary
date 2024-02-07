@@ -7,6 +7,7 @@ const DiaryList = () => {
     const uid = useSelector((state) => state.user.uid)
     const { currentDate, handleNextMonth, handlePrevMonth, prevDate } =
         useMonthNav()
+    const [searchResult, setSearchResult] = useState([])
 
     const postsPerPage = 7 // => 페이지에 보여줄 게시물의 숫자
     const fixedPageCount = 5 // => 고정 페이지 값
@@ -59,12 +60,14 @@ const DiaryList = () => {
                         handlePrevMonth={handlePrevMonth}
                         handlePageChange={handlePageChange}
                         uid={uid}
+                        setSearchResult={setSearchResult}
                     />
                     <DiaryBottom
                         currentDate={currentDate}
                         currentPage={currentPage}
                         postsPerPage={postsPerPage}
                         direction={direction}
+                        searchResult={searchResult}
                     />
                 </div>
             </div>

@@ -1,9 +1,16 @@
-import React, { useEffect, useLayoutEffect, useRef } from 'react'
+import React from 'react'
 import List from './List'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import SearchList from './SearchList'
 
-const DiaryBottom = ({ currentDate, currentPage, postsPerPage, direction }) => {
+const DiaryBottom = ({
+    currentDate,
+    currentPage,
+    postsPerPage,
+    direction,
+    searchResult,
+}) => {
     const variants = {
         enter: (direction) => {
             return {
@@ -49,11 +56,20 @@ const DiaryBottom = ({ currentDate, currentPage, postsPerPage, direction }) => {
                     }}
                 >
                     <div className="list__wrap">
-                        <List
-                            currentDate={currentDate}
-                            currentPage={currentPage}
-                            postsPerPage={postsPerPage}
-                        />
+                        {searchResult.length > 0 ? (
+                            <SearchList
+                                searchResult={searchResult}
+                                currentDate={currentDate}
+                                currentPage={currentPage}
+                                postsPerPage={postsPerPage}
+                            />
+                        ) : (
+                            <List
+                                currentDate={currentDate}
+                                currentPage={currentPage}
+                                postsPerPage={postsPerPage}
+                            />
+                        )}
 
                         <div className="voca__list">
                             <h3 className="title">Voca List</h3>

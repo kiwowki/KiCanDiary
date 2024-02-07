@@ -280,17 +280,15 @@
                     display: flex;
                     align-items: center;
                     justify-content: flex-end;
-                    color: var(--font-pink1);
 
                     a {
+                        color: var(--font-pink1);
                         display: flex;
                         align-items: center;
+                        font-size: 0.9rem;
 
                         em {
-                            font-size: 1rem;
                             display: inline-block;
-                            color: var(--black);
-                            font-family: var(--marc);
                             width: 80px;
                         }
                     }
@@ -320,9 +318,12 @@
                 padding-left: 50px;
             }
             .nav__session .user__info {
-                width: 145px;
+                width: 65px;
                 flex-direction: row-reverse;
                 margin-right: 15px;
+                span {
+                    display: none;
+                }
                 a {
                     em {
                         display: none;
@@ -374,6 +375,8 @@
 }
 
 #header_m {
+    transform: translateY(-40px);
+    transition: transform 0.3s ease;
     position: fixed;
     top: 0;
     width: 100%;
@@ -523,4 +526,8 @@
             }
         }
     }
+}
+
+#header_m.visible {
+    transform: translateY(0);
 }

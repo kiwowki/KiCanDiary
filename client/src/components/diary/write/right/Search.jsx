@@ -59,22 +59,24 @@ const Search = ({ uid }) => {
     // 구글 단어장
     const submitSearchList = async () => {
         const List = []
-        for (let i = 0; i < translation.length; i++) {
-            const searchList = [word, translation[i]]
-            List.push(searchList)
-        }
-        try {
-            const response = await axios.post('/api/voca/searchlist', {
-                data: List,
-                uid: uid,
-            })
-            if (response.data.success) {
-                alert('단어 저장 성공')
-            } else {
-                alert('단어 저장 실패')
+        if (translation.length > 0) {
+            for (let i = 0; i < translation.length; i++) {
+                const searchList = [word, translation[i]]
+                List.push(searchList)
             }
-        } catch (err) {
-            console.log(err)
+            try {
+                const response = await axios.post('/api/voca/searchlist', {
+                    data: List,
+                    uid: uid,
+                })
+                if (response.data.success) {
+                    alert('단어 저장 성공')
+                } else {
+                    alert('단어 저장 실패')
+                }
+            } catch (err) {
+                console.log(err)
+            }
         }
     }
 

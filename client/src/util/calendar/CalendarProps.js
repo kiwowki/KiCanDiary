@@ -54,8 +54,10 @@ export default function CalendarProps({ params, postList, today, uid }) {
             navigate(`/diary/view/${postNum}`)
             return
         }
-
-        alert('오늘의 날짜를 선택하도록') // 다 해당 안되면 오늘 날짜
+        if (!isToday) {
+            alert('오늘의 날짜를 선택하도록') // 다 해당 안되면 오늘 날짜
+            return
+        }
     }
     // 전달되는 postList는 post 스키마에 저장된 글목록임
     // 필터링을 통해 날짜 별로 달력 타일에 바인딩 함
