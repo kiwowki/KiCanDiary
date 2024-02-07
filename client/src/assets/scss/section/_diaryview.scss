@@ -83,8 +83,7 @@
                 width: 720px;
                 height: 550px;
                 border-radius: 16px;
-                padding: 85px 55px;
-                padding: 45px 55px;
+                padding: 45px 35px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
@@ -93,6 +92,9 @@
                     font-size: 1.3rem;
                     border-bottom: 5px solid var(--box-pink1);
                     padding: 5px 15px;
+                    &.editable-title {
+                        overflow: hidden;
+                    }
                 }
                 p {
                     font-size: 1rem;
@@ -116,6 +118,151 @@
                     }
                     .update {
                         margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #diaryview {
+        .diaryview__wrap {
+            height: auto;
+            margin: 20px;
+            padding: 0 15px;
+            .today {
+                h3 {
+                    margin: 10px 0;
+                    font-size: 18px;
+
+                    &::before {
+                    }
+                }
+            }
+            .detail {
+                flex-direction: column;
+                .left {
+                    background-repeat: repeat;
+                    background-size: contain;
+                    width: 90%;
+                    height: 200px;
+                    margin: 15px 5px;
+                    p {
+                    }
+                    .spring {
+                        display: none;
+                    }
+                }
+
+                .right {
+                    width: 100%;
+                    height: 50vh;
+                    margin: 15px 5px;
+                    padding: 10px 3px 10px 10px;
+                    .rightTitle {
+                    }
+                    p {
+                    }
+                    .btn__wrap {
+                        margin-right: 10px;
+                        button {
+                            &:hover {
+                            }
+                        }
+                        .update {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    #diaryview {
+        &.section__border {
+            border: none;
+        }
+        align-items: flex-start;
+        background-color: var(--bg-pink);
+        .diaryview__wrap {
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            margin: 45px 0 0 0;
+            padding: 0;
+
+            .today {
+                height: 40px;
+                background-color: var(--box-pink1);
+                border-radius: 10px 10px 0 0;
+                h3 {
+                    font-size: 14px;
+                    padding: 0;
+                    color: var(--white);
+
+                    &::before {
+                        display: none;
+                    }
+                }
+            }
+            .detail {
+                .left {
+                    display: none;
+                    // width: 100%;
+                    // height: 100px;
+                    // margin: 0;
+                    // box-shadow: none;
+                    // border-radius: 0;
+                    p {
+                    }
+                    .spring {
+                        display: none;
+                    }
+                }
+
+                .right {
+                    background-repeat: repeat;
+                    background-size: contain;
+                    justify-content: flex-start;
+                    width: 100%;
+                    height: calc(100vh - 125px);
+                    box-shadow: none;
+                    margin: 0;
+                    border-radius: 0;
+
+                    .rightTitle {
+                        padding: 10px 15px;
+                        height: auto;
+                        border-bottom: 3px solid var(--box-pink1);
+
+                        &.editable-title {
+                            overflow: hidden;
+                            min-height: 50px;
+                            // min-height: auto;
+                        }
+                    }
+                    p {
+                    }
+                    .btn__wrap {
+                        position: absolute;
+                        width: 100%;
+                        bottom: 0;
+                        left: 0;
+
+                        button {
+                            width: 50%;
+                            height: 40px;
+                            border-radius: 0;
+                            margin-right: 0;
+                            &:hover {
+                            }
+                        }
+                        .update {
+                            margin-right: 0;
+                            border-right: 1px solid var(--font-white2);
+                        }
                     }
                 }
             }

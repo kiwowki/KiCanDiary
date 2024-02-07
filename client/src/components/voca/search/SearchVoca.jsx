@@ -43,42 +43,45 @@ const SearchVoca = ({
     }
 
     return (
-        <div className="searchlist voca__right">
-            <h2>Search List</h2>
-            <div className="contents">
-                <VocaContentsTop
-                    searchList={searchList}
-                    checkboxList={checkboxList}
-                    handleCheckboxToggle={handleCheckboxToggle}
-                />
+        <div className="vocalist__right">
+            <div className="searchlist voca__right">
+                <h2>Search List</h2>
+                <div className="contents">
+                    <VocaContentsTop
+                        searchList={searchList}
+                        checkboxList={checkboxList}
+                        handleCheckboxToggle={handleCheckboxToggle}
+                    />
 
-                <VocaContentsBot
-                    checkBoxListAll={checkBoxListAll}
-                    handleCheckboxToggleAll={handleCheckboxToggleAll}
-                />
-            </div>
-            <div className="searchlist__btn">
-                <button
-                    className="add__btn"
-                    onClick={(e) => {
-                        writeVoca(
-                            e,
-                            checkboxList,
-                            searchList,
-                            vocaList,
-                            uid,
-                            fetchSearchList,
-                            setSearchList,
-                            fetchVocaList,
-                            setVocaList,
-                            setCheckboxList,
-                            setCheckboxListAll
-                        )
-                    }}
-                >
-                    Add
-                </button>
-                <button className="del__btn">Delete</button>
+                    <VocaContentsBot
+                        checkBoxListAll={checkBoxListAll}
+                        handleCheckboxToggleAll={handleCheckboxToggleAll}
+                    />
+                </div>
+                <div className="searchlist__btn">
+                    <button
+                        className="add__btn"
+                        onClick={(e) => {
+                            writeVoca(
+                                e,
+                                checkboxList,
+                                searchList,
+                                vocaList,
+                                uid,
+                                fetchSearchList,
+                                setSearchList,
+                                fetchVocaList,
+                                setVocaList,
+                                setCheckboxList,
+                                setCheckboxListAll
+                            )
+                        }}
+                    >
+                        Add
+                    </button>
+
+                    <button className="del__btn">Delete</button>
+                </div>
             </div>
         </div>
     )

@@ -87,6 +87,20 @@
                         color: #f54e5e;
                     }
                 }
+                p {
+                    margin: 1%;
+                    margin-top: -0px;
+                    margin-left: -20px;
+                    font-size: 0.9rem;
+                    .menuData {
+                        font-size: 0.8rem;
+                        margin-top: 30px;
+                        li {
+                            line-height: 1.6;
+                            padding-top: 1%;
+                        }
+                    }
+                }
             }
         }
     }

@@ -134,6 +134,7 @@
                         font-family: var(--marc);
                         font-size: 1.1rem;
                         /* 스크롤이 수직으로 발생하도록 설정 */
+                        position: relative;
 
                         .result_wrap {
                             width: 27.2vw;
@@ -143,7 +144,6 @@
                             flex-direction: column;
                             overflow: hidden;
                             overflow-y: auto;
-                            position: relative;
 
                             div {
                                 span {
@@ -158,9 +158,9 @@
                                     }
                                 }
 
-                                .submitSearchList {
-                                    @include rightBtnPink;
-                                }
+                            }
+                            .submitSearchList {
+                                @include rightBtnPink;
                             }
 
                             &::-webkit-scrollbar {
@@ -197,6 +197,7 @@
                         border-width: 0px 6px 6px 2px;
                         border-radius: 0 0 30px 30px;
                         overflow: hidden;
+                        position: relative;
 
                         .correction_wrap {
                             padding: 20px;
@@ -204,7 +205,7 @@
 
                             height: 309px;
                             overflow-y: auto; /* 스크롤이 수직으로 발생하도록 설정 */
-                            position: relative;
+
                             &::-webkit-scrollbar {
                                 width: 6px; /* 스크롤바의 너비 설정 */
                             }
@@ -257,10 +258,8 @@
                                     }
                                 }
                             }
-                            div {
-                                .submitGingerList {
-                                    @include rightBtnPink;
-                                }
+                            .submitGingerList {
+                                @include rightBtnPink;
                             }
                         }
                     }

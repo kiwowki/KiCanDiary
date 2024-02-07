@@ -49,22 +49,23 @@ const VocaList = () => {
                         fetchVocaList={fetchVocaList}
                         uid={uid}
                     />
+                    <div className="vocalist__right">
+                        <SearchVoca
+                            searchList={searchList}
+                            vocaList={vocaList}
+                            uid={uid}
+                            fetchSearchList={fetchSearchList}
+                            setSearchList={setSearchList}
+                            fetchVocaList={fetchVocaList}
+                            setVocaList={setVocaList}
+                        />
 
-                    <SearchVoca
-                        searchList={searchList}
-                        vocaList={vocaList}
-                        uid={uid}
-                        fetchSearchList={fetchSearchList}
-                        setSearchList={setSearchList}
-                        fetchVocaList={fetchVocaList}
-                        setVocaList={setVocaList}
-                    />
-
-                    <Correction
-                        correctList={correctList}
-                        setCorrectList={setCorrectList}
-                        uid={uid}
-                    />
+                        <Correction
+                            correctList={correctList}
+                            setCorrectList={setCorrectList}
+                            uid={uid}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
