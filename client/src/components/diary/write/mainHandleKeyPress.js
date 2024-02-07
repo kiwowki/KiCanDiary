@@ -12,7 +12,6 @@ const mainhandleKeyPress = async (
         if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault()
             const textValue = quillRef.current?.getEditor().getText()
-            // console.log(textValue)
             setValue(textValue)
 
             const response = await axios.post('/api/ginger', {

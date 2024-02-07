@@ -23,9 +23,9 @@ export const deleteVoca = async (
             let body = selectedWords.map((item) => item._id)
             await axios
                 .post('/api/voca/vocadelete', { id: body })
-                .then(async (response) => {
+                .then((response) => {
                     if (response.data.success) {
-                        await fetchVocaList(vocaList, setVocaList, uid) // await 키워드 추가
+                        fetchVocaList(vocaList, setVocaList, uid) // await 키워드 추가
                         setVocaCheckBoxList([])
                         setvocacheckboxListAll(false)
                     }
